@@ -1,0 +1,26 @@
+{
+    "name": "innmind/time-continuum",
+    "type": "library",
+    "description": "Library to manipulate time",
+    "keywords": ["time"],
+    "homepage": "http://github.com/Innmind/TimeContinuum",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Baptiste Langlade",
+            "email": "langlade.baptiste@gmail.com"
+        }
+    ],
+    "support": {
+        "issues": "http://github.com/Innmind/TimeContinuum/issues"
+    },
+    "require": {
+        "php": "~7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Innmind\\TimeContinuum\\": "src/",
+            "Tests\\Innmind\\TimeContinuum\\": "tests/"
+        }
+    }
+}
