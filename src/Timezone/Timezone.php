@@ -10,9 +10,7 @@ trait Timezone
 
     private function use(string $zone)
     {
-        $zone = \IntlTimeZone::fromDateTimeZone(
-            new \DateTimeZone($zone)
-        );
+        $zone = \IntlTimeZone::createTimeZone($zone);
         $offset = $zone->getRawOffset();
         $offset += $zone->useDaylightTime() ? $zone->getDSTSavings() : 0;
         $this->utc = new UTC(
