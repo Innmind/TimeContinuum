@@ -15,7 +15,7 @@
         "issues": "http://github.com/Innmind/TimeContinuum/issues"
     },
     "require": {
-        "php": "~7.0"
+        "php": "~7.0.11"
     },
     "autoload": {
         "psr-4": {
