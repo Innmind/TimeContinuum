@@ -15,14 +15,6 @@ class MetlakatlaTest extends \PHPUnit_Framework_TestCase
         $zone = new Metlakatla;
 
         $this->assertInstanceOf(TimezoneInterface::class, $zone);
-        $this->assertSame(-8, $zone->hours());
-        $this->assertSame(0, $zone->minutes());
-        $this->assertSame('-08:00', (string) $zone);
-        $this->assertFalse($zone->daylightSavingTimeApplied());
-
-        return;
-
-        //php does not take into account the recent DST for this timezone
         if ($zone->daylightSavingTimeApplied()) {
             $this->assertSame(-8, $zone->hours());
             $this->assertSame(0, $zone->minutes());
