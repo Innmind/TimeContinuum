@@ -11,18 +11,20 @@ use Innmind\TimeContinuum\{
 final class Casablanca implements TimezoneInterface
 {
     private $utc;
+    private $dst;
 
     public function __construct()
     {
-        $this->utc = new UTC(0, 0);
-    }
-
-    public static function summerTime(): self
-    {
-        $self = new self;
-        $self->utc = new UTC(1, 0);
-
-        return $self;
+        $zone = \IntlTimeZone::fromDateTimeZone(
+            new \DateTimeZone('Africa/Casablanca')
+        );
+        $offset = $zone->getRawOffset();
+        $offset += $zone->useDaylightTime() ? $zone->getDSTSavings() : 0;
+        $this->utc = new UTC(
+            $hour = (int) ($offset / 3600000),
+            (int) round(($offset - $hour * 3600000) / 60000)
+        );
+        $this->dst = $zone->useDaylightTime();
     }
 
     public function hours(): int
@@ -33,6 +35,11 @@ final class Casablanca implements TimezoneInterface
     public function minutes(): int
     {
         return $this->utc->minutes();
+    }
+
+    public function daylightSavingTimeApplied(): bool
+    {
+        return $this->dst;
     }
 
     public function __toString(): string

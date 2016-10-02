@@ -12,6 +12,7 @@ final class UTC implements TimezoneInterface
 {
     private $hours;
     private $minutes;
+    private $dst = false;
     private $string;
 
     public function __construct(int $hours, int $minutes = 0)
@@ -40,6 +41,14 @@ final class UTC implements TimezoneInterface
         }
     }
 
+    public static function daylightSavingTime(int $hours, int $minutes = 0): self
+    {
+        $self = new self($hours, $minutes);
+        $self->dst = true;
+
+        return $self;
+    }
+
     public function hours(): int
     {
         return $this->hours;
@@ -48,6 +57,11 @@ final class UTC implements TimezoneInterface
     public function minutes(): int
     {
         return $this->minutes;
+    }
+
+    public function daylightSavingTimeApplied(): bool
+    {
+        return $this->dst;
     }
 
     public function __toString(): string
