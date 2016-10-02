@@ -3,7 +3,10 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum\Timezone\Africa;
 
-use Innmind\TimeContinuum\TimezoneInterface;
+use Innmind\TimeContinuum\{
+    TimezoneInterface,
+    Timezone\UTC
+};
 
 final class AddisAbaba implements TimezoneInterface
 {
