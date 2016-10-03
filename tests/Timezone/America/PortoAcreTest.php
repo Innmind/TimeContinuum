@@ -15,14 +15,9 @@ class PortoAcreTest extends \PHPUnit_Framework_TestCase
         $zone = new PortoAcre;
 
         $this->assertInstanceOf(TimezoneInterface::class, $zone);
-        if ($zone->daylightSavingTimeApplied()) {
-            $this->assertSame(-4, $zone->hours());
-            $this->assertSame(0, $zone->minutes());
-            $this->assertSame('-04:00', (string) $zone);
-        } else {
-            $this->assertSame(-5, $zone->hours());
-            $this->assertSame(0, $zone->minutes());
-            $this->assertSame('-05:00', (string) $zone);
-        }
+        $this->assertSame(-5, $zone->hours());
+        $this->assertSame(0, $zone->minutes());
+        $this->assertSame('-05:00', (string) $zone);
+        $this->assertFalse($zone->daylightSavingTimeApplied());
     }
 }
