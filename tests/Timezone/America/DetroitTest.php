@@ -1,29 +1,28 @@
 <?php
 declare(strict_types = 1);
 
-namespace Tests\Innmind\TimeContinuum\Timezone;
+namespace Tests\Innmind\TimeContinuum\Timezone\America;
 
 use Innmind\TimeContinuum\{
-    Timezone\Greenwich,
+    Timezone\America\Detroit,
     TimezoneInterface
 };
 
-class GreenwichTest extends \PHPUnit_Framework_TestCase
+class DetroitTest extends \PHPUnit_Framework_TestCase
 {
     public function testInterface()
     {
-        $zone = new Greenwich;
+        $zone = new Detroit;
 
         $this->assertInstanceOf(TimezoneInterface::class, $zone);
-
         if ($zone->daylightSavingTimeApplied()) {
-            $this->assertSame(1, $zone->hours());
+            $this->assertSame(-4, $zone->hours());
             $this->assertSame(0, $zone->minutes());
-            $this->assertSame('+01:00', (string) $zone);
+            $this->assertSame('-04:00', (string) $zone);
         } else {
-            $this->assertSame(0, $zone->hours());
+            $this->assertSame(-5, $zone->hours());
             $this->assertSame(0, $zone->minutes());
-            $this->assertSame('Z', (string) $zone);
+            $this->assertSame('-05:00', (string) $zone);
         }
     }
 }

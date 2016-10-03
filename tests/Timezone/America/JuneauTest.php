@@ -1,29 +1,28 @@
 <?php
 declare(strict_types = 1);
 
-namespace Tests\Innmind\TimeContinuum\Timezone;
+namespace Tests\Innmind\TimeContinuum\Timezone\America;
 
 use Innmind\TimeContinuum\{
-    Timezone\Greenwich,
+    Timezone\America\Juneau,
     TimezoneInterface
 };
 
-class GreenwichTest extends \PHPUnit_Framework_TestCase
+class JuneauTest extends \PHPUnit_Framework_TestCase
 {
     public function testInterface()
     {
-        $zone = new Greenwich;
+        $zone = new Juneau;
 
         $this->assertInstanceOf(TimezoneInterface::class, $zone);
-
         if ($zone->daylightSavingTimeApplied()) {
-            $this->assertSame(1, $zone->hours());
+            $this->assertSame(-8, $zone->hours());
             $this->assertSame(0, $zone->minutes());
-            $this->assertSame('+01:00', (string) $zone);
+            $this->assertSame('-08:00', (string) $zone);
         } else {
-            $this->assertSame(0, $zone->hours());
+            $this->assertSame(-9, $zone->hours());
             $this->assertSame(0, $zone->minutes());
-            $this->assertSame('Z', (string) $zone);
+            $this->assertSame('-09:00', (string) $zone);
         }
     }
 }

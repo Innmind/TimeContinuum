@@ -3,23 +3,19 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum\Timezone;
 
-use Innmind\TimeContinuum\TimezoneInterface;
-
-final class Greenwich implements TimezoneInterface
+trait Timezone
 {
     private $utc;
     private $dst;
 
-    public function __construct()
+    private function use(string $zone)
     {
-        $zone = \IntlTimeZone::fromDateTimeZone(
-            new \DateTimeZone('Europe/London')
-        );
+        $zone = \IntlTimeZone::createTimeZone($zone);
         $offset = $zone->getRawOffset();
         $offset += $zone->useDaylightTime() ? $zone->getDSTSavings() : 0;
         $this->utc = new UTC(
             $hour = (int) ($offset / 3600000),
-            (int) round(($offset - $hour * 3600000) / 60000)
+            (int) abs(round(($offset - $hour * 3600000) / 60000))
         );
         $this->dst = $zone->useDaylightTime();
     }

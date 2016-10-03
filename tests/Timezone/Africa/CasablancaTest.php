@@ -1,21 +1,20 @@
 <?php
 declare(strict_types = 1);
 
-namespace Tests\Innmind\TimeContinuum\Timezone;
+namespace Tests\Innmind\TimeContinuum\Timezone\Africa;
 
 use Innmind\TimeContinuum\{
-    Timezone\Greenwich,
+    Timezone\Africa\Casablanca,
     TimezoneInterface
 };
 
-class GreenwichTest extends \PHPUnit_Framework_TestCase
+class CasablancaTest extends \PHPUnit_Framework_TestCase
 {
     public function testInterface()
     {
-        $zone = new Greenwich;
+        $zone = new Casablanca;
 
         $this->assertInstanceOf(TimezoneInterface::class, $zone);
-
         if ($zone->daylightSavingTimeApplied()) {
             $this->assertSame(1, $zone->hours());
             $this->assertSame(0, $zone->minutes());
