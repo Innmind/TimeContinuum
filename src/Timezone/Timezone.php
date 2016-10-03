@@ -12,15 +12,15 @@ trait Timezone
     {
         $zone = new \DateTimeZone($zone);
         $currentOffset = $zone->getOffset(
-            new \DateTime('now', $zone)
+            $now = new \DateTime('now', $zone)
         );
-        $zone = \IntlTimeZone::fromDateTimeZone($zone);
-        $rawOffset = (int) $zone->getRawOffset() / 1000;
+        $rawOffset = (int) \IntlTimeZone::fromDateTimeZone($zone)->getRawOffset() / 1000;
         $this->utc = new UTC(
             $hour = (int) ($currentOffset / 3600),
             (int) abs(round(($currentOffset - $hour * 3600) / 60))
         );
-        $this->dst = $zone->useDaylightTime() && $currentOffset !== $rawOffset;
+        $useDST = (bool) (int) $now->format('I');
+        $this->dst = $useDST && $currentOffset !== $rawOffset;
     }
 
     public function hours(): int
