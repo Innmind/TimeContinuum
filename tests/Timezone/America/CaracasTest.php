@@ -16,8 +16,8 @@ class CaracasTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf(TimezoneInterface::class, $zone);
         $this->assertSame(-4, $zone->hours());
-        $this->assertSame(30, $zone->minutes());
-        $this->assertSame('-04:30', (string) $zone);
+        $this->assertSame(0, $zone->minutes());
+        $this->assertSame('-04:00', (string) $zone);
         $this->assertFalse($zone->daylightSavingTimeApplied());
     }
 }

@@ -10,14 +10,17 @@ trait Timezone
 
     private function use(string $zone)
     {
-        $zone = \IntlTimeZone::createTimeZone($zone);
-        $offset = $zone->getRawOffset();
-        $offset += $zone->useDaylightTime() ? $zone->getDSTSavings() : 0;
-        $this->utc = new UTC(
-            $hour = (int) ($offset / 3600000),
-            (int) abs(round(($offset - $hour * 3600000) / 60000))
+        $zone = new \DateTimeZone($zone);
+        $currentOffset = $zone->getOffset(
+            new \DateTime('now', $zone)
         );
-        $this->dst = $zone->useDaylightTime();
+        $zone = \IntlTimeZone::fromDateTimeZone($zone);
+        $rawOffset = (int) $zone->getRawOffset() / 1000;
+        $this->utc = new UTC(
+            $hour = (int) ($currentOffset / 3600),
+            (int) abs(round(($currentOffset - $hour * 3600) / 60))
+        );
+        $this->dst = $zone->useDaylightTime() && $currentOffset !== $rawOffset;
     }
 
     public function hours(): int
