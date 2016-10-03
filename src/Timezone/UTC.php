@@ -28,17 +28,7 @@ final class UTC implements TimezoneInterface
 
         $this->hours = $hours;
         $this->minutes = $minutes;
-
-        if ($hours === 0 && $minutes === 0) {
-            $this->string = 'Z';
-        } else {
-            $this->string = sprintf(
-                '%s%02d:%02d',
-                $hours > 0 ? '+' : '-',
-                abs($hours),
-                $minutes
-            );
-        }
+        $this->string = $this->format($hours, $minutes);
     }
 
     public static function daylightSavingTime(int $hours, int $minutes = 0): self
@@ -67,5 +57,19 @@ final class UTC implements TimezoneInterface
     public function __toString(): string
     {
         return $this->string;
+    }
+
+    private function format(int $hours, int $minutes): string
+    {
+        if ($hours === 0 && $minutes === 0) {
+            return 'Z';
+        }
+
+        return sprintf(
+            '%s%02d:%02d',
+            $hours > 0 ? '+' : '-',
+            abs($hours),
+            $minutes
+        );
     }
 }
