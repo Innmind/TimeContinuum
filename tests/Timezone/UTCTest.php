@@ -19,6 +19,8 @@ class UTCTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(0, $zone->minutes());
         $this->assertSame('+01:00', (string) $zone);
         $this->assertFalse($zone->daylightSavingTimeApplied());
+
+        $this->assertSame('Z', (string) new UTC);
     }
 
     /**

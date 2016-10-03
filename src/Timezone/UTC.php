@@ -15,7 +15,7 @@ final class UTC implements TimezoneInterface
     private $dst = false;
     private $string;
 
-    public function __construct(int $hours, int $minutes = 0)
+    public function __construct(int $hours = 0, int $minutes = 0)
     {
         if (
             $hours < -12 ||
