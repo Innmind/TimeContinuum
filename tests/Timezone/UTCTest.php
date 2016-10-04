@@ -77,6 +77,18 @@ class UTCTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($zone->daylightSavingTimeApplied());
     }
 
+    /**
+     * @dataProvider cases
+     */
+    public function testFromString(string $zone, int $hours, int $minutes)
+    {
+        $zone = UTC::fromString($zone);
+
+        $this->assertInstanceOf(UTC::class, $zone);
+        $this->assertSame($hours, $zone->hours());
+        $this->assertSame($minutes, $zone->minutes());
+    }
+
     public function cases()
     {
         return [

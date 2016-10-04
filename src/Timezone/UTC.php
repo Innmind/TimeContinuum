@@ -39,6 +39,17 @@ final class UTC implements TimezoneInterface
         return $self;
     }
 
+    public static function fromString(string $zone): self
+    {
+        if (mb_strtolower($zone) === 'z') {
+            return new self;
+        }
+
+        list($hours, $minutes) = explode(':', $zone);
+
+        return new self((int) $hours, (int) $minutes);
+    }
+
     public function hours(): int
     {
         return $this->hours;
