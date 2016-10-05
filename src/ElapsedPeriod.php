@@ -27,4 +27,9 @@ final class ElapsedPeriod
     {
         return $this->milliseconds > $period->milliseconds();
     }
+
+    public function equals(self $period): bool
+    {
+        return $this->milliseconds === $period->milliseconds();
+    }
 }

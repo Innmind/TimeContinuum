@@ -35,4 +35,18 @@ class ElapsedPeriodTest extends \PHPUnit_Framework_TestCase
             )
         );
     }
+
+    public function testEquals()
+    {
+        $this->assertTrue(
+            (new ElapsedPeriod(42))->equals(
+                new ElapsedPeriod(42)
+            )
+        );
+        $this->assertFalse(
+            (new ElapsedPeriod(42))->equals(
+                new ElapsedPeriod(66)
+            )
+        );
+    }
 }
