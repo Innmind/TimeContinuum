@@ -18,6 +18,7 @@ class DayTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf(DayInterface::class, $day);
         $this->assertSame(3, $day->weekNumber());
+        $this->assertSame(278, $day->ofYear());
         $this->assertSame(5, $day->toInt());
         $this->assertSame('Wednesday', (string) $day);
     }

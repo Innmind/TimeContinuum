@@ -12,6 +12,7 @@ final class Day implements DayInterface
 {
     private $day;
     private $week;
+    private $ofYear;
     private $string;
 
     public function __construct(Year $year, Month $month, int $day)
@@ -25,12 +26,18 @@ final class Day implements DayInterface
             'w',
             $time = mktime(0, 0, 0, $month->toInt(), $day, $year->toInt())
         );
+        $this->ofYear = (int) date('z', $time);
         $this->string = date('l', $time);
     }
 
     public function weekNumber(): int
     {
         return $this->week;
+    }
+
+    public function ofYear(): int
+    {
+        return $this->ofYear;
     }
 
     public function toInt(): int
