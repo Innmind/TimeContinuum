@@ -29,11 +29,7 @@ interface PointInTimeInterface
     public function format(FormatInterface $format): string;
     public function changeTimezone(TimezoneInterface $zone): self;
     public function timezone(): TimezoneInterface;
-
-    /**
-     * Return the equivalent time at Greenwich
-     */
-    public function greenwich(): self;
+    public function atUTC(): self;
     public function elapsedSince(self $point): ElpasedPeriod;
     public function goBack(PeriodInterface $period): self;
     public function goForward(PeriodInterface $period): self;
