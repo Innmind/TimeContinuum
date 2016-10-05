@@ -30,7 +30,7 @@ interface PointInTimeInterface
     public function changeTimezone(TimezoneInterface $zone): self;
     public function timezone(): TimezoneInterface;
     public function atUTC(): self;
-    public function elapsedSince(self $point): ElpasedPeriod;
+    public function elapsedSince(self $point): ElapsedPeriod;
     public function goBack(PeriodInterface $period): self;
     public function goForward(PeriodInterface $period): self;
     public function equals(self $point): bool;
