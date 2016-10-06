@@ -14,5 +14,4 @@ interface PeriodInterface
     public function milliseconds(): int;
     public function equals(self $period): bool;
     public function add(self $period): self;
-    public function subtract(self $period): self;
 }
