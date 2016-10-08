@@ -54,26 +54,12 @@ class NowTest extends \PHPUnit_Framework_TestCase
         $this->assertSame((int) date('H', $timestamp), $point->hour()->toInt());
         $this->assertSame((int) date('i', $timestamp), $point->minute()->toInt());
         $this->assertSame((int) date('s', $timestamp), $point->second()->toInt());
-        $this->assertTrue(
-            in_array(
-                $point->millisecond()->toInt(),
-                [
-                    $now - ($timestamp * 1000),
-                    //off by one due to the time it takes to reach
-                    //microtime in Now::__construct
-                    $now - ($timestamp * 1000) + 1,
-                ],
-                true
-            )
-        );
-        $this->assertTrue(
-            in_array(
-                $point->milliseconds()
-                ,
-                [$now, $now + 1],
-                true
-            )
-        );
+        //allow 50 milliseconds delay between our microtime
+        //and the one in Now::__construct
+        $this->assertTrue($point->millisecond()->toInt() >= $now - ($timestamp * 1000));
+        $this->assertTrue($point->millisecond()->toInt() <= $now - ($timestamp * 1000) + 50);
+        $this->assertTrue($point->milliseconds() >= $now);
+        $this->assertTrue($point->milliseconds() <= $now + 50);
         $timezone = date('P', $timestamp);
         $timezone = $timezone === '+00:00' ? 'Z' : $timezone;
         $this->assertSame($timezone, (string) $point->timezone());
