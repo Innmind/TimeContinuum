@@ -19,7 +19,7 @@ final class UTC implements TimezoneInterface
     {
         if (
             $hours < -12 ||
-            $hours > 12 ||
+            $hours > 14 ||
             $minutes < 0 ||
             $minutes > 59
         ) {
