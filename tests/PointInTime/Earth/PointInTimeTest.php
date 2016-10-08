@@ -17,7 +17,8 @@ use Innmind\TimeContinuum\{
     TimeContinuum\SecondInterface,
     TimeContinuum\MillisecondInterface,
     Timezone\Earth\UTC,
-    Period\Earth\Composite
+    Period\Earth\Composite,
+    Period\Earth\Millisecond as MillisecondPeriod
 };
 
 class PointInTimeTest extends \PHPUnit_Framework_TestCase
@@ -200,5 +201,20 @@ class PointInTimeTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(59, $point2->minute()->toInt());
         $this->assertSame(59, $point2->second()->toInt());
         $this->assertSame(998, $point2->millisecond()->toInt());
+
+        $this->assertSame(
+            '2016-10-05T08:01:29.500000+02:00',
+            $point
+                ->goBack(new MillisecondPeriod(623))
+                ->format(
+                    new class implements FormatInterface
+                    {
+                        public function __toString(): string
+                        {
+                            return 'Y-m-d\TH:i:s.uP';
+                        }
+                    }
+                )
+        );
     }
 }
