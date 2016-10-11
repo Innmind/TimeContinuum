@@ -29,7 +29,6 @@ interface PointInTimeInterface
     public function format(FormatInterface $format): string;
     public function changeTimezone(TimezoneInterface $zone): self;
     public function timezone(): TimezoneInterface;
-    public function atUTC(): self;
     public function elapsedSince(self $point): ElapsedPeriod;
     public function goBack(PeriodInterface $period): self;
     public function goForward(PeriodInterface $period): self;

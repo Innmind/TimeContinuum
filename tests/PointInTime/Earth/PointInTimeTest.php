@@ -101,31 +101,6 @@ class PointInTimeTest extends \PHPUnit_Framework_TestCase
         $this->assertSame('-02:30', (string) $point2->timezone());
     }
 
-    public function testAtUTC()
-    {
-        $point = new PointInTime('2016-10-05T08:01:30.123+02:00');
-        $point2 = $point->atUTC();
-
-        $this->assertInstanceOf(PointInTimeInterface::class, $point2);
-        $this->assertNotSame($point, $point2);
-        $this->assertNotSame($point->year(), $point2->year());
-        $this->assertNotSame($point->month(), $point2->month());
-        $this->assertNotSame($point->day(), $point2->day());
-        $this->assertNotSame($point->hour(), $point2->hour());
-        $this->assertNotSame($point->minute(), $point2->minute());
-        $this->assertNotSame($point->second(), $point2->second());
-        $this->assertNotSame($point->millisecond(), $point2->millisecond());
-        $this->assertSame($point->milliseconds(), $point2->milliseconds());
-        $this->assertSame(2016, $point2->year()->toInt());
-        $this->assertSame(10, $point2->month()->toInt());
-        $this->assertSame(5, $point2->day()->toInt());
-        $this->assertSame(6, $point2->hour()->toInt());
-        $this->assertSame(1, $point2->minute()->toInt());
-        $this->assertSame(30, $point2->second()->toInt());
-        $this->assertSame(123, $point2->millisecond()->toInt());
-        $this->assertSame('Z', (string) $point2->timezone());
-    }
-
     public function testElapsedSince()
     {
         $point = new PointInTime('2016-10-05T08:01:30.123+02:00');

@@ -171,11 +171,6 @@ final class PointInTime implements PointInTimeInterface
         return $this->timezone;
     }
 
-    public function atUTC(): PointInTimeInterface
-    {
-        return $this->changeTimezone(new UTC);
-    }
-
     public function elapsedSince(PointInTimeInterface $point): ElapsedPeriod
     {
         return new ElapsedPeriod($this->milliseconds() - $point->milliseconds());
