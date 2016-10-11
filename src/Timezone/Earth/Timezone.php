@@ -14,13 +14,11 @@ trait Timezone
         $currentOffset = $zone->getOffset(
             $now = new \DateTime('now', $zone)
         );
-        $rawOffset = (int) \IntlTimeZone::fromDateTimeZone($zone)->getRawOffset() / 1000;
         $this->utc = new UTC(
             $hour = (int) ($currentOffset / 3600),
             (int) abs(round(($currentOffset - $hour * 3600) / 60))
         );
-        $useDST = (bool) (int) $now->format('I');
-        $this->dst = $useDST && $currentOffset !== $rawOffset;
+        $this->dst = (bool) (int) $now->format('I');
     }
 
     public function hours(): int
