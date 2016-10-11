@@ -1,7 +1,5 @@
 # TimeContinuum
 
-# Crawler
-
 | `master` | `develop` |
 |----------|-----------|
 | [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Innmind/TimeContinuum/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Innmind/TimeContinuum/?branch=master) | [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Innmind/TimeContinuum/badges/quality-score.png?b=develop)](https://scrutinizer-ci.com/g/Innmind/TimeContinuum/?branch=develop) |
