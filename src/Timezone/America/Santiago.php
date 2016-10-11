@@ -5,7 +5,7 @@ namespace Innmind\TimeContinuum\Timezone\America;
 
 use Innmind\TimeContinuum\{
     TimezoneInterface,
-    Timezone\Timezone
+    Timezone\Earth\Timezone
 };
 
 final class Santiago implements TimezoneInterface
