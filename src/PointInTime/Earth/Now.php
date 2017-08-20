@@ -25,16 +25,22 @@ final class Now implements PointInTimeInterface
 
     public function __construct()
     {
-        $time = microtime(true);
-        $timestamp = (int) $time;
-        $milliseconds = (int) round($time * 1000);
-        $this->point = new PointInTime(sprintf(
-            date(
-                'Y-m-d\TH:i:s.%03\sP',
-                $timestamp
-            ),
-            $milliseconds - ($timestamp * 1000)
-        ));
+        if (PHP_VERSION_ID < 70100) {
+            $time = microtime(true);
+            $timestamp = (int) $time;
+            $milliseconds = (int) round($time * 1000);
+            $date = sprintf(
+                date(
+                    'Y-m-d\TH:i:s.%03\sP',
+                    $timestamp
+                ),
+                $milliseconds - ($timestamp * 1000)
+            );
+        } else {
+            $date = (new \DateTime('now'))->format('Y-m-d\TH:i:s.uP');
+        }
+
+        $this->point = new PointInTime($date);
     }
 
     public function milliseconds(): int
