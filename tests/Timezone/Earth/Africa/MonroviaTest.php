@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Africa\Monrovia,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class MonroviaTest extends \PHPUnit_Framework_TestCase
+class MonroviaTest extends TestCase
 {
     public function testInterface()
     {

@@ -19,8 +19,18 @@
     },
     "autoload": {
         "psr-4": {
-            "Innmind\\TimeContinuum\\": "src/",
+            "Innmind\\TimeContinuum\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
             "Tests\\Innmind\\TimeContinuum\\": "tests/"
         }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit --colors=always"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~6.0"
     }
 }

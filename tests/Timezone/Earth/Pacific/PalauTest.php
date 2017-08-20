@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Pacific\Palau,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class PalauTest extends \PHPUnit_Framework_TestCase
+class PalauTest extends TestCase
 {
     public function testInterface()
     {

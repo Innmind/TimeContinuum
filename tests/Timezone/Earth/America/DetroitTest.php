@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Detroit,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class DetroitTest extends \PHPUnit_Framework_TestCase
+class DetroitTest extends TestCase
 {
     public function testInterface()
     {

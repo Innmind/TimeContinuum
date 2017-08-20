@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Europe\Brussels,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class BrusselsTest extends \PHPUnit_Framework_TestCase
+class BrusselsTest extends TestCase
 {
     public function testInterface()
     {

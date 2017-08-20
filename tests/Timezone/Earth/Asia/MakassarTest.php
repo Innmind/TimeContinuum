@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Asia\Makassar,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class MakassarTest extends \PHPUnit_Framework_TestCase
+class MakassarTest extends TestCase
 {
     public function testInterface()
     {

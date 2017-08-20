@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Pacific\Gambier,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class GambierTest extends \PHPUnit_Framework_TestCase
+class GambierTest extends TestCase
 {
     public function testInterface()
     {

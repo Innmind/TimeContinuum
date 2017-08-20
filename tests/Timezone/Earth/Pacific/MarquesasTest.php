@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Pacific\Marquesas,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class MarquesasTest extends \PHPUnit_Framework_TestCase
+class MarquesasTest extends TestCase
 {
     public function testInterface()
     {

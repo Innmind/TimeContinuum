@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Africa\Johannesburg,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class JohannesburgTest extends \PHPUnit_Framework_TestCase
+class JohannesburgTest extends TestCase
 {
     public function testInterface()
     {

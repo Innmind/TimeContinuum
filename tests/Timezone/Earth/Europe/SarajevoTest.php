@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Europe\Sarajevo,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class SarajevoTest extends \PHPUnit_Framework_TestCase
+class SarajevoTest extends TestCase
 {
     public function testInterface()
     {

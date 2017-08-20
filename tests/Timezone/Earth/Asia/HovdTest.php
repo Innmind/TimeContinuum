@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Asia\Hovd,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class HovdTest extends \PHPUnit_Framework_TestCase
+class HovdTest extends TestCase
 {
     public function testInterface()
     {

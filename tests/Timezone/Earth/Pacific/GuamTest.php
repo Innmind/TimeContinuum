@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Pacific\Guam,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class GuamTest extends \PHPUnit_Framework_TestCase
+class GuamTest extends TestCase
 {
     public function testInterface()
     {

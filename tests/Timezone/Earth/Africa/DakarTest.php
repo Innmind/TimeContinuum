@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Africa\Dakar,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class DakarTest extends \PHPUnit_Framework_TestCase
+class DakarTest extends TestCase
 {
     public function testInterface()
     {

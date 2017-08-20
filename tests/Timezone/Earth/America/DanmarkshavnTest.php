@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Danmarkshavn,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class DanmarkshavnTest extends \PHPUnit_Framework_TestCase
+class DanmarkshavnTest extends TestCase
 {
     public function testInterface()
     {

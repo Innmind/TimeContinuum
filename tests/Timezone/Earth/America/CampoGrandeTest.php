@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\CampoGrande,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class CampoGrandeTest extends \PHPUnit_Framework_TestCase
+class CampoGrandeTest extends TestCase
 {
     public function testInterface()
     {

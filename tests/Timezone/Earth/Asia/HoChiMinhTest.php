@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Asia\HoChiMinh,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class HoChiMinhTest extends \PHPUnit_Framework_TestCase
+class HoChiMinhTest extends TestCase
 {
     public function testInterface()
     {

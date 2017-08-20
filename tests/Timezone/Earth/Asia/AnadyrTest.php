@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Asia\Anadyr,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class AnadyrTest extends \PHPUnit_Framework_TestCase
+class AnadyrTest extends TestCase
 {
     public function testInterface()
     {

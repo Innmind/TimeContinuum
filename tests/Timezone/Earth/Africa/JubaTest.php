@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Africa\Juba,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class JubaTest extends \PHPUnit_Framework_TestCase
+class JubaTest extends TestCase
 {
     public function testInterface()
     {

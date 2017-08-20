@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Asia\Chungking,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class ChungkingTest extends \PHPUnit_Framework_TestCase
+class ChungkingTest extends TestCase
 {
     public function testInterface()
     {

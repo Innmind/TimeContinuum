@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Pacific\Truk,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class TrukTest extends \PHPUnit_Framework_TestCase
+class TrukTest extends TestCase
 {
     public function testInterface()
     {

@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Asia\UlanBator,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class UlanBatorTest extends \PHPUnit_Framework_TestCase
+class UlanBatorTest extends TestCase
 {
     public function testInterface()
     {

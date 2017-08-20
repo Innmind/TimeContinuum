@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Halifax,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class HalifaxTest extends \PHPUnit_Framework_TestCase
+class HalifaxTest extends TestCase
 {
     public function testInterface()
     {

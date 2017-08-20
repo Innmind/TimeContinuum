@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Indian\Mauritius,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class MauritiusTest extends \PHPUnit_Framework_TestCase
+class MauritiusTest extends TestCase
 {
     public function testInterface()
     {

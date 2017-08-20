@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Indian\Cocos,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class CocosTest extends \PHPUnit_Framework_TestCase
+class CocosTest extends TestCase
 {
     public function testInterface()
     {

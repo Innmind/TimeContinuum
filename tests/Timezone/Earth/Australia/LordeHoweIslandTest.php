@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Australia\LordeHoweIsland,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class LordeHoweIslandTest extends \PHPUnit_Framework_TestCase
+class LordeHoweIslandTest extends TestCase
 {
     public function testInterface()
     {

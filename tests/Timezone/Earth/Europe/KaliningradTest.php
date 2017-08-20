@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Europe\Kaliningrad,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class KaliningradTest extends \PHPUnit_Framework_TestCase
+class KaliningradTest extends TestCase
 {
     public function testInterface()
     {

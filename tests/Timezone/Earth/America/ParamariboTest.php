@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Paramaribo,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class ParamariboTest extends \PHPUnit_Framework_TestCase
+class ParamariboTest extends TestCase
 {
     public function testInterface()
     {

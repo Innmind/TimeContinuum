@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\PortoVelho,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class PortoVelhoTest extends \PHPUnit_Framework_TestCase
+class PortoVelhoTest extends TestCase
 {
     public function testInterface()
     {

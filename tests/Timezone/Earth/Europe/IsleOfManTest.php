@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Europe\IsleOfMan,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class IsleOfManTest extends \PHPUnit_Framework_TestCase
+class IsleOfManTest extends TestCase
 {
     public function testInterface()
     {

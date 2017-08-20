@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Asia\Kolkata,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class KolkataTest extends \PHPUnit_Framework_TestCase
+class KolkataTest extends TestCase
 {
     public function testInterface()
     {

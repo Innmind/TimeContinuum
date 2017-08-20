@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Format\Cookie,
     FormatInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class CookieTest extends \PHPUnit_Framework_TestCase
+class CookieTest extends TestCase
 {
     public function testInterface()
     {

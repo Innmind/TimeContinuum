@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Indian\Chagos,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class ChagosTest extends \PHPUnit_Framework_TestCase
+class ChagosTest extends TestCase
 {
     public function testInterface()
     {

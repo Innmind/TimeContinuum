@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Asia\Gaza,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class GazaTest extends \PHPUnit_Framework_TestCase
+class GazaTest extends TestCase
 {
     public function testInterface()
     {

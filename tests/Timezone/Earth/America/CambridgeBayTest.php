@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\CambridgeBay,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class CambridgeBayTest extends \PHPUnit_Framework_TestCase
+class CambridgeBayTest extends TestCase
 {
     public function testInterface()
     {

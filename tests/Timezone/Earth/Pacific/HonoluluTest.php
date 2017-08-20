@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Pacific\Honolulu,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class HonoluluTest extends \PHPUnit_Framework_TestCase
+class HonoluluTest extends TestCase
 {
     public function testInterface()
     {

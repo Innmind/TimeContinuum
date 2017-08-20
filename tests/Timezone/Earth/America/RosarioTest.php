@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Rosario,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class RosarioTest extends \PHPUnit_Framework_TestCase
+class RosarioTest extends TestCase
 {
     public function testInterface()
     {

@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Asia\Sakhalin,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class SakhalinTest extends \PHPUnit_Framework_TestCase
+class SakhalinTest extends TestCase
 {
     public function testInterface()
     {

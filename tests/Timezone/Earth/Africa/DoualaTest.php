@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Africa\Douala,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class DoualaTest extends \PHPUnit_Framework_TestCase
+class DoualaTest extends TestCase
 {
     public function testInterface()
     {

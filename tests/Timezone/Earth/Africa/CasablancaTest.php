@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Africa\Casablanca,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class CasablancaTest extends \PHPUnit_Framework_TestCase
+class CasablancaTest extends TestCase
 {
     public function testInterface()
     {

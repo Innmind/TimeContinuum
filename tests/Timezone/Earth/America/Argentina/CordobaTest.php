@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Argentina\Cordoba,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class CordobaTest extends \PHPUnit_Framework_TestCase
+class CordobaTest extends TestCase
 {
     public function testInterface()
     {

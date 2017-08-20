@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Asia\Ashgabat,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class AshgabatTest extends \PHPUnit_Framework_TestCase
+class AshgabatTest extends TestCase
 {
     public function testInterface()
     {

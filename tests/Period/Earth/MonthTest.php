@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     PeriodInterface,
     Period\Earth\Month
 };
+use PHPUnit\Framework\TestCase;
 
-class MonthTest extends \PHPUnit_Framework_TestCase
+class MonthTest extends TestCase
 {
     public function testInterface()
     {

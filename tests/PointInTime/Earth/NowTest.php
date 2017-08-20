@@ -21,8 +21,9 @@ use Innmind\TimeContinuum\{
     Period\Earth\Year,
     Period\Earth\Millisecond as MillisecondPeriod
 };
+use PHPUnit\Framework\TestCase;
 
-class NowTest extends \PHPUnit_Framework_TestCase
+class NowTest extends TestCase
 {
     public function testInterface()
     {

@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Asia\Hebron,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class HebronTest extends \PHPUnit_Framework_TestCase
+class HebronTest extends TestCase
 {
     public function testInterface()
     {

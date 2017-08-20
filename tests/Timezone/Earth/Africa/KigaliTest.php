@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Africa\Kigali,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class KigaliTest extends \PHPUnit_Framework_TestCase
+class KigaliTest extends TestCase
 {
     public function testInterface()
     {

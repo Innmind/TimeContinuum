@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Asia\Khandyga,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class KhandygaTest extends \PHPUnit_Framework_TestCase
+class KhandygaTest extends TestCase
 {
     public function testInterface()
     {

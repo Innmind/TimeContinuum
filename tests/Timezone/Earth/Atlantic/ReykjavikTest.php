@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Atlantic\Reykjavik,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class ReykjavikTest extends \PHPUnit_Framework_TestCase
+class ReykjavikTest extends TestCase
 {
     public function testInterface()
     {

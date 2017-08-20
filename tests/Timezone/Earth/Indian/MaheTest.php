@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Indian\Mahe,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class MaheTest extends \PHPUnit_Framework_TestCase
+class MaheTest extends TestCase
 {
     public function testInterface()
     {

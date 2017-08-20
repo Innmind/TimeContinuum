@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Australia\West,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class WestTest extends \PHPUnit_Framework_TestCase
+class WestTest extends TestCase
 {
     public function testInterface()
     {

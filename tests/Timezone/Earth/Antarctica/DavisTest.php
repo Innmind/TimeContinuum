@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Antarctica\Davis,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class DavisTest extends \PHPUnit_Framework_TestCase
+class DavisTest extends TestCase
 {
     public function testInterface()
     {

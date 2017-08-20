@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Pacific\Noumea,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class NoumeaTest extends \PHPUnit_Framework_TestCase
+class NoumeaTest extends TestCase
 {
     public function testInterface()
     {

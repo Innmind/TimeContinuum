@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Juneau,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class JuneauTest extends \PHPUnit_Framework_TestCase
+class JuneauTest extends TestCase
 {
     public function testInterface()
     {

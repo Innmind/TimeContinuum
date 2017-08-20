@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Indiana\Winamac,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class WinamacTest extends \PHPUnit_Framework_TestCase
+class WinamacTest extends TestCase
 {
     public function testInterface()
     {

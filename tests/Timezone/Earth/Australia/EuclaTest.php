@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Australia\Eucla,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class EuclaTest extends \PHPUnit_Framework_TestCase
+class EuclaTest extends TestCase
 {
     public function testInterface()
     {

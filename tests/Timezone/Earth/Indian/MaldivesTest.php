@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Indian\Maldives,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class MaldivesTest extends \PHPUnit_Framework_TestCase
+class MaldivesTest extends TestCase
 {
     public function testInterface()
     {

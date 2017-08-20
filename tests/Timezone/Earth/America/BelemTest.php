@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Belem,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class BelemTest extends \PHPUnit_Framework_TestCase
+class BelemTest extends TestCase
 {
     public function testInterface()
     {

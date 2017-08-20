@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Arctic\Longyearbyen,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class LongyearbyenTest extends \PHPUnit_Framework_TestCase
+class LongyearbyenTest extends TestCase
 {
     public function testInterface()
     {

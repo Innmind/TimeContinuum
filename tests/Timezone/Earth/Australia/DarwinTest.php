@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Australia\Darwin,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class DarwinTest extends \PHPUnit_Framework_TestCase
+class DarwinTest extends TestCase
 {
     public function testInterface()
     {

@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Asia\Pontianak,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class PontianakTest extends \PHPUnit_Framework_TestCase
+class PontianakTest extends TestCase
 {
     public function testInterface()
     {

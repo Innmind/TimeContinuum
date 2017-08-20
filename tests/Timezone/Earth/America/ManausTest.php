@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Manaus,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class ManausTest extends \PHPUnit_Framework_TestCase
+class ManausTest extends TestCase
 {
     public function testInterface()
     {

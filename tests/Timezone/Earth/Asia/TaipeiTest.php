@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Asia\Taipei,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class TaipeiTest extends \PHPUnit_Framework_TestCase
+class TaipeiTest extends TestCase
 {
     public function testInterface()
     {

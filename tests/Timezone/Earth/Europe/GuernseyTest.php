@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Europe\Guernsey,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class GuernseyTest extends \PHPUnit_Framework_TestCase
+class GuernseyTest extends TestCase
 {
     public function testInterface()
     {

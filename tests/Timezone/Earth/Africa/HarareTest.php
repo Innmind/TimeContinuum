@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Africa\Harare,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class HarareTest extends \PHPUnit_Framework_TestCase
+class HarareTest extends TestCase
 {
     public function testInterface()
     {

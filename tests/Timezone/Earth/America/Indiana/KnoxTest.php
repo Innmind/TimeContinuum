@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Indiana\Knox,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class KnoxTest extends \PHPUnit_Framework_TestCase
+class KnoxTest extends TestCase
 {
     public function testInterface()
     {

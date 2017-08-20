@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Asia\Chita,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class ChitaTest extends \PHPUnit_Framework_TestCase
+class ChitaTest extends TestCase
 {
     public function testInterface()
     {

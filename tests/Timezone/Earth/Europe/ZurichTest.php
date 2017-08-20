@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Europe\Zurich,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class ZurichTest extends \PHPUnit_Framework_TestCase
+class ZurichTest extends TestCase
 {
     public function testInterface()
     {

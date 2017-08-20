@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Africa\Conakry,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class ConakryTest extends \PHPUnit_Framework_TestCase
+class ConakryTest extends TestCase
 {
     public function testInterface()
     {

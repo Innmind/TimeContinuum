@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Africa\PortoNovo,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class PortoNovoTest extends \PHPUnit_Framework_TestCase
+class PortoNovoTest extends TestCase
 {
     public function testInterface()
     {

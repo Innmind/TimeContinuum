@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Africa\Mbabane,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class MbabaneTest extends \PHPUnit_Framework_TestCase
+class MbabaneTest extends TestCase
 {
     public function testInterface()
     {

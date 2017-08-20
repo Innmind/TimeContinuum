@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Africa\Ouagadougou,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class OuagadougouTest extends \PHPUnit_Framework_TestCase
+class OuagadougouTest extends TestCase
 {
     public function testInterface()
     {

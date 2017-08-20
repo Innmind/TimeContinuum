@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Pacific\PortMoresby,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class PortMoresbyTest extends \PHPUnit_Framework_TestCase
+class PortMoresbyTest extends TestCase
 {
     public function testInterface()
     {

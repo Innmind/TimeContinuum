@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Asia\Singapore,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class SingaporeTest extends \PHPUnit_Framework_TestCase
+class SingaporeTest extends TestCase
 {
     public function testInterface()
     {

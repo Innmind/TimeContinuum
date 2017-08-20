@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Santiago,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class SantiagoTest extends \PHPUnit_Framework_TestCase
+class SantiagoTest extends TestCase
 {
     public function testInterface()
     {

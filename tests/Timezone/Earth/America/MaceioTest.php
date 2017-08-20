@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Maceio,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class MaceioTest extends \PHPUnit_Framework_TestCase
+class MaceioTest extends TestCase
 {
     public function testInterface()
     {

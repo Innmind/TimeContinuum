@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Format\ISO8601,
     FormatInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class ISO8601Test extends \PHPUnit_Framework_TestCase
+class ISO8601Test extends TestCase
 {
     public function testInterface()
     {

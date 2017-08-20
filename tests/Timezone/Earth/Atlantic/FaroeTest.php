@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Atlantic\Faroe,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class FaroeTest extends \PHPUnit_Framework_TestCase
+class FaroeTest extends TestCase
 {
     public function testInterface()
     {

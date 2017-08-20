@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Recife,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class RecifeTest extends \PHPUnit_Framework_TestCase
+class RecifeTest extends TestCase
 {
     public function testInterface()
     {

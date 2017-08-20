@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Pacific\Tahiti,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class TahitiTest extends \PHPUnit_Framework_TestCase
+class TahitiTest extends TestCase
 {
     public function testInterface()
     {

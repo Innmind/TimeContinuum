@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Asia\Riyadh,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class RiyadhTest extends \PHPUnit_Framework_TestCase
+class RiyadhTest extends TestCase
 {
     public function testInterface()
     {

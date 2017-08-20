@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Atlantic\Canary,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class CanaryTest extends \PHPUnit_Framework_TestCase
+class CanaryTest extends TestCase
 {
     public function testInterface()
     {

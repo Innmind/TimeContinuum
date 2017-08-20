@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Fortaleza,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class FortalezaTest extends \PHPUnit_Framework_TestCase
+class FortalezaTest extends TestCase
 {
     public function testInterface()
     {

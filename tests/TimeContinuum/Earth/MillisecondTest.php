@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\TimeContinuum\{
     Earth\Millisecond,
     MillisecondInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class MillisecondTest extends \PHPUnit_Framework_TestCase
+class MillisecondTest extends TestCase
 {
     public function testInterface()
     {

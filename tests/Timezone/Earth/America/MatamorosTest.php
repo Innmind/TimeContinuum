@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Matamoros,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class MatamorosTest extends \PHPUnit_Framework_TestCase
+class MatamorosTest extends TestCase
 {
     public function testInterface()
     {

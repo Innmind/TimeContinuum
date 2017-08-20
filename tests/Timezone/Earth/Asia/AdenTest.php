@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Asia\Aden,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class AdenTest extends \PHPUnit_Framework_TestCase
+class AdenTest extends TestCase
 {
     public function testInterface()
     {

@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Atlantic\Azores,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class AzoresTest extends \PHPUnit_Framework_TestCase
+class AzoresTest extends TestCase
 {
     public function testInterface()
     {

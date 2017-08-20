@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Nassau,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class NassauTest extends \PHPUnit_Framework_TestCase
+class NassauTest extends TestCase
 {
     public function testInterface()
     {

@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Europe\Tirane,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class TiraneTest extends \PHPUnit_Framework_TestCase
+class TiraneTest extends TestCase
 {
     public function testInterface()
     {

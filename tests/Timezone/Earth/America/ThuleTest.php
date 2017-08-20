@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Thule,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class ThuleTest extends \PHPUnit_Framework_TestCase
+class ThuleTest extends TestCase
 {
     public function testInterface()
     {

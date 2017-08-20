@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\RankinInlet,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class RankinInletTest extends \PHPUnit_Framework_TestCase
+class RankinInletTest extends TestCase
 {
     public function testInterface()
     {

@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Asia\Shanghai,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class ShanghaiTest extends \PHPUnit_Framework_TestCase
+class ShanghaiTest extends TestCase
 {
     public function testInterface()
     {

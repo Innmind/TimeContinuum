@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Africa\Windhoek,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class WindhoekTest extends \PHPUnit_Framework_TestCase
+class WindhoekTest extends TestCase
 {
     public function testInterface()
     {

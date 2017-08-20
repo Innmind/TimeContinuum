@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Asia\Yerevan,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class YerevanTest extends \PHPUnit_Framework_TestCase
+class YerevanTest extends TestCase
 {
     public function testInterface()
     {

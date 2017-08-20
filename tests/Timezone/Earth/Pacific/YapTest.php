@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Pacific\Yap,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class YapTest extends \PHPUnit_Framework_TestCase
+class YapTest extends TestCase
 {
     public function testInterface()
     {

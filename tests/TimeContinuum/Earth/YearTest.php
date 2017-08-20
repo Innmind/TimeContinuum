@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\TimeContinuum\{
     Earth\Year,
     YearInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class YearTest extends \PHPUnit_Framework_TestCase
+class YearTest extends TestCase
 {
     public function testInterface()
     {

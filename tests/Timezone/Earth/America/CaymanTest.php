@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Cayman,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class CaymanTest extends \PHPUnit_Framework_TestCase
+class CaymanTest extends TestCase
 {
     public function testInterface()
     {

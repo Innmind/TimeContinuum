@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Europe\Luxembourg,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class LuxembourgTest extends \PHPUnit_Framework_TestCase
+class LuxembourgTest extends TestCase
 {
     public function testInterface()
     {

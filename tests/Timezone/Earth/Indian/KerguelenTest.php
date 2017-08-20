@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Indian\Kerguelen,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class KerguelenTest extends \PHPUnit_Framework_TestCase
+class KerguelenTest extends TestCase
 {
     public function testInterface()
     {

@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Africa\Bissau,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class BissauTest extends \PHPUnit_Framework_TestCase
+class BissauTest extends TestCase
 {
     public function testInterface()
     {

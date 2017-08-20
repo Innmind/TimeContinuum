@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Asia\Magadan,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class MagadanTest extends \PHPUnit_Framework_TestCase
+class MagadanTest extends TestCase
 {
     public function testInterface()
     {

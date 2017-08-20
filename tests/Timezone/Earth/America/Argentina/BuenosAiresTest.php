@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Argentina\BuenosAires,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class BuenosAiresTest extends \PHPUnit_Framework_TestCase
+class BuenosAiresTest extends TestCase
 {
     public function testInterface()
     {

@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\ElSalvador,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class ElSalvadorTest extends \PHPUnit_Framework_TestCase
+class ElSalvadorTest extends TestCase
 {
     public function testInterface()
     {

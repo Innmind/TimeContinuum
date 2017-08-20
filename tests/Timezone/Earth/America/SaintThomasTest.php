@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\SaintThomas,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class SaintThomasTest extends \PHPUnit_Framework_TestCase
+class SaintThomasTest extends TestCase
 {
     public function testInterface()
     {

@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Atlantic\SaintHelena,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class SaintHelenaTest extends \PHPUnit_Framework_TestCase
+class SaintHelenaTest extends TestCase
 {
     public function testInterface()
     {

@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\GrandTurk,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class GrandTurkTest extends \PHPUnit_Framework_TestCase
+class GrandTurkTest extends TestCase
 {
     public function testInterface()
     {

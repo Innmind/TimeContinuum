@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\UTC,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class UTCTest extends \PHPUnit_Framework_TestCase
+class UTCTest extends TestCase
 {
     public function testInterface()
     {

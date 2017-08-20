@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Araguaina,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class AraguainaTest extends \PHPUnit_Framework_TestCase
+class AraguainaTest extends TestCase
 {
     public function testInterface()
     {

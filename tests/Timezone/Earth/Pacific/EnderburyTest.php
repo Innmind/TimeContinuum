@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Pacific\Enderbury,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class EnderburyTest extends \PHPUnit_Framework_TestCase
+class EnderburyTest extends TestCase
 {
     public function testInterface()
     {

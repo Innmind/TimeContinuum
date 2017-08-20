@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Pacific\Funafuti,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class FunafutiTest extends \PHPUnit_Framework_TestCase
+class FunafutiTest extends TestCase
 {
     public function testInterface()
     {

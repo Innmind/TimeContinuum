@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Australia\Currie,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class CurrieTest extends \PHPUnit_Framework_TestCase
+class CurrieTest extends TestCase
 {
     public function testInterface()
     {

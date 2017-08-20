@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Pacific\Easter,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class EasterTest extends \PHPUnit_Framework_TestCase
+class EasterTest extends TestCase
 {
     public function testInterface()
     {

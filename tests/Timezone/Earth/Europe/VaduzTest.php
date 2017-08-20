@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Europe\Vaduz,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class VaduzTest extends \PHPUnit_Framework_TestCase
+class VaduzTest extends TestCase
 {
     public function testInterface()
     {

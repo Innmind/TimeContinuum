@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Asia\Seoul,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class SeoulTest extends \PHPUnit_Framework_TestCase
+class SeoulTest extends TestCase
 {
     public function testInterface()
     {

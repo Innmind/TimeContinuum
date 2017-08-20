@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Africa\ElAaiun,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class ElAaiunTest extends \PHPUnit_Framework_TestCase
+class ElAaiunTest extends TestCase
 {
     public function testInterface()
     {

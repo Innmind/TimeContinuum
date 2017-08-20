@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Atlantic\Madeira,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class MadeiraTest extends \PHPUnit_Framework_TestCase
+class MadeiraTest extends TestCase
 {
     public function testInterface()
     {

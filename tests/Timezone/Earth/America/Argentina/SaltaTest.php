@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Argentina\Salta,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class SaltaTest extends \PHPUnit_Framework_TestCase
+class SaltaTest extends TestCase
 {
     public function testInterface()
     {

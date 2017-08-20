@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Europe\Lisbon,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class LisbonTest extends \PHPUnit_Framework_TestCase
+class LisbonTest extends TestCase
 {
     public function testInterface()
     {

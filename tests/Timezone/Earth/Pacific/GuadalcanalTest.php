@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Pacific\Guadalcanal,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class GuadalcanalTest extends \PHPUnit_Framework_TestCase
+class GuadalcanalTest extends TestCase
 {
     public function testInterface()
     {

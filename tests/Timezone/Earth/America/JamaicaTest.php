@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Jamaica,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class JamaicaTest extends \PHPUnit_Framework_TestCase
+class JamaicaTest extends TestCase
 {
     public function testInterface()
     {

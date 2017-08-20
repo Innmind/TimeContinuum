@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Godthab,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class GodthabTest extends \PHPUnit_Framework_TestCase
+class GodthabTest extends TestCase
 {
     public function testInterface()
     {

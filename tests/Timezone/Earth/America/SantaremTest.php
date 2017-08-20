@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Santarem,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class SantaremTest extends \PHPUnit_Framework_TestCase
+class SantaremTest extends TestCase
 {
     public function testInterface()
     {

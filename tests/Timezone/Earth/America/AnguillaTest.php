@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Anguilla,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class AnguillaTest extends \PHPUnit_Framework_TestCase
+class AnguillaTest extends TestCase
 {
     public function testInterface()
     {

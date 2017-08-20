@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Tortola,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class TortolaTest extends \PHPUnit_Framework_TestCase
+class TortolaTest extends TestCase
 {
     public function testInterface()
     {

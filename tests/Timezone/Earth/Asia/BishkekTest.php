@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Asia\Bishkek,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class BishkekTest extends \PHPUnit_Framework_TestCase
+class BishkekTest extends TestCase
 {
     public function testInterface()
     {

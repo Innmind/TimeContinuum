@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Moncton,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class MonctonTest extends \PHPUnit_Framework_TestCase
+class MonctonTest extends TestCase
 {
     public function testInterface()
     {

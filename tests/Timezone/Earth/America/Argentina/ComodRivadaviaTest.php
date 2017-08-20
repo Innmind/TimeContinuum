@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Argentina\ComodRivadavia,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class ComodRivadaviaTest extends \PHPUnit_Framework_TestCase
+class ComodRivadaviaTest extends TestCase
 {
     public function testInterface()
     {

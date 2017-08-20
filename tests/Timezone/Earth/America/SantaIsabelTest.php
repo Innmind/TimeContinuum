@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\SantaIsabel,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class SantaIsabelTest extends \PHPUnit_Framework_TestCase
+class SantaIsabelTest extends TestCase
 {
     public function testInterface()
     {

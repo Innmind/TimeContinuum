@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Asia\Macau,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class MacauTest extends \PHPUnit_Framework_TestCase
+class MacauTest extends TestCase
 {
     public function testInterface()
     {

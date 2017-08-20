@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Miquelon,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class MiquelonTest extends \PHPUnit_Framework_TestCase
+class MiquelonTest extends TestCase
 {
     public function testInterface()
     {

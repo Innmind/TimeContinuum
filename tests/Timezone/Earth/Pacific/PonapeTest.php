@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Pacific\Ponape,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class PonapeTest extends \PHPUnit_Framework_TestCase
+class PonapeTest extends TestCase
 {
     public function testInterface()
     {

@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Antarctica\Macquarie,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class MacquarieTest extends \PHPUnit_Framework_TestCase
+class MacquarieTest extends TestCase
 {
     public function testInterface()
     {

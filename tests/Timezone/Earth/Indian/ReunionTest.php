@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Indian\Reunion,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class ReunionTest extends \PHPUnit_Framework_TestCase
+class ReunionTest extends TestCase
 {
     public function testInterface()
     {

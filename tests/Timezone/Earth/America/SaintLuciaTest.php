@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\SaintLucia,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class SaintLuciaTest extends \PHPUnit_Framework_TestCase
+class SaintLuciaTest extends TestCase
 {
     public function testInterface()
     {

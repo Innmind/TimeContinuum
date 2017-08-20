@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Pacific\Kosrae,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class KosraeTest extends \PHPUnit_Framework_TestCase
+class KosraeTest extends TestCase
 {
     public function testInterface()
     {

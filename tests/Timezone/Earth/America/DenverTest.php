@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Denver,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class DenverTest extends \PHPUnit_Framework_TestCase
+class DenverTest extends TestCase
 {
     public function testInterface()
     {

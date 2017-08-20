@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Whitehorse,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class WhitehorseTest extends \PHPUnit_Framework_TestCase
+class WhitehorseTest extends TestCase
 {
     public function testInterface()
     {

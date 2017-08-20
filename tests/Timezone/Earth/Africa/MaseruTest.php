@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Africa\Maseru,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class MaseruTest extends \PHPUnit_Framework_TestCase
+class MaseruTest extends TestCase
 {
     public function testInterface()
     {

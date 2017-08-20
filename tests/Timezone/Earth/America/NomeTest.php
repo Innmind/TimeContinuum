@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Nome,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class NomeTest extends \PHPUnit_Framework_TestCase
+class NomeTest extends TestCase
 {
     public function testInterface()
     {

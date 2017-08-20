@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Atka,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class AtkaTest extends \PHPUnit_Framework_TestCase
+class AtkaTest extends TestCase
 {
     public function testInterface()
     {

@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Asia\Rangoon,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class RangoonTest extends \PHPUnit_Framework_TestCase
+class RangoonTest extends TestCase
 {
     public function testInterface()
     {

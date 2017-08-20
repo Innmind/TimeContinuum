@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Pacific\Norfolk,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class NorfolkTest extends \PHPUnit_Framework_TestCase
+class NorfolkTest extends TestCase
 {
     public function testInterface()
     {

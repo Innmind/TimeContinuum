@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Indiana\Marengo,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class MarengoTest extends \PHPUnit_Framework_TestCase
+class MarengoTest extends TestCase
 {
     public function testInterface()
     {

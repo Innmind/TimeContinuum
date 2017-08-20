@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Vancouver,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class VancouverTest extends \PHPUnit_Framework_TestCase
+class VancouverTest extends TestCase
 {
     public function testInterface()
     {

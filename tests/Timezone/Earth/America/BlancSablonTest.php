@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\BlancSablon,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class BlancSablonTest extends \PHPUnit_Framework_TestCase
+class BlancSablonTest extends TestCase
 {
     public function testInterface()
     {

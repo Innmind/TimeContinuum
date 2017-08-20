@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Europe\Athens,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class AthensTest extends \PHPUnit_Framework_TestCase
+class AthensTest extends TestCase
 {
     public function testInterface()
     {

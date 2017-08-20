@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Indian\Antananarivo,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class AntananarivoTest extends \PHPUnit_Framework_TestCase
+class AntananarivoTest extends TestCase
 {
     public function testInterface()
     {

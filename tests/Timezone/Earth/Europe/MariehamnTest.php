@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Europe\Mariehamn,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class MariehamnTest extends \PHPUnit_Framework_TestCase
+class MariehamnTest extends TestCase
 {
     public function testInterface()
     {

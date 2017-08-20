@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Asia\Damascus,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class DamascusTest extends \PHPUnit_Framework_TestCase
+class DamascusTest extends TestCase
 {
     public function testInterface()
     {

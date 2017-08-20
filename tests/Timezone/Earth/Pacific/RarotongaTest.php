@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Pacific\Rarotonga,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class RarotongaTest extends \PHPUnit_Framework_TestCase
+class RarotongaTest extends TestCase
 {
     public function testInterface()
     {

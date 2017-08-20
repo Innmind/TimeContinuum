@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\RainyRiver,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class RainyRiverTest extends \PHPUnit_Framework_TestCase
+class RainyRiverTest extends TestCase
 {
     public function testInterface()
     {

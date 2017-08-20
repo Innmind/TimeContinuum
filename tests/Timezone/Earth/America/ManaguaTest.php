@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Managua,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class ManaguaTest extends \PHPUnit_Framework_TestCase
+class ManaguaTest extends TestCase
 {
     public function testInterface()
     {

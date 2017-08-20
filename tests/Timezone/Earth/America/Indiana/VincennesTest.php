@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Indiana\Vincennes,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class VincennesTest extends \PHPUnit_Framework_TestCase
+class VincennesTest extends TestCase
 {
     public function testInterface()
     {

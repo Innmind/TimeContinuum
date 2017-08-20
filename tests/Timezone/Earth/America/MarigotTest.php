@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Marigot,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class MarigotTest extends \PHPUnit_Framework_TestCase
+class MarigotTest extends TestCase
 {
     public function testInterface()
     {

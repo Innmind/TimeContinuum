@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Asia\Nicosia,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class NicosiaTest extends \PHPUnit_Framework_TestCase
+class NicosiaTest extends TestCase
 {
     public function testInterface()
     {

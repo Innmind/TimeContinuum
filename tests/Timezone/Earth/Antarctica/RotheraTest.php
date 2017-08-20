@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Antarctica\Rothera,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class RotheraTest extends \PHPUnit_Framework_TestCase
+class RotheraTest extends TestCase
 {
     public function testInterface()
     {

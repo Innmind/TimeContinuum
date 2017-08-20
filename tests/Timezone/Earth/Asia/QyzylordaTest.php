@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Asia\Qyzylorda,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class QyzylordaTest extends \PHPUnit_Framework_TestCase
+class QyzylordaTest extends TestCase
 {
     public function testInterface()
     {

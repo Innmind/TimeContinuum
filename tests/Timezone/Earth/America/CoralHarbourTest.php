@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\CoralHarbour,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class CoralHarbourTest extends \PHPUnit_Framework_TestCase
+class CoralHarbourTest extends TestCase
 {
     public function testInterface()
     {

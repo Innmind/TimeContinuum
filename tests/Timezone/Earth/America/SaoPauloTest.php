@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\SaoPaulo,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class SaoPauloTest extends \PHPUnit_Framework_TestCase
+class SaoPauloTest extends TestCase
 {
     public function testInterface()
     {

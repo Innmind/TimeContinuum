@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Asia\Bangkok,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class BangkokTest extends \PHPUnit_Framework_TestCase
+class BangkokTest extends TestCase
 {
     public function testInterface()
     {

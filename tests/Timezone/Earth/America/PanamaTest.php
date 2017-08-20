@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Panama,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class PanamaTest extends \PHPUnit_Framework_TestCase
+class PanamaTest extends TestCase
 {
     public function testInterface()
     {

@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Virgin,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class VirginTest extends \PHPUnit_Framework_TestCase
+class VirginTest extends TestCase
 {
     public function testInterface()
     {

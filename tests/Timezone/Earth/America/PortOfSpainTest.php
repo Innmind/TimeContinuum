@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\PortOfSpain,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class PortOfSpainTest extends \PHPUnit_Framework_TestCase
+class PortOfSpainTest extends TestCase
 {
     public function testInterface()
     {

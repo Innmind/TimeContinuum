@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Iqaluit,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class IqaluitTest extends \PHPUnit_Framework_TestCase
+class IqaluitTest extends TestCase
 {
     public function testInterface()
     {

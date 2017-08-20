@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\PuertoRico,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class PuertoRicoTest extends \PHPUnit_Framework_TestCase
+class PuertoRicoTest extends TestCase
 {
     public function testInterface()
     {

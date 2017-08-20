@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Argentina\Jujuy,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class JujuyTest extends \PHPUnit_Framework_TestCase
+class JujuyTest extends TestCase
 {
     public function testInterface()
     {

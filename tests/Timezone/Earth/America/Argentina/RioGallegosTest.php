@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Argentina\RioGallegos,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class RioGallegosTest extends \PHPUnit_Framework_TestCase
+class RioGallegosTest extends TestCase
 {
     public function testInterface()
     {
