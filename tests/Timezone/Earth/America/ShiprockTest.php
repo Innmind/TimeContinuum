@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Shiprock,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class ShiprockTest extends \PHPUnit_Framework_TestCase
+class ShiprockTest extends TestCase
 {
     public function testInterface()
     {

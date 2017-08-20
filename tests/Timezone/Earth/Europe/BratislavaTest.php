@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Europe\Bratislava,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class BratislavaTest extends \PHPUnit_Framework_TestCase
+class BratislavaTest extends TestCase
 {
     public function testInterface()
     {

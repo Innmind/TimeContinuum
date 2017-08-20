@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Asia\HongKong,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class HongKongTest extends \PHPUnit_Framework_TestCase
+class HongKongTest extends TestCase
 {
     public function testInterface()
     {

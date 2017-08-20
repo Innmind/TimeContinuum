@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Asia\Baku,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class BakuTest extends \PHPUnit_Framework_TestCase
+class BakuTest extends TestCase
 {
     public function testInterface()
     {

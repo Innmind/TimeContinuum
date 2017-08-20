@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Pacific\Wake,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class WakeTest extends \PHPUnit_Framework_TestCase
+class WakeTest extends TestCase
 {
     public function testInterface()
     {

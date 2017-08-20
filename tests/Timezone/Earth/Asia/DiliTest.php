@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Asia\Dili,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class DiliTest extends \PHPUnit_Framework_TestCase
+class DiliTest extends TestCase
 {
     public function testInterface()
     {

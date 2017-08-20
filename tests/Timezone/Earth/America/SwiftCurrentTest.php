@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\SwiftCurrent,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class SwiftCurrentTest extends \PHPUnit_Framework_TestCase
+class SwiftCurrentTest extends TestCase
 {
     public function testInterface()
     {

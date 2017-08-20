@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Asia\Tashkent,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class TashkentTest extends \PHPUnit_Framework_TestCase
+class TashkentTest extends TestCase
 {
     public function testInterface()
     {

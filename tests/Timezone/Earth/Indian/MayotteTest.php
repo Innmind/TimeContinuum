@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Indian\Mayotte,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class MayotteTest extends \PHPUnit_Framework_TestCase
+class MayotteTest extends TestCase
 {
     public function testInterface()
     {

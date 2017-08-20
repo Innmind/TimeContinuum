@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\NorthDakota\Beulah,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class BeulahTest extends \PHPUnit_Framework_TestCase
+class BeulahTest extends TestCase
 {
     public function testInterface()
     {

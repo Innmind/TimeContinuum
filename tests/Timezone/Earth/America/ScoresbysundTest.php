@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Scoresbysund,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class ScoresbysundTest extends \PHPUnit_Framework_TestCase
+class ScoresbysundTest extends TestCase
 {
     public function testInterface()
     {

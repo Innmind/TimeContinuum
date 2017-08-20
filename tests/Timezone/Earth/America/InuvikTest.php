@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Inuvik,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class InuvikTest extends \PHPUnit_Framework_TestCase
+class InuvikTest extends TestCase
 {
     public function testInterface()
     {

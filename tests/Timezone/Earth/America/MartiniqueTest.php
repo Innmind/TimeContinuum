@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Martinique,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class MartiniqueTest extends \PHPUnit_Framework_TestCase
+class MartiniqueTest extends TestCase
 {
     public function testInterface()
     {

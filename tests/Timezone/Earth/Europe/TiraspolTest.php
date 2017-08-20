@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Europe\Tiraspol,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class TiraspolTest extends \PHPUnit_Framework_TestCase
+class TiraspolTest extends TestCase
 {
     public function testInterface()
     {

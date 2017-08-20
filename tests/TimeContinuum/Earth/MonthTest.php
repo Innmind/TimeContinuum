@@ -8,8 +8,9 @@ use Innmind\TimeContinuum\TimeContinuum\{
     Earth\Year,
     MonthInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class MonthTest extends \PHPUnit_Framework_TestCase
+class MonthTest extends TestCase
 {
     public function testInterface()
     {

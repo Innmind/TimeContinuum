@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     PeriodInterface,
     Period\Earth\Day
 };
+use PHPUnit\Framework\TestCase;
 
-class DayTest extends \PHPUnit_Framework_TestCase
+class DayTest extends TestCase
 {
     public function testInterface()
     {

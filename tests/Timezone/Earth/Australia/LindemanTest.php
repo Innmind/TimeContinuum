@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Australia\Lindeman,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class LindemanTest extends \PHPUnit_Framework_TestCase
+class LindemanTest extends TestCase
 {
     public function testInterface()
     {

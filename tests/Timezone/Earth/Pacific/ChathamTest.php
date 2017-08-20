@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Pacific\Chatham,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class ChathamTest extends \PHPUnit_Framework_TestCase
+class ChathamTest extends TestCase
 {
     public function testInterface()
     {

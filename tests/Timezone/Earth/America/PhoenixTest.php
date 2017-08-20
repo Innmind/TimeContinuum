@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Phoenix,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class PhoenixTest extends \PHPUnit_Framework_TestCase
+class PhoenixTest extends TestCase
 {
     public function testInterface()
     {

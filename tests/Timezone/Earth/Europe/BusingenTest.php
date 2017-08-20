@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Europe\Busingen,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class BusingenTest extends \PHPUnit_Framework_TestCase
+class BusingenTest extends TestCase
 {
     public function testInterface()
     {

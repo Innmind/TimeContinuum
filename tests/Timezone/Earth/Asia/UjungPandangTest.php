@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Asia\UjungPandang,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class UjungPandangTest extends \PHPUnit_Framework_TestCase
+class UjungPandangTest extends TestCase
 {
     public function testInterface()
     {

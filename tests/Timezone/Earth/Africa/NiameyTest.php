@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Africa\Niamey,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class NiameyTest extends \PHPUnit_Framework_TestCase
+class NiameyTest extends TestCase
 {
     public function testInterface()
     {

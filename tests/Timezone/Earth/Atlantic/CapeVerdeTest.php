@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Atlantic\CapeVerde,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class CapeVerdeTest extends \PHPUnit_Framework_TestCase
+class CapeVerdeTest extends TestCase
 {
     public function testInterface()
     {

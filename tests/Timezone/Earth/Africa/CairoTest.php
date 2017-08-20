@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Africa\Cairo,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class CairoTest extends \PHPUnit_Framework_TestCase
+class CairoTest extends TestCase
 {
     public function testInterface()
     {

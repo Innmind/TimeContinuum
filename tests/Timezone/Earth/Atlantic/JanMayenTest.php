@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Atlantic\JanMayen,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class JanMayenTest extends \PHPUnit_Framework_TestCase
+class JanMayenTest extends TestCase
 {
     public function testInterface()
     {

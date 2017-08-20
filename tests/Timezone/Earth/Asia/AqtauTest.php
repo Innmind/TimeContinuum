@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Asia\Aqtau,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class AqtauTest extends \PHPUnit_Framework_TestCase
+class AqtauTest extends TestCase
 {
     public function testInterface()
     {

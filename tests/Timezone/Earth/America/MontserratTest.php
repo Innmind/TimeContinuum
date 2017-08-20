@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Montserrat,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class MontserratTest extends \PHPUnit_Framework_TestCase
+class MontserratTest extends TestCase
 {
     public function testInterface()
     {

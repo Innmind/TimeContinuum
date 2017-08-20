@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Argentina\SanJuan,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class SanJuanTest extends \PHPUnit_Framework_TestCase
+class SanJuanTest extends TestCase
 {
     public function testInterface()
     {

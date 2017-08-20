@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Metlakatla,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class MetlakatlaTest extends \PHPUnit_Framework_TestCase
+class MetlakatlaTest extends TestCase
 {
     public function testInterface()
     {

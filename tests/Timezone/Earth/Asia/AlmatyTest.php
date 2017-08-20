@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Asia\Almaty,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class AlmatyTest extends \PHPUnit_Framework_TestCase
+class AlmatyTest extends TestCase
 {
     public function testInterface()
     {

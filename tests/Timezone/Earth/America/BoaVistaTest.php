@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\BoaVista,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class BoaVistaTest extends \PHPUnit_Framework_TestCase
+class BoaVistaTest extends TestCase
 {
     public function testInterface()
     {

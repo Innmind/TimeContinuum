@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Pacific\Wallis,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class WallisTest extends \PHPUnit_Framework_TestCase
+class WallisTest extends TestCase
 {
     public function testInterface()
     {

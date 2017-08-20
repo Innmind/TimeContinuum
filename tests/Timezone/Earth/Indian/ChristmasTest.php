@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Indian\Christmas,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class ChristmasTest extends \PHPUnit_Framework_TestCase
+class ChristmasTest extends TestCase
 {
     public function testInterface()
     {

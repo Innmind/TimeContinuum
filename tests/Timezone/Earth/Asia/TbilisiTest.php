@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Asia\Tbilisi,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class TbilisiTest extends \PHPUnit_Framework_TestCase
+class TbilisiTest extends TestCase
 {
     public function testInterface()
     {

@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Africa\Lome,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class LomeTest extends \PHPUnit_Framework_TestCase
+class LomeTest extends TestCase
 {
     public function testInterface()
     {

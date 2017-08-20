@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Asia\Muscat,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class MuscatTest extends \PHPUnit_Framework_TestCase
+class MuscatTest extends TestCase
 {
     public function testInterface()
     {

@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Antarctica\DumontDUrville,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class DumontDUrvilleTest extends \PHPUnit_Framework_TestCase
+class DumontDUrvilleTest extends TestCase
 {
     public function testInterface()
     {

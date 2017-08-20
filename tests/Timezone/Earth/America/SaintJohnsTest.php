@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\SaintJohns,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class SaintJohnsTest extends \PHPUnit_Framework_TestCase
+class SaintJohnsTest extends TestCase
 {
     public function testInterface()
     {

@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Europe\Copenhagen,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class CopenhagenTest extends \PHPUnit_Framework_TestCase
+class CopenhagenTest extends TestCase
 {
     public function testInterface()
     {

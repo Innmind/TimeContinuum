@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Chihuahua,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class ChihuahuaTest extends \PHPUnit_Framework_TestCase
+class ChihuahuaTest extends TestCase
 {
     public function testInterface()
     {

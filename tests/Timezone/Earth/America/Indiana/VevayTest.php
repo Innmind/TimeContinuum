@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Indiana\Vevay,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class VevayTest extends \PHPUnit_Framework_TestCase
+class VevayTest extends TestCase
 {
     public function testInterface()
     {

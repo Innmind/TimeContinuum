@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Barbados,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class BarbadosTest extends \PHPUnit_Framework_TestCase
+class BarbadosTest extends TestCase
 {
     public function testInterface()
     {

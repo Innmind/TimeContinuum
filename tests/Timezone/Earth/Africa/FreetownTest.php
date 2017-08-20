@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Africa\Freetown,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class FreetownTest extends \PHPUnit_Framework_TestCase
+class FreetownTest extends TestCase
 {
     public function testInterface()
     {

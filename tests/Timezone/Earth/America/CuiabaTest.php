@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Cuiaba,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class CuiabaTest extends \PHPUnit_Framework_TestCase
+class CuiabaTest extends TestCase
 {
     public function testInterface()
     {

@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Asuncion,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class AsuncionTest extends \PHPUnit_Framework_TestCase
+class AsuncionTest extends TestCase
 {
     public function testInterface()
     {

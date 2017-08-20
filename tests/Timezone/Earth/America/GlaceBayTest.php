@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\GlaceBay,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class GlaceBayTest extends \PHPUnit_Framework_TestCase
+class GlaceBayTest extends TestCase
 {
     public function testInterface()
     {

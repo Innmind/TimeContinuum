@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Pacific\Saipan,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class SaipanTest extends \PHPUnit_Framework_TestCase
+class SaipanTest extends TestCase
 {
     public function testInterface()
     {

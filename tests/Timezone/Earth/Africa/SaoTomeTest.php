@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Africa\SaoTome,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class SaoTomeTest extends \PHPUnit_Framework_TestCase
+class SaoTomeTest extends TestCase
 {
     public function testInterface()
     {

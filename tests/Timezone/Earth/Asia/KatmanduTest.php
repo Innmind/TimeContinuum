@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Asia\Katmandu,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class KatmanduTest extends \PHPUnit_Framework_TestCase
+class KatmanduTest extends TestCase
 {
     public function testInterface()
     {

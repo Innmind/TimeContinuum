@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Boise,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class BoiseTest extends \PHPUnit_Framework_TestCase
+class BoiseTest extends TestCase
 {
     public function testInterface()
     {

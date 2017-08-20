@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Asia\Dushanbe,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class DushanbeTest extends \PHPUnit_Framework_TestCase
+class DushanbeTest extends TestCase
 {
     public function testInterface()
     {

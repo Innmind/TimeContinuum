@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Argentina\LaRioja,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class LaRiojaTest extends \PHPUnit_Framework_TestCase
+class LaRiojaTest extends TestCase
 {
     public function testInterface()
     {

@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Creston,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class CrestonTest extends \PHPUnit_Framework_TestCase
+class CrestonTest extends TestCase
 {
     public function testInterface()
     {

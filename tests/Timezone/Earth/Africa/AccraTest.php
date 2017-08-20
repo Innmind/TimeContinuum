@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Africa\Accra,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class AccraTest extends \PHPUnit_Framework_TestCase
+class AccraTest extends TestCase
 {
     public function testInterface()
     {

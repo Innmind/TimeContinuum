@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\PortAuPrince,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class PortAuPrinceTest extends \PHPUnit_Framework_TestCase
+class PortAuPrinceTest extends TestCase
 {
     public function testInterface()
     {

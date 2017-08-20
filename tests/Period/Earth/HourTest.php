@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     PeriodInterface,
     Period\Earth\Hour
 };
+use PHPUnit\Framework\TestCase;
 
-class HourTest extends \PHPUnit_Framework_TestCase
+class HourTest extends TestCase
 {
     public function testInterface()
     {

@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Indiana\TellCity,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class TellCityTest extends \PHPUnit_Framework_TestCase
+class TellCityTest extends TestCase
 {
     public function testInterface()
     {

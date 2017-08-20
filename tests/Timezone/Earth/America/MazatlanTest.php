@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Mazatlan,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class MazatlanTest extends \PHPUnit_Framework_TestCase
+class MazatlanTest extends TestCase
 {
     public function testInterface()
     {

@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Asia\Choibalsan,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class ChoibalsanTest extends \PHPUnit_Framework_TestCase
+class ChoibalsanTest extends TestCase
 {
     public function testInterface()
     {

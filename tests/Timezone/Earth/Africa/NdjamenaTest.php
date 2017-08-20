@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Africa\Ndjamena,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class NdjamenaTest extends \PHPUnit_Framework_TestCase
+class NdjamenaTest extends TestCase
 {
     public function testInterface()
     {

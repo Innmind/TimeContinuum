@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Asia\Kamchatka,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class KamchatkaTest extends \PHPUnit_Framework_TestCase
+class KamchatkaTest extends TestCase
 {
     public function testInterface()
     {

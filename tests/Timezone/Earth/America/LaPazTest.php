@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\LaPaz,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class LaPazTest extends \PHPUnit_Framework_TestCase
+class LaPazTest extends TestCase
 {
     public function testInterface()
     {

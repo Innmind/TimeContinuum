@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Winnipeg,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class WinnipegTest extends \PHPUnit_Framework_TestCase
+class WinnipegTest extends TestCase
 {
     public function testInterface()
     {

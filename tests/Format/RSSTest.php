@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Format\RSS,
     FormatInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class RSSTest extends \PHPUnit_Framework_TestCase
+class RSSTest extends TestCase
 {
     public function testInterface()
     {

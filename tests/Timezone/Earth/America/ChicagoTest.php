@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Chicago,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class ChicagoTest extends \PHPUnit_Framework_TestCase
+class ChicagoTest extends TestCase
 {
     public function testInterface()
     {

@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Menominee,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class MenomineeTest extends \PHPUnit_Framework_TestCase
+class MenomineeTest extends TestCase
 {
     public function testInterface()
     {

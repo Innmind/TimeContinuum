@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Asia\Chongqing,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class ChongqingTest extends \PHPUnit_Framework_TestCase
+class ChongqingTest extends TestCase
 {
     public function testInterface()
     {

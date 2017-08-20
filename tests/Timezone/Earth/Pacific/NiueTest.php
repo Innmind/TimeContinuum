@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Pacific\Niue,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class NiueTest extends \PHPUnit_Framework_TestCase
+class NiueTest extends TestCase
 {
     public function testInterface()
     {

@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\TimeContinuum\{
     Earth\Second,
     SecondInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class SecondTest extends \PHPUnit_Framework_TestCase
+class SecondTest extends TestCase
 {
     public function testInterface()
     {

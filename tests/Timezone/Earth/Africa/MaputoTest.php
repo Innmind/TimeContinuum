@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Africa\Maputo,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class MaputoTest extends \PHPUnit_Framework_TestCase
+class MaputoTest extends TestCase
 {
     public function testInterface()
     {

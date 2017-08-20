@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Pacific\Kiritimati,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class KiritimatiTest extends \PHPUnit_Framework_TestCase
+class KiritimatiTest extends TestCase
 {
     public function testInterface()
     {

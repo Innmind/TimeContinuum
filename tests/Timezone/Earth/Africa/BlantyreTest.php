@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Africa\Blantyre,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class BlantyreTest extends \PHPUnit_Framework_TestCase
+class BlantyreTest extends TestCase
 {
     public function testInterface()
     {

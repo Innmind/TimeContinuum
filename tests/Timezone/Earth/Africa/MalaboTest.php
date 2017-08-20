@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Africa\Malabo,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class MalaboTest extends \PHPUnit_Framework_TestCase
+class MalaboTest extends TestCase
 {
     public function testInterface()
     {

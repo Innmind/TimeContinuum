@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Edmonton,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class EdmontonTest extends \PHPUnit_Framework_TestCase
+class EdmontonTest extends TestCase
 {
     public function testInterface()
     {

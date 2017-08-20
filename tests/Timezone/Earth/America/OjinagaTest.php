@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Ojinaga,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class OjinagaTest extends \PHPUnit_Framework_TestCase
+class OjinagaTest extends TestCase
 {
     public function testInterface()
     {

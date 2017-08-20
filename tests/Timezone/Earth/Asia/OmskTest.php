@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Asia\Omsk,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class OmskTest extends \PHPUnit_Framework_TestCase
+class OmskTest extends TestCase
 {
     public function testInterface()
     {

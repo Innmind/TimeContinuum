@@ -20,8 +20,9 @@ use Innmind\TimeContinuum\{
     Period\Earth\Composite,
     Period\Earth\Millisecond as MillisecondPeriod
 };
+use PHPUnit\Framework\TestCase;
 
-class PointInTimeTest extends \PHPUnit_Framework_TestCase
+class PointInTimeTest extends TestCase
 {
     public function testInterface()
     {

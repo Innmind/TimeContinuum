@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Kralendijk,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class KralendijkTest extends \PHPUnit_Framework_TestCase
+class KralendijkTest extends TestCase
 {
     public function testInterface()
     {

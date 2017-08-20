@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Pacific\Tongatapu,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class TongatapuTest extends \PHPUnit_Framework_TestCase
+class TongatapuTest extends TestCase
 {
     public function testInterface()
     {

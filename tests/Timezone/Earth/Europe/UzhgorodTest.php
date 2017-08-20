@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Europe\Uzhgorod,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class UzhgorodTest extends \PHPUnit_Framework_TestCase
+class UzhgorodTest extends TestCase
 {
     public function testInterface()
     {

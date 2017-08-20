@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Pacific\Midway,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class MidwayTest extends \PHPUnit_Framework_TestCase
+class MidwayTest extends TestCase
 {
     public function testInterface()
     {

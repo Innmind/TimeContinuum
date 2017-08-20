@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Asia\Novokuznetsk,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class NovokuznetskTest extends \PHPUnit_Framework_TestCase
+class NovokuznetskTest extends TestCase
 {
     public function testInterface()
     {

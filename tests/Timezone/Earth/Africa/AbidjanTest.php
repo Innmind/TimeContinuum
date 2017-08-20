@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Africa\Abidjan,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class AbidjanTest extends \PHPUnit_Framework_TestCase
+class AbidjanTest extends TestCase
 {
     public function testInterface()
     {

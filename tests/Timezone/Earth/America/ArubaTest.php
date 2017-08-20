@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Aruba,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class ArubaTest extends \PHPUnit_Framework_TestCase
+class ArubaTest extends TestCase
 {
     public function testInterface()
     {

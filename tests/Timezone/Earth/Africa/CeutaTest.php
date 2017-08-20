@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Africa\Ceuta,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class CeutaTest extends \PHPUnit_Framework_TestCase
+class CeutaTest extends TestCase
 {
     public function testInterface()
     {

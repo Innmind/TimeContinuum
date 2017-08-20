@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Australia\NewSouthWales,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class NewSouthWalesTest extends \PHPUnit_Framework_TestCase
+class NewSouthWalesTest extends TestCase
 {
     public function testInterface()
     {

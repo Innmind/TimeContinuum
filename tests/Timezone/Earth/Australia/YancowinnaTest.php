@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Australia\Yancowinna,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class YancowinnaTest extends \PHPUnit_Framework_TestCase
+class YancowinnaTest extends TestCase
 {
     public function testInterface()
     {

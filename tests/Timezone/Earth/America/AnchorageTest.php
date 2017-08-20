@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Anchorage,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class AnchorageTest extends \PHPUnit_Framework_TestCase
+class AnchorageTest extends TestCase
 {
     public function testInterface()
     {

@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Antarctica\Palmer,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class PalmerTest extends \PHPUnit_Framework_TestCase
+class PalmerTest extends TestCase
 {
     public function testInterface()
     {

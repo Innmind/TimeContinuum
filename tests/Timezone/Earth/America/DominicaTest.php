@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Dominica,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class DominicaTest extends \PHPUnit_Framework_TestCase
+class DominicaTest extends TestCase
 {
     public function testInterface()
     {

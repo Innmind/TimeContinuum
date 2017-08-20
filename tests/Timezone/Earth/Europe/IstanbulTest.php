@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Europe\Istanbul,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class IstanbulTest extends \PHPUnit_Framework_TestCase
+class IstanbulTest extends TestCase
 {
     public function testInterface()
     {

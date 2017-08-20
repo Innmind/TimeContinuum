@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Asia\TelAviv,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class TelAvivTest extends \PHPUnit_Framework_TestCase
+class TelAvivTest extends TestCase
 {
     public function testInterface()
     {

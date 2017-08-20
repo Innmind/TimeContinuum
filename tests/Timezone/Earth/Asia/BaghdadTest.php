@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Asia\Baghdad,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class BaghdadTest extends \PHPUnit_Framework_TestCase
+class BaghdadTest extends TestCase
 {
     public function testInterface()
     {

@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Australia\BrokenHill,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class BrokenHillTest extends \PHPUnit_Framework_TestCase
+class BrokenHillTest extends TestCase
 {
     public function testInterface()
     {

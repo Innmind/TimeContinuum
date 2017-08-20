@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Pacific\Nauru,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class NauruTest extends \PHPUnit_Framework_TestCase
+class NauruTest extends TestCase
 {
     public function testInterface()
     {

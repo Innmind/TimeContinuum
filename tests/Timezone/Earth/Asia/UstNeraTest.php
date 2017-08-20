@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Asia\UstNera,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class UstNeraTest extends \PHPUnit_Framework_TestCase
+class UstNeraTest extends TestCase
 {
     public function testInterface()
     {

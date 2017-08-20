@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Africa\Tripoli,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class TripoliTest extends \PHPUnit_Framework_TestCase
+class TripoliTest extends TestCase
 {
     public function testInterface()
     {

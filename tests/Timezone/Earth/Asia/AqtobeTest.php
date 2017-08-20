@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Asia\Aqtobe,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class AqtobeTest extends \PHPUnit_Framework_TestCase
+class AqtobeTest extends TestCase
 {
     public function testInterface()
     {

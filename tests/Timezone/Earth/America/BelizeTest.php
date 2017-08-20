@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Belize,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class BelizeTest extends \PHPUnit_Framework_TestCase
+class BelizeTest extends TestCase
 {
     public function testInterface()
     {

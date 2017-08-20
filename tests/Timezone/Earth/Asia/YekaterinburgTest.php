@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Asia\Yekaterinburg,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class YekaterinburgTest extends \PHPUnit_Framework_TestCase
+class YekaterinburgTest extends TestCase
 {
     public function testInterface()
     {

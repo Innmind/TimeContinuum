@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Atlantic\Bermuda,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class BermudaTest extends \PHPUnit_Framework_TestCase
+class BermudaTest extends TestCase
 {
     public function testInterface()
     {

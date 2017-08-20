@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Yellowknife,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class YellowknifeTest extends \PHPUnit_Framework_TestCase
+class YellowknifeTest extends TestCase
 {
     public function testInterface()
     {

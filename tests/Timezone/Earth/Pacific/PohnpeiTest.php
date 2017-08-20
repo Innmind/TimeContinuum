@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Pacific\Pohnpei,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class PohnpeiTest extends \PHPUnit_Framework_TestCase
+class PohnpeiTest extends TestCase
 {
     public function testInterface()
     {

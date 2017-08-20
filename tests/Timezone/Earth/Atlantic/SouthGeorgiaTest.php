@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Atlantic\SouthGeorgia,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class SouthGeorgiaTest extends \PHPUnit_Framework_TestCase
+class SouthGeorgiaTest extends TestCase
 {
     public function testInterface()
     {

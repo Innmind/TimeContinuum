@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Adak,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class AdakTest extends \PHPUnit_Framework_TestCase
+class AdakTest extends TestCase
 {
     public function testInterface()
     {

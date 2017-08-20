@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Africa\Khartoum,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class KhartoumTest extends \PHPUnit_Framework_TestCase
+class KhartoumTest extends TestCase
 {
     public function testInterface()
     {

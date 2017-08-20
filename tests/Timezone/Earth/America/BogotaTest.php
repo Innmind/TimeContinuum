@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Bogota,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class BogotaTest extends \PHPUnit_Framework_TestCase
+class BogotaTest extends TestCase
 {
     public function testInterface()
     {

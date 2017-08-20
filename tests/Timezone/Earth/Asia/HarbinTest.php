@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Asia\Harbin,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class HarbinTest extends \PHPUnit_Framework_TestCase
+class HarbinTest extends TestCase
 {
     public function testInterface()
     {

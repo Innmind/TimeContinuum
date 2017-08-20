@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Regina,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class ReginaTest extends \PHPUnit_Framework_TestCase
+class ReginaTest extends TestCase
 {
     public function testInterface()
     {

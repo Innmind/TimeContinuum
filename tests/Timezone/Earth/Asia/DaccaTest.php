@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Asia\Dacca,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class DaccaTest extends \PHPUnit_Framework_TestCase
+class DaccaTest extends TestCase
 {
     public function testInterface()
     {

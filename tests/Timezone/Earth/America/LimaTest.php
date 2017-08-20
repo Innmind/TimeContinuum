@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Lima,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class LimaTest extends \PHPUnit_Framework_TestCase
+class LimaTest extends TestCase
 {
     public function testInterface()
     {

@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Indian\Comoro,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class ComoroTest extends \PHPUnit_Framework_TestCase
+class ComoroTest extends TestCase
 {
     public function testInterface()
     {

@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Monticello,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class MonticelloTest extends \PHPUnit_Framework_TestCase
+class MonticelloTest extends TestCase
 {
     public function testInterface()
     {

@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Africa\Libreville,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class LibrevilleTest extends \PHPUnit_Framework_TestCase
+class LibrevilleTest extends TestCase
 {
     public function testInterface()
     {

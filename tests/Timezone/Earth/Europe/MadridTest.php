@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Europe\Madrid,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class MadridTest extends \PHPUnit_Framework_TestCase
+class MadridTest extends TestCase
 {
     public function testInterface()
     {

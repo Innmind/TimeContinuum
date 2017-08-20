@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Antarctica\McMurdo,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class McMurdoTest extends \PHPUnit_Framework_TestCase
+class McMurdoTest extends TestCase
 {
     public function testInterface()
     {

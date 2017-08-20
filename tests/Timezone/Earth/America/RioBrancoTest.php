@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\RioBranco,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class RioBrancoTest extends \PHPUnit_Framework_TestCase
+class RioBrancoTest extends TestCase
 {
     public function testInterface()
     {

@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Africa\Asmera,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class AsmeraTest extends \PHPUnit_Framework_TestCase
+class AsmeraTest extends TestCase
 {
     public function testInterface()
     {

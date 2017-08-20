@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Antarctica\Syowa,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class SyowaTest extends \PHPUnit_Framework_TestCase
+class SyowaTest extends TestCase
 {
     public function testInterface()
     {

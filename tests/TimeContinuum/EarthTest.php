@@ -9,8 +9,9 @@ use Innmind\TimeContinuum\{
     PointInTimeInterface,
     Timezone\Earth\UTC
 };
+use PHPUnit\Framework\TestCase;
 
-class EarthTest extends \PHPUnit_Framework_TestCase
+class EarthTest extends TestCase
 {
     public function testInterface()
     {

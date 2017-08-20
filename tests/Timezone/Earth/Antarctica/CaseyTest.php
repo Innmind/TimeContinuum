@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Antarctica\Casey,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class CaseyTest extends \PHPUnit_Framework_TestCase
+class CaseyTest extends TestCase
 {
     public function testInterface()
     {

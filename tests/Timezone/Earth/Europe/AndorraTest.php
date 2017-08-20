@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Europe\Andorra,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class AndorraTest extends \PHPUnit_Framework_TestCase
+class AndorraTest extends TestCase
 {
     public function testInterface()
     {

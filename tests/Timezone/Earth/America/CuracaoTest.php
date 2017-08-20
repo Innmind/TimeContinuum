@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Curacao,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class CuracaoTest extends \PHPUnit_Framework_TestCase
+class CuracaoTest extends TestCase
 {
     public function testInterface()
     {

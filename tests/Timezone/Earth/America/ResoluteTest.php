@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Resolute,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class ResoluteTest extends \PHPUnit_Framework_TestCase
+class ResoluteTest extends TestCase
 {
     public function testInterface()
     {

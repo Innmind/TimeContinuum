@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Europe\Gibraltar,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class GibraltarTest extends \PHPUnit_Framework_TestCase
+class GibraltarTest extends TestCase
 {
     public function testInterface()
     {

@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Africa\Nouakchott,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class NouakchottTest extends \PHPUnit_Framework_TestCase
+class NouakchottTest extends TestCase
 {
     public function testInterface()
     {

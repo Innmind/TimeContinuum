@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Asia\Jakarta,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class JakartaTest extends \PHPUnit_Framework_TestCase
+class JakartaTest extends TestCase
 {
     public function testInterface()
     {

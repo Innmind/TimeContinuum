@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Eirunepe,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class EirunepeTest extends \PHPUnit_Framework_TestCase
+class EirunepeTest extends TestCase
 {
     public function testInterface()
     {

@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Europe\Sofia,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class SofiaTest extends \PHPUnit_Framework_TestCase
+class SofiaTest extends TestCase
 {
     public function testInterface()
     {

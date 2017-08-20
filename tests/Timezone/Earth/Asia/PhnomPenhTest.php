@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Asia\PhnomPenh,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class PhnomPenhTest extends \PHPUnit_Framework_TestCase
+class PhnomPenhTest extends TestCase
 {
     public function testInterface()
     {

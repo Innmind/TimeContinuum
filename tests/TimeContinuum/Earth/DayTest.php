@@ -9,8 +9,9 @@ use Innmind\TimeContinuum\TimeContinuum\{
     Earth\Year,
     DayInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class DayTest extends \PHPUnit_Framework_TestCase
+class DayTest extends TestCase
 {
     public function testInterface()
     {

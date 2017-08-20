@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Africa\Mogadishu,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class MogadishuTest extends \PHPUnit_Framework_TestCase
+class MogadishuTest extends TestCase
 {
     public function testInterface()
     {

@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Australia\Hobart,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class HobartTest extends \PHPUnit_Framework_TestCase
+class HobartTest extends TestCase
 {
     public function testInterface()
     {

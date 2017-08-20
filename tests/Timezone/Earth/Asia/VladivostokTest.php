@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Asia\Vladivostok,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class VladivostokTest extends \PHPUnit_Framework_TestCase
+class VladivostokTest extends TestCase
 {
     public function testInterface()
     {

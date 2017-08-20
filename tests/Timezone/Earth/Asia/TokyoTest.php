@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Asia\Tokyo,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class TokyoTest extends \PHPUnit_Framework_TestCase
+class TokyoTest extends TestCase
 {
     public function testInterface()
     {

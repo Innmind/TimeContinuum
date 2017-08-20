@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Antarctica\SouthPole,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class SouthPoleTest extends \PHPUnit_Framework_TestCase
+class SouthPoleTest extends TestCase
 {
     public function testInterface()
     {

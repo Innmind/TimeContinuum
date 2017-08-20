@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Asia\Samarkand,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class SamarkandTest extends \PHPUnit_Framework_TestCase
+class SamarkandTest extends TestCase
 {
     public function testInterface()
     {

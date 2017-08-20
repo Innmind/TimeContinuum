@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Africa\Timbuktu,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class TimbuktuTest extends \PHPUnit_Framework_TestCase
+class TimbuktuTest extends TestCase
 {
     public function testInterface()
     {

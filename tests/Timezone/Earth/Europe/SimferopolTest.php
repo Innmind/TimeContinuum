@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Europe\Simferopol,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class SimferopolTest extends \PHPUnit_Framework_TestCase
+class SimferopolTest extends TestCase
 {
     public function testInterface()
     {

@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Pacific\Tarawa,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class TarawaTest extends \PHPUnit_Framework_TestCase
+class TarawaTest extends TestCase
 {
     public function testInterface()
     {

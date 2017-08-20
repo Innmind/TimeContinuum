@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Bahia,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class BahiaTest extends \PHPUnit_Framework_TestCase
+class BahiaTest extends TestCase
 {
     public function testInterface()
     {

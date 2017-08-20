@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Europe\Vatican,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class VaticanTest extends \PHPUnit_Framework_TestCase
+class VaticanTest extends TestCase
 {
     public function testInterface()
     {

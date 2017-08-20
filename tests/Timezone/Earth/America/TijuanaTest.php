@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Tijuana,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class TijuanaTest extends \PHPUnit_Framework_TestCase
+class TijuanaTest extends TestCase
 {
     public function testInterface()
     {

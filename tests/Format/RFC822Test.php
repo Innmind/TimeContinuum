@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Format\RFC822,
     FormatInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class RFC822Test extends \PHPUnit_Framework_TestCase
+class RFC822Test extends TestCase
 {
     public function testInterface()
     {

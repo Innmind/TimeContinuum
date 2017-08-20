@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Asia\Thimbu,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class ThimbuTest extends \PHPUnit_Framework_TestCase
+class ThimbuTest extends TestCase
 {
     public function testInterface()
     {

@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Africa\Brazzaville,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class BrazzavilleTest extends \PHPUnit_Framework_TestCase
+class BrazzavilleTest extends TestCase
 {
     public function testInterface()
     {

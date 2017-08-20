@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Africa\Lusaka,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class LusakaTest extends \PHPUnit_Framework_TestCase
+class LusakaTest extends TestCase
 {
     public function testInterface()
     {

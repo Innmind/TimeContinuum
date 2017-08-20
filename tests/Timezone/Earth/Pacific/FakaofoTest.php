@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Pacific\Fakaofo,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class FakaofoTest extends \PHPUnit_Framework_TestCase
+class FakaofoTest extends TestCase
 {
     public function testInterface()
     {

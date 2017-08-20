@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Pacific\Auckland,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class AucklandTest extends \PHPUnit_Framework_TestCase
+class AucklandTest extends TestCase
 {
     public function testInterface()
     {

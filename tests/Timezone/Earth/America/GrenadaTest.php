@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Grenada,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class GrenadaTest extends \PHPUnit_Framework_TestCase
+class GrenadaTest extends TestCase
 {
     public function testInterface()
     {

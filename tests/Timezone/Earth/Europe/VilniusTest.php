@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Europe\Vilnius,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class VilniusTest extends \PHPUnit_Framework_TestCase
+class VilniusTest extends TestCase
 {
     public function testInterface()
     {

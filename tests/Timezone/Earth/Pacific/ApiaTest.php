@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Pacific\Apia,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class ApiaTest extends \PHPUnit_Framework_TestCase
+class ApiaTest extends TestCase
 {
     public function testInterface()
     {

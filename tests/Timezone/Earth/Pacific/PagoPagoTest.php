@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Pacific\PagoPago,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class PagoPagoTest extends \PHPUnit_Framework_TestCase
+class PagoPagoTest extends TestCase
 {
     public function testInterface()
     {

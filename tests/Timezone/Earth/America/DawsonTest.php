@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Dawson,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class DawsonTest extends \PHPUnit_Framework_TestCase
+class DawsonTest extends TestCase
 {
     public function testInterface()
     {

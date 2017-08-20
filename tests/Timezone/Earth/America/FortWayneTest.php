@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\FortWayne,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class FortWayneTest extends \PHPUnit_Framework_TestCase
+class FortWayneTest extends TestCase
 {
     public function testInterface()
     {

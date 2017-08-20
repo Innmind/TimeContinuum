@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Atlantic\Stanley,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class StanleyTest extends \PHPUnit_Framework_TestCase
+class StanleyTest extends TestCase
 {
     public function testInterface()
     {

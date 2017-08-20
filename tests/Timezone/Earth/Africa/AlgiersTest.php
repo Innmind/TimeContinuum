@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Africa\Algiers,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class AlgiersTest extends \PHPUnit_Framework_TestCase
+class AlgiersTest extends TestCase
 {
     public function testInterface()
     {

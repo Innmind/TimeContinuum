@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Pangnirtung,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class PangnirtungTest extends \PHPUnit_Framework_TestCase
+class PangnirtungTest extends TestCase
 {
     public function testInterface()
     {

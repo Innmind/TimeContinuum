@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Europe\Samara,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class SamaraTest extends \PHPUnit_Framework_TestCase
+class SamaraTest extends TestCase
 {
     public function testInterface()
     {

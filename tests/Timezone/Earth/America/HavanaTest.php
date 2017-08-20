@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Havana,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class HavanaTest extends \PHPUnit_Framework_TestCase
+class HavanaTest extends TestCase
 {
     public function testInterface()
     {

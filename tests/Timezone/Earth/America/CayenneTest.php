@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Cayenne,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class CayenneTest extends \PHPUnit_Framework_TestCase
+class CayenneTest extends TestCase
 {
     public function testInterface()
     {

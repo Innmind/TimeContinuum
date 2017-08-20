@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Asia\Vientiane,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class VientianeTest extends \PHPUnit_Framework_TestCase
+class VientianeTest extends TestCase
 {
     public function testInterface()
     {

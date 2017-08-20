@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Europe\Monaco,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class MonacoTest extends \PHPUnit_Framework_TestCase
+class MonacoTest extends TestCase
 {
     public function testInterface()
     {

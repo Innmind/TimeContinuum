@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Format\W3C,
     FormatInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class W3CTest extends \PHPUnit_Framework_TestCase
+class W3CTest extends TestCase
 {
     public function testInterface()
     {

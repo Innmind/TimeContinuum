@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Pacific\Galapagos,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class GalapagosTest extends \PHPUnit_Framework_TestCase
+class GalapagosTest extends TestCase
 {
     public function testInterface()
     {

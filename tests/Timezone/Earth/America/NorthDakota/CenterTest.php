@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\NorthDakota\Center,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class CenterTest extends \PHPUnit_Framework_TestCase
+class CenterTest extends TestCase
 {
     public function testInterface()
     {

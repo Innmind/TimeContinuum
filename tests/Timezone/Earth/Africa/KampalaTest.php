@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Africa\Kampala,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class KampalaTest extends \PHPUnit_Framework_TestCase
+class KampalaTest extends TestCase
 {
     public function testInterface()
     {

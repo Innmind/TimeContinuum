@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Antarctica\Troll,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class TrollTest extends \PHPUnit_Framework_TestCase
+class TrollTest extends TestCase
 {
     public function testInterface()
     {

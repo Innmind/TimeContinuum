@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Pacific\Pitcairn,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class PitcairnTest extends \PHPUnit_Framework_TestCase
+class PitcairnTest extends TestCase
 {
     public function testInterface()
     {

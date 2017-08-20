@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\GooseBay,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class GooseBayTest extends \PHPUnit_Framework_TestCase
+class GooseBayTest extends TestCase
 {
     public function testInterface()
     {

@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Asia\Saigon,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class SaigonTest extends \PHPUnit_Framework_TestCase
+class SaigonTest extends TestCase
 {
     public function testInterface()
     {

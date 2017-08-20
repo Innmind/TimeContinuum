@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Noronha,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class NoronhaTest extends \PHPUnit_Framework_TestCase
+class NoronhaTest extends TestCase
 {
     public function testInterface()
     {

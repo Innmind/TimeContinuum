@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Pacific\Fiji,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class FijiTest extends \PHPUnit_Framework_TestCase
+class FijiTest extends TestCase
 {
     public function testInterface()
     {

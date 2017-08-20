@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Africa\Banjul,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class BanjulTest extends \PHPUnit_Framework_TestCase
+class BanjulTest extends TestCase
 {
     public function testInterface()
     {

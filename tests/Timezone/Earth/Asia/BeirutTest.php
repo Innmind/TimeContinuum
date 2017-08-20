@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Asia\Beirut,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class BeirutTest extends \PHPUnit_Framework_TestCase
+class BeirutTest extends TestCase
 {
     public function testInterface()
     {

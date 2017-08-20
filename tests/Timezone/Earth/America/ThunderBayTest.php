@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\ThunderBay,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class ThunderBayTest extends \PHPUnit_Framework_TestCase
+class ThunderBayTest extends TestCase
 {
     public function testInterface()
     {

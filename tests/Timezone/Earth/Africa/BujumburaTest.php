@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Africa\Bujumbura,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class BujumburaTest extends \PHPUnit_Framework_TestCase
+class BujumburaTest extends TestCase
 {
     public function testInterface()
     {

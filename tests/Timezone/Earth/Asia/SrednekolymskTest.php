@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Asia\Srednekolymsk,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class SrednekolymskTest extends \PHPUnit_Framework_TestCase
+class SrednekolymskTest extends TestCase
 {
     public function testInterface()
     {

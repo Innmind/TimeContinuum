@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Europe\Helsinki,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class HelsinkiTest extends \PHPUnit_Framework_TestCase
+class HelsinkiTest extends TestCase
 {
     public function testInterface()
     {

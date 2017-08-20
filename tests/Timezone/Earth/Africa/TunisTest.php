@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Africa\Tunis,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class TunisTest extends \PHPUnit_Framework_TestCase
+class TunisTest extends TestCase
 {
     public function testInterface()
     {

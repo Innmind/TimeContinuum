@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Merida,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class MeridaTest extends \PHPUnit_Framework_TestCase
+class MeridaTest extends TestCase
 {
     public function testInterface()
     {

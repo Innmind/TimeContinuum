@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Europe\Riga,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class RigaTest extends \PHPUnit_Framework_TestCase
+class RigaTest extends TestCase
 {
     public function testInterface()
     {

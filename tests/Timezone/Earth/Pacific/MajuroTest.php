@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Pacific\Majuro,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class MajuroTest extends \PHPUnit_Framework_TestCase
+class MajuroTest extends TestCase
 {
     public function testInterface()
     {

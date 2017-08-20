@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Europe\Malta,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class MaltaTest extends \PHPUnit_Framework_TestCase
+class MaltaTest extends TestCase
 {
     public function testInterface()
     {

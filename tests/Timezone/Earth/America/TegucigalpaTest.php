@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\America\Tegucigalpa,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class TegucigalpaTest extends \PHPUnit_Framework_TestCase
+class TegucigalpaTest extends TestCase
 {
     public function testInterface()
     {

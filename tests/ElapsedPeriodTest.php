@@ -4,8 +4,9 @@ declare(strict_types = 1);
 namespace Tests\Innmind\TimeContinuum;
 
 use Innmind\TimeContinuum\ElapsedPeriod;
+use PHPUnit\Framework\TestCase;
 
-class ElapsedPeriodTest extends \PHPUnit_Framework_TestCase
+class ElapsedPeriodTest extends TestCase
 {
     public function testInterface()
     {

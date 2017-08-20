@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Europe\Jersey,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class JerseyTest extends \PHPUnit_Framework_TestCase
+class JerseyTest extends TestCase
 {
     public function testInterface()
     {

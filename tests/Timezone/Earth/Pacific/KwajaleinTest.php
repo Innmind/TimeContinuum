@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Pacific\Kwajalein,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class KwajaleinTest extends \PHPUnit_Framework_TestCase
+class KwajaleinTest extends TestCase
 {
     public function testInterface()
     {

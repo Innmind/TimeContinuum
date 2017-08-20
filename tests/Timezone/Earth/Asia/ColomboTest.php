@@ -7,8 +7,9 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\Asia\Colombo,
     TimezoneInterface
 };
+use PHPUnit\Framework\TestCase;
 
-class ColomboTest extends \PHPUnit_Framework_TestCase
+class ColomboTest extends TestCase
 {
     public function testInterface()
     {
