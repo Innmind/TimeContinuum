@@ -30,7 +30,7 @@ class NowTest extends TestCase
         $time = microtime(true);
         $timestamp = (int) $time;
         //off by one due to the time it takes to reach microtime in Now::__construct
-        $now = (int) round($time * 1000);
+        $now = (int) ($time * 1000);
         $point = new Now;
 
         $this->assertInstanceOf(PointInTimeInterface::class, $point);
