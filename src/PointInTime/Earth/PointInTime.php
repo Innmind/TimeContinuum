@@ -131,7 +131,7 @@ final class PointInTime implements PointInTimeInterface
     {
         if (!$this->millisecond instanceof Millisecond) {
             $this->millisecond = new Millisecond(
-                (int) round((int) $this->date->format('u') / 1000)
+                (int) ((int) $this->date->format('u') / 1000)
             );
         }
 

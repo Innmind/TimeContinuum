@@ -59,6 +59,14 @@ class PointInTimeTest extends TestCase
         $this->assertSame('2016-10-05T08:01:30+02:00', (string) $point);
     }
 
+    public function testPreserveMillisecondsWhenNanosecondsInString()
+    {
+        $point = new PointInTime('2016-10-05T08:01:30.999678+02:00');
+
+        $this->assertSame(999, $point->millisecond()->toInt());
+        $this->assertSame(30, $point->second()->toInt());
+    }
+
     public function testFormat()
     {
         $point = new PointInTime('2016-10-05T08:01:30.123+02:00');
