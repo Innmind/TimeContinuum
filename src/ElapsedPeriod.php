@@ -5,7 +5,7 @@ namespace Innmind\TimeContinuum;
 
 use Innmind\TimeContinuum\Exception\ElapsedPeriodCantBeNegativeException;
 
-final class ElapsedPeriod
+final class ElapsedPeriod implements ElapsedPeriodInterface
 {
     private $milliseconds;
 
@@ -23,12 +23,12 @@ final class ElapsedPeriod
         return $this->milliseconds;
     }
 
-    public function longerThan(self $period): bool
+    public function longerThan(ElapsedPeriodInterface $period): bool
     {
         return $this->milliseconds > $period->milliseconds();
     }
 
-    public function equals(self $period): bool
+    public function equals(ElapsedPeriodInterface $period): bool
     {
         return $this->milliseconds === $period->milliseconds();
     }
