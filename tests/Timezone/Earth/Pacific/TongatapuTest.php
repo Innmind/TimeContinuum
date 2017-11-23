@@ -16,9 +16,15 @@ class TongatapuTest extends TestCase
         $zone = new Tongatapu;
 
         $this->assertInstanceOf(TimezoneInterface::class, $zone);
-        $this->assertSame(13, $zone->hours());
-        $this->assertSame(0, $zone->minutes());
-        $this->assertSame('+13:00', (string) $zone);
-        $this->assertFalse($zone->daylightSavingTimeApplied());
+
+        if ($zone->daylightSavingTimeApplied()) {
+            $this->assertSame(14, $zone->hours());
+            $this->assertSame(0, $zone->minutes());
+            $this->assertSame('+14:00', (string) $zone);
+        } else {
+            $this->assertSame(13, $zone->hours());
+            $this->assertSame(0, $zone->minutes());
+            $this->assertSame('+13:00', (string) $zone);
+        }
     }
 }
