@@ -18,6 +18,7 @@ use Innmind\TimeContinuum\{
     TimeContinuum\MillisecondInterface,
     Timezone\Earth\UTC,
     Period\Earth\Composite,
+    Period\Earth\Day,
     Period\Earth\Millisecond as MillisecondPeriod
 };
 use PHPUnit\Framework\TestCase;
@@ -199,6 +200,27 @@ class PointInTimeTest extends TestCase
                         }
                     }
                 )
+        );
+    }
+
+    public function testGoBackOneDay()
+    {
+        $point = new PointInTime('2018-03-04');
+        $point2 = $point->goBack(new Day(1));
+        $format = new class implements FormatInterface {
+            public function __toString(): string
+            {
+                return 'Y-m-d\TH:i:s.u';
+            }
+        };
+
+        $this->assertSame(
+            '2018-03-04T00:00:00.000000',
+            $point->format($format)
+        );
+        $this->assertSame(
+            '2018-03-03T00:00:00.000000',
+            $point2->format($format)
         );
     }
 }
