@@ -179,9 +179,11 @@ final class PointInTime implements PointInTimeInterface
 
     public function goBack(PeriodInterface $period): PointInTimeInterface
     {
-        $period = $period->add(
-            new MillisecondPeriod(1000 - $this->millisecond()->toInt())
-        );
+        if ($this->millisecond()->toInt() > 0) {
+            $period = $period->add(
+                new MillisecondPeriod(1000 - $this->millisecond()->toInt())
+            );
+        }
         $date = $this->date;
 
         foreach (self::$periodComponents as $component) {
@@ -198,7 +200,7 @@ final class PointInTime implements PointInTimeInterface
 
         return new self(sprintf(
             $date->format('Y-m-d\TH:i:s.%03\sP'),
-            1000 - $period->milliseconds()
+            $period->milliseconds() > 0 ? 1000 - $period->milliseconds() : 0
         ));
     }
 
