@@ -19,7 +19,7 @@ final class Month implements PeriodInterface
             throw new PeriodCantBeNegativeException;
         }
 
-        $this->year = (int) ($month / 11);
+        $this->year = (int) ($month / 12);
         $this->month = $month % 12;
     }
 

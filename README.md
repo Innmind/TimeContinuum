@@ -89,6 +89,17 @@ Here we go back 1 year, 2 month, 24 minutes and half a second back in time. The 
 
 **Note**: Objects from the `Innmind\TimeContinuum\Period\Earth` namespace will convert values if you go out of the component boundary. For example, `new Millisecond(121500)` will result in this: `milliseconds() === 500`, `seconds() === 1` and `minutes() === 2`.
 
+To ease some common operations this lib contains helpers such as `EndOfDay` to be used like this:
+
+```php
+use Innmind\TimeContinuum\Move\Earth\EndOfDay;
+
+$endOfDay = new EndOfDay;
+$endOfDay($clock->now()); // will return 2018-04-28 23:59:59.999
+```
+
+Check all the [helpers](src/Move/Earth/) to help you travel in time.
+
 ### Elapsed period
 
 Sometimes we want to know how long a task takes in our code and we end up using `microtime(true) * 1000`. Here you can have a more _elegant_ way of doing it (and one that is unit test friendly)

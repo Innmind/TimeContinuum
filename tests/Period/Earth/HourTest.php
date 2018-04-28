@@ -82,6 +82,7 @@ class HourTest extends TestCase
         return [
             [20, 0, 20],
             [24, 1, 0],
+            [23, 0, 23],
             [25, 1, 1],
             [48, 2, 0],
             [49, 2, 1],

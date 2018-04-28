@@ -81,6 +81,7 @@ class MonthTest extends TestCase
     {
         return [
             [12, 1, 0],
+            [11, 0, 11],
             [13, 1, 1],
             [24, 2, 0],
             [25, 2, 1],

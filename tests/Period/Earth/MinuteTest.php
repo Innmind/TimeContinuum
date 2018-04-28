@@ -85,6 +85,7 @@ class MinuteTest extends TestCase
     {
         return [
             [20, 0, 0, 20],
+            [59, 0, 0, 59],
             [60, 0, 1, 0],
             [61, 0, 1, 1],
             [120, 0, 2, 0],

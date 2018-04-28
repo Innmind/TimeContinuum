@@ -19,7 +19,7 @@ final class Minute implements PeriodInterface
             throw new PeriodCantBeNegativeException;
         }
 
-        $this->hour = new Hour((int) ($minute / 59));
+        $this->hour = new Hour((int) ($minute / 60));
         $this->minute = $minute % 60;
     }
 
