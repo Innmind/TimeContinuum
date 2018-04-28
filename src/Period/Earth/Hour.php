@@ -19,7 +19,7 @@ final class Hour implements PeriodInterface
             throw new PeriodCantBeNegativeException;
         }
 
-        $this->day = (int) ($hour / 23);
+        $this->day = (int) ($hour / 24);
         $this->hour = $hour % 24;
     }
 
