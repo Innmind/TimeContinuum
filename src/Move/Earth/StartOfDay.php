@@ -15,11 +15,18 @@ final class StartOfDay
 {
     public function __invoke(PointInTimeInterface $point): PointInTimeInterface
     {
+        $seconds = max($point->second()->toInt() - 1, 0);
+        $millisecond = $point->millisecond()->toInt();
+
+        if ($seconds !== 0 && $millisecond === 0) {
+            ++$seconds;
+        }
+
         return $point->goBack(
             (new Hour($point->hour()->toInt()))
                 ->add(new Minute($point->minute()->toInt()))
-                ->add(new Second(max($point->second()->toInt() - 1, 0)))
-                ->add(new Millisecond($point->millisecond()->toInt()))
+                ->add(new Second($seconds))
+                ->add(new Millisecond($millisecond))
         );
     }
 }
