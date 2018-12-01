@@ -16,14 +16,5 @@ class ScoresbysundTest extends TestCase
         $zone = new Scoresbysund;
 
         $this->assertInstanceOf(TimezoneInterface::class, $zone);
-        if ($zone->daylightSavingTimeApplied()) {
-            $this->assertSame(0, $zone->hours());
-            $this->assertSame(0, $zone->minutes());
-            $this->assertSame('Z', (string) $zone);
-        } else {
-            $this->assertSame(-1, $zone->hours());
-            $this->assertSame(0, $zone->minutes());
-            $this->assertSame('-01:00', (string) $zone);
-        }
     }
 }

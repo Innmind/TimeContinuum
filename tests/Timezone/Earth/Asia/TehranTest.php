@@ -16,14 +16,5 @@ class TehranTest extends TestCase
         $zone = new Tehran;
 
         $this->assertInstanceOf(TimezoneInterface::class, $zone);
-        if ($zone->daylightSavingTimeApplied()) {
-            $this->assertSame(4, $zone->hours());
-            $this->assertSame(30, $zone->minutes());
-            $this->assertSame('+04:30', (string) $zone);
-        } else {
-            $this->assertSame(3, $zone->hours());
-            $this->assertSame(30, $zone->minutes());
-            $this->assertSame('+03:30', (string) $zone);
-        }
     }
 }

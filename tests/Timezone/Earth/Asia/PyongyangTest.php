@@ -16,9 +16,5 @@ class PyongyangTest extends TestCase
         $zone = new Pyongyang;
 
         $this->assertInstanceOf(TimezoneInterface::class, $zone);
-        $this->assertSame(8, $zone->hours());
-        $this->assertSame(30, $zone->minutes());
-        $this->assertSame('+08:30', (string) $zone);
-        $this->assertFalse($zone->daylightSavingTimeApplied());
     }
 }

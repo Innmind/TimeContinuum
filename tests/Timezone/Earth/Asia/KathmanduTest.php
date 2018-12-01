@@ -16,9 +16,5 @@ class KathmanduTest extends TestCase
         $zone = new Kathmandu;
 
         $this->assertInstanceOf(TimezoneInterface::class, $zone);
-        $this->assertSame(5, $zone->hours());
-        $this->assertSame(45, $zone->minutes());
-        $this->assertSame('+05:45', (string) $zone);
-        $this->assertFalse($zone->daylightSavingTimeApplied());
     }
 }

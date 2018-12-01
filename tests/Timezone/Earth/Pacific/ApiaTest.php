@@ -16,14 +16,5 @@ class ApiaTest extends TestCase
         $zone = new Apia;
 
         $this->assertInstanceOf(TimezoneInterface::class, $zone);
-        if ($zone->daylightSavingTimeApplied()) {
-            $this->assertSame(14, $zone->hours());
-            $this->assertSame(0, $zone->minutes());
-            $this->assertSame('+14:00', (string) $zone);
-        } else {
-            $this->assertSame(13, $zone->hours());
-            $this->assertSame(0, $zone->minutes());
-            $this->assertSame('+13:00', (string) $zone);
-        }
     }
 }

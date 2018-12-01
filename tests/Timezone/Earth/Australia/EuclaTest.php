@@ -16,9 +16,5 @@ class EuclaTest extends TestCase
         $zone = new Eucla;
 
         $this->assertInstanceOf(TimezoneInterface::class, $zone);
-        $this->assertSame(8, $zone->hours());
-        $this->assertSame(45, $zone->minutes());
-        $this->assertSame('+08:45', (string) $zone);
-        $this->assertFalse($zone->daylightSavingTimeApplied());
     }
 }

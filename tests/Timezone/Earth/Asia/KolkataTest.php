@@ -16,9 +16,5 @@ class KolkataTest extends TestCase
         $zone = new Kolkata;
 
         $this->assertInstanceOf(TimezoneInterface::class, $zone);
-        $this->assertSame(5, $zone->hours());
-        $this->assertSame(30, $zone->minutes());
-        $this->assertSame('+05:30', (string) $zone);
-        $this->assertFalse($zone->daylightSavingTimeApplied());
     }
 }

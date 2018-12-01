@@ -16,9 +16,5 @@ class RangoonTest extends TestCase
         $zone = new Rangoon;
 
         $this->assertInstanceOf(TimezoneInterface::class, $zone);
-        $this->assertSame(6, $zone->hours());
-        $this->assertSame(30, $zone->minutes());
-        $this->assertSame('+06:30', (string) $zone);
-        $this->assertFalse($zone->daylightSavingTimeApplied());
     }
 }

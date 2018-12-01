@@ -16,9 +16,5 @@ class SimferopolTest extends TestCase
         $zone = new Simferopol;
 
         $this->assertInstanceOf(TimezoneInterface::class, $zone);
-        $this->assertSame(3, $zone->hours());
-        $this->assertSame(0, $zone->minutes());
-        $this->assertSame('+03:00', (string) $zone);
-        $this->assertFalse($zone->daylightSavingTimeApplied());
     }
 }
