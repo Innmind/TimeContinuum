@@ -16,9 +16,5 @@ class KiritimatiTest extends TestCase
         $zone = new Kiritimati;
 
         $this->assertInstanceOf(TimezoneInterface::class, $zone);
-        $this->assertSame(14, $zone->hours());
-        $this->assertSame(0, $zone->minutes());
-        $this->assertSame('+14:00', (string) $zone);
-        $this->assertFalse($zone->daylightSavingTimeApplied());
     }
 }

@@ -16,9 +16,5 @@ class TrukTest extends TestCase
         $zone = new Truk;
 
         $this->assertInstanceOf(TimezoneInterface::class, $zone);
-        $this->assertSame(10, $zone->hours());
-        $this->assertSame(0, $zone->minutes());
-        $this->assertSame('+10:00', (string) $zone);
-        $this->assertFalse($zone->daylightSavingTimeApplied());
     }
 }

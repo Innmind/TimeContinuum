@@ -5,7 +5,7 @@ namespace Innmind\TimeContinuum\Period\Earth;
 
 use Innmind\TimeContinuum\{
     PeriodInterface,
-    Exception\PeriodCantBeNegativeException
+    Exception\PeriodCantBeNegativeException,
 };
 
 final class Day implements PeriodInterface

@@ -16,9 +16,5 @@ class EnderburyTest extends TestCase
         $zone = new Enderbury;
 
         $this->assertInstanceOf(TimezoneInterface::class, $zone);
-        $this->assertSame(13, $zone->hours());
-        $this->assertSame(0, $zone->minutes());
-        $this->assertSame('+13:00', (string) $zone);
-        $this->assertFalse($zone->daylightSavingTimeApplied());
     }
 }

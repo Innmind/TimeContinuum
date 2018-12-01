@@ -16,14 +16,5 @@ class HobartTest extends TestCase
         $zone = new Hobart;
 
         $this->assertInstanceOf(TimezoneInterface::class, $zone);
-        if ($zone->daylightSavingTimeApplied()) {
-            $this->assertSame(11, $zone->hours());
-            $this->assertSame(0, $zone->minutes());
-            $this->assertSame('+11:00', (string) $zone);
-        } else {
-            $this->assertSame(10, $zone->hours());
-            $this->assertSame(0, $zone->minutes());
-            $this->assertSame('+10:00', (string) $zone);
-        }
     }
 }

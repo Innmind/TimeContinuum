@@ -7,7 +7,7 @@ use Innmind\TimeContinuum\TimeContinuum\{
     Earth\Day,
     Earth\Month,
     Earth\Year,
-    DayInterface
+    DayInterface,
 };
 use PHPUnit\Framework\TestCase;
 

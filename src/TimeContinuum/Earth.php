@@ -7,9 +7,10 @@ use Innmind\TimeContinuum\{
     TimeContinuumInterface,
     TimezoneInterface,
     PointInTimeInterface,
+    FormatInterface,
     PointInTime\Earth\PointInTime,
     PointInTime\Earth\Now,
-    Timezone\Earth\UTC
+    Timezone\Earth\UTC,
 };
 
 final class Earth implements TimeContinuumInterface
@@ -31,8 +32,12 @@ final class Earth implements TimeContinuumInterface
         return (new Now)->changeTimezone($this->timezone);
     }
 
-    public function at(string $date): PointInTimeInterface
+    public function at(string $date, FormatInterface $format = null): PointInTimeInterface
     {
+        if ($format instanceof FormatInterface) {
+            $date = \DateTimeImmutable::createFromFormat((string) $format, $date)->format(\DateTime::ATOM);
+        }
+
         return (new PointInTime($date))->changeTimezone($this->timezone);
     }
 }

@@ -16,9 +16,5 @@ class KabulTest extends TestCase
         $zone = new Kabul;
 
         $this->assertInstanceOf(TimezoneInterface::class, $zone);
-        $this->assertSame(4, $zone->hours());
-        $this->assertSame(30, $zone->minutes());
-        $this->assertSame('+04:30', (string) $zone);
-        $this->assertFalse($zone->daylightSavingTimeApplied());
     }
 }

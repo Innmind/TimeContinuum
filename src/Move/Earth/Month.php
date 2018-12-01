@@ -10,7 +10,7 @@ use Innmind\TimeContinuum\{
     Period\Earth\Minute,
     Period\Earth\Second,
     Period\Earth\Millisecond,
-    Period\Earth\Month as Period
+    Period\Earth\Month as Period,
 };
 
 final class Month

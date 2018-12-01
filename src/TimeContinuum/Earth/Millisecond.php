@@ -5,7 +5,7 @@ namespace Innmind\TimeContinuum\TimeContinuum\Earth;
 
 use Innmind\TimeContinuum\{
     TimeContinuum\MillisecondInterface,
-    Exception\InvalidArgumentException
+    Exception\InvalidArgumentException,
 };
 
 final class Millisecond implements MillisecondInterface

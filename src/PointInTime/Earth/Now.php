@@ -17,7 +17,7 @@ use Innmind\TimeContinuum\{
     TimeContinuum\HourInterface,
     TimeContinuum\MinuteInterface,
     TimeContinuum\SecondInterface,
-    TimeContinuum\MillisecondInterface
+    TimeContinuum\MillisecondInterface,
 };
 
 final class Now implements PointInTimeInterface

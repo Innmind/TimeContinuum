@@ -25,7 +25,7 @@ use Innmind\TimeContinuum\{
     TimeContinuum\Earth\Minute,
     TimeContinuum\Earth\Second,
     TimeContinuum\Earth\Millisecond,
-    Period\Earth\Millisecond as MillisecondPeriod
+    Period\Earth\Millisecond as MillisecondPeriod,
 };
 
 final class PointInTime implements PointInTimeInterface

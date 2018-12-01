@@ -5,7 +5,7 @@ namespace Tests\Innmind\TimeContinuum\Format;
 
 use Innmind\TimeContinuum\{
     Format\Cookie,
-    FormatInterface
+    FormatInterface,
 };
 use PHPUnit\Framework\TestCase;
 

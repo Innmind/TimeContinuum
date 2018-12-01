@@ -16,14 +16,5 @@ class YellowknifeTest extends TestCase
         $zone = new Yellowknife;
 
         $this->assertInstanceOf(TimezoneInterface::class, $zone);
-        if ($zone->daylightSavingTimeApplied()) {
-            $this->assertSame(-6, $zone->hours());
-            $this->assertSame(0, $zone->minutes());
-            $this->assertSame('-06:00', (string) $zone);
-        } else {
-            $this->assertSame(-7, $zone->hours());
-            $this->assertSame(0, $zone->minutes());
-            $this->assertSame('-07:00', (string) $zone);
-        }
     }
 }
