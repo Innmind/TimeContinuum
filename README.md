@@ -49,7 +49,7 @@ $clock = new Earth(new Paris);
 echo (string) $clock->now()->timezone(); //+02:00 (when DST applied), otherwose +01:00
 ```
 
-And if you're given a poin in time via a method parameter but don't know its timezone, you can change it via:
+And if you're given a point in time via a method parameter but don't know its timezone, you can change it via:
 
 ```php
 use Innmind\TimeContinuum\{
