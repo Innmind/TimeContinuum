@@ -16,9 +16,9 @@ class SaoTomeTest extends TestCase
         $zone = new SaoTome;
 
         $this->assertInstanceOf(TimezoneInterface::class, $zone);
-        $this->assertSame(0, $zone->hours());
+        $this->assertSame(1, $zone->hours());
         $this->assertSame(0, $zone->minutes());
-        $this->assertSame('Z', (string) $zone);
+        $this->assertSame('+01:00', (string) $zone);
         $this->assertFalse($zone->daylightSavingTimeApplied());
     }
 }
