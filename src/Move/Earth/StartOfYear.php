@@ -5,7 +5,7 @@ namespace Innmind\TimeContinuum\Move\Earth;
 
 use Innmind\TimeContinuum\{
     PointInTimeInterface,
-    Period\Earth\Month
+    Period\Earth\Month,
 };
 
 final class StartOfYear

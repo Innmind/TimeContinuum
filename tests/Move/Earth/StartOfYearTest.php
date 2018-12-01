@@ -7,7 +7,7 @@ use Innmind\TimeContinuum\{
     Move\Earth\StartOfYear,
     PointInTimeInterface,
     PointInTime\Earth\PointInTime,
-    FormatInterface
+    FormatInterface,
 };
 use PHPUnit\Framework\TestCase;
 

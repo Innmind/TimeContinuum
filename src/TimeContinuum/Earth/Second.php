@@ -5,7 +5,7 @@ namespace Innmind\TimeContinuum\TimeContinuum\Earth;
 
 use Innmind\TimeContinuum\{
     TimeContinuum\SecondInterface,
-    Exception\InvalidArgumentException
+    Exception\InvalidArgumentException,
 };
 
 final class Second implements SecondInterface

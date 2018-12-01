@@ -8,7 +8,7 @@ use Innmind\TimeContinuum\{
     TimeContinuumInterface,
     PointInTimeInterface,
     FormatInterface,
-    Timezone\Earth\UTC
+    Timezone\Earth\UTC,
 };
 use PHPUnit\Framework\TestCase;
 

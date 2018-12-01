@@ -5,7 +5,7 @@ namespace Tests\Innmind\TimeContinuum\Format;
 
 use Innmind\TimeContinuum\{
     Format\RFC850,
-    FormatInterface
+    FormatInterface,
 };
 use PHPUnit\Framework\TestCase;
 

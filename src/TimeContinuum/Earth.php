@@ -10,7 +10,7 @@ use Innmind\TimeContinuum\{
     FormatInterface,
     PointInTime\Earth\PointInTime,
     PointInTime\Earth\Now,
-    Timezone\Earth\UTC
+    Timezone\Earth\UTC,
 };
 
 final class Earth implements TimeContinuumInterface

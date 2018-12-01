@@ -5,7 +5,7 @@ namespace Innmind\TimeContinuum\TimeContinuum\Earth;
 
 use Innmind\TimeContinuum\{
     TimeContinuum\MonthInterface,
-    Exception\InvalidArgumentException
+    Exception\InvalidArgumentException,
 };
 
 final class Month implements MonthInterface

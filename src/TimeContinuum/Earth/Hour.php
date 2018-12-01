@@ -5,7 +5,7 @@ namespace Innmind\TimeContinuum\TimeContinuum\Earth;
 
 use Innmind\TimeContinuum\{
     TimeContinuum\HourInterface,
-    Exception\InvalidArgumentException
+    Exception\InvalidArgumentException,
 };
 
 final class Hour implements HourInterface

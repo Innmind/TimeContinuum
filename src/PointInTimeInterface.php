@@ -10,7 +10,7 @@ use Innmind\TimeContinuum\TimeContinuum\{
     HourInterface,
     MinuteInterface,
     SecondInterface,
-    MillisecondInterface
+    MillisecondInterface,
 };
 
 interface PointInTimeInterface

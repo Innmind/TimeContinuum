@@ -8,7 +8,7 @@ use Innmind\TimeContinuum\{
     Period\Earth\Hour,
     Period\Earth\Minute,
     Period\Earth\Second,
-    Period\Earth\Millisecond
+    Period\Earth\Millisecond,
 };
 
 final class StartOfDay

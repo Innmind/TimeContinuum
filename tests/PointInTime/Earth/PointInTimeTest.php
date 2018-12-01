@@ -19,7 +19,7 @@ use Innmind\TimeContinuum\{
     Timezone\Earth\UTC,
     Period\Earth\Composite,
     Period\Earth\Day,
-    Period\Earth\Millisecond as MillisecondPeriod
+    Period\Earth\Millisecond as MillisecondPeriod,
 };
 use PHPUnit\Framework\TestCase;
 

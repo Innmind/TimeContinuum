@@ -5,7 +5,7 @@ namespace Tests\Innmind\TimeContinuum\TimeContinuum\Earth;
 
 use Innmind\TimeContinuum\TimeContinuum\{
     Earth\Millisecond,
-    MillisecondInterface
+    MillisecondInterface,
 };
 use PHPUnit\Framework\TestCase;
 
