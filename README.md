@@ -32,7 +32,7 @@ $epoch = $clock->at('1970-01-01T00:00:00.000000Z');
 
 Here we reference 2 points in time, the first is the exact moment we call `now` down to the millisecond (thanks to `microtime(true)`) and the second one is the epoch time (you can verify it via `$epoch->milliseconds()` that returns `0`).
 
-The method `at()` accept any string that is allowed by `\DateTimeImmutable`.
+The method `at()` accepts any string that is allowed by `\DateTimeImmutable`.
 
 ### Timezones
 
@@ -46,7 +46,7 @@ use Innmind\TimeContinuum\{
 
 $clock = new Earth(new Paris);
 
-echo (string) $clock->now()->timezone(); //+02:00 (when DST applied), otherwose +01:00
+echo (string) $clock->now()->timezone(); //+02:00 (when DST applied), otherwise +01:00
 ```
 
 And if you're given a point in time via a method parameter but don't know its timezone, you can change it via:
@@ -59,7 +59,7 @@ use Innmind\TimeContinuum\{
 
 function foo(PointInTimeInterface $point)
 {
-    $point = $point->changeTimezone(new Paris)
+    $point = $point->changeTimezone(new Paris);
 }
 ```
 
@@ -85,7 +85,7 @@ $point = $clock
     );
 ```
 
-Here we go back 1 year, 2 month, 24 minutes and half a second back in time. The same objects are used to `goForward()`.
+Here we go back 1 year, 2 months, 24 minutes and half a second back in time. The same objects are used to `goForward()`.
 
 **Note**: Objects from the `Innmind\TimeContinuum\Period\Earth` namespace will convert values if you go out of the component boundary. For example, `new Millisecond(121500)` will result in this: `milliseconds() === 500`, `seconds() === 1` and `minutes() === 2`.
 
