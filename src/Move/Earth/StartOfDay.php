@@ -15,7 +15,7 @@ final class StartOfDay
 {
     public function __invoke(PointInTimeInterface $point): PointInTimeInterface
     {
-        $seconds = max($point->second()->toInt() - 1, 0);
+        $seconds = \max($point->second()->toInt() - 1, 0);
         $millisecond = $point->millisecond()->toInt();
 
         if ($seconds !== 0 && $millisecond === 0) {

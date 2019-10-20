@@ -21,11 +21,11 @@ final class Month implements MonthInterface
         }
 
         $this->month = $month;
-        $this->days = (int) date(
+        $this->days = (int) \date(
             't',
-            $time = mktime(0, 0, 0, $month, 1, $year->toInt())
+            $time = \mktime(0, 0, 0, $month, 1, $year->toInt())
         );
-        $this->string = date('F', $time);
+        $this->string = \date('F', $time);
     }
 
     public function numberOfDays(): int

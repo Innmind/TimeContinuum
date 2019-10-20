@@ -22,12 +22,12 @@ final class Day implements DayInterface
         }
 
         $this->day = $day;
-        $this->week = (int) date(
+        $this->week = (int) \date(
             'w',
-            $time = mktime(0, 0, 0, $month->toInt(), $day, $year->toInt())
+            $time = \mktime(0, 0, 0, $month->toInt(), $day, $year->toInt())
         );
-        $this->ofYear = (int) date('z', $time);
-        $this->string = date('l', $time);
+        $this->ofYear = (int) \date('z', $time);
+        $this->string = \date('l', $time);
     }
 
     public function weekNumber(): int
