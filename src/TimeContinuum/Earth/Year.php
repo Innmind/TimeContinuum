@@ -13,7 +13,7 @@ final class Year implements YearInterface
     public function __construct(int $year)
     {
         $this->year = $year;
-        $this->days = (int) date('z', mktime(0, 0, 0, 12, 31, $year)) + 1;
+        $this->days = (int) \date('z', \mktime(0, 0, 0, 12, 31, $year)) + 1;
     }
 
     public function numberOfDays(): int

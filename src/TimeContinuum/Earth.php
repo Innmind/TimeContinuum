@@ -20,7 +20,7 @@ final class Earth implements TimeContinuumInterface
     public function __construct(TimezoneInterface $timezone = null)
     {
         if ($timezone === null) {
-            list($hour, $minute) = explode(':', date('P'));
+            list($hour, $minute) = \explode(':', \date('P'));
             $timezone = new UTC((int) $hour, (int) $minute);
         }
 

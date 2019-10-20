@@ -189,7 +189,7 @@ final class PointInTime implements PointInTimeInterface
         foreach (self::$periodComponents as $component) {
             if ($period->{$component}() > 0) {
                 $date = $date->modify(
-                    sprintf(
+                    \sprintf(
                         '-%s %s',
                         $period->{$component}(),
                         $component
@@ -214,7 +214,7 @@ final class PointInTime implements PointInTimeInterface
         foreach (self::$periodComponents as $component) {
             if ($period->{$component}() > 0) {
                 $date = $date->modify(
-                    sprintf(
+                    \sprintf(
                         '+%s %s',
                         $period->{$component}(),
                         $component
@@ -223,7 +223,7 @@ final class PointInTime implements PointInTimeInterface
             }
         }
 
-        return new self(sprintf(
+        return new self(\sprintf(
             $date->format('Y-m-d\TH:i:s.%03\sP'),
             $period->milliseconds()
         ));
