@@ -39,7 +39,7 @@ final class UTC implements TimezoneInterface
         return $self;
     }
 
-    public static function fromString(string $zone): self
+    public static function of(string $zone): self
     {
         if (mb_strtolower($zone) === 'z') {
             return new self;
@@ -48,6 +48,15 @@ final class UTC implements TimezoneInterface
         list($hours, $minutes) = explode(':', $zone);
 
         return new self((int) $hours, (int) $minutes);
+    }
+
+    /**
+     * @deprecated
+     * @see self::of()
+     */
+    public static function fromString(string $zone): self
+    {
+        return self::of($zone);
     }
 
     public function hours(): int

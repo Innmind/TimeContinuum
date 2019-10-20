@@ -166,7 +166,7 @@ final class PointInTime implements PointInTimeInterface
     public function timezone(): TimezoneInterface
     {
         if (!$this->timezone instanceof TimezoneInterface) {
-            $this->timezone = UTC::fromString($this->date->format('P'));
+            $this->timezone = UTC::of($this->date->format('P'));
         }
 
         return $this->timezone;
