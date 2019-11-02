@@ -223,4 +223,25 @@ class PointInTimeTest extends TestCase
             $point2->format($format)
         );
     }
+
+    public function testGoBackOneMillisecondWhenCurrentPointIsAtPreciselyZeroMillisecond()
+    {
+        $point = new PointInTime('1402-07-21 02:42:53.000000');
+        $point2 = $point->goBack(new MillisecondPeriod(1));
+        $format = new class implements FormatInterface {
+            public function __toString(): string
+            {
+                return 'Y-m-d\TH:i:s.u';
+            }
+        };
+
+        $this->assertSame(
+            '1402-07-21T02:42:53.000000',
+            $point->format($format)
+        );
+        $this->assertSame(
+            '1402-07-21T02:42:52.999000',
+            $point2->format($format)
+        );
+    }
 }

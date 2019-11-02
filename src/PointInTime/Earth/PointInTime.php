@@ -198,6 +198,10 @@ final class PointInTime implements PointInTimeInterface
             }
         }
 
+        if ($this->millisecond()->toInt() === 0 && $period->milliseconds() > 0) {
+            $date = $date->modify('-1 second');
+        }
+
         return new self(sprintf(
             $date->format('Y-m-d\TH:i:s.%03\sP'),
             $period->milliseconds() > 0 ? 1000 - $period->milliseconds() : 0
