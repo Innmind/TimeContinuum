@@ -3,33 +3,11 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum;
 
-use Innmind\TimeContinuum\Exception\ElapsedPeriodCantBeNegativeException;
+use Innmind\TimeContinuum\Exception\ElapsedPeriodCantBeNegative;
 
-final class ElapsedPeriod implements ElapsedPeriodInterface
+interface ElapsedPeriod
 {
-    private $milliseconds;
-
-    public function __construct(int $milliseconds)
-    {
-        if ($milliseconds < 0) {
-            throw new ElapsedPeriodCantBeNegativeException;
-        }
-
-        $this->milliseconds = $milliseconds;
-    }
-
-    public function milliseconds(): int
-    {
-        return $this->milliseconds;
-    }
-
-    public function longerThan(ElapsedPeriodInterface $period): bool
-    {
-        return $this->milliseconds > $period->milliseconds();
-    }
-
-    public function equals(ElapsedPeriodInterface $period): bool
-    {
-        return $this->milliseconds === $period->milliseconds();
-    }
+    public function milliseconds(): int;
+    public function longerThan(self $period): bool;
+    public function equals(self $period): bool;
 }
