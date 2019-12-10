@@ -5,7 +5,7 @@ namespace Innmind\TimeContinuum\Earth;
 
 use Innmind\TimeContinuum\{
     ElapsedPeriod as ElapsedPeriodInterface,
-    Exception\ElapsedPeriodCantBeNegativeException
+    Exception\ElapsedPeriodCantBeNegative
 };
 
 final class ElapsedPeriod implements ElapsedPeriodInterface
@@ -15,7 +15,7 @@ final class ElapsedPeriod implements ElapsedPeriodInterface
     public function __construct(int $milliseconds)
     {
         if ($milliseconds < 0) {
-            throw new ElapsedPeriodCantBeNegativeException;
+            throw new ElapsedPeriodCantBeNegative;
         }
 
         $this->milliseconds = $milliseconds;

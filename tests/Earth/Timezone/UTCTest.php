@@ -25,7 +25,7 @@ class UTCTest extends TestCase
     }
 
     /**
-     * @expectedException Innmind\TimeContinuum\Exception\InvalidTimezoneException
+     * @expectedException Innmind\TimeContinuum\Exception\InvalidTimezone
      */
     public function testThrowWhenHoursTooLow()
     {
@@ -33,7 +33,7 @@ class UTCTest extends TestCase
     }
 
     /**
-     * @expectedException Innmind\TimeContinuum\Exception\InvalidTimezoneException
+     * @expectedException Innmind\TimeContinuum\Exception\InvalidTimezone
      */
     public function testThrowWhenHoursTooHigh()
     {
@@ -41,7 +41,7 @@ class UTCTest extends TestCase
     }
 
     /**
-     * @expectedException Innmind\TimeContinuum\Exception\InvalidTimezoneException
+     * @expectedException Innmind\TimeContinuum\Exception\InvalidTimezone
      */
     public function testThrowWhenMinutesTooLow()
     {
@@ -49,7 +49,7 @@ class UTCTest extends TestCase
     }
 
     /**
-     * @expectedException Innmind\TimeContinuum\Exception\InvalidTimezoneException
+     * @expectedException Innmind\TimeContinuum\Exception\InvalidTimezone
      */
     public function testThrowWhenMinutesTooHigh()
     {

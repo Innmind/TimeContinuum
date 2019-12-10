@@ -5,7 +5,7 @@ namespace Innmind\TimeContinuum\Earth\Period;
 
 use Innmind\TimeContinuum\{
     Period,
-    Exception\PeriodCantBeNegativeException,
+    Exception\PeriodCantBeNegative,
 };
 
 final class Day implements Period
@@ -15,7 +15,7 @@ final class Day implements Period
     public function __construct(int $day)
     {
         if ($day < 0) {
-            throw new PeriodCantBeNegativeException;
+            throw new PeriodCantBeNegative;
         }
 
         $this->day = $day;

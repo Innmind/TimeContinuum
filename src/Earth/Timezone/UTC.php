@@ -5,7 +5,7 @@ namespace Innmind\TimeContinuum\Earth\Timezone;
 
 use Innmind\TimeContinuum\{
     Timezone,
-    Exception\InvalidTimezoneException
+    Exception\InvalidTimezone
 };
 
 final class UTC implements Timezone
@@ -23,7 +23,7 @@ final class UTC implements Timezone
             $minutes < 0 ||
             $minutes > 59
         ) {
-            throw new InvalidTimezoneException;
+            throw new InvalidTimezone;
         }
 
         $this->hours = $hours;

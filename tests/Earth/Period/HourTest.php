@@ -42,7 +42,7 @@ class HourTest extends TestCase
     }
 
     /**
-     * @expectedException Innmind\TimeContinuum\Exception\PeriodCantBeNegativeException
+     * @expectedException Innmind\TimeContinuum\Exception\PeriodCantBeNegative
      */
     public function testThrowWhenHourIsNegative()
     {

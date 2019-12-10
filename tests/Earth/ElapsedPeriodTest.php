@@ -16,7 +16,7 @@ class ElapsedPeriodTest extends TestCase
     }
 
     /**
-     * @expectedException Innmind\TimeContinuum\Exception\ElapsedPeriodCantBeNegativeException
+     * @expectedException Innmind\TimeContinuum\Exception\ElapsedPeriodCantBeNegative
      */
     public function testThrowWhenTryingToBuildANegativePeriod()
     {

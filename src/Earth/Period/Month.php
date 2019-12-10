@@ -5,7 +5,7 @@ namespace Innmind\TimeContinuum\Earth\Period;
 
 use Innmind\TimeContinuum\{
     Period,
-    Exception\PeriodCantBeNegativeException,
+    Exception\PeriodCantBeNegative,
 };
 
 final class Month implements Period
@@ -16,7 +16,7 @@ final class Month implements Period
     public function __construct(int $month)
     {
         if ($month < 0) {
-            throw new PeriodCantBeNegativeException;
+            throw new PeriodCantBeNegative;
         }
 
         $this->year = (int) ($month / 12);

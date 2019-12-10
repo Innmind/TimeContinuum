@@ -3,7 +3,7 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum;
 
-use Innmind\TimeContinuum\Exception\ElapsedPeriodCantBeNegativeException;
+use Innmind\TimeContinuum\Exception\ElapsedPeriodCantBeNegative;
 
 interface ElapsedPeriod
 {

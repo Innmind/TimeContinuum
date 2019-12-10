@@ -47,7 +47,7 @@ class CompositeTest extends TestCase
     }
 
     /**
-     * @expectedException Innmind\TimeContinuum\Exception\PeriodCantBeNegativeException
+     * @expectedException Innmind\TimeContinuum\Exception\PeriodCantBeNegative
      * @dataProvider wrongData
      */
     public function testThrowWhenAComponentIsNegative(

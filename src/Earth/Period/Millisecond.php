@@ -5,7 +5,7 @@ namespace Innmind\TimeContinuum\Earth\Period;
 
 use Innmind\TimeContinuum\{
     Period,
-    Exception\PeriodCantBeNegativeException,
+    Exception\PeriodCantBeNegative,
 };
 
 final class Millisecond implements Period
@@ -16,7 +16,7 @@ final class Millisecond implements Period
     public function __construct(int $millisecond)
     {
         if ($millisecond < 0) {
-            throw new PeriodCantBeNegativeException;
+            throw new PeriodCantBeNegative;
         }
 
         $this->second = new Second((int) ($millisecond / 1000));
