@@ -15,7 +15,7 @@ final class Year implements Period
     public function __construct(int $year)
     {
         if ($year < 0) {
-            throw new PeriodCantBeNegative;
+            throw new PeriodCantBeNegative((string) $year);
         }
 
         $this->year = $year;

@@ -23,7 +23,7 @@ final class UTC implements Timezone
             $minutes < 0 ||
             $minutes > 59
         ) {
-            throw new InvalidTimezone;
+            throw new InvalidTimezone("$hours:$minutes");
         }
 
         $this->hours = $hours;

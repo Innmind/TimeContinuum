@@ -16,7 +16,7 @@ final class Minute implements Period
     public function __construct(int $minute)
     {
         if ($minute < 0) {
-            throw new PeriodCantBeNegative;
+            throw new PeriodCantBeNegative((string) $minute);
         }
 
         $this->hour = new Hour((int) ($minute / 60));

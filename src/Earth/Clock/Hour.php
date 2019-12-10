@@ -15,7 +15,7 @@ final class Hour implements HourInterface
     public function __construct(int $hour)
     {
         if ($hour < 0 || $hour > 23) {
-            throw new InvalidArgumentException;
+            throw new InvalidArgumentException((string) $hour);
         }
 
         $this->hour = $hour;

@@ -6,6 +6,7 @@ namespace Tests\Innmind\TimeContinuum\Timezone\Earth;
 use Innmind\TimeContinuum\{
     Earth\Timezone\UTC,
     Timezone,
+    Exception\InvalidTimezone,
 };
 use PHPUnit\Framework\TestCase;
 
@@ -24,35 +25,35 @@ class UTCTest extends TestCase
         $this->assertSame('Z', (new UTC)->toString());
     }
 
-    /**
-     * @expectedException Innmind\TimeContinuum\Exception\InvalidTimezone
-     */
     public function testThrowWhenHoursTooLow()
     {
+        $this->expectException(InvalidTimezone::class);
+        $this->expectExceptionMessage('-13:0');
+
         new UTC(-13);
     }
 
-    /**
-     * @expectedException Innmind\TimeContinuum\Exception\InvalidTimezone
-     */
     public function testThrowWhenHoursTooHigh()
     {
+        $this->expectException(InvalidTimezone::class);
+        $this->expectExceptionMessage('15:0');
+
         new UTC(15);
     }
 
-    /**
-     * @expectedException Innmind\TimeContinuum\Exception\InvalidTimezone
-     */
     public function testThrowWhenMinutesTooLow()
     {
+        $this->expectException(InvalidTimezone::class);
+        $this->expectExceptionMessage('-11:-1');
+
         new UTC(-11, -1);
     }
 
-    /**
-     * @expectedException Innmind\TimeContinuum\Exception\InvalidTimezone
-     */
     public function testThrowWhenMinutesTooHigh()
     {
+        $this->expectException(InvalidTimezone::class);
+        $this->expectExceptionMessage('11:60');
+
         new UTC(11, 60);
     }
 

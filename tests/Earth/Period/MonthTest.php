@@ -6,6 +6,7 @@ namespace Tests\Innmind\TimeContinuum\Earth\Period;
 use Innmind\TimeContinuum\{
     Period,
     Earth\Period\Month,
+    Exception\PeriodCantBeNegative,
 };
 use PHPUnit\Framework\TestCase;
 
@@ -41,11 +42,11 @@ class MonthTest extends TestCase
         $this->assertSame(0, $period->milliseconds());
     }
 
-    /**
-     * @expectedException Innmind\TimeContinuum\Exception\PeriodCantBeNegative
-     */
     public function testThrowWhenMonthIsNegative()
     {
+        $this->expectException(PeriodCantBeNegative::class);
+        $this->expectExceptionMessage('-1');
+
         new Month(-1);
     }
 

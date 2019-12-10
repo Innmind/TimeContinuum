@@ -16,7 +16,7 @@ final class Hour implements Period
     public function __construct(int $hour)
     {
         if ($hour < 0) {
-            throw new PeriodCantBeNegative;
+            throw new PeriodCantBeNegative((string) $hour);
         }
 
         $this->day = (int) ($hour / 24);

@@ -6,6 +6,7 @@ namespace Tests\Innmind\TimeContinuum\Earth\Period;
 use Innmind\TimeContinuum\{
     Period,
     Earth\Period\Hour,
+    Exception\PeriodCantBeNegative,
 };
 use PHPUnit\Framework\TestCase;
 
@@ -41,11 +42,11 @@ class HourTest extends TestCase
         $this->assertSame(0, $period->milliseconds());
     }
 
-    /**
-     * @expectedException Innmind\TimeContinuum\Exception\PeriodCantBeNegative
-     */
     public function testThrowWhenHourIsNegative()
     {
+        $this->expectException(PeriodCantBeNegative::class);
+        $this->expectExceptionMessage('-1');
+
         new Hour(-1);
     }
 

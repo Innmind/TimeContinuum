@@ -6,6 +6,7 @@ namespace Tests\Innmind\TimeContinuum\Earth\Period;
 use Innmind\TimeContinuum\{
     Earth\Period\Composite,
     Period,
+    Exception\PeriodCantBeNegative,
 };
 use PHPUnit\Framework\TestCase;
 
@@ -47,7 +48,6 @@ class CompositeTest extends TestCase
     }
 
     /**
-     * @expectedException Innmind\TimeContinuum\Exception\PeriodCantBeNegative
      * @dataProvider wrongData
      */
     public function testThrowWhenAComponentIsNegative(
@@ -59,6 +59,9 @@ class CompositeTest extends TestCase
         int $second,
         int $millisecond
     ) {
+        $this->expectException(PeriodCantBeNegative::class);
+        $this->expectExceptionMessage('-1');
+
         new Composite($year, $month, $day, $hour, $minute, $second, $millisecond);
     }
 

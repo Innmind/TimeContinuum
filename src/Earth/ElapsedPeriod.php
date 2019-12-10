@@ -15,7 +15,7 @@ final class ElapsedPeriod implements ElapsedPeriodInterface
     public function __construct(int $milliseconds)
     {
         if ($milliseconds < 0) {
-            throw new ElapsedPeriodCantBeNegative;
+            throw new ElapsedPeriodCantBeNegative((string) $milliseconds);
         }
 
         $this->milliseconds = $milliseconds;

@@ -18,7 +18,7 @@ final class Day implements DayInterface
     public function __construct(Year $year, Month $month, int $day)
     {
         if ($day < 1 || $day > 31) {
-            throw new InvalidArgumentException;
+            throw new InvalidArgumentException((string) $day);
         }
 
         $this->day = $day;

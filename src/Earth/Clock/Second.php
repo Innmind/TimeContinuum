@@ -15,7 +15,7 @@ final class Second implements SecondInterface
     public function __construct(int $second)
     {
         if ($second < 0 || $second > 59) {
-            throw new InvalidArgumentException;
+            throw new InvalidArgumentException((string) $second);
         }
 
         $this->second = $second;

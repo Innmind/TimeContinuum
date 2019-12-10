@@ -16,7 +16,7 @@ final class Month implements Period
     public function __construct(int $month)
     {
         if ($month < 0) {
-            throw new PeriodCantBeNegative;
+            throw new PeriodCantBeNegative((string) $month);
         }
 
         $this->year = (int) ($month / 12);

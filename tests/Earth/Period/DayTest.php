@@ -6,6 +6,7 @@ namespace Tests\Innmind\TimeContinuum\Earth\Period;
 use Innmind\TimeContinuum\{
     Period,
     Earth\Period\Day,
+    Exception\PeriodCantBeNegative,
 };
 use PHPUnit\Framework\TestCase;
 
@@ -25,11 +26,11 @@ class DayTest extends TestCase
         $this->assertSame(0, $period->milliseconds());
     }
 
-    /**
-     * @expectedException Innmind\TimeContinuum\Exception\PeriodCantBeNegative
-     */
     public function testThrowWhenDayIsNegative()
     {
+        $this->expectException(PeriodCantBeNegative::class);
+        $this->expectExceptionMessage('-1');
+
         new Day(-1);
     }
 

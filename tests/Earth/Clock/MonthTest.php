@@ -7,6 +7,7 @@ use Innmind\TimeContinuum\{
     Earth\Clock\Month,
     Earth\Clock\Year,
     Clock\Month as MonthInterface,
+    Exception\InvalidArgumentException,
 };
 use PHPUnit\Framework\TestCase;
 
@@ -22,19 +23,19 @@ class MonthTest extends TestCase
         $this->assertSame('October', $month->toString());
     }
 
-    /**
-     * @expectedException Innmind\TimeContinuum\Exception\InvalidArgumentException
-     */
     public function testThrowWhenMonthTooLow()
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('0');
+
         new Month(new Year(2016), 0);
     }
 
-    /**
-     * @expectedException Innmind\TimeContinuum\Exception\InvalidArgumentException
-     */
     public function testThrowWhenMonthTooHigh()
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('13');
+
         new Month(new Year(2016), 13);
     }
 }

@@ -3,7 +3,10 @@ declare(strict_types = 1);
 
 namespace Tests\Innmind\TimeContinuum\Earth;
 
-use Innmind\TimeContinuum\Earth\ElapsedPeriod;
+use Innmind\TimeContinuum\{
+    Earth\ElapsedPeriod,
+    Exception\ElapsedPeriodCantBeNegative,
+};
 use PHPUnit\Framework\TestCase;
 
 class ElapsedPeriodTest extends TestCase
@@ -15,11 +18,11 @@ class ElapsedPeriodTest extends TestCase
         $this->assertSame(42, $period->milliseconds());
     }
 
-    /**
-     * @expectedException Innmind\TimeContinuum\Exception\ElapsedPeriodCantBeNegative
-     */
     public function testThrowWhenTryingToBuildANegativePeriod()
     {
+        $this->expectException(ElapsedPeriodCantBeNegative::class);
+        $this->expectExceptionMessage('-42');
+
         new ElapsedPeriod(-42);
     }
 

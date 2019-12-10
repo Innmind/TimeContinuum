@@ -6,6 +6,7 @@ namespace Tests\Innmind\TimeContinuum\Earth\Clock;
 use Innmind\TimeContinuum\{
     Earth\Clock\Millisecond,
     Clock\Millisecond as MillisecondInterface,
+    Exception\InvalidArgumentException,
 };
 use PHPUnit\Framework\TestCase;
 
@@ -20,19 +21,19 @@ class MillisecondTest extends TestCase
         $this->assertSame('600', $millisecond->toString());
     }
 
-    /**
-     * @expectedException Innmind\TimeContinuum\Exception\InvalidArgumentException
-     */
     public function testThrowWhenMillisecondTooLow()
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('-1');
+
         new Millisecond(-1);
     }
 
-    /**
-     * @expectedException Innmind\TimeContinuum\Exception\InvalidArgumentException
-     */
     public function testThrowWhenMillisecondTooHigh()
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('00');
+
         new Millisecond(1000);
     }
 }

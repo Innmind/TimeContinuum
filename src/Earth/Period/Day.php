@@ -15,7 +15,7 @@ final class Day implements Period
     public function __construct(int $day)
     {
         if ($day < 0) {
-            throw new PeriodCantBeNegative;
+            throw new PeriodCantBeNegative((string) $day);
         }
 
         $this->day = $day;

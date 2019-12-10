@@ -17,7 +17,7 @@ final class Month implements MonthInterface
     public function __construct(Year $year, int $month)
     {
         if ($month < 1 || $month > 12) {
-            throw new InvalidArgumentException;
+            throw new InvalidArgumentException((string) $month);
         }
 
         $this->month = $month;

@@ -8,6 +8,7 @@ use Innmind\TimeContinuum\{
     Earth\Clock\Month,
     Earth\Clock\Year,
     Clock\Day as DayInterface,
+    Exception\InvalidArgumentException,
 };
 use PHPUnit\Framework\TestCase;
 
@@ -24,19 +25,19 @@ class DayTest extends TestCase
         $this->assertSame('Wednesday', $day->toString());
     }
 
-    /**
-     * @expectedException Innmind\TimeContinuum\Exception\InvalidArgumentException
-     */
     public function testThrowWhenDayTooLow()
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('0');
+
         new Day($year = new Year(2016), new Month($year, 10), 0);
     }
 
-    /**
-     * @expectedException Innmind\TimeContinuum\Exception\InvalidArgumentException
-     */
     public function testThrowWhenDayTooHigh()
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('32');
+
         new Day($year = new Year(2016), new Month($year, 10), 32);
     }
 }

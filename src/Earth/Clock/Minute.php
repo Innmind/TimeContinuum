@@ -15,7 +15,7 @@ final class Minute implements MinuteInterface
     public function __construct(int $minute)
     {
         if ($minute < 0 || $minute > 59) {
-            throw new InvalidArgumentException;
+            throw new InvalidArgumentException((string) $minute);
         }
 
         $this->minute = $minute;

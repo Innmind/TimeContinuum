@@ -16,7 +16,7 @@ final class Millisecond implements Period
     public function __construct(int $millisecond)
     {
         if ($millisecond < 0) {
-            throw new PeriodCantBeNegative;
+            throw new PeriodCantBeNegative((string) $millisecond);
         }
 
         $this->second = new Second((int) ($millisecond / 1000));

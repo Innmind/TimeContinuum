@@ -15,7 +15,7 @@ final class Millisecond implements MillisecondInterface
     public function __construct(int $millisecond)
     {
         if ($millisecond < 0 || $millisecond > 999) {
-            throw new InvalidArgumentException;
+            throw new InvalidArgumentException((string) $millisecond);
         }
 
         $this->millisecond = $millisecond;

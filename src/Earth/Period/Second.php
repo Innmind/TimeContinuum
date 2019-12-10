@@ -16,7 +16,7 @@ final class Second implements Period
     public function __construct(int $second)
     {
         if ($second < 0) {
-            throw new PeriodCantBeNegative;
+            throw new PeriodCantBeNegative((string) $second);
         }
 
         $this->minute = new Minute((int) ($second / 60));
