@@ -36,6 +36,7 @@ final class Month
 
     public function __invoke(PointInTime $point): PointInTime
     {
+        /** @var PointInTime $newPoint */
         $newPoint = (new StartOfMonth)($point)->{$this->direction}($this->months);
         $newPoint = $newPoint->goForward(
             (new Hour($point->hour()->toInt()))

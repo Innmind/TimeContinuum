@@ -11,13 +11,6 @@ use Innmind\TimeContinuum\{
     ElapsedPeriod as ElapsedPeriodInterface,
     Period,
     Earth\Timezone\UTC,
-    Clock\Year as YearInterface,
-    Clock\Month as MonthInterface,
-    Clock\Day as DayInterface,
-    Clock\Hour as HourInterface,
-    Clock\Minute as MinuteInterface,
-    Clock\Second as SecondInterface,
-    Clock\Millisecond as MillisecondInterface,
     Earth\Clock\Year,
     Earth\Clock\Month,
     Earth\Clock\Day,
@@ -32,16 +25,17 @@ final class PointInTime implements PointInTimeInterface
 {
     private int $milliseconds;
     private \DateTimeImmutable $date;
-    private ?YearInterface $year = null;
-    private ?MonthInterface $month = null;
-    private ?DayInterface $day = null;
-    private ?HourInterface $hour = null;
-    private ?MinuteInterface $minute = null;
-    private ?SecondInterface $second = null;
-    private ?MillisecondInterface $millisecond = null;
+    private ?Year $year = null;
+    private ?Month $month = null;
+    private ?Day $day = null;
+    private ?Hour $hour = null;
+    private ?Minute $minute = null;
+    private ?Second $second = null;
+    private ?Millisecond $millisecond = null;
     private ?Timezone $timezone = null;
     private ?string $string = null;
-    private static $periodComponents = [
+    /** @var list<string> */
+    private static array $periodComponents = [
         'years',
         'months',
         'days',
@@ -62,7 +56,7 @@ final class PointInTime implements PointInTimeInterface
         return $this->milliseconds;
     }
 
-    public function year(): YearInterface
+    public function year(): Year
     {
         if (!$this->year instanceof Year) {
             $this->year = new Year((int) $this->date->format('Y'));
@@ -71,7 +65,7 @@ final class PointInTime implements PointInTimeInterface
         return $this->year;
     }
 
-    public function month(): MonthInterface
+    public function month(): Month
     {
         if (!$this->month instanceof Month) {
             $this->month = new Month(
@@ -83,7 +77,7 @@ final class PointInTime implements PointInTimeInterface
         return $this->month;
     }
 
-    public function day(): DayInterface
+    public function day(): Day
     {
         if (!$this->day instanceof Day) {
             $this->day = new Day(
@@ -96,7 +90,7 @@ final class PointInTime implements PointInTimeInterface
         return $this->day;
     }
 
-    public function hour(): HourInterface
+    public function hour(): Hour
     {
         if (!$this->hour instanceof Hour) {
             $this->hour = new Hour(
@@ -106,7 +100,7 @@ final class PointInTime implements PointInTimeInterface
 
         return $this->hour;
     }
-    public function minute(): MinuteInterface
+    public function minute(): Minute
     {
         if (!$this->minute instanceof Minute) {
             $this->minute = new Minute(
@@ -117,7 +111,7 @@ final class PointInTime implements PointInTimeInterface
         return $this->minute;
     }
 
-    public function second(): SecondInterface
+    public function second(): Second
     {
         if (!$this->second instanceof Second) {
             $this->second = new Second(
@@ -128,7 +122,7 @@ final class PointInTime implements PointInTimeInterface
         return $this->second;
     }
 
-    public function millisecond(): MillisecondInterface
+    public function millisecond(): Millisecond
     {
         if (!$this->millisecond instanceof Millisecond) {
             $this->millisecond = new Millisecond(
@@ -187,11 +181,14 @@ final class PointInTime implements PointInTimeInterface
         $date = $this->date;
 
         foreach (self::$periodComponents as $component) {
-            if ($period->{$component}() > 0) {
+            /** @var int $periodComponent */
+            $periodComponent = $period->{$component}();
+
+            if ($periodComponent > 0) {
                 $date = $date->modify(
                     \sprintf(
                         '-%s %s',
-                        $period->{$component}(),
+                        $periodComponent,
                         $component
                     )
                 );
@@ -216,11 +213,14 @@ final class PointInTime implements PointInTimeInterface
         $date = $this->date;
 
         foreach (self::$periodComponents as $component) {
-            if ($period->{$component}() > 0) {
+            /** @var int $periodComponent */
+            $periodComponent = $period->{$component}();
+
+            if ($periodComponent > 0) {
                 $date = $date->modify(
                     \sprintf(
                         '+%s %s',
-                        $period->{$component}(),
+                        $periodComponent,
                         $component
                     )
                 );

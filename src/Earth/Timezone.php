@@ -8,7 +8,7 @@ trait Timezone
     private Timezone\UTC $utc;
     private bool $dst;
 
-    private function use(string $zone)
+    private function use(string $zone): void
     {
         $zone = new \DateTimeZone($zone);
         $currentOffset = $zone->getOffset(
@@ -38,6 +38,6 @@ trait Timezone
 
     public function toString(): string
     {
-        return (string) $this->utc;
+        return $this->utc->toString();
     }
 }
