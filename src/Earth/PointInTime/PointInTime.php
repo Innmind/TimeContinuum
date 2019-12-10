@@ -141,14 +141,14 @@ final class PointInTime implements PointInTimeInterface
 
     public function format(Format $format): string
     {
-        return $this->date->format((string) $format);
+        return $this->date->format($format->toString());
     }
 
     public function changeTimezone(Timezone $zone): PointInTimeInterface
     {
         $self = clone $this;
         $self->date = $this->date->setTimezone(
-            new \DateTimeZone((string) $zone)
+            new \DateTimeZone($zone->toString())
         );
         $self->year = null;
         $self->month = null;
@@ -243,7 +243,7 @@ final class PointInTime implements PointInTimeInterface
         return $this->milliseconds() > $point->milliseconds();
     }
 
-    public function __toString(): string
+    public function toString(): string
     {
         if ($this->string === null) {
             $this->string = $this->date->format(\DateTime::ATOM);

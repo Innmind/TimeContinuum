@@ -16,6 +16,6 @@ class RSSTest extends TestCase
         $format = new RSS;
 
         $this->assertInstanceOf(Format::class, $format);
-        $this->assertSame(\DateTime::RSS, (string) $format);
+        $this->assertSame(\DateTime::RSS, $format->toString());
     }
 }

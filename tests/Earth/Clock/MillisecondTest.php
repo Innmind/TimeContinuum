@@ -17,7 +17,7 @@ class MillisecondTest extends TestCase
 
         $this->assertInstanceOf(MillisecondInterface::class, $millisecond);
         $this->assertSame(600, $millisecond->toInt());
-        $this->assertSame('600', (string) $millisecond);
+        $this->assertSame('600', $millisecond->toString());
     }
 
     /**

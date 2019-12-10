@@ -24,7 +24,7 @@ class StartOfDayTest extends TestCase
 
         $this->assertInstanceOf(PointInTimeInterface::class, $point);
         $this->assertSame($expected, $point->format(new class implements Format {
-            public function __toString(): string
+            public function toString(): string
             {
                 return 'Y-m-d H:i:s.u';
             }

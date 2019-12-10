@@ -35,7 +35,7 @@ final class Clock implements ClockInterface
     public function at(string $date, Format $format = null): PointInTime
     {
         if ($format instanceof Format) {
-            $date = \DateTimeImmutable::createFromFormat((string) $format, $date)->format(\DateTime::ATOM);
+            $date = \DateTimeImmutable::createFromFormat($format->toString(), $date)->format(\DateTime::ATOM);
         }
 
         return (new EarthPointInTime($date))->changeTimezone($this->timezone);

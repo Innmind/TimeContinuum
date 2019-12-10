@@ -8,5 +8,5 @@ interface Timezone
     public function hours(): int;
     public function minutes(): int;
     public function daylightSavingTimeApplied(): bool;
-    public function __toString(): string;
+    public function toString(): string;
 }

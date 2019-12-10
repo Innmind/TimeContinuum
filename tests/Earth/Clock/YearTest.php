@@ -18,7 +18,7 @@ class YearTest extends TestCase
         $this->assertInstanceOf(YearInterface::class, $year);
         $this->assertSame(366, $year->numberOfDays());
         $this->assertSame(2016, $year->toInt());
-        $this->assertSame('2016', (string) $year);
+        $this->assertSame('2016', $year->toString());
 
         $this->assertSame(365, (new Year(2017))->numberOfDays());
     }

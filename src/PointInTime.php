@@ -34,5 +34,5 @@ interface PointInTime
     public function goForward(Period $period): self;
     public function equals(self $point): bool;
     public function aheadOf(self $point): bool;
-    public function __toString(): string;
+    public function toString(): string;
 }

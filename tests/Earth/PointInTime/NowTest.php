@@ -63,8 +63,8 @@ class NowTest extends TestCase
         $this->assertTrue($point->milliseconds() <= $now + 50);
         $timezone = date('P', $timestamp);
         $timezone = $timezone === '+00:00' ? 'Z' : $timezone;
-        $this->assertSame($timezone, (string) $point->timezone());
-        $this->assertSame(date('Y-m-d\TH:i:sP', $timestamp), (string) $point);
+        $this->assertSame($timezone, $point->timezone()->toString());
+        $this->assertSame(date('Y-m-d\TH:i:sP', $timestamp), $point->toString());
     }
 
     public function testFormat()
@@ -76,7 +76,7 @@ class NowTest extends TestCase
             $point->format(
                 new class implements Format
                 {
-                    public function __toString(): string
+                    public function toString(): string
                     {
                         return 'H:i:s d/m/Y';
                     }
@@ -108,7 +108,7 @@ class NowTest extends TestCase
         $this->assertSame((int) $now->format('H'), $point2->hour()->toInt());
         $this->assertSame((int) $now->format('i'), $point2->minute()->toInt());
         $this->assertSame((int) $now->format('s'), $point2->second()->toInt());
-        $this->assertSame('-02:30', (string) $point2->timezone());
+        $this->assertSame('-02:30', $point2->timezone()->toString());
     }
 
     public function testElapsedSince()

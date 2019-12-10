@@ -7,7 +7,7 @@ use Innmind\TimeContinuum\Format;
 
 final class RSS implements Format
 {
-    public function __toString(): string
+    public function toString(): string
     {
         return \DateTime::RSS;
     }

@@ -26,7 +26,7 @@ final class Second implements SecondInterface
         return $this->second;
     }
 
-    public function __toString(): string
+    public function toString(): string
     {
         return (string) $this->second;
     }

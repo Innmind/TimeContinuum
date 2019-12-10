@@ -26,7 +26,7 @@ final class Millisecond implements MillisecondInterface
         return $this->millisecond;
     }
 
-    public function __toString(): string
+    public function toString(): string
     {
         return (string) $this->millisecond;
     }

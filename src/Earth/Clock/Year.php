@@ -26,7 +26,7 @@ final class Year implements YearInterface
         return $this->year;
     }
 
-    public function __toString(): string
+    public function toString(): string
     {
         return (string) $this->year;
     }

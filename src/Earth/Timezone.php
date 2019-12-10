@@ -36,7 +36,7 @@ trait Timezone
         return $this->dst;
     }
 
-    public function __toString(): string
+    public function toString(): string
     {
         return (string) $this->utc;
     }

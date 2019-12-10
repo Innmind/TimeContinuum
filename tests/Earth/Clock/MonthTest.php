@@ -19,7 +19,7 @@ class MonthTest extends TestCase
         $this->assertInstanceOf(MonthInterface::class, $month);
         $this->assertSame(31, $month->numberOfDays());
         $this->assertSame(10, $month->toInt());
-        $this->assertSame('October', (string) $month);
+        $this->assertSame('October', $month->toString());
     }
 
     /**

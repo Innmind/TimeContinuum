@@ -74,7 +74,7 @@ final class UTC implements Timezone
         return $this->dst;
     }
 
-    public function __toString(): string
+    public function toString(): string
     {
         return $this->string;
     }

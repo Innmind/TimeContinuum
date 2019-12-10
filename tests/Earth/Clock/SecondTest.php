@@ -17,7 +17,7 @@ class SecondTest extends TestCase
 
         $this->assertInstanceOf(SecondInterface::class, $second);
         $this->assertSame(13, $second->toInt());
-        $this->assertSame('13', (string) $second);
+        $this->assertSame('13', $second->toString());
     }
 
     /**

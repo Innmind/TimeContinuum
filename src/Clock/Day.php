@@ -8,5 +8,5 @@ interface Day
     public function weekNumber(): int;
     public function ofYear(): int;
     public function toInt(): int;
-    public function __toString(): string;
+    public function toString(): string;
 }

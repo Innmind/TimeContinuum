@@ -6,5 +6,5 @@ namespace Innmind\TimeContinuum\Clock;
 interface Second
 {
     public function toInt(): int;
-    public function __toString(): string;
+    public function toString(): string;
 }

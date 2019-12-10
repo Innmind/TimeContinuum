@@ -16,6 +16,6 @@ class W3CTest extends TestCase
         $format = new W3C;
 
         $this->assertInstanceOf(Format::class, $format);
-        $this->assertSame(\DateTime::W3C, (string) $format);
+        $this->assertSame(\DateTime::W3C, $format->toString());
     }
 }

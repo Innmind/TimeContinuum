@@ -26,7 +26,7 @@ final class Minute implements MinuteInterface
         return $this->minute;
     }
 
-    public function __toString(): string
+    public function toString(): string
     {
         return (string) $this->minute;
     }

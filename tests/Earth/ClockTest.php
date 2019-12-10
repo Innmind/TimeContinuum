@@ -32,7 +32,7 @@ class ClockTest extends TestCase
         $timezone = $timezone === '+00:00' ? 'Z' : $timezone;
         $this->assertSame(
             $timezone,
-            (string) $now->timezone()
+            $now->timezone()->toString()
         );
     }
 
@@ -46,7 +46,7 @@ class ClockTest extends TestCase
         $date->setTimezone(new \DateTimeZone(date('P'))); //system timezone
         $this->assertSame(
             $date->format(\DateTime::ATOM),
-            (string) $point
+            $point->toString()
         );
     }
 
@@ -56,7 +56,7 @@ class ClockTest extends TestCase
             PointInTime::class,
             $now = (new Clock(new UTC(6, 42)))->now()
         );
-        $this->assertSame('+06:42', (string) $now->timezone());
+        $this->assertSame('+06:42', $now->timezone()->toString());
     }
 
     public function testAtWithExpectedTimezone()
@@ -65,7 +65,7 @@ class ClockTest extends TestCase
             PointInTime::class,
             $point = (new Clock(new UTC(6, 42)))->at('2016-10-08T16:08:30+02:00')
         );
-        $this->assertSame('+06:42', (string) $point->timezone());
+        $this->assertSame('+06:42', $point->timezone()->toString());
     }
 
     public function testAtWithSpecificFormat()
@@ -73,7 +73,7 @@ class ClockTest extends TestCase
         $this->assertInstanceOf(
             PointInTime::class,
             $point = (new Clock)->at('+02:00 2016-10-08 16:08:30', new class implements Format {
-                public function __toString(): string
+                public function toString(): string
                 {
                     return 'P Y-m-d H:i:s';
                 }
@@ -83,7 +83,7 @@ class ClockTest extends TestCase
         $date->setTimezone(new \DateTimeZone(date('P'))); //system timezone
         $this->assertSame(
             $date->format(\DateTime::ATOM),
-            (string) $point
+            $point->toString()
         );
     }
 }

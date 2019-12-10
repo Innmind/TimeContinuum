@@ -16,6 +16,6 @@ class RFC850Test extends TestCase
         $format = new RFC850;
 
         $this->assertInstanceOf(Format::class, $format);
-        $this->assertSame(\DateTime::RFC850, (string) $format);
+        $this->assertSame(\DateTime::RFC850, $format->toString());
     }
 }

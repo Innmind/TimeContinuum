@@ -56,8 +56,8 @@ class PointInTimeTest extends TestCase
             (new \DateTime('2016-10-05T08:01:30.123+02:00'))->getTimestamp() * 1000 + $point->millisecond()->toInt(),
             $point->milliseconds()
         );
-        $this->assertSame('+02:00', (string) $point->timezone());
-        $this->assertSame('2016-10-05T08:01:30+02:00', (string) $point);
+        $this->assertSame('+02:00', $point->timezone()->toString());
+        $this->assertSame('2016-10-05T08:01:30+02:00', $point->toString());
     }
 
     public function testPreserveMillisecondsWhenNanosecondsInString()
@@ -77,7 +77,7 @@ class PointInTimeTest extends TestCase
             $point->format(
                 new class implements Format
                 {
-                    public function __toString(): string
+                    public function toString(): string
                     {
                         return 'H:i:s d/m/Y';
                     }
@@ -108,7 +108,7 @@ class PointInTimeTest extends TestCase
         $this->assertSame(31, $point2->minute()->toInt());
         $this->assertSame(30, $point2->second()->toInt());
         $this->assertSame(123, $point2->millisecond()->toInt());
-        $this->assertSame('-02:30', (string) $point2->timezone());
+        $this->assertSame('-02:30', $point2->timezone()->toString());
     }
 
     public function testElapsedSince()
@@ -194,7 +194,7 @@ class PointInTimeTest extends TestCase
                 ->format(
                     new class implements Format
                     {
-                        public function __toString(): string
+                        public function toString(): string
                         {
                             return 'Y-m-d\TH:i:s.uP';
                         }
@@ -208,7 +208,7 @@ class PointInTimeTest extends TestCase
         $point = new PointInTime('2018-03-04');
         $point2 = $point->goBack(new Day(1));
         $format = new class implements Format {
-            public function __toString(): string
+            public function toString(): string
             {
                 return 'Y-m-d\TH:i:s.u';
             }
@@ -229,7 +229,7 @@ class PointInTimeTest extends TestCase
         $point = new PointInTime('1402-07-21 02:42:53.000000');
         $point2 = $point->goBack(new MillisecondPeriod(1));
         $format = new class implements Format {
-            public function __toString(): string
+            public function toString(): string
             {
                 return 'Y-m-d\TH:i:s.u';
             }

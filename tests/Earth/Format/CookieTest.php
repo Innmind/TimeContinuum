@@ -16,6 +16,6 @@ class CookieTest extends TestCase
         $format = new Cookie;
 
         $this->assertInstanceOf(Format::class, $format);
-        $this->assertSame(\DateTime::COOKIE, (string) $format);
+        $this->assertSame(\DateTime::COOKIE, $format->toString());
     }
 }

@@ -19,7 +19,7 @@ class MonthTest extends TestCase
     public function testInterface($time, $expectedForward, $expectedBackward)
     {
         $format = new class implements Format {
-            public function __toString(): string
+            public function toString(): string
             {
                 return 'Y-m-d H:i:s.u';
             }

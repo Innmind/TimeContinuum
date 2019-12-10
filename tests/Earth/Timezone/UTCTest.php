@@ -18,10 +18,10 @@ class UTCTest extends TestCase
         $this->assertInstanceOf(Timezone::class, $zone);
         $this->assertSame(1, $zone->hours());
         $this->assertSame(0, $zone->minutes());
-        $this->assertSame('+01:00', (string) $zone);
+        $this->assertSame('+01:00', $zone->toString());
         $this->assertFalse($zone->daylightSavingTimeApplied());
 
-        $this->assertSame('Z', (string) new UTC);
+        $this->assertSame('Z', (new UTC)->toString());
     }
 
     /**
@@ -65,7 +65,7 @@ class UTCTest extends TestCase
 
         $this->assertSame($hours, $zone->hours());
         $this->assertSame($minutes, $zone->minutes());
-        $this->assertSame($expected, (string) $zone);
+        $this->assertSame($expected, $zone->toString());
     }
 
     public function testDaylightSavingTime()

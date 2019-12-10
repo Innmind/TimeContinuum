@@ -7,7 +7,7 @@ use Innmind\TimeContinuum\Format;
 
 final class RFC1123 implements Format
 {
-    public function __toString(): string
+    public function toString(): string
     {
         return \DateTime::RFC1123;
     }

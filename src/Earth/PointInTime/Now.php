@@ -126,8 +126,8 @@ final class Now implements PointInTimeInterface
         return $this->milliseconds() > $point->milliseconds();
     }
 
-    public function __toString(): string
+    public function toString(): string
     {
-        return (string) $this->point;
+        return $this->point->toString();
     }
 }

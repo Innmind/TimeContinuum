@@ -26,7 +26,7 @@ final class Hour implements HourInterface
         return $this->hour;
     }
 
-    public function __toString(): string
+    public function toString(): string
     {
         return (string) $this->hour;
     }

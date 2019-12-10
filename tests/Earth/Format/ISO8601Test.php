@@ -16,6 +16,6 @@ class ISO8601Test extends TestCase
         $format = new ISO8601;
 
         $this->assertInstanceOf(Format::class, $format);
-        $this->assertSame(\DateTime::ATOM, (string) $format);
+        $this->assertSame(\DateTime::ATOM, $format->toString());
     }
 }

@@ -45,7 +45,7 @@ final class Day implements DayInterface
         return $this->day;
     }
 
-    public function __toString(): string
+    public function toString(): string
     {
         return $this->string;
     }

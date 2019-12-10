@@ -38,7 +38,7 @@ final class Month implements MonthInterface
         return $this->month;
     }
 
-    public function __toString(): string
+    public function toString(): string
     {
         return $this->string;
     }

@@ -5,5 +5,5 @@ namespace Innmind\TimeContinuum;
 
 interface Format
 {
-    public function __toString(): string;
+    public function toString(): string;
 }

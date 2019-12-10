@@ -16,6 +16,6 @@ class RFC2822Test extends TestCase
         $format = new RFC2822;
 
         $this->assertInstanceOf(Format::class, $format);
-        $this->assertSame(\DateTime::RFC2822, (string) $format);
+        $this->assertSame(\DateTime::RFC2822, $format->toString());
     }
 }
