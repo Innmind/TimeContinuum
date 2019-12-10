@@ -5,7 +5,7 @@ namespace Innmind\TimeContinuum\Earth\Clock;
 
 use Innmind\TimeContinuum\{
     Clock\Day as DayInterface,
-    Exception\InvalidArgumentException,
+    Exception\DomainException,
 };
 
 final class Day implements DayInterface
@@ -18,7 +18,7 @@ final class Day implements DayInterface
     public function __construct(Year $year, Month $month, int $day)
     {
         if ($day < 1 || $day > 31) {
-            throw new InvalidArgumentException((string) $day);
+            throw new DomainException((string) $day);
         }
 
         $this->day = $day;

@@ -5,7 +5,7 @@ namespace Innmind\TimeContinuum\Earth\Clock;
 
 use Innmind\TimeContinuum\{
     Clock\Hour as HourInterface,
-    Exception\InvalidArgumentException,
+    Exception\DomainException,
 };
 
 final class Hour implements HourInterface
@@ -15,7 +15,7 @@ final class Hour implements HourInterface
     public function __construct(int $hour)
     {
         if ($hour < 0 || $hour > 23) {
-            throw new InvalidArgumentException((string) $hour);
+            throw new DomainException((string) $hour);
         }
 
         $this->hour = $hour;

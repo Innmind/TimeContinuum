@@ -6,7 +6,7 @@ namespace Tests\Innmind\TimeContinuum\Earth\Clock;
 use Innmind\TimeContinuum\{
     Earth\Clock\Hour,
     Clock\Hour as HourInterface,
-    Exception\InvalidArgumentException,
+    Exception\DomainException,
 };
 use PHPUnit\Framework\TestCase;
 
@@ -23,7 +23,7 @@ class HourTest extends TestCase
 
     public function testThrowWhenHourTooLow()
     {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(DomainException::class);
         $this->expectExceptionMessage('-1');
 
         new Hour(-1);
@@ -31,7 +31,7 @@ class HourTest extends TestCase
 
     public function testThrowWhenHourTooHigh()
     {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(DomainException::class);
         $this->expectExceptionMessage('24');
 
         new Hour(24);

@@ -5,7 +5,7 @@ namespace Innmind\TimeContinuum\Earth\Clock;
 
 use Innmind\TimeContinuum\{
     Clock\Month as MonthInterface,
-    Exception\InvalidArgumentException,
+    Exception\DomainException,
 };
 
 final class Month implements MonthInterface
@@ -17,7 +17,7 @@ final class Month implements MonthInterface
     public function __construct(Year $year, int $month)
     {
         if ($month < 1 || $month > 12) {
-            throw new InvalidArgumentException((string) $month);
+            throw new DomainException((string) $month);
         }
 
         $this->month = $month;

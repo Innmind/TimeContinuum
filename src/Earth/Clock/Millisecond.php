@@ -5,7 +5,7 @@ namespace Innmind\TimeContinuum\Earth\Clock;
 
 use Innmind\TimeContinuum\{
     Clock\Millisecond as MillisecondInterface,
-    Exception\InvalidArgumentException,
+    Exception\DomainException,
 };
 
 final class Millisecond implements MillisecondInterface
@@ -15,7 +15,7 @@ final class Millisecond implements MillisecondInterface
     public function __construct(int $millisecond)
     {
         if ($millisecond < 0 || $millisecond > 999) {
-            throw new InvalidArgumentException((string) $millisecond);
+            throw new DomainException((string) $millisecond);
         }
 
         $this->millisecond = $millisecond;

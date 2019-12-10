@@ -6,7 +6,7 @@ namespace Tests\Innmind\TimeContinuum\Earth\Clock;
 use Innmind\TimeContinuum\{
     Earth\Clock\Second,
     Clock\Second as SecondInterface,
-    Exception\InvalidArgumentException,
+    Exception\DomainException,
 };
 use PHPUnit\Framework\TestCase;
 
@@ -23,7 +23,7 @@ class SecondTest extends TestCase
 
     public function testThrowWhenSecondTooLow()
     {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(DomainException::class);
         $this->expectExceptionMessage('-1');
 
         new Second(-1);
@@ -31,7 +31,7 @@ class SecondTest extends TestCase
 
     public function testThrowWhenSecondTooHigh()
     {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(DomainException::class);
         $this->expectExceptionMessage('60');
 
         new Second(60);

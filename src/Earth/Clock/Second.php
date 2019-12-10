@@ -5,7 +5,7 @@ namespace Innmind\TimeContinuum\Earth\Clock;
 
 use Innmind\TimeContinuum\{
     Clock\Second as SecondInterface,
-    Exception\InvalidArgumentException,
+    Exception\DomainException,
 };
 
 final class Second implements SecondInterface
@@ -15,7 +15,7 @@ final class Second implements SecondInterface
     public function __construct(int $second)
     {
         if ($second < 0 || $second > 59) {
-            throw new InvalidArgumentException((string) $second);
+            throw new DomainException((string) $second);
         }
 
         $this->second = $second;

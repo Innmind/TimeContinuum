@@ -6,7 +6,7 @@ namespace Tests\Innmind\TimeContinuum\Earth\Clock;
 use Innmind\TimeContinuum\{
     Earth\Clock\Minute,
     Clock\Minute as MinuteInterface,
-    Exception\InvalidArgumentException,
+    Exception\DomainException,
 };
 use PHPUnit\Framework\TestCase;
 
@@ -23,7 +23,7 @@ class MinuteTest extends TestCase
 
     public function testThrowWhenMinuteTooLow()
     {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(DomainException::class);
         $this->expectExceptionMessage('-1');
 
         new Minute(-1);
@@ -31,7 +31,7 @@ class MinuteTest extends TestCase
 
     public function testThrowWhenMinuteTooHigh()
     {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(DomainException::class);
         $this->expectExceptionMessage('60');
 
         new Minute(60);

@@ -7,7 +7,7 @@ use Innmind\TimeContinuum\{
     Earth\Clock\Month,
     Earth\Clock\Year,
     Clock\Month as MonthInterface,
-    Exception\InvalidArgumentException,
+    Exception\DomainException,
 };
 use PHPUnit\Framework\TestCase;
 
@@ -25,7 +25,7 @@ class MonthTest extends TestCase
 
     public function testThrowWhenMonthTooLow()
     {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(DomainException::class);
         $this->expectExceptionMessage('0');
 
         new Month(new Year(2016), 0);
@@ -33,7 +33,7 @@ class MonthTest extends TestCase
 
     public function testThrowWhenMonthTooHigh()
     {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(DomainException::class);
         $this->expectExceptionMessage('13');
 
         new Month(new Year(2016), 13);
