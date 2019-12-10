@@ -21,6 +21,11 @@ final class Minute implements MinuteInterface
         $this->minute = $minute;
     }
 
+    public function numberOfSeconds(): int
+    {
+        return 60;
+    }
+
     public function toInt(): int
     {
         return $this->minute;

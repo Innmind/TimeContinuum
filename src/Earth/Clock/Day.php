@@ -40,6 +40,11 @@ final class Day implements DayInterface
         return $this->ofYear;
     }
 
+    public function numberOfHours(): int
+    {
+        return 24;
+    }
+
     public function toInt(): int
     {
         return $this->day;

@@ -21,6 +21,11 @@ final class Year implements YearInterface
         return $this->days;
     }
 
+    public function numberOfMonths(): int
+    {
+        return 12;
+    }
+
     public function toInt(): int
     {
         return $this->year;

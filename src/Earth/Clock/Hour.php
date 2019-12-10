@@ -21,6 +21,11 @@ final class Hour implements HourInterface
         $this->hour = $hour;
     }
 
+    public function numberOfMinutes(): int
+    {
+        return 60;
+    }
+
     public function toInt(): int
     {
         return $this->hour;

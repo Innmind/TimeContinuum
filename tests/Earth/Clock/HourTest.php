@@ -17,6 +17,7 @@ class HourTest extends TestCase
         $hour = new Hour(13);
 
         $this->assertInstanceOf(HourInterface::class, $hour);
+        $this->assertSame(60, $hour->numberOfMinutes());
         $this->assertSame(13, $hour->toInt());
         $this->assertSame('13', $hour->toString());
     }

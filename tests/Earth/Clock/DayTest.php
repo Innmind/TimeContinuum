@@ -21,6 +21,7 @@ class DayTest extends TestCase
         $this->assertInstanceOf(DayInterface::class, $day);
         $this->assertSame(3, $day->weekNumber());
         $this->assertSame(278, $day->ofYear());
+        $this->assertSame(24, $day->numberOfHours());
         $this->assertSame(5, $day->toInt());
         $this->assertSame('Wednesday', $day->toString());
     }

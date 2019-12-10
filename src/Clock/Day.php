@@ -7,6 +7,7 @@ interface Day
 {
     public function weekNumber(): int;
     public function ofYear(): int;
+    public function numberOfHours(): int;
     public function toInt(): int;
     public function toString(): string;
 }

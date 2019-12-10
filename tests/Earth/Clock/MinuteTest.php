@@ -17,6 +17,7 @@ class MinuteTest extends TestCase
         $minute = new Minute(13);
 
         $this->assertInstanceOf(MinuteInterface::class, $minute);
+        $this->assertSame(60, $minute->numberOfSeconds());
         $this->assertSame(13, $minute->toInt());
         $this->assertSame('13', $minute->toString());
     }
