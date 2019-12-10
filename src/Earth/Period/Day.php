@@ -10,7 +10,7 @@ use Innmind\TimeContinuum\{
 
 final class Day implements Period
 {
-    private $day;
+    private int $day;
 
     public function __construct(int $day)
     {

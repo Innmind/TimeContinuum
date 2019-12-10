@@ -10,10 +10,10 @@ use Innmind\TimeContinuum\{
 
 final class Day implements DayInterface
 {
-    private $day;
-    private $week;
-    private $ofYear;
-    private $string;
+    private int $day;
+    private int $week;
+    private int $ofYear;
+    private string $string;
 
     public function __construct(Year $year, Month $month, int $day)
     {

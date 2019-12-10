@@ -22,7 +22,7 @@ use Innmind\TimeContinuum\{
 
 final class Now implements PointInTimeInterface
 {
-    private $point;
+    private PointInTimeInterface $point;
 
     public function __construct()
     {

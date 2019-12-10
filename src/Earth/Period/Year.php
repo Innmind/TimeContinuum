@@ -10,7 +10,7 @@ use Innmind\TimeContinuum\{
 
 final class Year implements Period
 {
-    private $year;
+    private int $year;
 
     public function __construct(int $year)
     {

@@ -7,13 +7,13 @@ use Innmind\TimeContinuum\Period;
 
 final class Composite implements Period
 {
-    private $year;
-    private $month;
-    private $day;
-    private $hour;
-    private $minute;
-    private $second;
-    private $millisecond;
+    private int $year;
+    private int $month;
+    private int $day;
+    private int $hour;
+    private int $minute;
+    private int $second;
+    private int $millisecond;
 
     public function __construct(
         int $year,

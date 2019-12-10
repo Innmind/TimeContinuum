@@ -15,7 +15,7 @@ use Innmind\TimeContinuum\{
 
 final class Clock implements ClockInterface
 {
-    private $timezone;
+    private Timezone $timezone;
 
     public function __construct(Timezone $timezone = null)
     {

@@ -30,17 +30,17 @@ use Innmind\TimeContinuum\{
 
 final class PointInTime implements PointInTimeInterface
 {
-    private $milliseconds;
-    private $date;
-    private $year;
-    private $month;
-    private $day;
-    private $hour;
-    private $minute;
-    private $second;
-    private $millisecond;
-    private $timezone;
-    private $string;
+    private int $milliseconds;
+    private \DateTimeImmutable $date;
+    private ?YearInterface $year = null;
+    private ?MonthInterface $month = null;
+    private ?DayInterface $day = null;
+    private ?HourInterface $hour = null;
+    private ?MinuteInterface $minute = null;
+    private ?SecondInterface $second = null;
+    private ?MillisecondInterface $millisecond = null;
+    private ?Timezone $timezone = null;
+    private ?string $string = null;
     private static $periodComponents = [
         'years',
         'months',

@@ -5,8 +5,8 @@ namespace Innmind\TimeContinuum\Earth;
 
 trait Timezone
 {
-    private $utc;
-    private $dst;
+    private Timezone\UTC $utc;
+    private bool $dst;
 
     private function use(string $zone)
     {

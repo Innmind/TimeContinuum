@@ -10,8 +10,8 @@ use Innmind\TimeContinuum\{
 
 final class Millisecond implements Period
 {
-    private $second;
-    private $millisecond;
+    private Second $second;
+    private int $millisecond;
 
     public function __construct(int $millisecond)
     {

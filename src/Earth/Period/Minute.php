@@ -10,8 +10,8 @@ use Innmind\TimeContinuum\{
 
 final class Minute implements Period
 {
-    private $hour;
-    private $minute;
+    private Hour $hour;
+    private int $minute;
 
     public function __construct(int $minute)
     {

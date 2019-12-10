@@ -10,7 +10,7 @@ use Innmind\TimeContinuum\{
 
 final class Minute implements MinuteInterface
 {
-    private $minute;
+    private int $minute;
 
     public function __construct(int $minute)
     {

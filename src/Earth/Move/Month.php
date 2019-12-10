@@ -15,8 +15,8 @@ use Innmind\TimeContinuum\{
 
 final class Month
 {
-    private $direction;
-    private $months;
+    private string $direction;
+    private Period $months;
 
     private function __construct(string $direction, Period $months)
     {

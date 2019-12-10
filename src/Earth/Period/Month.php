@@ -10,8 +10,8 @@ use Innmind\TimeContinuum\{
 
 final class Month implements Period
 {
-    private $year;
-    private $month;
+    private int $year;
+    private int $month;
 
     public function __construct(int $month)
     {

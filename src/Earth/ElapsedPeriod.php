@@ -10,7 +10,7 @@ use Innmind\TimeContinuum\{
 
 final class ElapsedPeriod implements ElapsedPeriodInterface
 {
-    private $milliseconds;
+    private int $milliseconds;
 
     public function __construct(int $milliseconds)
     {

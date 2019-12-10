@@ -10,9 +10,9 @@ use Innmind\TimeContinuum\{
 
 final class Month implements MonthInterface
 {
-    private $month;
-    private $days;
-    private $string;
+    private int $month;
+    private int $days;
+    private string $string;
 
     public function __construct(Year $year, int $month)
     {

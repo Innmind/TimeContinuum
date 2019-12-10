@@ -10,10 +10,10 @@ use Innmind\TimeContinuum\{
 
 final class UTC implements Timezone
 {
-    private $hours;
-    private $minutes;
-    private $dst = false;
-    private $string;
+    private int $hours;
+    private int $minutes;
+    private bool $dst = false;
+    private string $string;
 
     public function __construct(int $hours = 0, int $minutes = 0)
     {

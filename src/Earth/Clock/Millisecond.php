@@ -10,7 +10,7 @@ use Innmind\TimeContinuum\{
 
 final class Millisecond implements MillisecondInterface
 {
-    private $millisecond;
+    private int $millisecond;
 
     public function __construct(int $millisecond)
     {

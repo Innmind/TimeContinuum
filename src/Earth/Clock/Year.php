@@ -7,8 +7,8 @@ use Innmind\TimeContinuum\Clock\Year as YearInterface;
 
 final class Year implements YearInterface
 {
-    private $year;
-    private $days;
+    private int $year;
+    private int $days;
 
     public function __construct(int $year)
     {
