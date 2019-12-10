@@ -19,7 +19,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Innmind\\TimeContinuum\\": "src/"
+            "Innmind\\TimeContinuum\\": "src/",
+            "Fixtures\\Innmind\\TimeContinuum\\": "fixtures/"
         }
     },
     "autoload-dev": {
@@ -32,6 +33,13 @@
     },
     "require-dev": {
         "phpunit/phpunit": "~8.0",
-        "vimeo/psalm": "^3.7"
+        "vimeo/psalm": "^3.7",
+        "innmind/black-box": "^3.0"
+    },
+    "conflict": {
+        "innmind/black-box": "<3.0|~4.0"
+    },
+    "suggest": {
+        "innmind/black-box": "For property based testing"
     }
 }
