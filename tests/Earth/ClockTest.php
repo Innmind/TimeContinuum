@@ -12,7 +12,7 @@ use Innmind\TimeContinuum\{
 };
 use PHPUnit\Framework\TestCase;
 
-class EarthTest extends TestCase
+class ClockTest extends TestCase
 {
     public function testInterface()
     {
