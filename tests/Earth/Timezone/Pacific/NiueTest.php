@@ -5,7 +5,7 @@ namespace Tests\Innmind\TimeContinuum\Earth\Timezone\Pacific;
 
 use Innmind\TimeContinuum\{
     Earth\Timezone\Pacific\Niue,
-    TimezoneInterface
+    Timezone,
 };
 use PHPUnit\Framework\TestCase;
 
@@ -15,6 +15,6 @@ class NiueTest extends TestCase
     {
         $zone = new Niue;
 
-        $this->assertInstanceOf(TimezoneInterface::class, $zone);
+        $this->assertInstanceOf(Timezone::class, $zone);
     }
 }

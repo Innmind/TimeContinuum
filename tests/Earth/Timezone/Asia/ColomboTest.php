@@ -5,7 +5,7 @@ namespace Tests\Innmind\TimeContinuum\Earth\Timezone\Asia;
 
 use Innmind\TimeContinuum\{
     Earth\Timezone\Asia\Colombo,
-    TimezoneInterface
+    Timezone,
 };
 use PHPUnit\Framework\TestCase;
 
@@ -15,6 +15,6 @@ class ColomboTest extends TestCase
     {
         $zone = new Colombo;
 
-        $this->assertInstanceOf(TimezoneInterface::class, $zone);
+        $this->assertInstanceOf(Timezone::class, $zone);
     }
 }

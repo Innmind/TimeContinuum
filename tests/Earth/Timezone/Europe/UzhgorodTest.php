@@ -5,7 +5,7 @@ namespace Tests\Innmind\TimeContinuum\Earth\Timezone\Europe;
 
 use Innmind\TimeContinuum\{
     Earth\Timezone\Europe\Uzhgorod,
-    TimezoneInterface
+    Timezone,
 };
 use PHPUnit\Framework\TestCase;
 
@@ -15,6 +15,6 @@ class UzhgorodTest extends TestCase
     {
         $zone = new Uzhgorod;
 
-        $this->assertInstanceOf(TimezoneInterface::class, $zone);
+        $this->assertInstanceOf(Timezone::class, $zone);
     }
 }

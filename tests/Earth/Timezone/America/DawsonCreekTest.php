@@ -5,7 +5,7 @@ namespace Tests\Innmind\TimeContinuum\Earth\Timezone\America;
 
 use Innmind\TimeContinuum\{
     Earth\Timezone\America\DawsonCreek,
-    TimezoneInterface
+    Timezone,
 };
 use PHPUnit\Framework\TestCase;
 
@@ -15,6 +15,6 @@ class DawsonCreekTest extends TestCase
     {
         $zone = new DawsonCreek;
 
-        $this->assertInstanceOf(TimezoneInterface::class, $zone);
+        $this->assertInstanceOf(Timezone::class, $zone);
     }
 }

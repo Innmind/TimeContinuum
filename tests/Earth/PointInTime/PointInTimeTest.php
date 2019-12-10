@@ -5,17 +5,17 @@ namespace Tests\Innmind\TimeContinuum\Earth\PointInTime;
 
 use Innmind\TimeContinuum\{
     Earth\PointInTime\PointInTime,
-    PointInTimeInterface,
-    TimezoneInterface,
-    FormatInterface,
+    PointInTime as PointInTimeInterface,
+    Timezone,
+    Format,
     Earth\ElapsedPeriod,
-    Clock\YearInterface,
-    Clock\MonthInterface,
-    Clock\DayInterface,
-    Clock\HourInterface,
-    Clock\MinuteInterface,
-    Clock\SecondInterface,
-    Clock\MillisecondInterface,
+    Clock\Year,
+    Clock\Month,
+    Clock\Day as DayInterface,
+    Clock\Hour,
+    Clock\Minute,
+    Clock\Second,
+    Clock\Millisecond,
     Earth\Timezone\UTC,
     Earth\Period\Composite,
     Earth\Period\Day,
@@ -30,14 +30,14 @@ class PointInTimeTest extends TestCase
         $point = new PointInTime('2016-10-05T08:01:30.123+02:00');
 
         $this->assertInstanceOf(PointInTimeInterface::class, $point);
-        $this->assertInstanceOf(YearInterface::class, $point->year());
-        $this->assertInstanceOf(MonthInterface::class, $point->month());
+        $this->assertInstanceOf(Year::class, $point->year());
+        $this->assertInstanceOf(Month::class, $point->month());
         $this->assertInstanceOf(DayInterface::class, $point->day());
-        $this->assertInstanceOf(HourInterface::class, $point->hour());
-        $this->assertInstanceOf(MinuteInterface::class, $point->minute());
-        $this->assertInstanceOf(SecondInterface::class, $point->second());
-        $this->assertInstanceOf(MillisecondInterface::class, $point->millisecond());
-        $this->assertInstanceOf(TimezoneInterface::class, $point->timezone());
+        $this->assertInstanceOf(Hour::class, $point->hour());
+        $this->assertInstanceOf(Minute::class, $point->minute());
+        $this->assertInstanceOf(Second::class, $point->second());
+        $this->assertInstanceOf(Millisecond::class, $point->millisecond());
+        $this->assertInstanceOf(Timezone::class, $point->timezone());
         $this->assertSame($point->year(), $point->year());
         $this->assertSame($point->month(), $point->month());
         $this->assertSame($point->day(), $point->day());
@@ -75,7 +75,7 @@ class PointInTimeTest extends TestCase
         $this->assertSame(
             '08:01:30 05/10/2016',
             $point->format(
-                new class implements FormatInterface
+                new class implements Format
                 {
                     public function __toString(): string
                     {
@@ -192,7 +192,7 @@ class PointInTimeTest extends TestCase
             $point
                 ->goBack(new MillisecondPeriod(623))
                 ->format(
-                    new class implements FormatInterface
+                    new class implements Format
                     {
                         public function __toString(): string
                         {
@@ -207,7 +207,7 @@ class PointInTimeTest extends TestCase
     {
         $point = new PointInTime('2018-03-04');
         $point2 = $point->goBack(new Day(1));
-        $format = new class implements FormatInterface {
+        $format = new class implements Format {
             public function __toString(): string
             {
                 return 'Y-m-d\TH:i:s.u';
@@ -228,7 +228,7 @@ class PointInTimeTest extends TestCase
     {
         $point = new PointInTime('1402-07-21 02:42:53.000000');
         $point2 = $point->goBack(new MillisecondPeriod(1));
-        $format = new class implements FormatInterface {
+        $format = new class implements Format {
             public function __toString(): string
             {
                 return 'Y-m-d\TH:i:s.u';

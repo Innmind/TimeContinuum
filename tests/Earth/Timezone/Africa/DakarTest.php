@@ -5,7 +5,7 @@ namespace Tests\Innmind\TimeContinuum\Earth\Timezone\Africa;
 
 use Innmind\TimeContinuum\{
     Earth\Timezone\Africa\Dakar,
-    TimezoneInterface
+    Timezone,
 };
 use PHPUnit\Framework\TestCase;
 
@@ -15,6 +15,6 @@ class DakarTest extends TestCase
     {
         $zone = new Dakar;
 
-        $this->assertInstanceOf(TimezoneInterface::class, $zone);
+        $this->assertInstanceOf(Timezone::class, $zone);
     }
 }

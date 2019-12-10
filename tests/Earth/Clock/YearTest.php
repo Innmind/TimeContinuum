@@ -5,7 +5,7 @@ namespace Tests\Innmind\TimeContinuum\Earth\Clock;
 
 use Innmind\TimeContinuum\{
     Earth\Clock\Year,
-    Clock\YearInterface,
+    Clock\Year as YearInterface,
 };
 use PHPUnit\Framework\TestCase;
 

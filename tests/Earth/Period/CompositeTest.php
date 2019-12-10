@@ -5,7 +5,7 @@ namespace Tests\Innmind\TimeContinuum\Earth\Period;
 
 use Innmind\TimeContinuum\{
     Earth\Period\Composite,
-    PeriodInterface,
+    Period,
 };
 use PHPUnit\Framework\TestCase;
 
@@ -15,7 +15,7 @@ class CompositeTest extends TestCase
     {
         $period = new Composite(1, 2, 3, 4, 5, 6, 7);
 
-        $this->assertInstanceOf(PeriodInterface::class, $period);
+        $this->assertInstanceOf(Period::class, $period);
         $this->assertSame(1, $period->years());
         $this->assertSame(2, $period->months());
         $this->assertSame(3, $period->days());
@@ -77,7 +77,7 @@ class CompositeTest extends TestCase
         $period = new Composite(1, 2, 3, 4, 5, 6, 7);
         $period2 = $period->add($period);
 
-        $this->assertInstanceOf(PeriodInterface::class, $period);
+        $this->assertInstanceOf(Period::class, $period);
         $this->assertNotSame($period, $period2);
         $this->assertSame(1, $period->years());
         $this->assertSame(2, $period->months());

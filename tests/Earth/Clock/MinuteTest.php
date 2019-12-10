@@ -5,7 +5,7 @@ namespace Tests\Innmind\TimeContinuum\Earth\Clock;
 
 use Innmind\TimeContinuum\{
     Earth\Clock\Minute,
-    Clock\MinuteInterface,
+    Clock\Minute as MinuteInterface,
 };
 use PHPUnit\Framework\TestCase;
 

@@ -5,7 +5,7 @@ namespace Tests\Innmind\TimeContinuum\Earth\Format;
 
 use Innmind\TimeContinuum\{
     Earth\Format\RFC850,
-    FormatInterface,
+    Format,
 };
 use PHPUnit\Framework\TestCase;
 
@@ -15,7 +15,7 @@ class RFC850Test extends TestCase
     {
         $format = new RFC850;
 
-        $this->assertInstanceOf(FormatInterface::class, $format);
+        $this->assertInstanceOf(Format::class, $format);
         $this->assertSame(\DateTime::RFC850, (string) $format);
     }
 }

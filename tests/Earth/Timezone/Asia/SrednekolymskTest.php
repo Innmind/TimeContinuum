@@ -5,7 +5,7 @@ namespace Tests\Innmind\TimeContinuum\Earth\Timezone\Asia;
 
 use Innmind\TimeContinuum\{
     Earth\Timezone\Asia\Srednekolymsk,
-    TimezoneInterface
+    Timezone,
 };
 use PHPUnit\Framework\TestCase;
 
@@ -15,6 +15,6 @@ class SrednekolymskTest extends TestCase
     {
         $zone = new Srednekolymsk;
 
-        $this->assertInstanceOf(TimezoneInterface::class, $zone);
+        $this->assertInstanceOf(Timezone::class, $zone);
     }
 }

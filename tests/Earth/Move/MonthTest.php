@@ -5,9 +5,9 @@ namespace Tests\Innmind\TimeContinuum\Earth\Move;
 
 use Innmind\TimeContinuum\{
     Earth\Move\Month,
-    PointInTimeInterface,
+    PointInTime as PointInTimeInterface,
     Earth\PointInTime\PointInTime,
-    FormatInterface,
+    Format,
 };
 use PHPUnit\Framework\TestCase;
 
@@ -18,7 +18,7 @@ class MonthTest extends TestCase
      */
     public function testInterface($time, $expectedForward, $expectedBackward)
     {
-        $format = new class implements FormatInterface {
+        $format = new class implements Format {
             public function __toString(): string
             {
                 return 'Y-m-d H:i:s.u';

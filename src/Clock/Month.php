@@ -3,10 +3,9 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum\Clock;
 
-interface DayInterface
+interface Month
 {
-    public function weekNumber(): int;
-    public function ofYear(): int;
+    public function numberOfDays(): int;
     public function toInt(): int;
     public function __toString(): string;
 }

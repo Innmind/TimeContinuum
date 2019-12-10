@@ -3,9 +3,9 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum\Earth\Period;
 
-use Innmind\TimeContinuum\PeriodInterface;
+use Innmind\TimeContinuum\Period;
 
-final class Composite implements PeriodInterface
+final class Composite implements Period
 {
     private $year;
     private $month;
@@ -87,7 +87,7 @@ final class Composite implements PeriodInterface
         return $this->millisecond;
     }
 
-    public function equals(PeriodInterface $period): bool
+    public function equals(Period $period): bool
     {
         return $this->year === $period->years() &&
             $this->month === $period->months() &&
@@ -98,7 +98,7 @@ final class Composite implements PeriodInterface
             $this->millisecond === $period->milliseconds();
     }
 
-    public function add(PeriodInterface $period): PeriodInterface
+    public function add(Period $period): Period
     {
         return new self(
             $this->year + $period->years(),

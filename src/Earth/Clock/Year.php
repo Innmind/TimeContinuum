@@ -3,7 +3,7 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum\Earth\Clock;
 
-use Innmind\TimeContinuum\Clock\YearInterface;
+use Innmind\TimeContinuum\Clock\Year as YearInterface;
 
 final class Year implements YearInterface
 {

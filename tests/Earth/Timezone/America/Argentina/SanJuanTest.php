@@ -5,7 +5,7 @@ namespace Tests\Innmind\TimeContinuum\Earth\Timezone\America\Argentina;
 
 use Innmind\TimeContinuum\{
     Earth\Timezone\America\Argentina\SanJuan,
-    TimezoneInterface
+    Timezone,
 };
 use PHPUnit\Framework\TestCase;
 
@@ -15,6 +15,6 @@ class SanJuanTest extends TestCase
     {
         $zone = new SanJuan;
 
-        $this->assertInstanceOf(TimezoneInterface::class, $zone);
+        $this->assertInstanceOf(Timezone::class, $zone);
     }
 }

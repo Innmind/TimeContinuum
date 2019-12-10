@@ -4,7 +4,7 @@ declare(strict_types = 1);
 namespace Innmind\TimeContinuum\Earth\Clock;
 
 use Innmind\TimeContinuum\{
-    Clock\MillisecondInterface,
+    Clock\Millisecond as MillisecondInterface,
     Exception\InvalidArgumentException,
 };
 

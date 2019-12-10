@@ -4,11 +4,11 @@ declare(strict_types = 1);
 namespace Innmind\TimeContinuum\Earth;
 
 use Innmind\TimeContinuum\{
-    ClockInterface,
-    TimezoneInterface,
-    PointInTimeInterface,
-    FormatInterface,
-    Earth\PointInTime\PointInTime,
+    Clock as ClockInterface,
+    Timezone,
+    PointInTime,
+    Format,
+    Earth\PointInTime\PointInTime as EarthPointInTime,
     Earth\PointInTime\Now,
     Earth\Timezone\UTC,
 };
@@ -17,7 +17,7 @@ final class Clock implements ClockInterface
 {
     private $timezone;
 
-    public function __construct(TimezoneInterface $timezone = null)
+    public function __construct(Timezone $timezone = null)
     {
         if ($timezone === null) {
             list($hour, $minute) = \explode(':', \date('P'));
@@ -27,17 +27,17 @@ final class Clock implements ClockInterface
         $this->timezone = $timezone;
     }
 
-    public function now(): PointInTimeInterface
+    public function now(): PointInTime
     {
         return (new Now)->changeTimezone($this->timezone);
     }
 
-    public function at(string $date, FormatInterface $format = null): PointInTimeInterface
+    public function at(string $date, Format $format = null): PointInTime
     {
-        if ($format instanceof FormatInterface) {
+        if ($format instanceof Format) {
             $date = \DateTimeImmutable::createFromFormat((string) $format, $date)->format(\DateTime::ATOM);
         }
 
-        return (new PointInTime($date))->changeTimezone($this->timezone);
+        return (new EarthPointInTime($date))->changeTimezone($this->timezone);
     }
 }

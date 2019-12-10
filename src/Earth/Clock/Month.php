@@ -4,7 +4,7 @@ declare(strict_types = 1);
 namespace Innmind\TimeContinuum\Earth\Clock;
 
 use Innmind\TimeContinuum\{
-    Clock\MonthInterface,
+    Clock\Month as MonthInterface,
     Exception\InvalidArgumentException,
 };
 

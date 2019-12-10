@@ -5,7 +5,7 @@ namespace Innmind\TimeContinuum;
 
 use Innmind\TimeContinuum\Exception\ElapsedPeriodCantBeNegativeException;
 
-interface ElapsedPeriodInterface
+interface ElapsedPeriod
 {
     public function milliseconds(): int;
     public function longerThan(self $period): bool;

@@ -4,7 +4,7 @@ declare(strict_types = 1);
 namespace Innmind\TimeContinuum\Earth\Move;
 
 use Innmind\TimeContinuum\{
-    PointInTimeInterface,
+    PointInTime,
     Earth\Period\Hour,
     Earth\Period\Minute,
     Earth\Period\Second,
@@ -13,7 +13,7 @@ use Innmind\TimeContinuum\{
 
 final class EndOfDay
 {
-    public function __invoke(PointInTimeInterface $point): PointInTimeInterface
+    public function __invoke(PointInTime $point): PointInTime
     {
         return $point->goForward(
             (new Hour(23 - $point->hour()->toInt()))

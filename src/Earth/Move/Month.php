@@ -4,7 +4,7 @@ declare(strict_types = 1);
 namespace Innmind\TimeContinuum\Earth\Move;
 
 use Innmind\TimeContinuum\{
-    PointInTimeInterface,
+    PointInTime,
     Earth\Period\Day,
     Earth\Period\Hour,
     Earth\Period\Minute,
@@ -34,7 +34,7 @@ final class Month
         return new self('goBack', new Period($months));
     }
 
-    public function __invoke(PointInTimeInterface $point): PointInTimeInterface
+    public function __invoke(PointInTime $point): PointInTime
     {
         $newPoint = (new StartOfMonth)($point)->{$this->direction}($this->months);
         $newPoint = $newPoint->goForward(

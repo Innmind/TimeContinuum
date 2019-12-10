@@ -5,7 +5,7 @@ namespace Tests\Innmind\TimeContinuum\Earth\Timezone\Australia;
 
 use Innmind\TimeContinuum\{
     Earth\Timezone\Australia\AustralianCapitalTerritory,
-    TimezoneInterface
+    Timezone,
 };
 use PHPUnit\Framework\TestCase;
 
@@ -15,6 +15,6 @@ class AustralianCapitalTerritoryTest extends TestCase
     {
         $zone = new AustralianCapitalTerritory;
 
-        $this->assertInstanceOf(TimezoneInterface::class, $zone);
+        $this->assertInstanceOf(Timezone::class, $zone);
     }
 }

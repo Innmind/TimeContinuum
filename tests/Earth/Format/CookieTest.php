@@ -5,7 +5,7 @@ namespace Tests\Innmind\TimeContinuum\Earth\Format;
 
 use Innmind\TimeContinuum\{
     Earth\Format\Cookie,
-    FormatInterface,
+    Format,
 };
 use PHPUnit\Framework\TestCase;
 
@@ -15,7 +15,7 @@ class CookieTest extends TestCase
     {
         $format = new Cookie;
 
-        $this->assertInstanceOf(FormatInterface::class, $format);
+        $this->assertInstanceOf(Format::class, $format);
         $this->assertSame(\DateTime::COOKIE, (string) $format);
     }
 }

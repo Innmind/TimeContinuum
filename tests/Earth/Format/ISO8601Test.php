@@ -5,7 +5,7 @@ namespace Tests\Innmind\TimeContinuum\Earth\Format;
 
 use Innmind\TimeContinuum\{
     Earth\Format\ISO8601,
-    FormatInterface,
+    Format,
 };
 use PHPUnit\Framework\TestCase;
 
@@ -15,7 +15,7 @@ class ISO8601Test extends TestCase
     {
         $format = new ISO8601;
 
-        $this->assertInstanceOf(FormatInterface::class, $format);
+        $this->assertInstanceOf(Format::class, $format);
         $this->assertSame(\DateTime::ATOM, (string) $format);
     }
 }

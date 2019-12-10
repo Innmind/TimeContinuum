@@ -4,11 +4,11 @@ declare(strict_types = 1);
 namespace Innmind\TimeContinuum\Earth\Period;
 
 use Innmind\TimeContinuum\{
-    PeriodInterface,
+    Period,
     Exception\PeriodCantBeNegativeException,
 };
 
-final class Millisecond implements PeriodInterface
+final class Millisecond implements Period
 {
     private $second;
     private $millisecond;
@@ -58,7 +58,7 @@ final class Millisecond implements PeriodInterface
         return $this->millisecond;
     }
 
-    public function equals(PeriodInterface $period): bool
+    public function equals(Period $period): bool
     {
         return $period->years() === 0 &&
             $period->months() === 0 &&
@@ -69,7 +69,7 @@ final class Millisecond implements PeriodInterface
             $period->milliseconds() === $this->millisecond;
     }
 
-    public function add(PeriodInterface $period): PeriodInterface
+    public function add(Period $period): Period
     {
         return new Composite(
             $period->years(),

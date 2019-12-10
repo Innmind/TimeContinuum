@@ -5,7 +5,7 @@ namespace Tests\Innmind\TimeContinuum\Earth\Timezone\Arctic;
 
 use Innmind\TimeContinuum\{
     Earth\Timezone\Arctic\Longyearbyen,
-    TimezoneInterface
+    Timezone,
 };
 use PHPUnit\Framework\TestCase;
 
@@ -15,6 +15,6 @@ class LongyearbyenTest extends TestCase
     {
         $zone = new Longyearbyen;
 
-        $this->assertInstanceOf(TimezoneInterface::class, $zone);
+        $this->assertInstanceOf(Timezone::class, $zone);
     }
 }

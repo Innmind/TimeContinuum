@@ -4,20 +4,20 @@ declare(strict_types = 1);
 namespace Innmind\TimeContinuum\Earth\PointInTime;
 
 use Innmind\TimeContinuum\{
-    PointInTimeInterface,
-    FormatInterface,
-    TimezoneInterface,
+    PointInTime as PointInTimeInterface,
+    Format,
+    Timezone,
     Earth\ElapsedPeriod,
-    ElapsedPeriodInterface,
-    PeriodInterface,
+    ElapsedPeriod as ElapsedPeriodInterface,
+    Period,
     Timezone\Earth\UTC,
-    Clock\YearInterface,
-    Clock\MonthInterface,
-    Clock\DayInterface,
-    Clock\HourInterface,
-    Clock\MinuteInterface,
-    Clock\SecondInterface,
-    Clock\MillisecondInterface,
+    Clock\Year,
+    Clock\Month,
+    Clock\Day,
+    Clock\Hour,
+    Clock\Minute,
+    Clock\Second,
+    Clock\Millisecond,
 };
 
 final class Now implements PointInTimeInterface
@@ -49,46 +49,46 @@ final class Now implements PointInTimeInterface
         return $this->point->milliseconds();
     }
 
-    public function year(): YearInterface
+    public function year(): Year
     {
         return $this->point->year();
     }
 
-    public function month(): MonthInterface
+    public function month(): Month
     {
         return $this->point->month();
     }
 
-    public function day(): DayInterface
+    public function day(): Day
     {
         return $this->point->day();
     }
 
-    public function hour(): HourInterface
+    public function hour(): Hour
     {
         return $this->point->hour();
     }
-    public function minute(): MinuteInterface
+    public function minute(): Minute
     {
         return $this->point->minute();
     }
 
-    public function second(): SecondInterface
+    public function second(): Second
     {
         return $this->point->second();
     }
 
-    public function millisecond(): MillisecondInterface
+    public function millisecond(): Millisecond
     {
         return $this->point->millisecond();
     }
 
-    public function format(FormatInterface $format): string
+    public function format(Format $format): string
     {
         return $this->point->format($format);
     }
 
-    public function changeTimezone(TimezoneInterface $zone): PointInTimeInterface
+    public function changeTimezone(Timezone $zone): PointInTimeInterface
     {
         $self = clone $this;
         $self->point = $this->point->changeTimezone($zone);
@@ -96,7 +96,7 @@ final class Now implements PointInTimeInterface
         return $self;
     }
 
-    public function timezone(): TimezoneInterface
+    public function timezone(): Timezone
     {
         return $this->point->timezone();
     }
@@ -106,12 +106,12 @@ final class Now implements PointInTimeInterface
         return new ElapsedPeriod($this->milliseconds() - $point->milliseconds());
     }
 
-    public function goBack(PeriodInterface $period): PointInTimeInterface
+    public function goBack(Period $period): PointInTimeInterface
     {
         return $this->point->goBack($period);
     }
 
-    public function goForward(PeriodInterface $period): PointInTimeInterface
+    public function goForward(Period $period): PointInTimeInterface
     {
         return $this->point->goForward($period);
     }

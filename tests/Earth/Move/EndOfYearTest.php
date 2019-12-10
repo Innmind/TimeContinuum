@@ -5,9 +5,9 @@ namespace Tests\Innmind\TimeContinuum\Earth\Move;
 
 use Innmind\TimeContinuum\{
     Earth\Move\EndOfYear,
-    PointInTimeInterface,
+    PointInTime as PointInTimeInterface,
     Earth\PointInTime\PointInTime,
-    FormatInterface,
+    Format,
 };
 use PHPUnit\Framework\TestCase;
 
@@ -23,7 +23,7 @@ class EndOfYearTest extends TestCase
         $point = $endOfYear(new PointInTime($time));
 
         $this->assertInstanceOf(PointInTimeInterface::class, $point);
-        $this->assertSame($expected, $point->format(new class implements FormatInterface {
+        $this->assertSame($expected, $point->format(new class implements Format {
             public function __toString(): string
             {
                 return 'Y-m-d H:i:s.u';

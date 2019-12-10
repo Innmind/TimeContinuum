@@ -5,7 +5,7 @@ namespace Tests\Innmind\TimeContinuum\Earth\Timezone\America\Indiana;
 
 use Innmind\TimeContinuum\{
     Earth\Timezone\America\Indiana\Indianapolis,
-    TimezoneInterface
+    Timezone,
 };
 use PHPUnit\Framework\TestCase;
 
@@ -15,6 +15,6 @@ class IndianapolisTest extends TestCase
     {
         $zone = new Indianapolis;
 
-        $this->assertInstanceOf(TimezoneInterface::class, $zone);
+        $this->assertInstanceOf(Timezone::class, $zone);
     }
 }

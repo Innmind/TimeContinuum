@@ -3,7 +3,7 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum;
 
-interface TimezoneInterface
+interface Timezone
 {
     public function hours(): int;
     public function minutes(): int;

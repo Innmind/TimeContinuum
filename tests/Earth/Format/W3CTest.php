@@ -5,7 +5,7 @@ namespace Tests\Innmind\TimeContinuum\Earth\Format;
 
 use Innmind\TimeContinuum\{
     Earth\Format\W3C,
-    FormatInterface,
+    Format,
 };
 use PHPUnit\Framework\TestCase;
 
@@ -15,7 +15,7 @@ class W3CTest extends TestCase
     {
         $format = new W3C;
 
-        $this->assertInstanceOf(FormatInterface::class, $format);
+        $this->assertInstanceOf(Format::class, $format);
         $this->assertSame(\DateTime::W3C, (string) $format);
     }
 }

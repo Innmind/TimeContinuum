@@ -4,7 +4,7 @@ declare(strict_types = 1);
 namespace Innmind\TimeContinuum\Earth;
 
 use Innmind\TimeContinuum\{
-    ElapsedPeriodInterface,
+    ElapsedPeriod as ElapsedPeriodInterface,
     Exception\ElapsedPeriodCantBeNegativeException
 };
 

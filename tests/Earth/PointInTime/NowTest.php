@@ -5,17 +5,17 @@ namespace Tests\Innmind\TimeContinuum\Earth\PointInTime;
 
 use Innmind\TimeContinuum\{
     Earth\PointInTime\Now,
-    PointInTimeInterface,
-    TimezoneInterface,
-    FormatInterface,
+    PointInTime,
+    Timezone,
+    Format,
     Earth\ElapsedPeriod,
-    Clock\YearInterface,
-    Clock\MonthInterface,
-    Clock\DayInterface,
-    Clock\HourInterface,
-    Clock\MinuteInterface,
-    Clock\SecondInterface,
-    Clock\MillisecondInterface,
+    Clock\Year as YearInterface,
+    Clock\Month,
+    Clock\Day,
+    Clock\Hour,
+    Clock\Minute,
+    Clock\Second,
+    Clock\Millisecond,
     Earth\Timezone\UTC,
     Earth\Period\Composite,
     Earth\Period\Year,
@@ -33,15 +33,15 @@ class NowTest extends TestCase
         $now = (int) ($time * 1000);
         $point = new Now;
 
-        $this->assertInstanceOf(PointInTimeInterface::class, $point);
+        $this->assertInstanceOf(PointInTime::class, $point);
         $this->assertInstanceOf(YearInterface::class, $point->year());
-        $this->assertInstanceOf(MonthInterface::class, $point->month());
-        $this->assertInstanceOf(DayInterface::class, $point->day());
-        $this->assertInstanceOf(HourInterface::class, $point->hour());
-        $this->assertInstanceOf(MinuteInterface::class, $point->minute());
-        $this->assertInstanceOf(SecondInterface::class, $point->second());
-        $this->assertInstanceOf(MillisecondInterface::class, $point->millisecond());
-        $this->assertInstanceOf(TimezoneInterface::class, $point->timezone());
+        $this->assertInstanceOf(Month::class, $point->month());
+        $this->assertInstanceOf(Day::class, $point->day());
+        $this->assertInstanceOf(Hour::class, $point->hour());
+        $this->assertInstanceOf(Minute::class, $point->minute());
+        $this->assertInstanceOf(Second::class, $point->second());
+        $this->assertInstanceOf(Millisecond::class, $point->millisecond());
+        $this->assertInstanceOf(Timezone::class, $point->timezone());
         $this->assertSame($point->year(), $point->year());
         $this->assertSame($point->month(), $point->month());
         $this->assertSame($point->day(), $point->day());
@@ -74,7 +74,7 @@ class NowTest extends TestCase
         $this->assertSame(
             date('H:i:s d/m/Y'),
             $point->format(
-                new class implements FormatInterface
+                new class implements Format
                 {
                     public function __toString(): string
                     {
@@ -92,7 +92,7 @@ class NowTest extends TestCase
         $point = new Now;
         $point2 = $point->changeTimezone(new UTC(-2, 30));
 
-        $this->assertInstanceOf(PointInTimeInterface::class, $point2);
+        $this->assertInstanceOf(PointInTime::class, $point2);
         $this->assertNotSame($point, $point2);
         $this->assertNotSame($point->year(), $point2->year());
         $this->assertNotSame($point->month(), $point2->month());
@@ -149,7 +149,7 @@ class NowTest extends TestCase
         $point = new Now;
         $point2 = $point->goForward(new Year(1));
 
-        $this->assertInstanceOf(PointInTimeInterface::class, $point2);
+        $this->assertInstanceOf(PointInTime::class, $point2);
         $this->assertNotSame($point, $point2);
         $this->assertSame($point->year()->toInt() + 1, $point2->year()->toInt());
     }
@@ -159,7 +159,7 @@ class NowTest extends TestCase
         $point = new Now;
         $point2 = $point->goBack(new Year(1));
 
-        $this->assertInstanceOf(PointInTimeInterface::class, $point2);
+        $this->assertInstanceOf(PointInTime::class, $point2);
         $this->assertNotSame($point, $point2);
         $this->assertSame($point->year()->toInt() - 1, $point2->year()->toInt());
 

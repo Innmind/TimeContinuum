@@ -3,7 +3,7 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum;
 
-interface PeriodInterface
+interface Period
 {
     public function years(): int;
     public function months(): int;

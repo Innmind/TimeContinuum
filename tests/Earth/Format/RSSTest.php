@@ -5,7 +5,7 @@ namespace Tests\Innmind\TimeContinuum\Earth\Format;
 
 use Innmind\TimeContinuum\{
     Earth\Format\RSS,
-    FormatInterface,
+    Format,
 };
 use PHPUnit\Framework\TestCase;
 
@@ -15,7 +15,7 @@ class RSSTest extends TestCase
     {
         $format = new RSS;
 
-        $this->assertInstanceOf(FormatInterface::class, $format);
+        $this->assertInstanceOf(Format::class, $format);
         $this->assertSame(\DateTime::RSS, (string) $format);
     }
 }

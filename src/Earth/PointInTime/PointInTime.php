@@ -4,20 +4,20 @@ declare(strict_types = 1);
 namespace Innmind\TimeContinuum\Earth\PointInTime;
 
 use Innmind\TimeContinuum\{
-    PointInTimeInterface,
-    FormatInterface,
-    TimezoneInterface,
+    PointInTime as PointInTimeInterface,
+    Format,
+    Timezone,
     Earth\ElapsedPeriod,
-    ElapsedPeriodInterface,
-    PeriodInterface,
+    ElapsedPeriod as ElapsedPeriodInterface,
+    Period,
     Earth\Timezone\UTC,
-    Clock\YearInterface,
-    Clock\MonthInterface,
-    Clock\DayInterface,
-    Clock\HourInterface,
-    Clock\MinuteInterface,
-    Clock\SecondInterface,
-    Clock\MillisecondInterface,
+    Clock\Year as YearInterface,
+    Clock\Month as MonthInterface,
+    Clock\Day as DayInterface,
+    Clock\Hour as HourInterface,
+    Clock\Minute as MinuteInterface,
+    Clock\Second as SecondInterface,
+    Clock\Millisecond as MillisecondInterface,
     Earth\Clock\Year,
     Earth\Clock\Month,
     Earth\Clock\Day,
@@ -139,12 +139,12 @@ final class PointInTime implements PointInTimeInterface
         return $this->millisecond;
     }
 
-    public function format(FormatInterface $format): string
+    public function format(Format $format): string
     {
         return $this->date->format((string) $format);
     }
 
-    public function changeTimezone(TimezoneInterface $zone): PointInTimeInterface
+    public function changeTimezone(Timezone $zone): PointInTimeInterface
     {
         $self = clone $this;
         $self->date = $this->date->setTimezone(
@@ -163,9 +163,9 @@ final class PointInTime implements PointInTimeInterface
         return $self;
     }
 
-    public function timezone(): TimezoneInterface
+    public function timezone(): Timezone
     {
-        if (!$this->timezone instanceof TimezoneInterface) {
+        if (!$this->timezone instanceof Timezone) {
             $this->timezone = UTC::of($this->date->format('P'));
         }
 
@@ -177,7 +177,7 @@ final class PointInTime implements PointInTimeInterface
         return new ElapsedPeriod($this->milliseconds() - $point->milliseconds());
     }
 
-    public function goBack(PeriodInterface $period): PointInTimeInterface
+    public function goBack(Period $period): PointInTimeInterface
     {
         if ($this->millisecond()->toInt() > 0) {
             $period = $period->add(
@@ -208,7 +208,7 @@ final class PointInTime implements PointInTimeInterface
         ));
     }
 
-    public function goForward(PeriodInterface $period): PointInTimeInterface
+    public function goForward(Period $period): PointInTimeInterface
     {
         $period = $period->add(
             new MillisecondPeriod($this->millisecond()->toInt())

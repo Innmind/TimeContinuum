@@ -4,7 +4,7 @@ declare(strict_types = 1);
 namespace Tests\Innmind\TimeContinuum\Earth\Period;
 
 use Innmind\TimeContinuum\{
-    PeriodInterface,
+    Period,
     Earth\Period\Day,
 };
 use PHPUnit\Framework\TestCase;
@@ -15,7 +15,7 @@ class DayTest extends TestCase
     {
         $period = new Day(1000);
 
-        $this->assertInstanceOf(PeriodInterface::class, $period);
+        $this->assertInstanceOf(Period::class, $period);
         $this->assertSame(0, $period->years());
         $this->assertSame(0, $period->months());
         $this->assertSame(1000, $period->days());
@@ -44,7 +44,7 @@ class DayTest extends TestCase
         $period = new Day(1000);
         $period2 = $period->add($period);
 
-        $this->assertInstanceOf(PeriodInterface::class, $period);
+        $this->assertInstanceOf(Period::class, $period);
         $this->assertNotSame($period, $period2);
         $this->assertSame(0, $period->years());
         $this->assertSame(0, $period->months());

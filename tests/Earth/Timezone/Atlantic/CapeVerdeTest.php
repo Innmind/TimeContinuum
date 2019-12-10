@@ -5,7 +5,7 @@ namespace Tests\Innmind\TimeContinuum\Earth\Timezone\Atlantic;
 
 use Innmind\TimeContinuum\{
     Earth\Timezone\Atlantic\CapeVerde,
-    TimezoneInterface
+    Timezone,
 };
 use PHPUnit\Framework\TestCase;
 
@@ -15,6 +15,6 @@ class CapeVerdeTest extends TestCase
     {
         $zone = new CapeVerde;
 
-        $this->assertInstanceOf(TimezoneInterface::class, $zone);
+        $this->assertInstanceOf(Timezone::class, $zone);
     }
 }

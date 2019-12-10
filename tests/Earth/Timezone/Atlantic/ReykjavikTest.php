@@ -5,7 +5,7 @@ namespace Tests\Innmind\TimeContinuum\Earth\Timezone\Atlantic;
 
 use Innmind\TimeContinuum\{
     Earth\Timezone\Atlantic\Reykjavik,
-    TimezoneInterface
+    Timezone,
 };
 use PHPUnit\Framework\TestCase;
 
@@ -15,6 +15,6 @@ class ReykjavikTest extends TestCase
     {
         $zone = new Reykjavik;
 
-        $this->assertInstanceOf(TimezoneInterface::class, $zone);
+        $this->assertInstanceOf(Timezone::class, $zone);
     }
 }

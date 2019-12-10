@@ -5,9 +5,9 @@ namespace Tests\Innmind\TimeContinuum\Earth;
 
 use Innmind\TimeContinuum\{
     Earth\Clock,
-    ClockInterface,
-    PointInTimeInterface,
-    FormatInterface,
+    Clock as ClockInterface,
+    PointInTime,
+    Format,
     Earth\Timezone\UTC,
 };
 use PHPUnit\Framework\TestCase;
@@ -25,7 +25,7 @@ class EarthTest extends TestCase
     public function testNow()
     {
         $this->assertInstanceOf(
-            PointInTimeInterface::class,
+            PointInTime::class,
             $now = (new Clock)->now()
         );
         $timezone = date('P');
@@ -39,7 +39,7 @@ class EarthTest extends TestCase
     public function testAt()
     {
         $this->assertInstanceOf(
-            PointInTimeInterface::class,
+            PointInTime::class,
             $point = (new Clock)->at('2016-10-08T16:08:30+02:00')
         );
         $date = new \DateTime('2016-10-08T16:08:30+02:00');
@@ -53,7 +53,7 @@ class EarthTest extends TestCase
     public function testNowAtGivenExpectedTimezone()
     {
         $this->assertInstanceOf(
-            PointInTimeInterface::class,
+            PointInTime::class,
             $now = (new Clock(new UTC(6, 42)))->now()
         );
         $this->assertSame('+06:42', (string) $now->timezone());
@@ -62,7 +62,7 @@ class EarthTest extends TestCase
     public function testAtWithExpectedTimezone()
     {
         $this->assertInstanceOf(
-            PointInTimeInterface::class,
+            PointInTime::class,
             $point = (new Clock(new UTC(6, 42)))->at('2016-10-08T16:08:30+02:00')
         );
         $this->assertSame('+06:42', (string) $point->timezone());
@@ -71,8 +71,8 @@ class EarthTest extends TestCase
     public function testAtWithSpecificFormat()
     {
         $this->assertInstanceOf(
-            PointInTimeInterface::class,
-            $point = (new Clock)->at('+02:00 2016-10-08 16:08:30', new class implements FormatInterface {
+            PointInTime::class,
+            $point = (new Clock)->at('+02:00 2016-10-08 16:08:30', new class implements Format {
                 public function __toString(): string
                 {
                     return 'P Y-m-d H:i:s';

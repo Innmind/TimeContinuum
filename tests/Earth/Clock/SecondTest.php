@@ -5,7 +5,7 @@ namespace Tests\Innmind\TimeContinuum\Earth\Clock;
 
 use Innmind\TimeContinuum\{
     Earth\Clock\Second,
-    Clock\SecondInterface,
+    Clock\Second as SecondInterface,
 };
 use PHPUnit\Framework\TestCase;
 

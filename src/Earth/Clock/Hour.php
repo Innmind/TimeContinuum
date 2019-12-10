@@ -4,7 +4,7 @@ declare(strict_types = 1);
 namespace Innmind\TimeContinuum\Earth\Clock;
 
 use Innmind\TimeContinuum\{
-    Clock\HourInterface,
+    Clock\Hour as HourInterface,
     Exception\InvalidArgumentException,
 };
 

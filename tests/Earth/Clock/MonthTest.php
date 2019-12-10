@@ -6,7 +6,7 @@ namespace Tests\Innmind\TimeContinuum\Earth\Clock;
 use Innmind\TimeContinuum\{
     Earth\Clock\Month,
     Earth\Clock\Year,
-    Clock\MonthInterface,
+    Clock\Month as MonthInterface,
 };
 use PHPUnit\Framework\TestCase;
 

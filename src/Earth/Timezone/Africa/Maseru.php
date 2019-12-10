@@ -4,7 +4,7 @@ declare(strict_types = 1);
 namespace Innmind\TimeContinuum\Earth\Timezone\Africa;
 
 use Innmind\TimeContinuum\{
-    TimezoneInterface,
+    Timezone as TimezoneInterface,
     Earth\Timezone,
 };
 

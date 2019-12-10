@@ -4,11 +4,11 @@ declare(strict_types = 1);
 namespace Innmind\TimeContinuum\Earth\Timezone;
 
 use Innmind\TimeContinuum\{
-    TimezoneInterface,
+    Timezone,
     Exception\InvalidTimezoneException
 };
 
-final class UTC implements TimezoneInterface
+final class UTC implements Timezone
 {
     private $hours;
     private $minutes;

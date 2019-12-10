@@ -5,7 +5,7 @@ namespace Tests\Innmind\TimeContinuum\Timezone\Earth;
 
 use Innmind\TimeContinuum\{
     Earth\Timezone\UTC,
-    TimezoneInterface
+    Timezone,
 };
 use PHPUnit\Framework\TestCase;
 
@@ -15,7 +15,7 @@ class UTCTest extends TestCase
     {
         $zone = new UTC(1);
 
-        $this->assertInstanceOf(TimezoneInterface::class, $zone);
+        $this->assertInstanceOf(Timezone::class, $zone);
         $this->assertSame(1, $zone->hours());
         $this->assertSame(0, $zone->minutes());
         $this->assertSame('+01:00', (string) $zone);
@@ -72,7 +72,7 @@ class UTCTest extends TestCase
     {
         $zone = UTC::daylightSavingTime(2, 30);
 
-        $this->assertInstanceOf(TimezoneInterface::class, $zone);
+        $this->assertInstanceOf(Timezone::class, $zone);
         $this->assertSame(2, $zone->hours());
         $this->assertSame(30, $zone->minutes());
         $this->assertTrue($zone->daylightSavingTimeApplied());
