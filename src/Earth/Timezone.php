@@ -12,11 +12,11 @@ trait Timezone
     {
         $zone = new \DateTimeZone($zone);
         $currentOffset = $zone->getOffset(
-            $now = new \DateTime('now', $zone)
+            $now = new \DateTime('now', $zone),
         );
         $this->utc = new Timezone\UTC(
             $hour = (int) ($currentOffset / 3600),
-            (int) abs(round(($currentOffset - $hour * 3600) / 60))
+            (int) abs(round(($currentOffset - $hour * 3600) / 60)),
         );
         $this->dst = (bool) (int) $now->format('I');
     }

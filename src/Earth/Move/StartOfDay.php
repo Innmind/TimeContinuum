@@ -26,7 +26,7 @@ final class StartOfDay
             (new Hour($point->hour()->toInt()))
                 ->add(new Minute($point->minute()->toInt()))
                 ->add(new Second($seconds))
-                ->add(new Millisecond($millisecond))
+                ->add(new Millisecond($millisecond)),
         );
     }
 }

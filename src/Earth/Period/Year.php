@@ -76,7 +76,7 @@ final class Year implements Period
             $period->hours(),
             $period->minutes(),
             $period->seconds(),
-            $period->milliseconds()
+            $period->milliseconds(),
         );
     }
 }

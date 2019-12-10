@@ -19,7 +19,7 @@ final class EndOfDay
             (new Hour(23 - $point->hour()->toInt()))
                 ->add(new Minute(59 - $point->minute()->toInt()))
                 ->add(new Second(59 - $point->second()->toInt()))
-                ->add(new Millisecond(999 - $point->millisecond()->toInt()))
+                ->add(new Millisecond(999 - $point->millisecond()->toInt())),
         );
     }
 }

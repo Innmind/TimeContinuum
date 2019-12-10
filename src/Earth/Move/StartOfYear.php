@@ -13,7 +13,7 @@ final class StartOfYear
     public function __invoke(PointInTime $point): PointInTime
     {
         return (new StartOfMonth)($point)->goBack(
-            new Month($point->month()->toInt() - 1)
+            new Month($point->month()->toInt() - 1),
         );
     }
 }

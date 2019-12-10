@@ -13,7 +13,7 @@ final class StartOfMonth
     public function __invoke(PointInTime $point): PointInTime
     {
         return (new StartOfDay)($point)->goBack(
-            new Day($point->day()->toInt() - 1)
+            new Day($point->day()->toInt() - 1),
         );
     }
 }

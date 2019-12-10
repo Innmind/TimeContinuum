@@ -13,7 +13,7 @@ final class EndOfYear
     public function __invoke(PointInTime $point): PointInTime
     {
         $point = (new StartOfMonth)($point)->goForward(
-            new Month(12 - $point->month()->toInt())
+            new Month(12 - $point->month()->toInt()),
         );
 
         return (new EndOfMonth)($point);

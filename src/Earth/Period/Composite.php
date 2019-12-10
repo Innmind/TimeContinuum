@@ -31,14 +31,14 @@ final class Composite implements Period
             $hour +
             $minute->hours() +
             $second->hours() +
-            $millisecond->hours()
+            $millisecond->hours(),
         );
         $day = new Day(
             $day +
             $hour->days() +
             $minute->days() +
             $second->days() +
-            $millisecond->days()
+            $millisecond->days(),
         );
         $month = new Month($month);
         $year = new Year($year + $month->years());

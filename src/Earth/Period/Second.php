@@ -78,7 +78,7 @@ final class Second implements Period
             $this->hours() + $period->hours(),
             $this->minutes() + $period->minutes(),
             $this->second + $period->seconds(),
-            $period->milliseconds()
+            $period->milliseconds(),
         );
     }
 }

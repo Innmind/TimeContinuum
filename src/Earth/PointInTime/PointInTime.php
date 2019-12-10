@@ -83,7 +83,7 @@ final class PointInTime implements PointInTimeInterface
             $this->day = new Day(
                 $this->year(),
                 $this->month(),
-                (int) $this->date->format('j')
+                (int) $this->date->format('j'),
             );
         }
 
@@ -94,7 +94,7 @@ final class PointInTime implements PointInTimeInterface
     {
         if (!$this->hour instanceof Hour) {
             $this->hour = new Hour(
-                (int) $this->date->format('G')
+                (int) $this->date->format('G'),
             );
         }
 
@@ -104,7 +104,7 @@ final class PointInTime implements PointInTimeInterface
     {
         if (!$this->minute instanceof Minute) {
             $this->minute = new Minute(
-                (int) $this->date->format('i')
+                (int) $this->date->format('i'),
             );
         }
 
@@ -115,7 +115,7 @@ final class PointInTime implements PointInTimeInterface
     {
         if (!$this->second instanceof Second) {
             $this->second = new Second(
-                (int) $this->date->format('s')
+                (int) $this->date->format('s'),
             );
         }
 
@@ -126,7 +126,7 @@ final class PointInTime implements PointInTimeInterface
     {
         if (!$this->millisecond instanceof Millisecond) {
             $this->millisecond = new Millisecond(
-                (int) ((int) $this->date->format('u') / 1000)
+                (int) ((int) $this->date->format('u') / 1000),
             );
         }
 
@@ -142,7 +142,7 @@ final class PointInTime implements PointInTimeInterface
     {
         $self = clone $this;
         $self->date = $this->date->setTimezone(
-            new \DateTimeZone($zone->toString())
+            new \DateTimeZone($zone->toString()),
         );
         $self->year = null;
         $self->month = null;
@@ -175,7 +175,7 @@ final class PointInTime implements PointInTimeInterface
     {
         if ($this->millisecond()->toInt() > 0) {
             $period = $period->add(
-                new MillisecondPeriod(1000 - $this->millisecond()->toInt())
+                new MillisecondPeriod(1000 - $this->millisecond()->toInt()),
             );
         }
         $date = $this->date;
@@ -189,8 +189,8 @@ final class PointInTime implements PointInTimeInterface
                     \sprintf(
                         '-%s %s',
                         $periodComponent,
-                        $component
-                    )
+                        $component,
+                    ),
                 );
             }
         }
@@ -201,14 +201,14 @@ final class PointInTime implements PointInTimeInterface
 
         return new self(sprintf(
             $date->format('Y-m-d\TH:i:s.%03\sP'),
-            $period->milliseconds() > 0 ? 1000 - $period->milliseconds() : 0
+            $period->milliseconds() > 0 ? 1000 - $period->milliseconds() : 0,
         ));
     }
 
     public function goForward(Period $period): PointInTimeInterface
     {
         $period = $period->add(
-            new MillisecondPeriod($this->millisecond()->toInt())
+            new MillisecondPeriod($this->millisecond()->toInt()),
         );
         $date = $this->date;
 
@@ -221,15 +221,15 @@ final class PointInTime implements PointInTimeInterface
                     \sprintf(
                         '+%s %s',
                         $periodComponent,
-                        $component
-                    )
+                        $component,
+                    ),
                 );
             }
         }
 
         return new self(\sprintf(
             $date->format('Y-m-d\TH:i:s.%03\sP'),
-            $period->milliseconds()
+            $period->milliseconds(),
         ));
     }
 

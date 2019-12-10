@@ -5,7 +5,7 @@ namespace Innmind\TimeContinuum\Earth\Timezone;
 
 use Innmind\TimeContinuum\{
     Timezone,
-    Exception\InvalidTimezone
+    Exception\InvalidTimezone,
 };
 
 final class UTC implements Timezone
@@ -41,11 +41,11 @@ final class UTC implements Timezone
 
     public static function of(string $zone): self
     {
-        if (mb_strtolower($zone) === 'z') {
+        if (\mb_strtolower($zone) === 'z') {
             return new self;
         }
 
-        list($hours, $minutes) = explode(':', $zone);
+        [$hours, $minutes] = \explode(':', $zone);
 
         return new self((int) $hours, (int) $minutes);
     }
@@ -85,11 +85,11 @@ final class UTC implements Timezone
             return 'Z';
         }
 
-        return sprintf(
+        return \sprintf(
             '%s%02d:%02d',
             $hours > 0 ? '+' : '-',
             abs($hours),
-            $minutes
+            $minutes,
         );
     }
 }

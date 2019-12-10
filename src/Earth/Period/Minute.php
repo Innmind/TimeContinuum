@@ -78,7 +78,7 @@ final class Minute implements Period
             $this->hours() + $period->hours(),
             $this->minute + $period->minutes(),
             $period->seconds(),
-            $period->milliseconds()
+            $period->milliseconds(),
         );
     }
 }

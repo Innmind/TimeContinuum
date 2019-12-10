@@ -42,17 +42,17 @@ final class Month
             (new Hour($point->hour()->toInt()))
                 ->add(new Minute($point->minute()->toInt()))
                 ->add(new Second($point->second()->toInt()))
-                ->add(new Millisecond($point->millisecond()->toInt()))
+                ->add(new Millisecond($point->millisecond()->toInt())),
         );
 
         if ($newPoint->month()->numberOfDays() < $point->day()->toInt()) {
             return $newPoint->goForward(
-                new Day($newPoint->month()->numberOfDays() - 1)
+                new Day($newPoint->month()->numberOfDays() - 1),
             );
         }
 
         return $newPoint->goForward(
-            new Day($point->day()->toInt() - 1)
+            new Day($point->day()->toInt() - 1),
         );
     }
 }

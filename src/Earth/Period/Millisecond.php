@@ -78,7 +78,7 @@ final class Millisecond implements Period
             $this->hours() + $period->hours(),
             $this->minutes() + $period->minutes(),
             $this->seconds() + $period->seconds(),
-            $this->millisecond + $period->milliseconds()
+            $this->millisecond + $period->milliseconds(),
         );
     }
 }

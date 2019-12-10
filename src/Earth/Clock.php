@@ -20,7 +20,7 @@ final class Clock implements ClockInterface
     public function __construct(Timezone $timezone = null)
     {
         if ($timezone === null) {
-            list($hour, $minute) = \explode(':', \date('P'));
+            [$hour, $minute] = \explode(':', \date('P'));
             $timezone = new UTC((int) $hour, (int) $minute);
         }
 
