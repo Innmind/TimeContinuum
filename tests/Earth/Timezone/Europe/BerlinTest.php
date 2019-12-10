@@ -1,0 +1,20 @@
+<?php
+declare(strict_types = 1);
+
+namespace Tests\Innmind\TimeContinuum\Earth\Timezone\Europe;
+
+use Innmind\TimeContinuum\{
+    Earth\Timezone\Europe\Berlin,
+    TimezoneInterface
+};
+use PHPUnit\Framework\TestCase;
+
+class BerlinTest extends TestCase
+{
+    public function testInterface()
+    {
+        $zone = new Berlin;
+
+        $this->assertInstanceOf(TimezoneInterface::class, $zone);
+    }
+}

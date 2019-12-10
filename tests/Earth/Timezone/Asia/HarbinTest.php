@@ -1,0 +1,20 @@
+<?php
+declare(strict_types = 1);
+
+namespace Tests\Innmind\TimeContinuum\Earth\Timezone\Asia;
+
+use Innmind\TimeContinuum\{
+    Earth\Timezone\Asia\Harbin,
+    TimezoneInterface
+};
+use PHPUnit\Framework\TestCase;
+
+class HarbinTest extends TestCase
+{
+    public function testInterface()
+    {
+        $zone = new Harbin;
+
+        $this->assertInstanceOf(TimezoneInterface::class, $zone);
+    }
+}
