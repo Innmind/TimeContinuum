@@ -50,15 +50,6 @@ final class UTC implements Timezone
         return new self((int) $hours, (int) $minutes);
     }
 
-    /**
-     * @deprecated
-     * @see self::of()
-     */
-    public static function fromString(string $zone): self
-    {
-        return self::of($zone);
-    }
-
     public function hours(): int
     {
         return $this->hours;

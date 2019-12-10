@@ -84,7 +84,7 @@ class UTCTest extends TestCase
      */
     public function testFromString(string $zone, int $hours, int $minutes)
     {
-        $zone = UTC::fromString($zone);
+        $zone = UTC::of($zone);
 
         $this->assertInstanceOf(UTC::class, $zone);
         $this->assertSame($hours, $zone->hours());
