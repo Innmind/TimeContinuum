@@ -1,12 +1,12 @@
 <?php
 declare(strict_types = 1);
 
-namespace Tests\Innmind\TimeContinuum\Earth\TimeContinuum;
+namespace Tests\Innmind\TimeContinuum\Earth\Clock;
 
 use Innmind\TimeContinuum\{
-    Earth\TimeContinuum\Month,
-    Earth\TimeContinuum\Year,
-    TimeContinuum\MonthInterface,
+    Earth\Clock\Month,
+    Earth\Clock\Year,
+    Clock\MonthInterface,
 };
 use PHPUnit\Framework\TestCase;
 

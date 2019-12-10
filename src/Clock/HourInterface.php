@@ -1,9 +1,9 @@
 <?php
 declare(strict_types = 1);
 
-namespace Innmind\TimeContinuum\TimeContinuum;
+namespace Innmind\TimeContinuum\Clock;
 
-interface MinuteInterface
+interface HourInterface
 {
     public function toInt(): int;
     public function __toString(): string;

@@ -1,10 +1,10 @@
 <?php
 declare(strict_types = 1);
 
-namespace Innmind\TimeContinuum\Earth\TimeContinuum;
+namespace Innmind\TimeContinuum\Earth\Clock;
 
 use Innmind\TimeContinuum\{
-    TimeContinuum\SecondInterface,
+    Clock\SecondInterface,
     Exception\InvalidArgumentException,
 };
 

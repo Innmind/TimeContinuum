@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace Innmind\TimeContinuum\TimeContinuum;
+namespace Innmind\TimeContinuum\Clock;
 
 interface DayInterface
 {

@@ -1,10 +1,11 @@
 <?php
 declare(strict_types = 1);
 
-namespace Innmind\TimeContinuum\TimeContinuum;
+namespace Innmind\TimeContinuum\Clock;
 
-interface SecondInterface
+interface MonthInterface
 {
+    public function numberOfDays(): int;
     public function toInt(): int;
     public function __toString(): string;
 }

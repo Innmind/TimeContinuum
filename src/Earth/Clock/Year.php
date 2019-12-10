@@ -1,9 +1,9 @@
 <?php
 declare(strict_types = 1);
 
-namespace Innmind\TimeContinuum\Earth\TimeContinuum;
+namespace Innmind\TimeContinuum\Earth\Clock;
 
-use Innmind\TimeContinuum\TimeContinuum\YearInterface;
+use Innmind\TimeContinuum\Clock\YearInterface;
 
 final class Year implements YearInterface
 {

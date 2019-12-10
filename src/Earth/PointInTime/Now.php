@@ -11,13 +11,13 @@ use Innmind\TimeContinuum\{
     ElapsedPeriodInterface,
     PeriodInterface,
     Timezone\Earth\UTC,
-    TimeContinuum\YearInterface,
-    TimeContinuum\MonthInterface,
-    TimeContinuum\DayInterface,
-    TimeContinuum\HourInterface,
-    TimeContinuum\MinuteInterface,
-    TimeContinuum\SecondInterface,
-    TimeContinuum\MillisecondInterface,
+    Clock\YearInterface,
+    Clock\MonthInterface,
+    Clock\DayInterface,
+    Clock\HourInterface,
+    Clock\MinuteInterface,
+    Clock\SecondInterface,
+    Clock\MillisecondInterface,
 };
 
 final class Now implements PointInTimeInterface

@@ -3,7 +3,7 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum;
 
-use Innmind\TimeContinuum\TimeContinuum\{
+use Innmind\TimeContinuum\Clock\{
     YearInterface,
     MonthInterface,
     DayInterface,

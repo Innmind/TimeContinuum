@@ -4,7 +4,7 @@ declare(strict_types = 1);
 namespace Innmind\TimeContinuum\Earth;
 
 use Innmind\TimeContinuum\{
-    TimeContinuumInterface,
+    ClockInterface,
     TimezoneInterface,
     PointInTimeInterface,
     FormatInterface,
@@ -13,7 +13,7 @@ use Innmind\TimeContinuum\{
     Earth\Timezone\UTC,
 };
 
-final class TimeContinuum implements TimeContinuumInterface
+final class Clock implements ClockInterface
 {
     private $timezone;
 

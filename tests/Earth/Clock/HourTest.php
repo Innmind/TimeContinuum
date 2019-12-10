@@ -1,11 +1,11 @@
 <?php
 declare(strict_types = 1);
 
-namespace Tests\Innmind\TimeContinuum\Earth\TimeContinuum;
+namespace Tests\Innmind\TimeContinuum\Earth\Clock;
 
 use Innmind\TimeContinuum\{
-    Earth\TimeContinuum\Hour,
-    TimeContinuum\HourInterface,
+    Earth\Clock\Hour,
+    Clock\HourInterface,
 };
 use PHPUnit\Framework\TestCase;
 
