@@ -3,7 +3,7 @@
 |  `develop` |
 |------------|
 | [![codecov](https://codecov.io/gh/Innmind/TimeContinuum/branch/develop/graph/badge.svg)](https://codecov.io/gh/Innmind/TimeContinuum) |
-| [![Build Status](https://travis-ci.org/Innmind/TimeContinuum.svg?branch=develop)](https://travis-ci.org/Innmind/TimeContinuum) |
+| [![Build Status](https://github.com/Innmind/TimeContinuum/workflows/CI/badge.svg)](https://github.com/Innmind/TimeContinuum/actions?query=workflow%3ACI) |
 
 This library allows you to handle time down to the millisecond. The point was to also be explicit for every component of dates, this is why every php _magic strings_ have been converted into objects.
 
