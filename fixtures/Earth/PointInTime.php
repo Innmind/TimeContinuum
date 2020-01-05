@@ -47,7 +47,7 @@ final class PointInTime
      */
     private static function yearRange(int $lowerBound, int $upperBound): Set
     {
-        return Set\Composite::of(
+        return Set\Composite::immutable(
             static function(
                 int $year,
                 int $month,

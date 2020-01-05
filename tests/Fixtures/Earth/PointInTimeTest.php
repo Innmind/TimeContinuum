@@ -21,7 +21,9 @@ class PointInTimeTest extends TestCase
         $this->assertCount(100, \iterator_to_array($pointsInTime->values()));
 
         foreach ($pointsInTime->values() as $pointInTime) {
-            $this->assertInstanceOf(PointInTimeInterface::class, $pointInTime);
+            $this->assertInstanceOf(Set\Value::class, $pointInTime);
+            $this->assertInstanceOf(PointInTimeInterface::class, $pointInTime->unwrap());
+            $this->assertTrue($pointInTime->isImmutable());
         }
     }
 
@@ -35,7 +37,7 @@ class PointInTimeTest extends TestCase
         foreach ($points->values() as $point) {
             $this->assertGreaterThanOrEqual(
                 '1970-01-01T12:13:14+02:00',
-                $point->format(new ISO8601)
+                $point->unwrap()->format(new ISO8601)
             );
         }
     }
@@ -50,7 +52,7 @@ class PointInTimeTest extends TestCase
         foreach ($points->values() as $point) {
             $this->assertLessThanOrEqual(
                 '1970-01-01T12:13:14+02:00',
-                $point->format(new ISO8601)
+                $point->unwrap()->format(new ISO8601)
             );
         }
     }
