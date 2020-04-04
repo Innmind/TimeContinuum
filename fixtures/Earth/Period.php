@@ -3,7 +3,10 @@ declare(strict_types = 1);
 
 namespace Fixtures\Innmind\TimeContinuum\Earth;
 
-use Innmind\TimeContinuum\Earth\Period\Composite;
+use Innmind\TimeContinuum\Earth\Period\{
+    Composite,
+    Year,
+};
 use Innmind\BlackBox\Set;
 
 final class Period
@@ -32,6 +35,17 @@ final class Period
             Set\Integers::between(0, 59),
             Set\Integers::between(0, 59),
             Set\Integers::between(0, 999),
+        )->take(100);
+    }
+
+    /**
+     * @return Set<Year>
+     */
+    public static function anyNumberOfYear(): Set
+    {
+        return Set\Decorate::immutable(
+            static fn(int $year): Year => new Year($year),
+            Set\Integers::between(0, 9999),
         )->take(100);
     }
 }
