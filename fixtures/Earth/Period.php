@@ -48,4 +48,29 @@ final class Period
             Set\Integers::between(0, 9999),
         )->take(100);
     }
+
+    /**
+     * @return Set<Composite>
+     */
+    public static function lessThanAYear(): Set
+    {
+        return Set\Composite::immutable(
+            static function($day, $hour, $minute, $second, $millisecond): Composite {
+                return new Composite(
+                    0,
+                    0,
+                    $day,
+                    $hour,
+                    $minute,
+                    $second,
+                    $millisecond,
+                );
+            },
+            Set\Integers::between(0, 364),
+            Set\Integers::between(0, 23),
+            Set\Integers::between(0, 59),
+            Set\Integers::between(0, 59),
+            Set\Integers::between(0, 999),
+        )->take(100);
+    }
 }

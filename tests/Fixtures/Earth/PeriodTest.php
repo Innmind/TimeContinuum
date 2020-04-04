@@ -57,4 +57,47 @@ class PeriodTest extends TestCase
             $previous = $value;
         }
     }
+
+    public function testLessThanAYear()
+    {
+        $periods = Period::lessThanAYear();
+
+        $this->assertInstanceOf(Set::class, $periods);
+        $this->assertCount(100, \iterator_to_array($periods->values()));
+
+        $periods = $periods->values();
+        $previous = $periods->current()->unwrap();
+        $periods->next();
+
+        while ($periods->valid()) {
+            $period = $periods->current();
+
+            $this->assertInstanceOf(Set\Value::class, $period);
+            $this->assertTrue($period->isImmutable());
+            $value = $period->unwrap();
+            $this->assertInstanceOf(PeriodInterface::class, $value);
+            $this->assertLessThan(365, $value->days());
+            $this->assertSame(0, $value->years());
+            $this->assertSame(0, $value->months());
+            $this->assertNotSame(
+                [
+                    $previous->days(),
+                    $previous->hours(),
+                    $previous->minutes(),
+                    $previous->seconds(),
+                    $previous->milliseconds(),
+                ],
+                [
+                    $value->days(),
+                    $value->hours(),
+                    $value->minutes(),
+                    $value->seconds(),
+                    $value->milliseconds(),
+                ],
+            );
+
+            $periods->next();
+            $previous = $value;
+        }
+    }
 }
