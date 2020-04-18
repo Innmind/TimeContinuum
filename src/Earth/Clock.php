@@ -34,6 +34,8 @@ final class Clock implements ClockInterface
     }
 
     /**
+     * @psalm-pure
+     *
      * @throws RuntimeException When date is not of specified format
      */
     public function at(string $date, Format $format = null): PointInTime
