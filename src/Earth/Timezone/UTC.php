@@ -8,6 +8,9 @@ use Innmind\TimeContinuum\{
     Exception\InvalidTimezone,
 };
 
+/**
+ * @psalm-immutable
+ */
 final class UTC implements Timezone
 {
     private int $hours;
@@ -31,6 +34,9 @@ final class UTC implements Timezone
         $this->string = $this->format($hours, $minutes);
     }
 
+    /**
+     * @psalm-pure
+     */
     public static function daylightSavingTime(int $hours, int $minutes = 0): self
     {
         $self = new self($hours, $minutes);
@@ -39,6 +45,9 @@ final class UTC implements Timezone
         return $self;
     }
 
+    /**
+     * @psalm-pure
+     */
     public static function of(string $zone): self
     {
         if (\mb_strtolower($zone) === 'z') {

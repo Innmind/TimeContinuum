@@ -3,17 +3,15 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum\Earth\Timezone\Atlantic;
 
-use Innmind\TimeContinuum\{
-    Timezone as TimezoneInterface,
-    Earth\Timezone,
-};
+use Innmind\TimeContinuum\Earth\Timezone;
 
-final class Bermuda implements TimezoneInterface
+/**
+ * @psalm-immutable
+ */
+final class Bermuda extends Timezone
 {
-    use Timezone;
-
     public function __construct()
     {
-        $this->use('Atlantic/Bermuda');
+        parent::__construct('Atlantic/Bermuda');
     }
 }

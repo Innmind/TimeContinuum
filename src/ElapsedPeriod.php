@@ -5,6 +5,9 @@ namespace Innmind\TimeContinuum;
 
 use Innmind\TimeContinuum\Exception\ElapsedPeriodCantBeNegative;
 
+/**
+ * @psalm-immutable
+ */
 interface ElapsedPeriod
 {
     public function milliseconds(): int;

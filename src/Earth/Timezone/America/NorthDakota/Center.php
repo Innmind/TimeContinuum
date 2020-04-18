@@ -3,17 +3,15 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum\Earth\Timezone\America\NorthDakota;
 
-use Innmind\TimeContinuum\{
-    Timezone as TimezoneInterface,
-    Earth\Timezone,
-};
+use Innmind\TimeContinuum\Earth\Timezone;
 
-final class Center implements TimezoneInterface
+/**
+ * @psalm-immutable
+ */
+final class Center extends Timezone
 {
-    use Timezone;
-
     public function __construct()
     {
-        $this->use('America/North_Dakota/Center');
+        parent::__construct('America/North_Dakota/Center');
     }
 }

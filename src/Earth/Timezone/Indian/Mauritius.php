@@ -3,17 +3,15 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum\Earth\Timezone\Indian;
 
-use Innmind\TimeContinuum\{
-    Timezone as TimezoneInterface,
-    Earth\Timezone,
-};
+use Innmind\TimeContinuum\Earth\Timezone;
 
-final class Mauritius implements TimezoneInterface
+/**
+ * @psalm-immutable
+ */
+final class Mauritius extends Timezone
 {
-    use Timezone;
-
     public function __construct()
     {
-        $this->use('Indian/Mauritius');
+        parent::__construct('Indian/Mauritius');
     }
 }

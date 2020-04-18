@@ -3,17 +3,15 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum\Earth\Timezone\Indian;
 
-use Innmind\TimeContinuum\{
-    Timezone as TimezoneInterface,
-    Earth\Timezone,
-};
+use Innmind\TimeContinuum\Earth\Timezone;
 
-final class Mayotte implements TimezoneInterface
+/**
+ * @psalm-immutable
+ */
+final class Mayotte extends Timezone
 {
-    use Timezone;
-
     public function __construct()
     {
-        $this->use('Indian/Mayotte');
+        parent::__construct('Indian/Mayotte');
     }
 }

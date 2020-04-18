@@ -8,6 +8,9 @@ use Innmind\TimeContinuum\{
     Exception\PeriodCantBeNegative,
 };
 
+/**
+ * @psalm-immutable
+ */
 final class Minute implements Period
 {
     private Hour $hour;

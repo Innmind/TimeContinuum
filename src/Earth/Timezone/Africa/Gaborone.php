@@ -3,17 +3,15 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum\Earth\Timezone\Africa;
 
-use Innmind\TimeContinuum\{
-    Timezone as TimezoneInterface,
-    Earth\Timezone,
-};
+use Innmind\TimeContinuum\Earth\Timezone;
 
-final class Gaborone implements TimezoneInterface
+/**
+ * @psalm-immutable
+ */
+final class Gaborone extends Timezone
 {
-    use Timezone;
-
     public function __construct()
     {
-        $this->use('Africa/Gaborone');
+        parent::__construct('Africa/Gaborone');
     }
 }

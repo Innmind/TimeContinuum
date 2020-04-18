@@ -20,13 +20,16 @@ use Innmind\TimeContinuum\{
     Clock\Millisecond,
 };
 
+/**
+ * @psalm-immutable
+ */
 final class Now implements PointInTimeInterface
 {
     private PointInTimeInterface $point;
 
     public function __construct()
     {
-        $date = (new \DateTime('now'))->format('Y-m-d\TH:i:s.uP');
+        $date = (new \DateTimeImmutable('now'))->format('Y-m-d\TH:i:s.uP');
 
         $this->point = new PointInTime($date);
     }

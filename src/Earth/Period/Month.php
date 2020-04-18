@@ -8,6 +8,9 @@ use Innmind\TimeContinuum\{
     Exception\PeriodCantBeNegative,
 };
 
+/**
+ * @psalm-immutable
+ */
 final class Month implements Period
 {
     private int $year;

@@ -3,17 +3,15 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum\Earth\Timezone\Asia;
 
-use Innmind\TimeContinuum\{
-    Timezone as TimezoneInterface,
-    Earth\Timezone,
-};
+use Innmind\TimeContinuum\Earth\Timezone;
 
-final class Samarkand implements TimezoneInterface
+/**
+ * @psalm-immutable
+ */
+final class Samarkand extends Timezone
 {
-    use Timezone;
-
     public function __construct()
     {
-        $this->use('Asia/Samarkand');
+        parent::__construct('Asia/Samarkand');
     }
 }

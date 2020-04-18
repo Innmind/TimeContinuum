@@ -3,17 +3,15 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum\Earth\Timezone\America;
 
-use Innmind\TimeContinuum\{
-    Timezone as TimezoneInterface,
-    Earth\Timezone,
-};
+use Innmind\TimeContinuum\Earth\Timezone;
 
-final class Merida implements TimezoneInterface
+/**
+ * @psalm-immutable
+ */
+final class Merida extends Timezone
 {
-    use Timezone;
-
     public function __construct()
     {
-        $this->use('America/Merida');
+        parent::__construct('America/Merida');
     }
 }

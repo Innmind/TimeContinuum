@@ -8,6 +8,9 @@ use Innmind\TimeContinuum\{
     Exception\DomainException,
 };
 
+/**
+ * @psalm-immutable
+ */
 final class Hour implements HourInterface
 {
     private int $hour;

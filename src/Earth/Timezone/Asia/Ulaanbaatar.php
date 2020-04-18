@@ -3,17 +3,15 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum\Earth\Timezone\Asia;
 
-use Innmind\TimeContinuum\{
-    Timezone as TimezoneInterface,
-    Earth\Timezone,
-};
+use Innmind\TimeContinuum\Earth\Timezone;
 
-final class Ulaanbaatar implements TimezoneInterface
+/**
+ * @psalm-immutable
+ */
+final class Ulaanbaatar extends Timezone
 {
-    use Timezone;
-
     public function __construct()
     {
-        $this->use('Asia/Ulaanbaatar');
+        parent::__construct('Asia/Ulaanbaatar');
     }
 }

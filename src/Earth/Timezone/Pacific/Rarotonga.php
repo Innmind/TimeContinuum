@@ -3,17 +3,15 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum\Earth\Timezone\Pacific;
 
-use Innmind\TimeContinuum\{
-    Timezone as TimezoneInterface,
-    Earth\Timezone,
-};
+use Innmind\TimeContinuum\Earth\Timezone;
 
-final class Rarotonga implements TimezoneInterface
+/**
+ * @psalm-immutable
+ */
+final class Rarotonga extends Timezone
 {
-    use Timezone;
-
     public function __construct()
     {
-        $this->use('Pacific/Rarotonga');
+        parent::__construct('Pacific/Rarotonga');
     }
 }

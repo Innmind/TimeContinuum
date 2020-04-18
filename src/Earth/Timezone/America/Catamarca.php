@@ -3,17 +3,15 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum\Earth\Timezone\America;
 
-use Innmind\TimeContinuum\{
-    Timezone as TimezoneInterface,
-    Earth\Timezone,
-};
+use Innmind\TimeContinuum\Earth\Timezone;
 
-final class Catamarca implements TimezoneInterface
+/**
+ * @psalm-immutable
+ */
+final class Catamarca extends Timezone
 {
-    use Timezone;
-
     public function __construct()
     {
-        $this->use('America/Catamarca');
+        parent::__construct('America/Catamarca');
     }
 }

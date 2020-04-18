@@ -3,17 +3,15 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum\Earth\Timezone\America;
 
-use Innmind\TimeContinuum\{
-    Timezone as TimezoneInterface,
-    Earth\Timezone,
-};
+use Innmind\TimeContinuum\Earth\Timezone;
 
-final class Tortola implements TimezoneInterface
+/**
+ * @psalm-immutable
+ */
+final class Tortola extends Timezone
 {
-    use Timezone;
-
     public function __construct()
     {
-        $this->use('America/Tortola');
+        parent::__construct('America/Tortola');
     }
 }

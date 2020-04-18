@@ -3,17 +3,15 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum\Earth\Timezone\Australia;
 
-use Innmind\TimeContinuum\{
-    Timezone as TimezoneInterface,
-    Earth\Timezone,
-};
+use Innmind\TimeContinuum\Earth\Timezone;
 
-final class LordeHoweIsland implements TimezoneInterface
+/**
+ * @psalm-immutable
+ */
+final class LordeHoweIsland extends Timezone
 {
-    use Timezone;
-
     public function __construct()
     {
-        $this->use('Australia/LHI');
+        parent::__construct('Australia/LHI');
     }
 }

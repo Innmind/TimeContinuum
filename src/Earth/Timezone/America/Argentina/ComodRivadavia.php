@@ -3,17 +3,15 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum\Earth\Timezone\America\Argentina;
 
-use Innmind\TimeContinuum\{
-    Timezone as TimezoneInterface,
-    Earth\Timezone,
-};
+use Innmind\TimeContinuum\Earth\Timezone;
 
-final class ComodRivadavia implements TimezoneInterface
+/**
+ * @psalm-immutable
+ */
+final class ComodRivadavia extends Timezone
 {
-    use Timezone;
-
     public function __construct()
     {
-        $this->use('America/Argentina/ComodRivadavia');
+        parent::__construct('America/Argentina/ComodRivadavia');
     }
 }

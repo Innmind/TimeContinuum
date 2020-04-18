@@ -3,17 +3,15 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum\Earth\Timezone\Europe;
 
-use Innmind\TimeContinuum\{
-    Timezone as TimezoneInterface,
-    Earth\Timezone,
-};
+use Innmind\TimeContinuum\Earth\Timezone;
 
-final class Malta implements TimezoneInterface
+/**
+ * @psalm-immutable
+ */
+final class Malta extends Timezone
 {
-    use Timezone;
-
     public function __construct()
     {
-        $this->use('Europe/Malta');
+        parent::__construct('Europe/Malta');
     }
 }

@@ -3,17 +3,15 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum\Earth\Timezone\Asia;
 
-use Innmind\TimeContinuum\{
-    Timezone as TimezoneInterface,
-    Earth\Timezone,
-};
+use Innmind\TimeContinuum\Earth\Timezone;
 
-final class Anadyr implements TimezoneInterface
+/**
+ * @psalm-immutable
+ */
+final class Anadyr extends Timezone
 {
-    use Timezone;
-
     public function __construct()
     {
-        $this->use('Asia/Anadyr');
+        parent::__construct('Asia/Anadyr');
     }
 }

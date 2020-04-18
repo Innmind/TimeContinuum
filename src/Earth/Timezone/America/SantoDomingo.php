@@ -3,20 +3,16 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum\Earth\Timezone\America;
 
-use Innmind\TimeContinuum\{
-    Timezone as TimezoneInterface,
-    Earth\Timezone,
-};
+use Innmind\TimeContinuum\Earth\Timezone;
 
 /**
  * Santo Domingo in Dominican Republic
+ * @psalm-immutable
  */
-final class SantoDomingo implements TimezoneInterface
+final class SantoDomingo extends Timezone
 {
-    use Timezone;
-
     public function __construct()
     {
-        $this->use('America/Santo_Domingo');
+        parent::__construct('America/Santo_Domingo');
     }
 }

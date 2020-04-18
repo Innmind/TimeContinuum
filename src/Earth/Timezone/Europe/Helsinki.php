@@ -3,17 +3,15 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum\Earth\Timezone\Europe;
 
-use Innmind\TimeContinuum\{
-    Timezone as TimezoneInterface,
-    Earth\Timezone,
-};
+use Innmind\TimeContinuum\Earth\Timezone;
 
-final class Helsinki implements TimezoneInterface
+/**
+ * @psalm-immutable
+ */
+final class Helsinki extends Timezone
 {
-    use Timezone;
-
     public function __construct()
     {
-        $this->use('Europe/Helsinki');
+        parent::__construct('Europe/Helsinki');
     }
 }

@@ -8,6 +8,9 @@ use Innmind\TimeContinuum\{
     Exception\DomainException,
 };
 
+/**
+ * @psalm-immutable
+ */
 final class Day implements DayInterface
 {
     private int $day;

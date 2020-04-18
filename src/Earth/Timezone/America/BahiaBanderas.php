@@ -3,17 +3,15 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum\Earth\Timezone\America;
 
-use Innmind\TimeContinuum\{
-    Timezone as TimezoneInterface,
-    Earth\Timezone,
-};
+use Innmind\TimeContinuum\Earth\Timezone;
 
-final class BahiaBanderas implements TimezoneInterface
+/**
+ * @psalm-immutable
+ */
+final class BahiaBanderas extends Timezone
 {
-    use Timezone;
-
     public function __construct()
     {
-        $this->use('America/Bahia_Banderas');
+        parent::__construct('America/Bahia_Banderas');
     }
 }

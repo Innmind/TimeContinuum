@@ -3,6 +3,9 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum;
 
+/**
+ * @psalm-immutable
+ */
 interface Timezone
 {
     public function hours(): int;

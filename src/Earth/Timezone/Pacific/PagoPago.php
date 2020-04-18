@@ -3,17 +3,15 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum\Earth\Timezone\Pacific;
 
-use Innmind\TimeContinuum\{
-    Timezone as TimezoneInterface,
-    Earth\Timezone,
-};
+use Innmind\TimeContinuum\Earth\Timezone;
 
-final class PagoPago implements TimezoneInterface
+/**
+ * @psalm-immutable
+ */
+final class PagoPago extends Timezone
 {
-    use Timezone;
-
     public function __construct()
     {
-        $this->use('Pacific/Pago_Pago');
+        parent::__construct('Pacific/Pago_Pago');
     }
 }

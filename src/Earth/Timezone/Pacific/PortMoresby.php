@@ -3,17 +3,15 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum\Earth\Timezone\Pacific;
 
-use Innmind\TimeContinuum\{
-    Timezone as TimezoneInterface,
-    Earth\Timezone,
-};
+use Innmind\TimeContinuum\Earth\Timezone;
 
-final class PortMoresby implements TimezoneInterface
+/**
+ * @psalm-immutable
+ */
+final class PortMoresby extends Timezone
 {
-    use Timezone;
-
     public function __construct()
     {
-        $this->use('Pacific/Port_Moresby');
+        parent::__construct('Pacific/Port_Moresby');
     }
 }

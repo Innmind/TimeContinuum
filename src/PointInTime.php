@@ -13,6 +13,9 @@ use Innmind\TimeContinuum\Clock\{
     Millisecond,
 };
 
+/**
+ * @psalm-immutable
+ */
 interface PointInTime
 {
     /**

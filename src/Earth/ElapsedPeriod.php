@@ -8,6 +8,9 @@ use Innmind\TimeContinuum\{
     Exception\ElapsedPeriodCantBeNegative
 };
 
+/**
+ * @psalm-immutable
+ */
 final class ElapsedPeriod implements ElapsedPeriodInterface
 {
     private int $milliseconds;

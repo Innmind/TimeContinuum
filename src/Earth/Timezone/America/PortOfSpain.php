@@ -3,17 +3,15 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum\Earth\Timezone\America;
 
-use Innmind\TimeContinuum\{
-    Timezone as TimezoneInterface,
-    Earth\Timezone,
-};
+use Innmind\TimeContinuum\Earth\Timezone;
 
-final class PortOfSpain implements TimezoneInterface
+/**
+ * @psalm-immutable
+ */
+final class PortOfSpain extends Timezone
 {
-    use Timezone;
-
     public function __construct()
     {
-        $this->use('America/Port_of_Spain');
+        parent::__construct('America/Port_of_Spain');
     }
 }

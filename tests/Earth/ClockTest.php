@@ -9,11 +9,19 @@ use Innmind\TimeContinuum\{
     PointInTime,
     Format,
     Earth\Timezone\UTC,
+    Earth\Format\ISO8601,
+    Exception\RuntimeException,
 };
 use PHPUnit\Framework\TestCase;
+use Innmind\BlackBox\{
+    PHPUnit\BlackBox,
+    Set,
+};
 
 class ClockTest extends TestCase
 {
+    use BlackBox;
+
     public function testInterface()
     {
         $this->assertInstanceOf(
@@ -85,5 +93,19 @@ class ClockTest extends TestCase
             $date->format(\DateTime::ATOM),
             $point->toString()
         );
+    }
+
+    public function testAtWithDateNotOfExpectedFormat()
+    {
+        $this
+            ->forAll(Set\Strings::any())
+            ->then(function($date) {
+                $clock = new Clock;
+
+                $this->expectException(RuntimeException::class);
+                $this->expectExceptionMessage("'$date' doesn't match format 'Y-m-d\TH:i:sP'");
+
+                $clock->at($date, new ISO8601);
+            });
     }
 }

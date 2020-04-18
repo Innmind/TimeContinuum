@@ -3,17 +3,15 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum\Earth\Timezone\Atlantic;
 
-use Innmind\TimeContinuum\{
-    Timezone as TimezoneInterface,
-    Earth\Timezone,
-};
+use Innmind\TimeContinuum\Earth\Timezone;
 
-final class SouthGeorgia implements TimezoneInterface
+/**
+ * @psalm-immutable
+ */
+final class SouthGeorgia extends Timezone
 {
-    use Timezone;
-
     public function __construct()
     {
-        $this->use('Atlantic/South_Georgia');
+        parent::__construct('Atlantic/South_Georgia');
     }
 }

@@ -3,17 +3,15 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum\Earth\Timezone\America;
 
-use Innmind\TimeContinuum\{
-    Timezone as TimezoneInterface,
-    Earth\Timezone,
-};
+use Innmind\TimeContinuum\Earth\Timezone;
 
-final class Metlakatla implements TimezoneInterface
+/**
+ * @psalm-immutable
+ */
+final class Metlakatla extends Timezone
 {
-    use Timezone;
-
     public function __construct()
     {
-        $this->use('America/Metlakatla');
+        parent::__construct('America/Metlakatla');
     }
 }

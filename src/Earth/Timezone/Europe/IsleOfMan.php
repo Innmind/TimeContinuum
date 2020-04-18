@@ -3,17 +3,15 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum\Earth\Timezone\Europe;
 
-use Innmind\TimeContinuum\{
-    Timezone as TimezoneInterface,
-    Earth\Timezone,
-};
+use Innmind\TimeContinuum\Earth\Timezone;
 
-final class IsleOfMan implements TimezoneInterface
+/**
+ * @psalm-immutable
+ */
+final class IsleOfMan extends Timezone
 {
-    use Timezone;
-
     public function __construct()
     {
-        $this->use('Europe/Isle_of_Man');
+        parent::__construct('Europe/Isle_of_Man');
     }
 }

@@ -3,17 +3,15 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum\Earth\Timezone\Australia;
 
-use Innmind\TimeContinuum\{
-    Timezone as TimezoneInterface,
-    Earth\Timezone,
-};
+use Innmind\TimeContinuum\Earth\Timezone;
 
-final class Darwin implements TimezoneInterface
+/**
+ * @psalm-immutable
+ */
+final class Darwin extends Timezone
 {
-    use Timezone;
-
     public function __construct()
     {
-        $this->use('Australia/Darwin');
+        parent::__construct('Australia/Darwin');
     }
 }
