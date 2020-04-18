@@ -3,17 +3,15 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum\Earth\Timezone\Australia;
 
-use Innmind\TimeContinuum\{
-    Timezone as TimezoneInterface,
-    Earth\Timezone,
-};
+use Innmind\TimeContinuum\Earth\Timezone;
 
-final class Sydney implements TimezoneInterface
+/**
+ * @psalm-immutable
+ */
+final class Sydney extends Timezone
 {
-    use Timezone;
-
     public function __construct()
     {
-        $this->use('Australia/Sydney');
+        parent::__construct('Australia/Sydney');
     }
 }

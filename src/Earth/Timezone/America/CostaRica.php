@@ -3,17 +3,15 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum\Earth\Timezone\America;
 
-use Innmind\TimeContinuum\{
-    Timezone as TimezoneInterface,
-    Earth\Timezone,
-};
+use Innmind\TimeContinuum\Earth\Timezone;
 
-final class CostaRica implements TimezoneInterface
+/**
+ * @psalm-immutable
+ */
+final class CostaRica extends Timezone
 {
-    use Timezone;
-
     public function __construct()
     {
-        $this->use('America/Costa_Rica');
+        parent::__construct('America/Costa_Rica');
     }
 }

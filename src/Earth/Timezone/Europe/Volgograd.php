@@ -3,17 +3,15 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum\Earth\Timezone\Europe;
 
-use Innmind\TimeContinuum\{
-    Timezone as TimezoneInterface,
-    Earth\Timezone,
-};
+use Innmind\TimeContinuum\Earth\Timezone;
 
-final class Volgograd implements TimezoneInterface
+/**
+ * @psalm-immutable
+ */
+final class Volgograd extends Timezone
 {
-    use Timezone;
-
     public function __construct()
     {
-        $this->use('Europe/Volgograd');
+        parent::__construct('Europe/Volgograd');
     }
 }

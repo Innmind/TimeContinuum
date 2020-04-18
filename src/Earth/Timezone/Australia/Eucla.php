@@ -3,17 +3,15 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum\Earth\Timezone\Australia;
 
-use Innmind\TimeContinuum\{
-    Timezone as TimezoneInterface,
-    Earth\Timezone,
-};
+use Innmind\TimeContinuum\Earth\Timezone;
 
-final class Eucla implements TimezoneInterface
+/**
+ * @psalm-immutable
+ */
+final class Eucla extends Timezone
 {
-    use Timezone;
-
     public function __construct()
     {
-        $this->use('Australia/Eucla');
+        parent::__construct('Australia/Eucla');
     }
 }

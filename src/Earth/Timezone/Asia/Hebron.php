@@ -3,17 +3,15 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum\Earth\Timezone\Asia;
 
-use Innmind\TimeContinuum\{
-    Timezone as TimezoneInterface,
-    Earth\Timezone,
-};
+use Innmind\TimeContinuum\Earth\Timezone;
 
-final class Hebron implements TimezoneInterface
+/**
+ * @psalm-immutable
+ */
+final class Hebron extends Timezone
 {
-    use Timezone;
-
     public function __construct()
     {
-        $this->use('Asia/Hebron');
+        parent::__construct('Asia/Hebron');
     }
 }

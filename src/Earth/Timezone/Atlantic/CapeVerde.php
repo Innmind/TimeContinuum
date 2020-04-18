@@ -3,17 +3,15 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum\Earth\Timezone\Atlantic;
 
-use Innmind\TimeContinuum\{
-    Timezone as TimezoneInterface,
-    Earth\Timezone,
-};
+use Innmind\TimeContinuum\Earth\Timezone;
 
-final class CapeVerde implements TimezoneInterface
+/**
+ * @psalm-immutable
+ */
+final class CapeVerde extends Timezone
 {
-    use Timezone;
-
     public function __construct()
     {
-        $this->use('Atlantic/Cape_Verde');
+        parent::__construct('Atlantic/Cape_Verde');
     }
 }

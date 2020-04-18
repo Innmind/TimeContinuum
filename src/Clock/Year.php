@@ -3,6 +3,9 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum\Clock;
 
+/**
+ * @psalm-immutable
+ */
 interface Year
 {
     public function numberOfDays(): int;

@@ -3,17 +3,15 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum\Earth\Timezone\America\NorthDakota;
 
-use Innmind\TimeContinuum\{
-    Timezone as TimezoneInterface,
-    Earth\Timezone,
-};
+use Innmind\TimeContinuum\Earth\Timezone;
 
-final class Beulah implements TimezoneInterface
+/**
+ * @psalm-immutable
+ */
+final class Beulah extends Timezone
 {
-    use Timezone;
-
     public function __construct()
     {
-        $this->use('America/North_Dakota/Beulah');
+        parent::__construct('America/North_Dakota/Beulah');
     }
 }

@@ -3,17 +3,15 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum\Earth\Timezone\America\Indiana;
 
-use Innmind\TimeContinuum\{
-    Timezone as TimezoneInterface,
-    Earth\Timezone,
-};
+use Innmind\TimeContinuum\Earth\Timezone;
 
-final class Petersburg implements TimezoneInterface
+/**
+ * @psalm-immutable
+ */
+final class Petersburg extends Timezone
 {
-    use Timezone;
-
     public function __construct()
     {
-        $this->use('America/Indiana/Petersburg');
+        parent::__construct('America/Indiana/Petersburg');
     }
 }

@@ -3,17 +3,15 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum\Earth\Timezone\America;
 
-use Innmind\TimeContinuum\{
-    Timezone as TimezoneInterface,
-    Earth\Timezone,
-};
+use Innmind\TimeContinuum\Earth\Timezone;
 
-final class Guyana implements TimezoneInterface
+/**
+ * @psalm-immutable
+ */
+final class Guyana extends Timezone
 {
-    use Timezone;
-
     public function __construct()
     {
-        $this->use('America/Guyana');
+        parent::__construct('America/Guyana');
     }
 }

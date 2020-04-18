@@ -3,17 +3,15 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum\Earth\Timezone\Asia;
 
-use Innmind\TimeContinuum\{
-    Timezone as TimezoneInterface,
-    Earth\Timezone,
-};
+use Innmind\TimeContinuum\Earth\Timezone;
 
-final class UstNera implements TimezoneInterface
+/**
+ * @psalm-immutable
+ */
+final class UstNera extends Timezone
 {
-    use Timezone;
-
     public function __construct()
     {
-        $this->use('Asia/Ust-Nera');
+        parent::__construct('Asia/Ust-Nera');
     }
 }

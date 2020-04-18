@@ -42,13 +42,6 @@ class NowTest extends TestCase
         $this->assertInstanceOf(Second::class, $point->second());
         $this->assertInstanceOf(Millisecond::class, $point->millisecond());
         $this->assertInstanceOf(Timezone::class, $point->timezone());
-        $this->assertSame($point->year(), $point->year());
-        $this->assertSame($point->month(), $point->month());
-        $this->assertSame($point->day(), $point->day());
-        $this->assertSame($point->hour(), $point->hour());
-        $this->assertSame($point->minute(), $point->minute());
-        $this->assertSame($point->second(), $point->second());
-        $this->assertSame($point->millisecond(), $point->millisecond());
         $this->assertSame((int) date('Y', $timestamp), $point->year()->toInt());
         $this->assertSame((int) date('m', $timestamp), $point->month()->toInt());
         $this->assertSame((int) date('d', $timestamp), $point->day()->toInt());

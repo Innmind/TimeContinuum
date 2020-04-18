@@ -3,17 +3,15 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum\Earth\Timezone\Indian;
 
-use Innmind\TimeContinuum\{
-    Timezone as TimezoneInterface,
-    Earth\Timezone,
-};
+use Innmind\TimeContinuum\Earth\Timezone;
 
-final class Reunion implements TimezoneInterface
+/**
+ * @psalm-immutable
+ */
+final class Reunion extends Timezone
 {
-    use Timezone;
-
     public function __construct()
     {
-        $this->use('Indian/Reunion');
+        parent::__construct('Indian/Reunion');
     }
 }

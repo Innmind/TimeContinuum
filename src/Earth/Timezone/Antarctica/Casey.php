@@ -3,17 +3,15 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum\Earth\Timezone\Antarctica;
 
-use Innmind\TimeContinuum\{
-    Timezone as TimezoneInterface,
-    Earth\Timezone,
-};
+use Innmind\TimeContinuum\Earth\Timezone;
 
-final class Casey implements TimezoneInterface
+/**
+ * @psalm-immutable
+ */
+final class Casey extends Timezone
 {
-    use Timezone;
-
     public function __construct()
     {
-        $this->use('Antarctica/Casey');
+        parent::__construct('Antarctica/Casey');
     }
 }

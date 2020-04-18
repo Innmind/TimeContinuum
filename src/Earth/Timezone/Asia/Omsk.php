@@ -3,17 +3,15 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum\Earth\Timezone\Asia;
 
-use Innmind\TimeContinuum\{
-    Timezone as TimezoneInterface,
-    Earth\Timezone,
-};
+use Innmind\TimeContinuum\Earth\Timezone;
 
-final class Omsk implements TimezoneInterface
+/**
+ * @psalm-immutable
+ */
+final class Omsk extends Timezone
 {
-    use Timezone;
-
     public function __construct()
     {
-        $this->use('Asia/Omsk');
+        parent::__construct('Asia/Omsk');
     }
 }

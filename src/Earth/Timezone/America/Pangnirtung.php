@@ -3,17 +3,15 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum\Earth\Timezone\America;
 
-use Innmind\TimeContinuum\{
-    Timezone as TimezoneInterface,
-    Earth\Timezone,
-};
+use Innmind\TimeContinuum\Earth\Timezone;
 
-final class Pangnirtung implements TimezoneInterface
+/**
+ * @psalm-immutable
+ */
+final class Pangnirtung extends Timezone
 {
-    use Timezone;
-
     public function __construct()
     {
-        $this->use('America/Pangnirtung');
+        parent::__construct('America/Pangnirtung');
     }
 }

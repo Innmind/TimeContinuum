@@ -3,16 +3,21 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum\Earth;
 
-trait Timezone
+use Innmind\TimeContinuum\Timezone as TimezoneInterface;
+
+/**
+ * @psalm-immutable
+ */
+abstract class Timezone implements TimezoneInterface
 {
     private Timezone\UTC $utc;
     private bool $dst;
 
-    private function use(string $zone): void
+    public function __construct(string $zone)
     {
         $zone = new \DateTimeZone($zone);
         $currentOffset = $zone->getOffset(
-            $now = new \DateTime('now', $zone),
+            $now = new \DateTimeImmutable('now', $zone),
         );
         $this->utc = new Timezone\UTC(
             $hour = (int) ($currentOffset / 3600),

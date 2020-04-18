@@ -5,6 +5,9 @@ namespace Innmind\TimeContinuum\Earth\Format;
 
 use Innmind\TimeContinuum\Format;
 
+/**
+ * @psalm-immutable
+ */
 final class Cookie implements Format
 {
     public function toString(): string

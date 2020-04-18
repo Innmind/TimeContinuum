@@ -3,17 +3,15 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum\Earth\Timezone\Atlantic;
 
-use Innmind\TimeContinuum\{
-    Timezone as TimezoneInterface,
-    Earth\Timezone,
-};
+use Innmind\TimeContinuum\Earth\Timezone;
 
-final class JanMayen implements TimezoneInterface
+/**
+ * @psalm-immutable
+ */
+final class JanMayen extends Timezone
 {
-    use Timezone;
-
     public function __construct()
     {
-        $this->use('Atlantic/Jan_Mayen');
+        parent::__construct('Atlantic/Jan_Mayen');
     }
 }

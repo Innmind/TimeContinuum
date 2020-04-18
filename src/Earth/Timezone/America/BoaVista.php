@@ -3,17 +3,15 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum\Earth\Timezone\America;
 
-use Innmind\TimeContinuum\{
-    Timezone as TimezoneInterface,
-    Earth\Timezone,
-};
+use Innmind\TimeContinuum\Earth\Timezone;
 
-final class BoaVista implements TimezoneInterface
+/**
+ * @psalm-immutable
+ */
+final class BoaVista extends Timezone
 {
-    use Timezone;
-
     public function __construct()
     {
-        $this->use('America/Boa_Vista');
+        parent::__construct('America/Boa_Vista');
     }
 }

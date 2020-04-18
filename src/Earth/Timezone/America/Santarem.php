@@ -3,17 +3,15 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum\Earth\Timezone\America;
 
-use Innmind\TimeContinuum\{
-    Timezone as TimezoneInterface,
-    Earth\Timezone,
-};
+use Innmind\TimeContinuum\Earth\Timezone;
 
-final class Santarem implements TimezoneInterface
+/**
+ * @psalm-immutable
+ */
+final class Santarem extends Timezone
 {
-    use Timezone;
-
     public function __construct()
     {
-        $this->use('America/Santarem');
+        parent::__construct('America/Santarem');
     }
 }

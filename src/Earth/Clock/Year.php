@@ -5,6 +5,9 @@ namespace Innmind\TimeContinuum\Earth\Clock;
 
 use Innmind\TimeContinuum\Clock\Year as YearInterface;
 
+/**
+ * @psalm-immutable
+ */
 final class Year implements YearInterface
 {
     private int $year;

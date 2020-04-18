@@ -5,6 +5,9 @@ namespace Innmind\TimeContinuum\Earth\Period;
 
 use Innmind\TimeContinuum\Period;
 
+/**
+ * @psalm-immutable
+ */
 final class Composite implements Period
 {
     private int $year;

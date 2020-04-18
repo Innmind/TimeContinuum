@@ -3,17 +3,15 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum\Earth\Timezone\Arctic;
 
-use Innmind\TimeContinuum\{
-    Timezone as TimezoneInterface,
-    Earth\Timezone,
-};
+use Innmind\TimeContinuum\Earth\Timezone;
 
-final class Longyearbyen implements TimezoneInterface
+/**
+ * @psalm-immutable
+ */
+final class Longyearbyen extends Timezone
 {
-    use Timezone;
-
     public function __construct()
     {
-        $this->use('Arctic/Longyearbyen');
+        parent::__construct('Arctic/Longyearbyen');
     }
 }

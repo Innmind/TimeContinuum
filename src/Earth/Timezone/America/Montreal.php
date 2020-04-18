@@ -3,17 +3,15 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum\Earth\Timezone\America;
 
-use Innmind\TimeContinuum\{
-    Timezone as TimezoneInterface,
-    Earth\Timezone,
-};
+use Innmind\TimeContinuum\Earth\Timezone;
 
-final class Montreal implements TimezoneInterface
+/**
+ * @psalm-immutable
+ */
+final class Montreal extends Timezone
 {
-    use Timezone;
-
     public function __construct()
     {
-        $this->use('America/Montreal');
+        parent::__construct('America/Montreal');
     }
 }

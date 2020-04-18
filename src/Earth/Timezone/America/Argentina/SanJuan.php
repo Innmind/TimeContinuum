@@ -3,17 +3,15 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum\Earth\Timezone\America\Argentina;
 
-use Innmind\TimeContinuum\{
-    Timezone as TimezoneInterface,
-    Earth\Timezone,
-};
+use Innmind\TimeContinuum\Earth\Timezone;
 
-final class SanJuan implements TimezoneInterface
+/**
+ * @psalm-immutable
+ */
+final class SanJuan extends Timezone
 {
-    use Timezone;
-
     public function __construct()
     {
-        $this->use('America/Argentina/San_Juan');
+        parent::__construct('America/Argentina/San_Juan');
     }
 }
