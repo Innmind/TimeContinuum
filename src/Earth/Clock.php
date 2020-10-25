@@ -50,6 +50,10 @@ final class Clock implements ClockInterface
             $date = $datetime->format(\DateTime::ATOM);
         }
 
+        /**
+         * @psalm-suppress ImpureVariable
+         * @psalm-suppress ImpurePropertyFetch
+         */
         return (new EarthPointInTime($date))->changeTimezone($this->timezone);
     }
 }
