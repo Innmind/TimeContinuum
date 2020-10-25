@@ -43,6 +43,6 @@
         "innmind/black-box": "For property based testing"
     },
     "provide": {
-        "innmind/black-box": "4.0"
+        "innmind/black-box-sets": "4.0"
     }
 }
