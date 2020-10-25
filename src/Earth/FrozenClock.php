@@ -30,6 +30,10 @@ final class FrozenClock implements ClockInterface
      */
     public function at(string $date, Format $format = null): PointInTime
     {
+        /**
+         * @psalm-suppress ImpureVariable
+         * @psalm-suppress ImpurePropertyFetch
+         */
         return $this->concrete->at($date, $format)->changeTimezone($this->now->timezone());
     }
 }
