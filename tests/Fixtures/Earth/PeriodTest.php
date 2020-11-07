@@ -38,17 +38,13 @@ class PeriodTest extends TestCase
         $this->assertCount(100, \iterator_to_array($periods->values(new RandomInt)));
 
         $periods = $periods->values(new RandomInt);
-        $previous = $periods->current()->unwrap();
-        $periods->next();
+        $generated = [];
 
-        while ($periods->valid()) {
-            $period = $periods->current();
-
+        foreach ($periods as $period) {
             $this->assertInstanceOf(Set\Value::class, $period);
             $this->assertTrue($period->isImmutable());
             $value = $period->unwrap();
             $this->assertInstanceOf(Year::class, $value);
-            $this->assertNotSame($previous->years(), $value->years());
             $this->assertSame(0, $value->months());
             $this->assertSame(0, $value->days());
             $this->assertSame(0, $value->hours());
@@ -56,9 +52,10 @@ class PeriodTest extends TestCase
             $this->assertSame(0, $value->seconds());
             $this->assertSame(0, $value->milliseconds());
 
-            $periods->next();
-            $previous = $value;
+            $generated[] = $value->years();
         }
+
+        $this->assertGreaterThan(90, \count(\array_unique($generated)));
     }
 
     public function testLessThanAYear()
@@ -69,12 +66,9 @@ class PeriodTest extends TestCase
         $this->assertCount(100, \iterator_to_array($periods->values(new RandomInt)));
 
         $periods = $periods->values(new RandomInt);
-        $previous = $periods->current()->unwrap();
-        $periods->next();
+        $unique = [];
 
-        while ($periods->valid()) {
-            $period = $periods->current();
-
+        foreach ($periods as $period) {
             $this->assertInstanceOf(Set\Value::class, $period);
             $this->assertTrue($period->isImmutable());
             $value = $period->unwrap();
@@ -82,25 +76,19 @@ class PeriodTest extends TestCase
             $this->assertLessThan(365, $value->days());
             $this->assertSame(0, $value->years());
             $this->assertSame(0, $value->months());
-            $this->assertNotSame(
-                [
-                    $previous->days(),
-                    $previous->hours(),
-                    $previous->minutes(),
-                    $previous->seconds(),
-                    $previous->milliseconds(),
-                ],
-                [
-                    $value->days(),
-                    $value->hours(),
-                    $value->minutes(),
-                    $value->seconds(),
-                    $value->milliseconds(),
-                ],
-            );
+            $generated = [
+                $value->days(),
+                $value->hours(),
+                $value->minutes(),
+                $value->seconds(),
+                $value->milliseconds(),
+            ];
 
-            $periods->next();
-            $previous = $value;
+            if (!\in_array($generated, $unique, true)) {
+                $unique[] = $generated;
+            }
         }
+
+        $this->assertGreaterThan(90, \count($unique));
     }
 }
