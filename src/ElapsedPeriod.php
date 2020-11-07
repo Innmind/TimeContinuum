@@ -3,8 +3,6 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum;
 
-use Innmind\TimeContinuum\Exception\ElapsedPeriodCantBeNegative;
-
 /**
  * @psalm-immutable
  */

@@ -24,16 +24,6 @@ final class Month
         $this->months = $months;
     }
 
-    public static function forward(int $months): self
-    {
-        return new self('goForward', new Period($months));
-    }
-
-    public static function backward(int $months): self
-    {
-        return new self('goBack', new Period($months));
-    }
-
     public function __invoke(PointInTime $point): PointInTime
     {
         /** @var PointInTime $newPoint */
@@ -54,5 +44,15 @@ final class Month
         return $newPoint->goForward(
             new Day($point->day()->toInt() - 1),
         );
+    }
+
+    public static function forward(int $months): self
+    {
+        return new self('goForward', new Period($months));
+    }
+
+    public static function backward(int $months): self
+    {
+        return new self('goBack', new Period($months));
     }
 }
