@@ -46,7 +46,7 @@ class PointInTimeTest extends TestCase
         $this->assertSame(30, $point->second()->toInt());
         $this->assertSame(123, $point->millisecond()->toInt());
         $this->assertSame(
-            (new \DateTime('2016-10-05T08:01:30.123+02:00'))->getTimestamp() * 1000 + $point->millisecond()->toInt(),
+            (new \DateTimeImmutable('2016-10-05T08:01:30.123+02:00'))->getTimestamp() * 1000 + $point->millisecond()->toInt(),
             $point->milliseconds()
         );
         $this->assertSame('+02:00', $point->timezone()->toString());
@@ -68,8 +68,7 @@ class PointInTimeTest extends TestCase
         $this->assertSame(
             '08:01:30 05/10/2016',
             $point->format(
-                new class implements Format
-                {
+                new class implements Format {
                     public function toString(): string
                     {
                         return 'H:i:s d/m/Y';
@@ -185,8 +184,7 @@ class PointInTimeTest extends TestCase
             $point
                 ->goBack(new MillisecondPeriod(623))
                 ->format(
-                    new class implements Format
-                    {
+                    new class implements Format {
                         public function toString(): string
                         {
                             return 'Y-m-d\TH:i:s.uP';

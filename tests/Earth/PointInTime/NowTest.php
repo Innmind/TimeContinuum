@@ -27,7 +27,7 @@ class NowTest extends TestCase
 {
     public function testInterface()
     {
-        $time = microtime(true);
+        $time = \microtime(true);
         $timestamp = (int) $time;
         //off by one due to the time it takes to reach microtime in Now::__construct
         $now = (int) ($time * 1000);
@@ -42,22 +42,22 @@ class NowTest extends TestCase
         $this->assertInstanceOf(Second::class, $point->second());
         $this->assertInstanceOf(Millisecond::class, $point->millisecond());
         $this->assertInstanceOf(Timezone::class, $point->timezone());
-        $this->assertSame((int) date('Y', $timestamp), $point->year()->toInt());
-        $this->assertSame((int) date('m', $timestamp), $point->month()->toInt());
-        $this->assertSame((int) date('d', $timestamp), $point->day()->toInt());
-        $this->assertSame((int) date('H', $timestamp), $point->hour()->toInt());
-        $this->assertSame((int) date('i', $timestamp), $point->minute()->toInt());
-        $this->assertSame((int) date('s', $timestamp), $point->second()->toInt());
+        $this->assertSame((int) \date('Y', $timestamp), $point->year()->toInt());
+        $this->assertSame((int) \date('m', $timestamp), $point->month()->toInt());
+        $this->assertSame((int) \date('d', $timestamp), $point->day()->toInt());
+        $this->assertSame((int) \date('H', $timestamp), $point->hour()->toInt());
+        $this->assertSame((int) \date('i', $timestamp), $point->minute()->toInt());
+        $this->assertSame((int) \date('s', $timestamp), $point->second()->toInt());
         //allow 50 milliseconds delay between our microtime
         //and the one in Now::__construct
         $this->assertTrue($point->millisecond()->toInt() >= $now - ($timestamp * 1000));
         $this->assertTrue($point->millisecond()->toInt() <= $now - ($timestamp * 1000) + 50);
         $this->assertTrue($point->milliseconds() >= $now);
         $this->assertTrue($point->milliseconds() <= $now + 50);
-        $timezone = date('P', $timestamp);
+        $timezone = \date('P', $timestamp);
         $timezone = $timezone === '+00:00' ? 'Z' : $timezone;
         $this->assertSame($timezone, $point->timezone()->toString());
-        $this->assertSame(date('Y-m-d\TH:i:sP', $timestamp), $point->toString());
+        $this->assertSame(\date('Y-m-d\TH:i:sP', $timestamp), $point->toString());
     }
 
     public function testFormat()
@@ -65,10 +65,9 @@ class NowTest extends TestCase
         $point = new Now;
 
         $this->assertSame(
-            date('H:i:s d/m/Y'),
+            \date('H:i:s d/m/Y'),
             $point->format(
-                new class implements Format
-                {
+                new class implements Format {
                     public function toString(): string
                     {
                         return 'H:i:s d/m/Y';
@@ -80,8 +79,8 @@ class NowTest extends TestCase
 
     public function testChangeTimezone()
     {
-        $now = new \DateTime;
-        $now->setTimezone(new \DateTimeZone('-02:30'));
+        $now = new \DateTimeImmutable;
+        $now = $now->setTimezone(new \DateTimeZone('-02:30'));
         $point = new Now;
         $point2 = $point->changeTimezone(new UTC(-2, 30));
 
@@ -107,7 +106,7 @@ class NowTest extends TestCase
     public function testElapsedSince()
     {
         $point = new Now;
-        sleep(1);
+        \sleep(1);
         $point2 = new Now;
         $elapsed = $point2->elapsedSince($point);
 
@@ -119,7 +118,7 @@ class NowTest extends TestCase
     public function testAheadOf()
     {
         $point = new Now;
-        sleep(1);
+        \sleep(1);
         $point2 = new Now;
 
         $this->assertTrue($point2->aheadOf($point));
@@ -129,7 +128,7 @@ class NowTest extends TestCase
     public function testEquals()
     {
         $point = new Now;
-        sleep(1);
+        \sleep(1);
         $point2 = new Now;
         $point3 = clone $point;
 
@@ -165,7 +164,7 @@ class NowTest extends TestCase
             );
         } else {
             $this->assertSame(
-                1000 - abs($point->millisecond()->toInt() - 500),
+                1000 - \abs($point->millisecond()->toInt() - 500),
                 $point3->millisecond()->toInt()
             );
             $this->assertSame(

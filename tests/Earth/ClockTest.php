@@ -36,7 +36,7 @@ class ClockTest extends TestCase
             PointInTime::class,
             $now = (new Clock)->now()
         );
-        $timezone = date('P');
+        $timezone = \date('P');
         $timezone = $timezone === '+00:00' ? 'Z' : $timezone;
         $this->assertSame(
             $timezone,
@@ -50,8 +50,8 @@ class ClockTest extends TestCase
             PointInTime::class,
             $point = (new Clock)->at('2016-10-08T16:08:30+02:00')
         );
-        $date = new \DateTime('2016-10-08T16:08:30+02:00');
-        $date->setTimezone(new \DateTimeZone(date('P'))); //system timezone
+        $date = new \DateTimeImmutable('2016-10-08T16:08:30+02:00');
+        $date = $date->setTimezone(new \DateTimeZone(\date('P'))); //system timezone
         $this->assertSame(
             $date->format(\DateTime::ATOM),
             $point->toString()
@@ -87,8 +87,8 @@ class ClockTest extends TestCase
                 }
             })
         );
-        $date = new \DateTime('2016-10-08T16:08:30+02:00');
-        $date->setTimezone(new \DateTimeZone(date('P'))); //system timezone
+        $date = new \DateTimeImmutable('2016-10-08T16:08:30+02:00');
+        $date = $date->setTimezone(new \DateTimeZone(\date('P'))); //system timezone
         $this->assertSame(
             $date->format(\DateTime::ATOM),
             $point->toString()

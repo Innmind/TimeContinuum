@@ -88,7 +88,7 @@ final class UTC implements Timezone
         return \sprintf(
             '%s%02d:%02d',
             $hours > 0 ? '+' : '-',
-            abs($hours),
+            \abs($hours),
             $minutes,
         );
     }

@@ -21,27 +21,27 @@ abstract class Timezone implements TimezoneInterface
         );
         $this->utc = new Timezone\UTC(
             $hour = (int) ($currentOffset / 3600),
-            (int) abs(round(($currentOffset - $hour * 3600) / 60)),
+            (int) \abs(\round(($currentOffset - $hour * 3600) / 60)),
         );
         $this->dst = (bool) (int) $now->format('I');
     }
 
-    public function hours(): int
+    final public function hours(): int
     {
         return $this->utc->hours();
     }
 
-    public function minutes(): int
+    final public function minutes(): int
     {
         return $this->utc->minutes();
     }
 
-    public function daylightSavingTimeApplied(): bool
+    final public function daylightSavingTimeApplied(): bool
     {
         return $this->dst;
     }
 
-    public function toString(): string
+    final public function toString(): string
     {
         return $this->utc->toString();
     }
