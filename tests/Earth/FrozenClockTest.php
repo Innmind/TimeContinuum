@@ -48,7 +48,10 @@ class FrozenClockTest extends TestCase
             ->then(function($now, $at) {
                 $clock = new FrozenClock($now);
 
-                $point = $clock->at($at->format(new ISO8601));
+                $point = $clock->at($at->format(new ISO8601))->match(
+                    static fn($point) => $point,
+                    static fn() => null,
+                );
 
                 $this->assertInstanceOf(PointInTimeInterface::class, $point);
                 $this->assertSame($now->timezone()->toString(), $point->timezone()->toString());

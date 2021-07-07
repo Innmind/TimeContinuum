@@ -9,6 +9,7 @@ use Innmind\TimeContinuum\{
     Format,
     Earth\Format\ISO8601,
 };
+use Innmind\Immutable\Maybe;
 use Psr\Log\LoggerInterface;
 
 final class Clock implements ClockInterface
@@ -35,25 +36,16 @@ final class Clock implements ClockInterface
     /**
      * @psalm-pure
      */
-    public function at(string $date, Format $format = null): PointInTime
+    public function at(string $date, Format $format = null): Maybe
     {
         /**
          * @psalm-suppress ImpureVariable
          * @psalm-suppress ImpurePropertyFetch
          */
-        $point = $this->clock->at($date, $format);
-        /**
-         * @psalm-suppress ImpureVariable
-         * @psalm-suppress ImpurePropertyFetch
-         * @psalm-suppress ImpureMethodCall
-         */
-        $this->logger->debug('Asked time {date} ({format}) resolved to {point}', [
-            'date' => $date,
-            'format' => $this->format($format),
-            'point' => $point->format(new ISO8601),
-        ]);
-
-        return $point;
+        return $this
+            ->clock
+            ->at($date, $format)
+            ->map(fn($point) => $this->log($point, $date, $format));
     }
 
     /**
@@ -68,5 +60,24 @@ final class Clock implements ClockInterface
         $class = \get_class($format);
 
         return "{$class}({$format->toString()})";
+    }
+
+    private function log(
+        PointInTime $point,
+        string $date,
+        ?Format $format
+    ): PointInTime {
+        /**
+         * @psalm-suppress ImpureVariable
+         * @psalm-suppress ImpurePropertyFetch
+         * @psalm-suppress ImpureMethodCall
+         */
+        $this->logger->debug('Asked time {date} ({format}) resolved to {point}', [
+            'date' => $date,
+            'format' => $this->format($format),
+            'point' => $point->format(new ISO8601),
+        ]);
+
+        return $point;
     }
 }

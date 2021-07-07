@@ -10,7 +10,6 @@ use Innmind\TimeContinuum\{
     Format,
     Earth\Timezone\UTC,
     Earth\Format\ISO8601,
-    Exception\RuntimeException,
 };
 use PHPUnit\Framework\TestCase;
 use Innmind\BlackBox\{
@@ -48,7 +47,10 @@ class ClockTest extends TestCase
     {
         $this->assertInstanceOf(
             PointInTime::class,
-            $point = (new Clock)->at('2016-10-08T16:08:30+02:00')
+            $point = (new Clock)->at('2016-10-08T16:08:30+02:00')->match(
+                static fn($point) => $point,
+                static fn() => null,
+            ),
         );
         $date = new \DateTimeImmutable('2016-10-08T16:08:30+02:00');
         $date = $date->setTimezone(new \DateTimeZone(\date('P'))); //system timezone
@@ -71,7 +73,10 @@ class ClockTest extends TestCase
     {
         $this->assertInstanceOf(
             PointInTime::class,
-            $point = (new Clock(new UTC(6, 42)))->at('2016-10-08T16:08:30+02:00')
+            $point = (new Clock(new UTC(6, 42)))->at('2016-10-08T16:08:30+02:00')->match(
+                static fn($point) => $point,
+                static fn() => null,
+            ),
         );
         $this->assertSame('+06:42', $point->timezone()->toString());
     }
@@ -85,7 +90,10 @@ class ClockTest extends TestCase
                 {
                     return 'P Y-m-d H:i:s';
                 }
-            })
+            })->match(
+                static fn($point) => $point,
+                static fn() => null,
+            ),
         );
         $date = new \DateTimeImmutable('2016-10-08T16:08:30+02:00');
         $date = $date->setTimezone(new \DateTimeZone(\date('P'))); //system timezone
@@ -102,10 +110,10 @@ class ClockTest extends TestCase
             ->then(function($date) {
                 $clock = new Clock;
 
-                $this->expectException(RuntimeException::class);
-                $this->expectExceptionMessage("'$date' doesn't match format 'Y-m-d\TH:i:sP'");
-
-                $clock->at($date, new ISO8601);
+                $this->assertNull($clock->at($date, new ISO8601)->match(
+                    static fn($point) => $point,
+                    static fn() => null,
+                ));
             });
     }
 }
