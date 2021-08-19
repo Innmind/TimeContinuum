@@ -116,4 +116,31 @@ class ClockTest extends TestCase
                 ));
             });
     }
+
+    public function testDateCorrectlyRespectTheFormatGiven()
+    {
+        $this
+            ->forAll(
+                Set\Integers::between(10, 99),
+                Set\Integers::between(1, 9),
+                Set\Integers::between(10, 28),
+            )
+            ->then(function($year, $month, $day) {
+                $date = "$year-0$month-$day";
+
+                $this->assertNull(
+                    (new Clock)
+                        ->at($date, new class implements Format {
+                            public function toString(): string
+                            {
+                                return 'Y-m-d';
+                            }
+                        })
+                        ->match(
+                            static fn($point) => $point,
+                            static fn() => null,
+                        ),
+                );
+            });
+    }
 }

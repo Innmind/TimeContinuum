@@ -46,6 +46,11 @@ final class Clock implements ClockInterface
                 return Maybe::nothing();
             }
 
+            if ($datetime->format($format->toString()) !== $date) {
+                /** @var Maybe<PointInTime> */
+                return Maybe::nothing();
+            }
+
             $date = $datetime->format(\DateTime::ATOM);
         }
 
