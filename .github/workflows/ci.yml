@@ -9,6 +9,7 @@ jobs:
       matrix:
         os: [ubuntu-latest, macOS-latest]
         php-version: ['8.0', '8.1']
+        dependencies: ['lowest', 'highest']
     name: 'PHPUnit - PHP/${{ matrix.php-version }} - OS/${{ matrix.os }}'
     steps:
       - name: Checkout
@@ -29,7 +30,11 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.json') }}
           restore-keys: ${{ runner.os }}-composer-
       - name: Install Dependencies
-        run: composer install
+        if: ${{ matrix.dependencies == 'lowest' }}
+        run: composer update --prefer-lowest --no-progress
+      - name: Install Dependencies
+        if: ${{ matrix.dependencies == 'highest' }}
+        run: composer install --no-progress
       - name: PHPUnit
         run: vendor/bin/phpunit --coverage-clover=coverage.clover
       - uses: codecov/codecov-action@v1
@@ -40,6 +45,7 @@ jobs:
     strategy:
       matrix:
         php-version: ['8.0', '8.1']
+        dependencies: ['lowest', 'highest']
     name: 'Psalm - PHP/${{ matrix.php-version }}'
     steps:
       - name: Checkout
@@ -59,7 +65,11 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.json') }}
           restore-keys: ${{ runner.os }}-composer-
       - name: Install Dependencies
-        run: composer install
+        if: ${{ matrix.dependencies == 'lowest' }}
+        run: composer update --prefer-lowest --no-progress
+      - name: Install Dependencies
+        if: ${{ matrix.dependencies == 'highest' }}
+        run: composer install --no-progress
       - name: Psalm
         run: vendor/bin/psalm --shepherd
   cs:
