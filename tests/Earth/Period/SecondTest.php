@@ -34,7 +34,7 @@ class SecondTest extends TestCase
         int $days,
         int $hours,
         int $minutes,
-        int $expectedSeconds
+        int $expectedSeconds,
     ) {
         $period = new Second($second);
 

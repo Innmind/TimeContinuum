@@ -8,8 +8,9 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macOS-latest]
-        php-version: ['7.4', '8.0']
-    name: 'PHPUnit - PHP/${{ matrix.php-version }} - OS/${{ matrix.os }}'
+        php-version: ['8.0', '8.1']
+        dependencies: ['lowest', 'highest']
+    name: 'PHPUnit'
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -29,7 +30,11 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.json') }}
           restore-keys: ${{ runner.os }}-composer-
       - name: Install Dependencies
-        run: composer install
+        if: ${{ matrix.dependencies == 'lowest' }}
+        run: composer update --prefer-lowest --no-progress
+      - name: Install Dependencies
+        if: ${{ matrix.dependencies == 'highest' }}
+        run: composer install --no-progress
       - name: PHPUnit
         run: vendor/bin/phpunit --coverage-clover=coverage.clover
       - uses: codecov/codecov-action@v1
@@ -39,8 +44,9 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php-version: ['7.4']
-    name: 'Psalm - PHP/${{ matrix.php-version }}'
+        php-version: ['8.0', '8.1']
+        dependencies: ['lowest', 'highest']
+    name: 'Psalm'
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -59,14 +65,18 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.json') }}
           restore-keys: ${{ runner.os }}-composer-
       - name: Install Dependencies
-        run: composer install
+        if: ${{ matrix.dependencies == 'lowest' }}
+        run: composer update --prefer-lowest --no-progress
+      - name: Install Dependencies
+        if: ${{ matrix.dependencies == 'highest' }}
+        run: composer install --no-progress
       - name: Psalm
-        run: vendor/bin/psalm
+        run: vendor/bin/psalm --shepherd
   cs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php-version: ['7.4']
+        php-version: ['8.0']
     name: 'CS'
     steps:
       - name: Checkout
@@ -88,4 +98,4 @@ jobs:
       - name: Install Dependencies
         run: composer install --no-progress
       - name: CS
-        run: vendor/bin/php-cs-fixer fix --diff --dry-run --diff-format udiff
+        run: vendor/bin/php-cs-fixer fix --diff --dry-run

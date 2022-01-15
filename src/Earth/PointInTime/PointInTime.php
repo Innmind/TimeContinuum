@@ -29,6 +29,9 @@ final class PointInTime implements PointInTimeInterface
     private int $milliseconds;
     private \DateTimeImmutable $date;
 
+    /**
+     * @internal
+     */
     public function __construct(string $date)
     {
         $this->date = new \DateTimeImmutable($date);

@@ -10,7 +10,6 @@ use Innmind\TimeContinuum\{
     Format,
     Earth\Timezone\UTC,
     Earth\Format\ISO8601,
-    Exception\RuntimeException,
 };
 use PHPUnit\Framework\TestCase;
 use Innmind\BlackBox\{
@@ -26,7 +25,7 @@ class ClockTest extends TestCase
     {
         $this->assertInstanceOf(
             ClockInterface::class,
-            new Clock
+            new Clock,
         );
     }
 
@@ -34,13 +33,13 @@ class ClockTest extends TestCase
     {
         $this->assertInstanceOf(
             PointInTime::class,
-            $now = (new Clock)->now()
+            $now = (new Clock)->now(),
         );
         $timezone = \date('P');
         $timezone = $timezone === '+00:00' ? 'Z' : $timezone;
         $this->assertSame(
             $timezone,
-            $now->timezone()->toString()
+            $now->timezone()->toString(),
         );
     }
 
@@ -48,13 +47,16 @@ class ClockTest extends TestCase
     {
         $this->assertInstanceOf(
             PointInTime::class,
-            $point = (new Clock)->at('2016-10-08T16:08:30+02:00')
+            $point = (new Clock)->at('2016-10-08T16:08:30+02:00')->match(
+                static fn($point) => $point,
+                static fn() => null,
+            ),
         );
         $date = new \DateTimeImmutable('2016-10-08T16:08:30+02:00');
         $date = $date->setTimezone(new \DateTimeZone(\date('P'))); //system timezone
         $this->assertSame(
             $date->format(\DateTime::ATOM),
-            $point->toString()
+            $point->toString(),
         );
     }
 
@@ -62,7 +64,7 @@ class ClockTest extends TestCase
     {
         $this->assertInstanceOf(
             PointInTime::class,
-            $now = (new Clock(new UTC(6, 42)))->now()
+            $now = (new Clock(new UTC(6, 42)))->now(),
         );
         $this->assertSame('+06:42', $now->timezone()->toString());
     }
@@ -71,7 +73,10 @@ class ClockTest extends TestCase
     {
         $this->assertInstanceOf(
             PointInTime::class,
-            $point = (new Clock(new UTC(6, 42)))->at('2016-10-08T16:08:30+02:00')
+            $point = (new Clock(new UTC(6, 42)))->at('2016-10-08T16:08:30+02:00')->match(
+                static fn($point) => $point,
+                static fn() => null,
+            ),
         );
         $this->assertSame('+06:42', $point->timezone()->toString());
     }
@@ -85,13 +90,16 @@ class ClockTest extends TestCase
                 {
                     return 'P Y-m-d H:i:s';
                 }
-            })
+            })->match(
+                static fn($point) => $point,
+                static fn() => null,
+            ),
         );
         $date = new \DateTimeImmutable('2016-10-08T16:08:30+02:00');
         $date = $date->setTimezone(new \DateTimeZone(\date('P'))); //system timezone
         $this->assertSame(
             $date->format(\DateTime::ATOM),
-            $point->toString()
+            $point->toString(),
         );
     }
 
@@ -102,10 +110,37 @@ class ClockTest extends TestCase
             ->then(function($date) {
                 $clock = new Clock;
 
-                $this->expectException(RuntimeException::class);
-                $this->expectExceptionMessage("'$date' doesn't match format 'Y-m-d\TH:i:sP'");
+                $this->assertNull($clock->at($date, new ISO8601)->match(
+                    static fn($point) => $point,
+                    static fn() => null,
+                ));
+            });
+    }
 
-                $clock->at($date, new ISO8601);
+    public function testDateCorrectlyRespectTheFormatGiven()
+    {
+        $this
+            ->forAll(
+                Set\Integers::between(10, 99),
+                Set\Integers::between(1, 9),
+                Set\Integers::between(10, 28),
+            )
+            ->then(function($year, $month, $day) {
+                $date = "$year-0$month-$day";
+
+                $this->assertNull(
+                    (new Clock)
+                        ->at($date, new class implements Format {
+                            public function toString(): string
+                            {
+                                return 'Y-m-d';
+                            }
+                        })
+                        ->match(
+                            static fn($point) => $point,
+                            static fn() => null,
+                        ),
+                );
             });
     }
 }

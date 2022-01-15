@@ -11,8 +11,8 @@ use Innmind\TimeContinuum\{
     Earth\PointInTime\PointInTime as EarthPointInTime,
     Earth\PointInTime\Now,
     Earth\Timezone\UTC,
-    Exception\RuntimeException,
 };
+use Innmind\Immutable\Maybe;
 
 final class Clock implements ClockInterface
 {
@@ -35,16 +35,20 @@ final class Clock implements ClockInterface
 
     /**
      * @psalm-pure
-     *
-     * @throws RuntimeException When date is not of specified format
      */
-    public function at(string $date, Format $format = null): PointInTime
+    public function at(string $date, Format $format = null): Maybe
     {
         if ($format instanceof Format) {
             $datetime = \DateTimeImmutable::createFromFormat($format->toString(), $date);
 
             if ($datetime === false) {
-                throw new RuntimeException("'$date' doesn't match format '{$format->toString()}'");
+                /** @var Maybe<PointInTime> */
+                return Maybe::nothing();
+            }
+
+            if ($datetime->format($format->toString()) !== $date) {
+                /** @var Maybe<PointInTime> */
+                return Maybe::nothing();
             }
 
             $date = $datetime->format(\DateTime::ATOM);
@@ -54,6 +58,6 @@ final class Clock implements ClockInterface
          * @psalm-suppress ImpureVariable
          * @psalm-suppress ImpurePropertyFetch
          */
-        return (new EarthPointInTime($date))->changeTimezone($this->timezone);
+        return Maybe::just((new EarthPointInTime($date))->changeTimezone($this->timezone));
     }
 }

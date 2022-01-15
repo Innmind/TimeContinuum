@@ -10,6 +10,7 @@ use Innmind\TimeContinuum\{
     Format,
     Earth\Format\ISO8601,
 };
+use Innmind\Immutable\Maybe;
 use Psr\Log\LoggerInterface;
 use PHPUnit\Framework\TestCase;
 use Innmind\BlackBox\{
@@ -28,7 +29,7 @@ class ClockTest extends TestCase
             new Clock(
                 $this->createMock(ClockInterface::class),
                 $this->createMock(LoggerInterface::class),
-            )
+            ),
         );
     }
 
@@ -75,7 +76,7 @@ class ClockTest extends TestCase
                     ->expects($this->once())
                     ->method('at')
                     ->with($date)
-                    ->willReturn($point = $this->createMock(PointInTime::class));
+                    ->willReturn(Maybe::just($point = $this->createMock(PointInTime::class)));
                 $point
                     ->expects($this->once())
                     ->method('format')
@@ -96,7 +97,13 @@ class ClockTest extends TestCase
 
                 $clock = new Clock($concrete, $logger);
 
-                $this->assertSame($point, $clock->at($date));
+                $this->assertSame(
+                    $point,
+                    $clock->at($date)->match(
+                        static fn($point) => $point,
+                        static fn() => null,
+                    ),
+                );
             });
     }
 
@@ -120,7 +127,7 @@ class ClockTest extends TestCase
                     ->expects($this->once())
                     ->method('at')
                     ->with($date)
-                    ->willReturn($point = $this->createMock(PointInTime::class));
+                    ->willReturn(Maybe::just($point = $this->createMock(PointInTime::class)));
                 $point
                     ->expects($this->once())
                     ->method('format')
@@ -141,7 +148,13 @@ class ClockTest extends TestCase
 
                 $clock = new Clock($concrete, $logger);
 
-                $this->assertSame($point, $clock->at($date, $formatObject));
+                $this->assertSame(
+                    $point,
+                    $clock->at($date, $formatObject)->match(
+                        static fn($point) => $point,
+                        static fn() => null,
+                    ),
+                );
             });
     }
 }
