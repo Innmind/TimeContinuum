@@ -35,7 +35,7 @@ class CompositeTest extends TestCase
             49,
             2880,
             90061,
-            90061001
+            90061001,
         );
 
         $this->assertSame(2, $period->years());
@@ -57,7 +57,7 @@ class CompositeTest extends TestCase
         int $hour,
         int $minute,
         int $second,
-        int $millisecond
+        int $millisecond,
     ) {
         $this->expectException(PeriodCantBeNegative::class);
         $this->expectExceptionMessage('-1');

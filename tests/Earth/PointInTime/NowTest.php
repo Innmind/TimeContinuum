@@ -72,8 +72,8 @@ class NowTest extends TestCase
                     {
                         return 'H:i:s d/m/Y';
                     }
-                }
-            )
+                },
+            ),
         );
     }
 
@@ -160,17 +160,17 @@ class NowTest extends TestCase
         if ($point->millisecond()->toInt() > 500) {
             $this->assertSame(
                 $point->millisecond()->toInt() - 500,
-                $point3->millisecond()->toInt()
+                $point3->millisecond()->toInt(),
             );
         } else {
             $this->assertSame(
                 1000 - \abs($point->millisecond()->toInt() - 500),
-                $point3->millisecond()->toInt()
+                $point3->millisecond()->toInt(),
             );
             $this->assertSame(
                 $point->second()->toInt() === 0 ?
                     59 : $point->second()->toInt() - 1,
-                $point3->second()->toInt()
+                $point3->second()->toInt(),
             );
         }
     }

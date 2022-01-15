@@ -25,7 +25,7 @@ class ClockTest extends TestCase
     {
         $this->assertInstanceOf(
             ClockInterface::class,
-            new Clock
+            new Clock,
         );
     }
 
@@ -33,13 +33,13 @@ class ClockTest extends TestCase
     {
         $this->assertInstanceOf(
             PointInTime::class,
-            $now = (new Clock)->now()
+            $now = (new Clock)->now(),
         );
         $timezone = \date('P');
         $timezone = $timezone === '+00:00' ? 'Z' : $timezone;
         $this->assertSame(
             $timezone,
-            $now->timezone()->toString()
+            $now->timezone()->toString(),
         );
     }
 
@@ -56,7 +56,7 @@ class ClockTest extends TestCase
         $date = $date->setTimezone(new \DateTimeZone(\date('P'))); //system timezone
         $this->assertSame(
             $date->format(\DateTime::ATOM),
-            $point->toString()
+            $point->toString(),
         );
     }
 
@@ -64,7 +64,7 @@ class ClockTest extends TestCase
     {
         $this->assertInstanceOf(
             PointInTime::class,
-            $now = (new Clock(new UTC(6, 42)))->now()
+            $now = (new Clock(new UTC(6, 42)))->now(),
         );
         $this->assertSame('+06:42', $now->timezone()->toString());
     }
@@ -99,7 +99,7 @@ class ClockTest extends TestCase
         $date = $date->setTimezone(new \DateTimeZone(\date('P'))); //system timezone
         $this->assertSame(
             $date->format(\DateTime::ATOM),
-            $point->toString()
+            $point->toString(),
         );
     }
 

@@ -33,7 +33,7 @@ class MinuteTest extends TestCase
         int $minute,
         int $days,
         int $hours,
-        int $expectedMinutes
+        int $expectedMinutes,
     ) {
         $period = new Minute($minute);
 

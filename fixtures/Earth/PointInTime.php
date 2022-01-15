@@ -57,7 +57,7 @@ final class PointInTime
                 int $second,
                 string $offsetDirection,
                 int $hourOffset,
-                string $minuteOffset
+                string $minuteOffset,
             ): Model {
                 return new Model("$year-$month-{$day}T$hour:$minute:$second$offsetDirection$hourOffset:$minuteOffset");
             },
@@ -69,7 +69,7 @@ final class PointInTime
             Set\Integers::between(0, 59),
             Set\Elements::of('-', '+'),
             Set\Integers::between(0, 12),
-            Set\Elements::of('00', '15', '30', '45')
+            Set\Elements::of('00', '15', '30', '45'),
         )->take(100);
     }
 }

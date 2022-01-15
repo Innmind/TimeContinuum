@@ -29,7 +29,7 @@ class ClockTest extends TestCase
             new Clock(
                 $this->createMock(ClockInterface::class),
                 $this->createMock(LoggerInterface::class),
-            )
+            ),
         );
     }
 

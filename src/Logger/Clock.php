@@ -65,7 +65,7 @@ final class Clock implements ClockInterface
     private function log(
         PointInTime $point,
         string $date,
-        ?Format $format
+        ?Format $format,
     ): PointInTime {
         /**
          * @psalm-suppress ImpureVariable
