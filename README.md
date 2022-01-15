@@ -19,13 +19,17 @@ composer install innmind/time-continuum
 ## Usage
 
 ```php
-use Innmind\TimeContinuum\Earth\Clock;
+use Innmind\TimeContinuum\{
+    Earth\Clock,
+    PointInTime,
+};
+use Innmind\Immutable\Maybe;
 
 $clock = new Clock;
 $now = $clock->now(); // return an instance of PointInTime
 echo $now->toString(); //2016-10-11T12:17:30+02:00
 
-$epoch = $clock->at('1970-01-01T00:00:00.000000Z');
+$epoch = $clock->at('1970-01-01T00:00:00.000000Z'); // Maybe<PointInTime>
 ```
 
 Here we reference 2 points in time, the first is the exact moment we call `now` down to the millisecond and the second one is the epoch time (you can verify it via `$epoch->milliseconds()` that returns `0`).
