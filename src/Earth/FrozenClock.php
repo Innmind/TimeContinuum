@@ -8,6 +8,7 @@ use Innmind\TimeContinuum\{
     PointInTime,
     Format,
 };
+use Innmind\Immutable\Maybe;
 
 final class FrozenClock implements ClockInterface
 {
@@ -28,12 +29,15 @@ final class FrozenClock implements ClockInterface
     /**
      * @psalm-pure
      */
-    public function at(string $date, Format $format = null): PointInTime
+    public function at(string $date, Format $format = null): Maybe
     {
         /**
          * @psalm-suppress ImpureVariable
          * @psalm-suppress ImpurePropertyFetch
          */
-        return $this->concrete->at($date, $format)->changeTimezone($this->now->timezone());
+        return $this
+            ->concrete
+            ->at($date, $format)
+            ->map(fn($point) => $point->changeTimezone($this->now->timezone()));
     }
 }

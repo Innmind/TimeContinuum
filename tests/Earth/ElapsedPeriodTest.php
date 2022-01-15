@@ -30,13 +30,13 @@ class ElapsedPeriodTest extends TestCase
     {
         $this->assertTrue(
             (new ElapsedPeriod(42))->longerThan(
-                new ElapsedPeriod(0)
-            )
+                new ElapsedPeriod(0),
+            ),
         );
         $this->assertFalse(
             (new ElapsedPeriod(42))->longerThan(
-                new ElapsedPeriod(66)
-            )
+                new ElapsedPeriod(66),
+            ),
         );
     }
 
@@ -44,13 +44,13 @@ class ElapsedPeriodTest extends TestCase
     {
         $this->assertTrue(
             (new ElapsedPeriod(42))->equals(
-                new ElapsedPeriod(42)
-            )
+                new ElapsedPeriod(42),
+            ),
         );
         $this->assertFalse(
             (new ElapsedPeriod(42))->equals(
-                new ElapsedPeriod(66)
-            )
+                new ElapsedPeriod(66),
+            ),
         );
     }
 }

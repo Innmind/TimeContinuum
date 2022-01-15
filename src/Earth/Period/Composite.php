@@ -25,7 +25,7 @@ final class Composite implements Period
         int $hour,
         int $minute,
         int $second,
-        int $millisecond
+        int $millisecond,
     ) {
         $millisecond = new Millisecond($millisecond);
         $second = new Second($second + $millisecond->seconds());
@@ -110,7 +110,7 @@ final class Composite implements Period
             $this->hour + $period->hours(),
             $this->minute + $period->minutes(),
             $this->second + $period->seconds(),
-            $this->millisecond + $period->milliseconds()
+            $this->millisecond + $period->milliseconds(),
         );
     }
 }

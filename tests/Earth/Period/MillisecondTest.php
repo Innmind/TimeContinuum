@@ -35,7 +35,7 @@ class MillisecondTest extends TestCase
         int $hours,
         int $minutes,
         int $seconds,
-        int $expectedMilliseconds
+        int $expectedMilliseconds,
     ) {
         $period = new Millisecond($millisecond);
 

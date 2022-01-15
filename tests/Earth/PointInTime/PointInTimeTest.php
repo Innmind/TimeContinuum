@@ -47,7 +47,7 @@ class PointInTimeTest extends TestCase
         $this->assertSame(123, $point->millisecond()->toInt());
         $this->assertSame(
             (new \DateTimeImmutable('2016-10-05T08:01:30.123+02:00'))->getTimestamp() * 1000 + $point->millisecond()->toInt(),
-            $point->milliseconds()
+            $point->milliseconds(),
         );
         $this->assertSame('+02:00', $point->timezone()->toString());
         $this->assertSame('2016-10-05T08:01:30+02:00', $point->toString());
@@ -73,8 +73,8 @@ class PointInTimeTest extends TestCase
                     {
                         return 'H:i:s d/m/Y';
                     }
-                }
-            )
+                },
+            ),
         );
     }
 
@@ -136,7 +136,7 @@ class PointInTimeTest extends TestCase
     {
         $point = new PointInTime('2016-10-05T08:01:30.123+02:00');
         $point2 = $point->goForward(
-            new Composite(1, 1, 1, 1, 1, 30, 878)
+            new Composite(1, 1, 1, 1, 1, 30, 878),
         );
 
         $this->assertInstanceOf(PointInTimeInterface::class, $point2);
@@ -160,7 +160,7 @@ class PointInTimeTest extends TestCase
     {
         $point = new PointInTime('2016-10-05T08:01:30.123+02:00');
         $point2 = $point->goBack(
-            new Composite(1, 1, 1, 1, 1, 30, 125)
+            new Composite(1, 1, 1, 1, 1, 30, 125),
         );
 
         $this->assertInstanceOf(PointInTimeInterface::class, $point2);
@@ -189,8 +189,8 @@ class PointInTimeTest extends TestCase
                         {
                             return 'Y-m-d\TH:i:s.uP';
                         }
-                    }
-                )
+                    },
+                ),
         );
     }
 
@@ -207,11 +207,11 @@ class PointInTimeTest extends TestCase
 
         $this->assertSame(
             '2018-03-04T00:00:00.000000',
-            $point->format($format)
+            $point->format($format),
         );
         $this->assertSame(
             '2018-03-03T00:00:00.000000',
-            $point2->format($format)
+            $point2->format($format),
         );
     }
 
@@ -228,11 +228,11 @@ class PointInTimeTest extends TestCase
 
         $this->assertSame(
             '1402-07-21T02:42:53.000000',
-            $point->format($format)
+            $point->format($format),
         );
         $this->assertSame(
             '1402-07-21T02:42:52.999000',
-            $point2->format($format)
+            $point2->format($format),
         );
     }
 }

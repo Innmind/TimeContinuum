@@ -40,7 +40,7 @@ class PointInTimeTest extends TestCase
         foreach ($points->values(new RandomInt) as $point) {
             $this->assertGreaterThanOrEqual(
                 '1970-01-01T12:13:14+02:00',
-                $point->unwrap()->format(new ISO8601)
+                $point->unwrap()->format(new ISO8601),
             );
         }
     }
@@ -55,7 +55,7 @@ class PointInTimeTest extends TestCase
         foreach ($points->values(new RandomInt) as $point) {
             $this->assertLessThanOrEqual(
                 '1970-01-01T12:13:14+02:00',
-                $point->unwrap()->format(new ISO8601)
+                $point->unwrap()->format(new ISO8601),
             );
         }
     }
