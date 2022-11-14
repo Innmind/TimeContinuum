@@ -117,6 +117,15 @@ class ClockTest extends TestCase
             });
     }
 
+    public function testAtWithNullDate()
+    {
+        $clock = new Clock;
+        $this->assertNull($clock->at("\x00", new ISO8601)->match(
+            static fn($point) => $point,
+            static fn() => null,
+        ));
+    }
+
     public function testDateCorrectlyRespectTheFormatGiven()
     {
         $this

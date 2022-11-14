@@ -39,7 +39,12 @@ final class Clock implements ClockInterface
     public function at(string $date, Format $format = null): Maybe
     {
         if ($format instanceof Format) {
-            $datetime = \DateTimeImmutable::createFromFormat($format->toString(), $date);
+            try {
+                $datetime = \DateTimeImmutable::createFromFormat($format->toString(), $date);
+            } catch (\ValueError) {
+                /** @var Maybe<PointInTime> */
+                return Maybe::nothing();
+            }
 
             if ($datetime === false) {
                 /** @var Maybe<PointInTime> */
