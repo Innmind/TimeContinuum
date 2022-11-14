@@ -40,6 +40,7 @@ final class Clock implements ClockInterface
     {
         if ($format instanceof Format) {
             try {
+                /** @psalm-suppress ImpureMethodCall */
                 $datetime = \DateTimeImmutable::createFromFormat($format->toString(), $date);
             } catch (\ValueError) {
                 /** @var Maybe<PointInTime> */
