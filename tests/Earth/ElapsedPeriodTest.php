@@ -26,6 +26,28 @@ class ElapsedPeriodTest extends TestCase
         new ElapsedPeriod(-42);
     }
 
+    public function testMaybe()
+    {
+        $this->assertInstanceOf(ElapsedPeriod::class, ElapsedPeriod::maybe(42)->match(
+            static fn($period) => $period,
+            static fn() => null,
+        ));
+        $this->assertNull(ElapsedPeriod::maybe(-42)->match(
+            static fn($period) => $period,
+            static fn() => null,
+        ));
+    }
+
+    public function testOf()
+    {
+        $this->assertInstanceOf(ElapsedPeriod::class, ElapsedPeriod::of(42));
+
+        $this->expectException(ElapsedPeriodCantBeNegative::class);
+        $this->expectExceptionMessage('-42');
+
+        ElapsedPeriod::of(-42);
+    }
+
     public function testLongerThan()
     {
         $this->assertTrue(

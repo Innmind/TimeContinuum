@@ -132,6 +132,7 @@ final class PointInTime implements PointInTimeInterface
             $periodComponent = $period->{$component}();
 
             if ($periodComponent > 0) {
+                /** @psalm-suppress PossiblyFalseReference The input is validated so there shouldn't be any error */
                 $date = $date->modify(
                     \sprintf(
                         '-%s %s',
@@ -143,9 +144,11 @@ final class PointInTime implements PointInTimeInterface
         }
 
         if ($this->millisecond()->toInt() === 0 && $period->milliseconds() > 0) {
+            /** @psalm-suppress PossiblyFalseReference The input is validated so there shouldn't be any error */
             $date = $date->modify('-1 second');
         }
 
+        /** @psalm-suppress PossiblyFalseReference The input is validated so there shouldn't be any error */
         return new self(\sprintf(
             $date->format('Y-m-d\TH:i:s.%03\sP'),
             $period->milliseconds() > 0 ? 1000 - $period->milliseconds() : 0,
@@ -164,6 +167,7 @@ final class PointInTime implements PointInTimeInterface
             $periodComponent = $period->{$component}();
 
             if ($periodComponent > 0) {
+                /** @psalm-suppress PossiblyFalseReference The input is validated so there shouldn't be any error */
                 $date = $date->modify(
                     \sprintf(
                         '+%s %s',
@@ -174,6 +178,7 @@ final class PointInTime implements PointInTimeInterface
             }
         }
 
+        /** @psalm-suppress PossiblyFalseReference The input is validated so there shouldn't be any error */
         return new self(\sprintf(
             $date->format('Y-m-d\TH:i:s.%03\sP'),
             $period->milliseconds(),
