@@ -23,7 +23,7 @@ jobs:
       - name: Composer
         uses: "ramsey/composer-install@v2"
         with:
-          dependencies: ${{ matrix.dependencies }}
+          dependency-versions: ${{ matrix.dependencies }}
       - name: PHPUnit
         run: vendor/bin/phpunit --coverage-clover=coverage.clover
       - uses: codecov/codecov-action@v1
@@ -47,7 +47,7 @@ jobs:
       - name: Composer
         uses: "ramsey/composer-install@v2"
         with:
-          dependencies: ${{ matrix.dependencies }}
+          dependency-versions: ${{ matrix.dependencies }}
       - name: Psalm
         run: vendor/bin/psalm --shepherd
   cs:
