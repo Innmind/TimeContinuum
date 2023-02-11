@@ -3,7 +3,10 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum\Earth\Period;
 
-use Innmind\TimeContinuum\Period;
+use Innmind\TimeContinuum\{
+    Period,
+    Earth\ElapsedPeriod,
+};
 
 /**
  * @psalm-immutable
@@ -101,7 +104,7 @@ final class Composite implements Period
             $this->millisecond === $period->milliseconds();
     }
 
-    public function add(Period $period): Period
+    public function add(Period $period): self
     {
         return new self(
             $this->year + $period->years(),
@@ -112,5 +115,10 @@ final class Composite implements Period
             $this->second + $period->seconds(),
             $this->millisecond + $period->milliseconds(),
         );
+    }
+
+    public function asElapsedPeriod(): ElapsedPeriod
+    {
+        return ElapsedPeriod::ofPeriod($this);
     }
 }

@@ -83,6 +83,22 @@ class SecondTest extends TestCase
         $this->assertSame(0, $period2->milliseconds());
     }
 
+    public function testAsElapsedPeriod()
+    {
+        $this->assertSame(
+            1000,
+            (new Second(1))->asElapsedPeriod()->milliseconds(),
+        );
+        $this->assertSame(
+            2000,
+            (new Second(2))->asElapsedPeriod()->milliseconds(),
+        );
+        $this->assertSame(
+            3000,
+            (new Second(3))->asElapsedPeriod()->milliseconds(),
+        );
+    }
+
     public function cases()
     {
         return [

@@ -5,6 +5,7 @@ namespace Innmind\TimeContinuum\Earth\Period;
 
 use Innmind\TimeContinuum\{
     Period,
+    Earth\ElapsedPeriod,
     Exception\PeriodCantBeNegative,
 };
 
@@ -83,5 +84,10 @@ final class Second implements Period
             $this->second + $period->seconds(),
             $period->milliseconds(),
         );
+    }
+
+    public function asElapsedPeriod(): ElapsedPeriod
+    {
+        return ElapsedPeriod::ofPeriod($this);
     }
 }

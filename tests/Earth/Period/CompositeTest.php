@@ -98,6 +98,14 @@ class CompositeTest extends TestCase
         $this->assertSame(14, $period2->milliseconds());
     }
 
+    public function testAsElapsedPeriod()
+    {
+        $this->assertSame(
+            90_061_001,
+            (new Composite(0, 0, 1, 1, 1, 1, 1))->asElapsedPeriod()->milliseconds(),
+        );
+    }
+
     public function wrongData()
     {
         return [

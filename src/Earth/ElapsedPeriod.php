@@ -5,7 +5,9 @@ namespace Innmind\TimeContinuum\Earth;
 
 use Innmind\TimeContinuum\{
     ElapsedPeriod as ElapsedPeriodInterface,
-    Exception\ElapsedPeriodCantBeNegative
+    Period as PeriodInterface,
+    Exception\ElapsedPeriodCantBeNegative,
+    Exception\LogicException,
 };
 use Innmind\Immutable\Maybe;
 
@@ -48,6 +50,27 @@ final class ElapsedPeriod implements ElapsedPeriodInterface
             /** @var Maybe<self> */
             return Maybe::nothing();
         }
+    }
+
+    /**
+     * @psalm-pure
+     *
+     * @throws LogicException When using a period containing months or years
+     */
+    public static function ofPeriod(PeriodInterface $period): self
+    {
+        if ($period->months() !== 0 || $period->years() !== 0) {
+            // a month or a year is not constant
+            throw new LogicException('Months and years can not be converted to milliseconds');
+        }
+
+        $milliseconds = Period::day->milliseconds($period->days()) +
+            Period::hour->milliseconds($period->hours()) +
+            Period::minute->milliseconds($period->minutes()) +
+            Period::second->milliseconds($period->seconds()) +
+            $period->milliseconds();
+
+        return new self($milliseconds);
     }
 
     public function milliseconds(): int
