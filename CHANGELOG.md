@@ -2,6 +2,17 @@
 
 ## [Unreleased]
 
+### Added
+
+- `Innmind\TimeContinuum\Earth\Period`
+- `Innmind\TimeContinuum\Earth\ElapsedPeriod::ofPeriod()`
+- `Innmind\TimeContinuum\Earth\Period\Millisecond::asElapsedPeriod()`
+- `Innmind\TimeContinuum\Earth\Period\Second::asElapsedPeriod()`
+- `Innmind\TimeContinuum\Earth\Period\Minute::asElapsedPeriod()`
+- `Innmind\TimeContinuum\Earth\Period\Hour::asElapsedPeriod()`
+- `Innmind\TimeContinuum\Earth\Period\Day::asElapsedPeriod()`
+- `Innmind\TimeContinuum\Earth\Period\Composite::asElapsedPeriod()`
+
 ### Changed
 
 - Require PHP `8.1`

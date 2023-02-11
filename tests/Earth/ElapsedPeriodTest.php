@@ -5,7 +5,10 @@ namespace Tests\Innmind\TimeContinuum\Earth;
 
 use Innmind\TimeContinuum\{
     Earth\ElapsedPeriod,
+    Earth\Period\Year,
+    Earth\Period\Month,
     Exception\ElapsedPeriodCantBeNegative,
+    Exception\LogicException,
 };
 use PHPUnit\Framework\TestCase;
 
@@ -74,5 +77,19 @@ class ElapsedPeriodTest extends TestCase
                 new ElapsedPeriod(66),
             ),
         );
+    }
+
+    public function testThrowWhenTryingToBuildFromYearPeriod()
+    {
+        $this->expectException(LogicException::class);
+
+        ElapsedPeriod::ofPeriod(new Year(1));
+    }
+
+    public function testThrowWhenTryingToBuildFromMonthPeriod()
+    {
+        $this->expectException(LogicException::class);
+
+        ElapsedPeriod::ofPeriod(new Month(1));
     }
 }

@@ -82,6 +82,22 @@ class MinuteTest extends TestCase
         $this->assertSame(0, $period2->milliseconds());
     }
 
+    public function testAsElapsedPeriod()
+    {
+        $this->assertSame(
+            60_000,
+            (new Minute(1))->asElapsedPeriod()->milliseconds(),
+        );
+        $this->assertSame(
+            120_000,
+            (new Minute(2))->asElapsedPeriod()->milliseconds(),
+        );
+        $this->assertSame(
+            180_000,
+            (new Minute(3))->asElapsedPeriod()->milliseconds(),
+        );
+    }
+
     public function cases()
     {
         return [

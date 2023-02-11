@@ -78,6 +78,22 @@ class HourTest extends TestCase
         $this->assertSame(0, $period2->milliseconds());
     }
 
+    public function testAsElapsedPeriod()
+    {
+        $this->assertSame(
+            3_600_000,
+            (new Hour(1))->asElapsedPeriod()->milliseconds(),
+        );
+        $this->assertSame(
+            7_200_000,
+            (new Hour(2))->asElapsedPeriod()->milliseconds(),
+        );
+        $this->assertSame(
+            10_800_000,
+            (new Hour(3))->asElapsedPeriod()->milliseconds(),
+        );
+    }
+
     public function cases()
     {
         return [
