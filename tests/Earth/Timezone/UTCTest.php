@@ -91,7 +91,7 @@ class UTCTest extends TestCase
         $this->assertSame($minutes, $zone->minutes());
     }
 
-    public function cases()
+    public static function cases()
     {
         return [
             ['Z', 0, 0],

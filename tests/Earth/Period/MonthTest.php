@@ -78,7 +78,7 @@ class MonthTest extends TestCase
         $this->assertSame(0, $period2->milliseconds());
     }
 
-    public function cases()
+    public static function cases()
     {
         return [
             [12, 1, 0],

@@ -106,7 +106,7 @@ class CompositeTest extends TestCase
         );
     }
 
-    public function wrongData()
+    public static function wrongData()
     {
         return [
             [-1, 0, 0, 0, 0, 0, 0],

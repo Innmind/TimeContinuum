@@ -100,7 +100,7 @@ class MillisecondTest extends TestCase
         );
     }
 
-    public function cases()
+    public static function cases()
     {
         return [
             [20, 0, 0, 0, 0, 20],

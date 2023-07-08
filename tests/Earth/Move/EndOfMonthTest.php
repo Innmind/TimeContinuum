@@ -31,7 +31,7 @@ class EndOfMonthTest extends TestCase
         }));
     }
 
-    public function cases(): array
+    public static function cases(): array
     {
         return [
             ['2016-02-01 00:00:00.000', '2016-02-29 23:59:59.999000'],
