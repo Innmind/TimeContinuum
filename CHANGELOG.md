@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Added
+
+- `Innmind\TimeContinuum\Earth\PointInTime\Now::elapsedSince()` now use the high resolution time api when comparing to another instance of `Now` (to avoid errors when time _goes back_ due to the system clock re-synchronisation)
+
 ### Changed
 
 - Require `innmind/black-box` `5`

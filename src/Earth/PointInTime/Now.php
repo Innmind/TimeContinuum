@@ -26,12 +26,16 @@ use Innmind\TimeContinuum\{
 final class Now implements PointInTimeInterface
 {
     private PointInTimeInterface $point;
+    private HighResolution $highResolution;
 
     public function __construct()
     {
         $date = (new \DateTimeImmutable('now'))->format('Y-m-d\TH:i:s.uP');
+        /** @psalm-suppress ImpureMethodCallAcceptable since only a clock should instantiate this class */
+        $highResolution = HighResolution::now();
 
         $this->point = new PointInTime($date);
+        $this->highResolution = $highResolution;
     }
 
     public function milliseconds(): int
@@ -93,6 +97,10 @@ final class Now implements PointInTimeInterface
 
     public function elapsedSince(PointInTimeInterface $point): ElapsedPeriodInterface
     {
+        if ($point instanceof self) {
+            return $this->highResolution->elapsedSince($point->highResolution);
+        }
+
         return new ElapsedPeriod($this->milliseconds() - $point->milliseconds());
     }
 
