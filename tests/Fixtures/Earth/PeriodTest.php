@@ -6,7 +6,7 @@ namespace Tests\Innmind\TimeContinuum\Fixtures\Earth;
 use Fixtures\Innmind\TimeContinuum\Earth\Period;
 use Innmind\BlackBox\{
     Set,
-    Random\RandomInt,
+    Random,
 };
 use Innmind\TimeContinuum\{
     Period as PeriodInterface,
@@ -21,9 +21,9 @@ class PeriodTest extends TestCase
         $periods = Period::any();
 
         $this->assertInstanceOf(Set::class, $periods);
-        $this->assertCount(100, \iterator_to_array($periods->values(new RandomInt)));
+        $this->assertCount(100, \iterator_to_array($periods->values(Random::default)));
 
-        foreach ($periods->values(new RandomInt) as $period) {
+        foreach ($periods->values(Random::default) as $period) {
             $this->assertInstanceOf(Set\Value::class, $period);
             $this->assertInstanceOf(PeriodInterface::class, $period->unwrap());
             $this->assertTrue($period->isImmutable());
@@ -35,9 +35,9 @@ class PeriodTest extends TestCase
         $periods = Period::anyNumberOfYear();
 
         $this->assertInstanceOf(Set::class, $periods);
-        $this->assertCount(100, \iterator_to_array($periods->values(new RandomInt)));
+        $this->assertCount(100, \iterator_to_array($periods->values(Random::default)));
 
-        $periods = $periods->values(new RandomInt);
+        $periods = $periods->values(Random::default);
         $generated = [];
 
         foreach ($periods as $period) {
@@ -63,9 +63,9 @@ class PeriodTest extends TestCase
         $periods = Period::lessThanAYear();
 
         $this->assertInstanceOf(Set::class, $periods);
-        $this->assertCount(100, \iterator_to_array($periods->values(new RandomInt)));
+        $this->assertCount(100, \iterator_to_array($periods->values(Random::default)));
 
-        $periods = $periods->values(new RandomInt);
+        $periods = $periods->values(Random::default);
         $unique = [];
 
         foreach ($periods as $period) {

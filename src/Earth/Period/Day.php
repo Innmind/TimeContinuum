@@ -25,6 +25,14 @@ final class Day implements Period
         $this->day = $day;
     }
 
+    /**
+     * @param 0|positive-int $day
+     */
+    public static function of(int $day): self
+    {
+        return new self($day);
+    }
+
     public function years(): int
     {
         return 0;

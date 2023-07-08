@@ -31,7 +31,7 @@ class EndOfYearTest extends TestCase
         }));
     }
 
-    public function cases(): array
+    public static function cases(): array
     {
         return [
             ['2016-02-29 13:12:11.675', '2016-12-31 23:59:59.999000'],

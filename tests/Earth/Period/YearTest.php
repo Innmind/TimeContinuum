@@ -14,7 +14,7 @@ class YearTest extends TestCase
 {
     public function testInterface()
     {
-        $period = new Year(42);
+        $period = Year::of(42);
 
         $this->assertInstanceOf(Period::class, $period);
         $this->assertSame(42, $period->years());

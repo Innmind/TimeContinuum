@@ -31,7 +31,7 @@ class StartOfDayTest extends TestCase
         }));
     }
 
-    public function cases(): array
+    public static function cases(): array
     {
         return [
             ['2016-02-29 13:12:11.675', '2016-02-29 00:00:00.000000'],

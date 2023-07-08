@@ -27,6 +27,14 @@ final class Hour implements Period
         $this->hour = $hour % 24;
     }
 
+    /**
+     * @param 0|positive-int $hour
+     */
+    public static function of(int $hour): self
+    {
+        return new self($hour);
+    }
+
     public function years(): int
     {
         return 0;

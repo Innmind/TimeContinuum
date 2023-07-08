@@ -38,7 +38,7 @@ class MonthTest extends TestCase
         $this->assertSame($expectedBackward, $point->format($format));
     }
 
-    public function cases(): array
+    public static function cases(): array
     {
         return [
             ['2016-02-29 13:12:11.675', '2016-03-29 13:12:11.675000', '2016-01-29 13:12:11.675000'],

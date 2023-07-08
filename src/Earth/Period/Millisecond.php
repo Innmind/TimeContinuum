@@ -27,6 +27,14 @@ final class Millisecond implements Period
         $this->millisecond = $millisecond % 1000;
     }
 
+    /**
+     * @param 0|positive-int $millisecond
+     */
+    public static function of(int $millisecond): self
+    {
+        return new self($millisecond);
+    }
+
     public function years(): int
     {
         return 0;

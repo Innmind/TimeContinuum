@@ -27,6 +27,14 @@ final class Minute implements Period
         $this->minute = $minute % 60;
     }
 
+    /**
+     * @param 0|positive-int $minute
+     */
+    public static function of(int $minute): self
+    {
+        return new self($minute);
+    }
+
     public function years(): int
     {
         return 0;

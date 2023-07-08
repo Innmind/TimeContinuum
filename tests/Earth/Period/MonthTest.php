@@ -14,7 +14,7 @@ class MonthTest extends TestCase
 {
     public function testInterface()
     {
-        $period = new Month(10);
+        $period = Month::of(10);
 
         $this->assertInstanceOf(Period::class, $period);
         $this->assertSame(0, $period->years());
@@ -78,7 +78,7 @@ class MonthTest extends TestCase
         $this->assertSame(0, $period2->milliseconds());
     }
 
-    public function cases()
+    public static function cases()
     {
         return [
             [12, 1, 0],

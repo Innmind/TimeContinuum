@@ -6,7 +6,7 @@ namespace Tests\Innmind\TimeContinuum\Fixtures\Earth;
 use Fixtures\Innmind\TimeContinuum\Earth\PointInTime;
 use Innmind\BlackBox\{
     Set,
-    Random\RandomInt,
+    Random,
 };
 use Innmind\TimeContinuum\{
     PointInTime as PointInTimeInterface,
@@ -21,9 +21,9 @@ class PointInTimeTest extends TestCase
         $pointsInTime = PointInTime::any();
 
         $this->assertInstanceOf(Set::class, $pointsInTime);
-        $this->assertCount(100, \iterator_to_array($pointsInTime->values(new RandomInt)));
+        $this->assertCount(100, \iterator_to_array($pointsInTime->values(Random::default)));
 
-        foreach ($pointsInTime->values(new RandomInt) as $pointInTime) {
+        foreach ($pointsInTime->values(Random::default) as $pointInTime) {
             $this->assertInstanceOf(Set\Value::class, $pointInTime);
             $this->assertInstanceOf(PointInTimeInterface::class, $pointInTime->unwrap());
             $this->assertTrue($pointInTime->isImmutable());
@@ -35,9 +35,9 @@ class PointInTimeTest extends TestCase
         $points = PointInTime::after('1970-01-01T12:13:14+02:00');
 
         $this->assertInstanceOf(Set::class, $points);
-        $this->assertCount(100, \iterator_to_array($points->values(new RandomInt)));
+        $this->assertCount(100, \iterator_to_array($points->values(Random::default)));
 
-        foreach ($points->values(new RandomInt) as $point) {
+        foreach ($points->values(Random::default) as $point) {
             $this->assertGreaterThanOrEqual(
                 '1970-01-01T12:13:14+02:00',
                 $point->unwrap()->format(new ISO8601),
@@ -50,9 +50,9 @@ class PointInTimeTest extends TestCase
         $points = PointInTime::before('1970-01-01T12:13:14+02:00');
 
         $this->assertInstanceOf(Set::class, $points);
-        $this->assertCount(100, \iterator_to_array($points->values(new RandomInt)));
+        $this->assertCount(100, \iterator_to_array($points->values(Random::default)));
 
-        foreach ($points->values(new RandomInt) as $point) {
+        foreach ($points->values(Random::default) as $point) {
             $this->assertLessThanOrEqual(
                 '1970-01-01T12:13:14+02:00',
                 $point->unwrap()->format(new ISO8601),

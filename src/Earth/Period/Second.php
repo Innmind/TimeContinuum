@@ -27,6 +27,14 @@ final class Second implements Period
         $this->second = $second % 60;
     }
 
+    /**
+     * @param 0|positive-int $second
+     */
+    public static function of(int $second): self
+    {
+        return new self($second);
+    }
+
     public function years(): int
     {
         return 0;
