@@ -24,6 +24,14 @@ final class Year implements Period
         $this->year = $year;
     }
 
+    /**
+     * @param 0|positive-int $year
+     */
+    public static function of(int $year): self
+    {
+        return new self($year);
+    }
+
     public function years(): int
     {
         return $this->year;

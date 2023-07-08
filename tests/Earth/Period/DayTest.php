@@ -14,7 +14,7 @@ class DayTest extends TestCase
 {
     public function testInterface()
     {
-        $period = new Day(1000);
+        $period = Day::of(1000);
 
         $this->assertInstanceOf(Period::class, $period);
         $this->assertSame(0, $period->years());

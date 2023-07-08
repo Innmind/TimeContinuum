@@ -14,7 +14,7 @@ class MinuteTest extends TestCase
 {
     public function testInterface()
     {
-        $period = new Minute(20);
+        $period = Minute::of(20);
 
         $this->assertInstanceOf(Period::class, $period);
         $this->assertSame(0, $period->years());

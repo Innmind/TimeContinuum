@@ -26,6 +26,14 @@ final class Month implements Period
         $this->month = $month % 12;
     }
 
+    /**
+     * @param 0|positive-int $month
+     */
+    public static function of(int $month): self
+    {
+        return new self($month);
+    }
+
     public function years(): int
     {
         return $this->year;

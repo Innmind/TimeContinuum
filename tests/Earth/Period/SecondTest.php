@@ -14,7 +14,7 @@ class SecondTest extends TestCase
 {
     public function testInterface()
     {
-        $period = new Second(20);
+        $period = Second::of(20);
 
         $this->assertInstanceOf(Period::class, $period);
         $this->assertSame(0, $period->years());

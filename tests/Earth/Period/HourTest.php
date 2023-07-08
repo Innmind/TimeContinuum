@@ -14,7 +14,7 @@ class HourTest extends TestCase
 {
     public function testInterface()
     {
-        $period = new Hour(20);
+        $period = Hour::of(20);
 
         $this->assertInstanceOf(Period::class, $period);
         $this->assertSame(0, $period->years());
