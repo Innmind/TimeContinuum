@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.4.1 - 2023-09-17
+
+### Fixed
+
+- Fix an off by one (second) error when computing elapsed time between 2 instances of `Now`
+
 ## 3.4.0 - 2023-09-16
 
 ### Added

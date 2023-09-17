@@ -36,13 +36,21 @@ final class HighResolution
         return new self($seconds, $nanoseconds);
     }
 
+    /**
+     * @internal
+     *
+     * @param 0|positive-int $seconds
+     * @param 0|positive-int $nanoseconds
+     */
+    public static function of(int $seconds, int $nanoseconds): self
+    {
+        return new self($seconds, $nanoseconds);
+    }
+
     public function elapsedSince(self $time): ElapsedPeriod
     {
         $seconds = $this->seconds - $time->seconds;
-        $nanoseconds = match ($seconds) {
-            0 => $this->nanoseconds - $time->nanoseconds,
-            default => (1_000_000_000 + $this->nanoseconds) - $time->nanoseconds,
-        };
+        $nanoseconds = $this->nanoseconds - $time->nanoseconds;
 
         $milliseconds = ($seconds * 1_000) + (int) ($nanoseconds / 1_000_000);
 
