@@ -1,14 +1,12 @@
 <?php
 declare(strict_types = 1);
 
-namespace Tests\Innmind\TimeContinuum\Earth;
+namespace Tests\Innmind\TimeContinuum;
 
 use Innmind\TimeContinuum\{
-    Earth\ElapsedPeriod,
+    ElapsedPeriod,
     Period\Year,
     Period\Month,
-    Exception\ElapsedPeriodCantBeNegative,
-    Exception\LogicException,
 };
 use PHPUnit\Framework\TestCase;
 
@@ -16,17 +14,17 @@ class ElapsedPeriodTest extends TestCase
 {
     public function testInterface()
     {
-        $period = new ElapsedPeriod(42);
+        $period = ElapsedPeriod::literal(42);
 
         $this->assertSame(42, $period->milliseconds());
     }
 
     public function testThrowWhenTryingToBuildANegativePeriod()
     {
-        $this->expectException(ElapsedPeriodCantBeNegative::class);
+        $this->expectException(\RuntimeException::class);
         $this->expectExceptionMessage('-42');
 
-        new ElapsedPeriod(-42);
+        ElapsedPeriod::of(-42);
     }
 
     public function testMaybe()
@@ -41,26 +39,16 @@ class ElapsedPeriodTest extends TestCase
         ));
     }
 
-    public function testOf()
-    {
-        $this->assertInstanceOf(ElapsedPeriod::class, ElapsedPeriod::of(42));
-
-        $this->expectException(ElapsedPeriodCantBeNegative::class);
-        $this->expectExceptionMessage('-42');
-
-        ElapsedPeriod::of(-42);
-    }
-
     public function testLongerThan()
     {
         $this->assertTrue(
-            (new ElapsedPeriod(42))->longerThan(
-                new ElapsedPeriod(0),
+            ElapsedPeriod::of(42)->longerThan(
+                ElapsedPeriod::of(0),
             ),
         );
         $this->assertFalse(
-            (new ElapsedPeriod(42))->longerThan(
-                new ElapsedPeriod(66),
+            ElapsedPeriod::of(42)->longerThan(
+                ElapsedPeriod::of(66),
             ),
         );
     }
@@ -68,27 +56,27 @@ class ElapsedPeriodTest extends TestCase
     public function testEquals()
     {
         $this->assertTrue(
-            (new ElapsedPeriod(42))->equals(
-                new ElapsedPeriod(42),
+            ElapsedPeriod::of(42)->equals(
+                ElapsedPeriod::of(42),
             ),
         );
         $this->assertFalse(
-            (new ElapsedPeriod(42))->equals(
-                new ElapsedPeriod(66),
+            ElapsedPeriod::of(42)->equals(
+                ElapsedPeriod::of(66),
             ),
         );
     }
 
     public function testThrowWhenTryingToBuildFromYearPeriod()
     {
-        $this->expectException(LogicException::class);
+        $this->expectException(\LogicException::class);
 
         ElapsedPeriod::ofPeriod(Year::of(1));
     }
 
     public function testThrowWhenTryingToBuildFromMonthPeriod()
     {
-        $this->expectException(LogicException::class);
+        $this->expectException(\LogicException::class);
 
         ElapsedPeriod::ofPeriod(Month::of(1));
     }

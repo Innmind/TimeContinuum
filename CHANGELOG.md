@@ -8,6 +8,8 @@
 - Interfaces in the `Innmind\TimeContinuum\Clock` namespace are now `final class`es
 - Classes in the `Innmind\TimeContinuum\Clock` namespace have been moved to `Innmind\TimeContinuum\PointInTime`
 - `Innmind\TimeContinuum\Period` is now a `final class`
+- `Innmind\TimeContinuum\ElapsedPeriod` is now a `final class`
+- `Innmind\TimeContinuum\Earth\Period` has been renamed to `Innmind\TimeContinuum\Period\Value`
 
 ### Removed
 
@@ -15,6 +17,7 @@
 - Classes in the `Innmind\TimeContinuum\Earth\Format` namespaces are now named constructors of `Innmind\TimeContinuum\Format`
 - Classes in the `Innmind\TimeContinuum\Earth\Clock` namespace
 - Classes in the `Innmind\TimeContinuum\Earth\Period` namespace
+- `Innmind\TimeContinuum\Earth\ElapsedPeriod`
 
 ## 3.4.1 - 2023-09-17
 

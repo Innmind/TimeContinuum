@@ -3,7 +3,7 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum\Earth\PointInTime;
 
-use Innmind\TimeContinuum\Earth\ElapsedPeriod;
+use Innmind\TimeContinuum\ElapsedPeriod;
 
 /**
  * @psalm-immutable

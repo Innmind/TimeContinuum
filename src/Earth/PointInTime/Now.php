@@ -7,8 +7,7 @@ use Innmind\TimeContinuum\{
     PointInTime as PointInTimeInterface,
     Format,
     Timezone,
-    Earth\ElapsedPeriod,
-    ElapsedPeriod as ElapsedPeriodInterface,
+    ElapsedPeriod,
     Period,
     PointInTime\Year,
     PointInTime\Month,
@@ -94,13 +93,13 @@ final class Now implements PointInTimeInterface
         return $this->point->timezone();
     }
 
-    public function elapsedSince(PointInTimeInterface $point): ElapsedPeriodInterface
+    public function elapsedSince(PointInTimeInterface $point): ElapsedPeriod
     {
         if ($point instanceof self) {
             return $this->highResolution->elapsedSince($point->highResolution);
         }
 
-        return new ElapsedPeriod($this->milliseconds() - $point->milliseconds());
+        return ElapsedPeriod::of($this->milliseconds() - $point->milliseconds());
     }
 
     public function goBack(Period $period): PointInTimeInterface

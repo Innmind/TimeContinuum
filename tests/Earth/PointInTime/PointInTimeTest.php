@@ -8,7 +8,7 @@ use Innmind\TimeContinuum\{
     PointInTime as PointInTimeInterface,
     Timezone,
     Format,
-    Earth\ElapsedPeriod,
+    ElapsedPeriod,
     PointInTime\Year,
     PointInTime\Month,
     PointInTime\Day as DayInterface,

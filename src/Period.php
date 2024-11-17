@@ -180,6 +180,6 @@ final class Period
 
     public function asElapsedPeriod(): ElapsedPeriod
     {
-        return Earth\ElapsedPeriod::ofPeriod($this);
+        return ElapsedPeriod::ofPeriod($this);
     }
 }

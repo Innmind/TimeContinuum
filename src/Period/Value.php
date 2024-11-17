@@ -1,12 +1,12 @@
 <?php
 declare(strict_types = 1);
 
-namespace Innmind\TimeContinuum\Earth;
+namespace Innmind\TimeContinuum\Period;
 
 /**
  * @psalm-immutable
  */
-enum Period
+enum Value
 {
     case second;
     case minute;
