@@ -3,7 +3,7 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum;
 
-use Innmind\TimeContinuum\Clock\{
+use Innmind\TimeContinuum\PointInTime\{
     Year,
     Month,
     Day,

@@ -1,11 +1,11 @@
 <?php
 declare(strict_types = 1);
 
-namespace Tests\Innmind\TimeContinuum\Clock;
+namespace Tests\Innmind\TimeContinuum\PointInTime;
 
 use Innmind\TimeContinuum\{
-    Clock\Month,
-    Clock\Year,
+    PointInTime\Month,
+    PointInTime\Year,
 };
 use PHPUnit\Framework\TestCase;
 

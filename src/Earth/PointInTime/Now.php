@@ -10,13 +10,13 @@ use Innmind\TimeContinuum\{
     Earth\ElapsedPeriod,
     ElapsedPeriod as ElapsedPeriodInterface,
     Period,
-    Clock\Year,
-    Clock\Month,
-    Clock\Day,
-    Clock\Hour,
-    Clock\Minute,
-    Clock\Second,
-    Clock\Millisecond,
+    PointInTime\Year,
+    PointInTime\Month,
+    PointInTime\Day,
+    PointInTime\Hour,
+    PointInTime\Minute,
+    PointInTime\Second,
+    PointInTime\Millisecond,
 };
 
 /**

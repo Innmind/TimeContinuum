@@ -1,9 +1,9 @@
 <?php
 declare(strict_types = 1);
 
-namespace Tests\Innmind\TimeContinuum\Clock;
+namespace Tests\Innmind\TimeContinuum\PointInTime;
 
-use Innmind\TimeContinuum\Clock\Hour;
+use Innmind\TimeContinuum\PointInTime\Hour;
 use PHPUnit\Framework\TestCase;
 
 class HourTest extends TestCase

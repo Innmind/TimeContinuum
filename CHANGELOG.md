@@ -6,6 +6,7 @@
 
 - `Innmind\TimeContinuum\Format` is now a `final class`
 - Interfaces in the `Innmind\TimeContinuum\Clock` namespace are now `final class`es
+- Classes in the `Innmind\TimeContinuum\Clock` namespace have been moved to `Innmind\TimeContinuum\PointInTime`
 
 ### Removed
 
