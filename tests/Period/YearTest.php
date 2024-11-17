@@ -1,12 +1,11 @@
 <?php
 declare(strict_types = 1);
 
-namespace Tests\Innmind\TimeContinuum\Earth\Period;
+namespace Tests\Innmind\TimeContinuum\Period;
 
 use Innmind\TimeContinuum\{
     Period,
-    Earth\Period\Year,
-    Exception\PeriodCantBeNegative,
+    Period\Year,
 };
 use PHPUnit\Framework\TestCase;
 
@@ -26,23 +25,15 @@ class YearTest extends TestCase
         $this->assertSame(0, $period->milliseconds());
     }
 
-    public function testThrowWhenYearIsNegative()
-    {
-        $this->expectException(PeriodCantBeNegative::class);
-        $this->expectExceptionMessage('-1');
-
-        new Year(-1);
-    }
-
     public function testEquals()
     {
-        $this->assertTrue((new Year(2))->equals(new Year(2)));
-        $this->assertFalse((new Year(2))->equals(new Year(3)));
+        $this->assertTrue(Year::of(2)->equals(Year::of(2)));
+        $this->assertFalse(Year::of(2)->equals(Year::of(3)));
     }
 
     public function testAdd()
     {
-        $period = new Year(42);
+        $period = Year::of(42);
         $period2 = $period->add($period);
 
         $this->assertInstanceOf(Period::class, $period2);

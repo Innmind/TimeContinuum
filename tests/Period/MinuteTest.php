@@ -1,27 +1,26 @@
 <?php
 declare(strict_types = 1);
 
-namespace Tests\Innmind\TimeContinuum\Earth\Period;
+namespace Tests\Innmind\TimeContinuum\Period;
 
 use Innmind\TimeContinuum\{
     Period,
-    Earth\Period\Hour,
-    Exception\PeriodCantBeNegative,
+    Period\Minute,
 };
 use PHPUnit\Framework\TestCase;
 
-class HourTest extends TestCase
+class MinuteTest extends TestCase
 {
     public function testInterface()
     {
-        $period = Hour::of(20);
+        $period = Minute::of(20);
 
         $this->assertInstanceOf(Period::class, $period);
         $this->assertSame(0, $period->years());
         $this->assertSame(0, $period->months());
         $this->assertSame(0, $period->days());
-        $this->assertSame(20, $period->hours());
-        $this->assertSame(0, $period->minutes());
+        $this->assertSame(0, $period->hours());
+        $this->assertSame(20, $period->minutes());
         $this->assertSame(0, $period->seconds());
         $this->assertSame(0, $period->milliseconds());
     }
@@ -29,51 +28,47 @@ class HourTest extends TestCase
     /**
      * @dataProvider cases
      */
-    public function testConvertToDays(int $hour, int $days, int $expectedHours)
-    {
-        $period = new Hour($hour);
+    public function testConvertToHours(
+        int $minute,
+        int $days,
+        int $hours,
+        int $expectedMinutes,
+    ) {
+        $period = Minute::of($minute);
 
         $this->assertSame(0, $period->years());
         $this->assertSame(0, $period->months());
         $this->assertSame($days, $period->days());
-        $this->assertSame($expectedHours, $period->hours());
-        $this->assertSame(0, $period->minutes());
+        $this->assertSame($hours, $period->hours());
+        $this->assertSame($expectedMinutes, $period->minutes());
         $this->assertSame(0, $period->seconds());
         $this->assertSame(0, $period->milliseconds());
     }
 
-    public function testThrowWhenHourIsNegative()
-    {
-        $this->expectException(PeriodCantBeNegative::class);
-        $this->expectExceptionMessage('-1');
-
-        new Hour(-1);
-    }
-
     public function testEquals()
     {
-        $this->assertTrue((new Hour(25))->equals(new Hour(25)));
-        $this->assertFalse((new Hour(2))->equals(new Hour(3)));
+        $this->assertTrue(Minute::of(66)->equals(Minute::of(66)));
+        $this->assertFalse(Minute::of(2)->equals(Minute::of(3)));
     }
 
     public function testAdd()
     {
-        $period = new Hour(20);
+        $period = Minute::of(20);
         $period2 = $period->add($period);
 
         $this->assertInstanceOf(Period::class, $period2);
         $this->assertSame(0, $period->years());
         $this->assertSame(0, $period->months());
         $this->assertSame(0, $period->days());
-        $this->assertSame(20, $period->hours());
-        $this->assertSame(0, $period->minutes());
+        $this->assertSame(0, $period->hours());
+        $this->assertSame(20, $period->minutes());
         $this->assertSame(0, $period->seconds());
         $this->assertSame(0, $period->milliseconds());
         $this->assertSame(0, $period2->years());
         $this->assertSame(0, $period2->months());
-        $this->assertSame(1, $period2->days());
-        $this->assertSame(16, $period2->hours());
-        $this->assertSame(0, $period2->minutes());
+        $this->assertSame(0, $period2->days());
+        $this->assertSame(0, $period2->hours());
+        $this->assertSame(40, $period2->minutes());
         $this->assertSame(0, $period2->seconds());
         $this->assertSame(0, $period2->milliseconds());
     }
@@ -81,28 +76,32 @@ class HourTest extends TestCase
     public function testAsElapsedPeriod()
     {
         $this->assertSame(
-            3_600_000,
-            (new Hour(1))->asElapsedPeriod()->milliseconds(),
+            60_000,
+            Minute::of(1)->asElapsedPeriod()->milliseconds(),
         );
         $this->assertSame(
-            7_200_000,
-            (new Hour(2))->asElapsedPeriod()->milliseconds(),
+            120_000,
+            Minute::of(2)->asElapsedPeriod()->milliseconds(),
         );
         $this->assertSame(
-            10_800_000,
-            (new Hour(3))->asElapsedPeriod()->milliseconds(),
+            180_000,
+            Minute::of(3)->asElapsedPeriod()->milliseconds(),
         );
     }
 
     public static function cases()
     {
         return [
-            [20, 0, 20],
-            [24, 1, 0],
-            [23, 0, 23],
-            [25, 1, 1],
-            [48, 2, 0],
-            [49, 2, 1],
+            [20, 0, 0, 20],
+            [59, 0, 0, 59],
+            [60, 0, 1, 0],
+            [61, 0, 1, 1],
+            [120, 0, 2, 0],
+            [121, 0, 2, 1],
+            [1440, 1, 0, 0],
+            [1441, 1, 0, 1],
+            [1501, 1, 1, 1],
+            [2880, 2, 0, 0],
         ];
     }
 }

@@ -8,10 +8,7 @@ use Innmind\BlackBox\{
     Set,
     Random,
 };
-use Innmind\TimeContinuum\{
-    Period as PeriodInterface,
-    Earth\Period\Year,
-};
+use Innmind\TimeContinuum\Period as Model;
 use PHPUnit\Framework\TestCase;
 
 class PeriodTest extends TestCase
@@ -25,7 +22,7 @@ class PeriodTest extends TestCase
 
         foreach ($periods->values(Random::default) as $period) {
             $this->assertInstanceOf(Set\Value::class, $period);
-            $this->assertInstanceOf(PeriodInterface::class, $period->unwrap());
+            $this->assertInstanceOf(Model::class, $period->unwrap());
             $this->assertTrue($period->isImmutable());
         }
     }
@@ -44,7 +41,7 @@ class PeriodTest extends TestCase
             $this->assertInstanceOf(Set\Value::class, $period);
             $this->assertTrue($period->isImmutable());
             $value = $period->unwrap();
-            $this->assertInstanceOf(Year::class, $value);
+            $this->assertInstanceOf(Model::class, $value);
             $this->assertSame(0, $value->months());
             $this->assertSame(0, $value->days());
             $this->assertSame(0, $value->hours());
@@ -72,7 +69,7 @@ class PeriodTest extends TestCase
             $this->assertInstanceOf(Set\Value::class, $period);
             $this->assertTrue($period->isImmutable());
             $value = $period->unwrap();
-            $this->assertInstanceOf(PeriodInterface::class, $value);
+            $this->assertInstanceOf(Model::class, $value);
             $this->assertLessThan(365, $value->days());
             $this->assertSame(0, $value->years());
             $this->assertSame(0, $value->months());

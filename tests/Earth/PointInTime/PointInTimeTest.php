@@ -17,9 +17,8 @@ use Innmind\TimeContinuum\{
     PointInTime\Second,
     PointInTime\Millisecond,
     Earth\Timezone\UTC,
-    Earth\Period\Composite,
-    Earth\Period\Day,
-    Earth\Period\Millisecond as MillisecondPeriod,
+    Period,
+    Period\Day,
 };
 use PHPUnit\Framework\TestCase;
 
@@ -129,7 +128,7 @@ class PointInTimeTest extends TestCase
     {
         $point = new PointInTime('2016-10-05T08:01:30.123+02:00');
         $point2 = $point->goForward(
-            new Composite(1, 1, 1, 1, 1, 30, 878),
+            Period::of(1, 1, 1, 1, 1, 30, 878),
         );
 
         $this->assertInstanceOf(PointInTimeInterface::class, $point2);
@@ -153,7 +152,7 @@ class PointInTimeTest extends TestCase
     {
         $point = new PointInTime('2016-10-05T08:01:30.123+02:00');
         $point2 = $point->goBack(
-            new Composite(1, 1, 1, 1, 1, 30, 125),
+            Period::of(1, 1, 1, 1, 1, 30, 125),
         );
 
         $this->assertInstanceOf(PointInTimeInterface::class, $point2);
@@ -175,7 +174,7 @@ class PointInTimeTest extends TestCase
         $this->assertSame(
             '2016-10-05T08:01:29.500000+02:00',
             $point
-                ->goBack(new MillisecondPeriod(623))
+                ->goBack(Period\Millisecond::of(623))
                 ->format(Format::of('Y-m-d\TH:i:s.uP')),
         );
     }
@@ -183,7 +182,7 @@ class PointInTimeTest extends TestCase
     public function testGoBackOneDay()
     {
         $point = new PointInTime('2018-03-04');
-        $point2 = $point->goBack(new Day(1));
+        $point2 = $point->goBack(Day::of(1));
         $format = Format::of('Y-m-d\TH:i:s.u');
 
         $this->assertSame(
@@ -199,7 +198,7 @@ class PointInTimeTest extends TestCase
     public function testGoBackOneMillisecondWhenCurrentPointIsAtPreciselyZeroMillisecond()
     {
         $point = new PointInTime('1402-07-21 02:42:53.000000');
-        $point2 = $point->goBack(new MillisecondPeriod(1));
+        $point2 = $point->goBack(Period\Millisecond::of(1));
         $format = Format::of('Y-m-d\TH:i:s.u');
 
         $this->assertSame(

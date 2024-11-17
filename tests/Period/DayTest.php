@@ -1,12 +1,11 @@
 <?php
 declare(strict_types = 1);
 
-namespace Tests\Innmind\TimeContinuum\Earth\Period;
+namespace Tests\Innmind\TimeContinuum\Period;
 
 use Innmind\TimeContinuum\{
     Period,
-    Earth\Period\Day,
-    Exception\PeriodCantBeNegative,
+    Period\Day,
 };
 use PHPUnit\Framework\TestCase;
 
@@ -26,23 +25,15 @@ class DayTest extends TestCase
         $this->assertSame(0, $period->milliseconds());
     }
 
-    public function testThrowWhenDayIsNegative()
-    {
-        $this->expectException(PeriodCantBeNegative::class);
-        $this->expectExceptionMessage('-1');
-
-        new Day(-1);
-    }
-
     public function testEquals()
     {
-        $this->assertTrue((new Day(2))->equals(new Day(2)));
-        $this->assertFalse((new Day(2))->equals(new Day(3)));
+        $this->assertTrue(Day::of(2)->equals(Day::of(2)));
+        $this->assertFalse(Day::of(2)->equals(Day::of(3)));
     }
 
     public function testAdd()
     {
-        $period = new Day(1000);
+        $period = Day::of(1000);
         $period2 = $period->add($period);
 
         $this->assertInstanceOf(Period::class, $period);
@@ -67,15 +58,15 @@ class DayTest extends TestCase
     {
         $this->assertSame(
             86_400_000,
-            (new Day(1))->asElapsedPeriod()->milliseconds(),
+            Day::of(1)->asElapsedPeriod()->milliseconds(),
         );
         $this->assertSame(
             172_800_000,
-            (new Day(2))->asElapsedPeriod()->milliseconds(),
+            Day::of(2)->asElapsedPeriod()->milliseconds(),
         );
         $this->assertSame(
             259_200_000,
-            (new Day(3))->asElapsedPeriod()->milliseconds(),
+            Day::of(3)->asElapsedPeriod()->milliseconds(),
         );
     }
 }

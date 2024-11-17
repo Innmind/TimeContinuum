@@ -1,12 +1,11 @@
 <?php
 declare(strict_types = 1);
 
-namespace Tests\Innmind\TimeContinuum\Earth\Period;
+namespace Tests\Innmind\TimeContinuum\Period;
 
 use Innmind\TimeContinuum\{
     Period,
-    Earth\Period\Millisecond,
-    Exception\PeriodCantBeNegative,
+    Period\Millisecond,
 };
 use PHPUnit\Framework\TestCase;
 
@@ -37,7 +36,7 @@ class MillisecondTest extends TestCase
         int $seconds,
         int $expectedMilliseconds,
     ) {
-        $period = new Millisecond($millisecond);
+        $period = Millisecond::of($millisecond);
 
         $this->assertSame(0, $period->years());
         $this->assertSame(0, $period->months());
@@ -48,23 +47,15 @@ class MillisecondTest extends TestCase
         $this->assertSame($expectedMilliseconds, $period->milliseconds());
     }
 
-    public function testThrowWhenMillisecondIsNegative()
-    {
-        $this->expectException(PeriodCantBeNegative::class);
-        $this->expectExceptionMessage('-1');
-
-        new Millisecond(-1);
-    }
-
     public function testEquals()
     {
-        $this->assertTrue((new Millisecond(66))->equals(new Millisecond(66)));
-        $this->assertFalse((new Millisecond(2))->equals(new Millisecond(3)));
+        $this->assertTrue(Millisecond::of(66)->equals(Millisecond::of(66)));
+        $this->assertFalse(Millisecond::of(2)->equals(Millisecond::of(3)));
     }
 
     public function testAdd()
     {
-        $period = new Millisecond(20);
+        $period = Millisecond::of(20);
         $period2 = $period->add($period);
 
         $this->assertInstanceOf(Period::class, $period2);
@@ -88,15 +79,15 @@ class MillisecondTest extends TestCase
     {
         $this->assertSame(
             1,
-            (new Millisecond(1))->asElapsedPeriod()->milliseconds(),
+            Millisecond::of(1)->asElapsedPeriod()->milliseconds(),
         );
         $this->assertSame(
             2,
-            (new Millisecond(2))->asElapsedPeriod()->milliseconds(),
+            Millisecond::of(2)->asElapsedPeriod()->milliseconds(),
         );
         $this->assertSame(
             3,
-            (new Millisecond(3))->asElapsedPeriod()->milliseconds(),
+            Millisecond::of(3)->asElapsedPeriod()->milliseconds(),
         );
     }
 

@@ -5,10 +5,10 @@ namespace Innmind\TimeContinuum\Earth\Move;
 
 use Innmind\TimeContinuum\{
     PointInTime,
-    Earth\Period\Hour,
-    Earth\Period\Minute,
-    Earth\Period\Second,
-    Earth\Period\Millisecond,
+    Period\Hour,
+    Period\Minute,
+    Period\Second,
+    Period\Millisecond,
 };
 
 final class StartOfDay
@@ -23,10 +23,10 @@ final class StartOfDay
         }
 
         return $point->goBack(
-            (new Hour($point->hour()->toInt()))
-                ->add(new Minute($point->minute()->toInt()))
-                ->add(new Second($seconds))
-                ->add(new Millisecond($millisecond)),
+            Hour::of($point->hour()->toInt())
+                ->add(Minute::of($point->minute()->toInt()))
+                ->add(Second::of($seconds))
+                ->add(Millisecond::of($millisecond)),
         );
     }
 }

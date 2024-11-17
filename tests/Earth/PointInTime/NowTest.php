@@ -17,8 +17,8 @@ use Innmind\TimeContinuum\{
     PointInTime\Second,
     PointInTime\Millisecond,
     Earth\Timezone\UTC,
-    Earth\Period\Year,
-    Earth\Period\Millisecond as MillisecondPeriod,
+    Period,
+    Period\Year,
 };
 use PHPUnit\Framework\TestCase;
 
@@ -131,7 +131,7 @@ class NowTest extends TestCase
     public function testGoForward()
     {
         $point = new Now;
-        $point2 = $point->goForward(new Year(1));
+        $point2 = $point->goForward(Year::of(1));
 
         $this->assertInstanceOf(PointInTime::class, $point2);
         $this->assertNotSame($point, $point2);
@@ -141,13 +141,13 @@ class NowTest extends TestCase
     public function testGoBack()
     {
         $point = new Now;
-        $point2 = $point->goBack(new Year(1));
+        $point2 = $point->goBack(Year::of(1));
 
         $this->assertInstanceOf(PointInTime::class, $point2);
         $this->assertNotSame($point, $point2);
         $this->assertSame($point->year()->toInt() - 1, $point2->year()->toInt());
 
-        $point3 = $point->goBack(new MillisecondPeriod(500));
+        $point3 = $point->goBack(Period\Millisecond::of(500));
 
         if ($point->millisecond()->toInt() > 500) {
             $this->assertSame(

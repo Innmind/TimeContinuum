@@ -5,15 +5,16 @@ namespace Innmind\TimeContinuum\Earth\Move;
 
 use Innmind\TimeContinuum\{
     PointInTime,
-    Earth\Period\Day,
+    Period\Day,
 };
 
 final class EndOfMonth
 {
     public function __invoke(PointInTime $point): PointInTime
     {
+        /** @psalm-suppress InvalidArgument The negative values can only happen when working with 2 different points in time */
         return (new EndOfDay)($point)->goForward(
-            new Day($point->month()->numberOfDays() - $point->day()->toInt()),
+            Day::of($point->month()->numberOfDays() - $point->day()->toInt()),
         );
     }
 }

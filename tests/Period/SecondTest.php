@@ -1,12 +1,11 @@
 <?php
 declare(strict_types = 1);
 
-namespace Tests\Innmind\TimeContinuum\Earth\Period;
+namespace Tests\Innmind\TimeContinuum\Period;
 
 use Innmind\TimeContinuum\{
     Period,
-    Earth\Period\Second,
-    Exception\PeriodCantBeNegative,
+    Period\Second,
 };
 use PHPUnit\Framework\TestCase;
 
@@ -36,7 +35,7 @@ class SecondTest extends TestCase
         int $minutes,
         int $expectedSeconds,
     ) {
-        $period = new Second($second);
+        $period = Second::of($second);
 
         $this->assertSame(0, $period->years());
         $this->assertSame(0, $period->months());
@@ -47,23 +46,15 @@ class SecondTest extends TestCase
         $this->assertSame(0, $period->milliseconds());
     }
 
-    public function testThrowWhenSecondIsNegative()
-    {
-        $this->expectException(PeriodCantBeNegative::class);
-        $this->expectExceptionMessage('-1');
-
-        new Second(-1);
-    }
-
     public function testEquals()
     {
-        $this->assertTrue((new Second(66))->equals(new Second(66)));
-        $this->assertFalse((new Second(2))->equals(new Second(3)));
+        $this->assertTrue(Second::of(66)->equals(Second::of(66)));
+        $this->assertFalse(Second::of(2)->equals(Second::of(3)));
     }
 
     public function testAdd()
     {
-        $period = new Second(20);
+        $period = Second::of(20);
         $period2 = $period->add($period);
 
         $this->assertInstanceOf(Period::class, $period2);
@@ -87,15 +78,15 @@ class SecondTest extends TestCase
     {
         $this->assertSame(
             1000,
-            (new Second(1))->asElapsedPeriod()->milliseconds(),
+            Second::of(1)->asElapsedPeriod()->milliseconds(),
         );
         $this->assertSame(
             2000,
-            (new Second(2))->asElapsedPeriod()->milliseconds(),
+            Second::of(2)->asElapsedPeriod()->milliseconds(),
         );
         $this->assertSame(
             3000,
-            (new Second(3))->asElapsedPeriod()->milliseconds(),
+            Second::of(3)->asElapsedPeriod()->milliseconds(),
         );
     }
 

@@ -5,12 +5,12 @@ namespace Innmind\TimeContinuum\Earth\Move;
 
 use Innmind\TimeContinuum\{
     PointInTime,
-    Earth\Period\Day,
-    Earth\Period\Hour,
-    Earth\Period\Minute,
-    Earth\Period\Second,
-    Earth\Period\Millisecond,
-    Earth\Period\Month as Period,
+    Period,
+    Period\Day,
+    Period\Hour,
+    Period\Minute,
+    Period\Second,
+    Period\Millisecond,
 };
 
 final class Month
@@ -29,30 +29,36 @@ final class Month
         /** @var PointInTime $newPoint */
         $newPoint = (new StartOfMonth)($point)->{$this->direction}($this->months);
         $newPoint = $newPoint->goForward(
-            (new Hour($point->hour()->toInt()))
-                ->add(new Minute($point->minute()->toInt()))
-                ->add(new Second($point->second()->toInt()))
-                ->add(new Millisecond($point->millisecond()->toInt())),
+            Hour::of($point->hour()->toInt())
+                ->add(Minute::of($point->minute()->toInt()))
+                ->add(Second::of($point->second()->toInt()))
+                ->add(Millisecond::of($point->millisecond()->toInt())),
         );
 
         if ($newPoint->month()->numberOfDays() < $point->day()->toInt()) {
             return $newPoint->goForward(
-                new Day($newPoint->month()->numberOfDays() - 1),
+                Day::of($newPoint->month()->numberOfDays() - 1),
             );
         }
 
         return $newPoint->goForward(
-            new Day($point->day()->toInt() - 1),
+            Day::of($point->day()->toInt() - 1),
         );
     }
 
+    /**
+     * @param int<1, max> $months
+     */
     public static function forward(int $months): self
     {
-        return new self('goForward', new Period($months));
+        return new self('goForward', Period\Month::of($months));
     }
 
+    /**
+     * @param int<1, max> $months
+     */
     public static function backward(int $months): self
     {
-        return new self('goBack', new Period($months));
+        return new self('goBack', Period\Month::of($months));
     }
 }

@@ -1,12 +1,11 @@
 <?php
 declare(strict_types = 1);
 
-namespace Tests\Innmind\TimeContinuum\Earth\Period;
+namespace Tests\Innmind\TimeContinuum\Period;
 
 use Innmind\TimeContinuum\{
     Period,
-    Earth\Period\Month,
-    Exception\PeriodCantBeNegative,
+    Period\Month,
 };
 use PHPUnit\Framework\TestCase;
 
@@ -31,7 +30,7 @@ class MonthTest extends TestCase
      */
     public function testConvertMonthsIntoYears(int $months, int $year, int $expectedMonths)
     {
-        $period = new Month($months);
+        $period = Month::of($months);
 
         $this->assertSame($year, $period->years());
         $this->assertSame($expectedMonths, $period->months());
@@ -42,23 +41,15 @@ class MonthTest extends TestCase
         $this->assertSame(0, $period->milliseconds());
     }
 
-    public function testThrowWhenMonthIsNegative()
-    {
-        $this->expectException(PeriodCantBeNegative::class);
-        $this->expectExceptionMessage('-1');
-
-        new Month(-1);
-    }
-
     public function testEquals()
     {
-        $this->assertTrue((new Month(20))->equals(new Month(20)));
-        $this->assertFalse((new Month(2))->equals(new Month(3)));
+        $this->assertTrue(Month::of(20)->equals(Month::of(20)));
+        $this->assertFalse(Month::of(2)->equals(Month::of(3)));
     }
 
     public function testAdd()
     {
-        $period = new Month(10);
+        $period = Month::of(10);
         $period2 = $period->add($period);
 
         $this->assertInstanceOf(Period::class, $period2);

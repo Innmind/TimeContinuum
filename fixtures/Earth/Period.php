@@ -3,31 +3,21 @@ declare(strict_types = 1);
 
 namespace Fixtures\Innmind\TimeContinuum\Earth;
 
-use Innmind\TimeContinuum\Earth\Period\{
-    Composite,
-    Year,
+use Innmind\TimeContinuum\{
+    Period as Model,
+    Period\Year,
 };
 use Innmind\BlackBox\Set;
 
 final class Period
 {
     /**
-     * @return Set<Composite>
+     * @return Set<Model>
      */
     public static function any(): Set
     {
         return Set\Composite::immutable(
-            static function($year, $month, $day, $hour, $minute, $second, $millisecond): Composite {
-                return new Composite(
-                    $year,
-                    $month,
-                    $day,
-                    $hour,
-                    $minute,
-                    $second,
-                    $millisecond,
-                );
-            },
+            Model::of(...),
             Set\Integers::between(0, 9999),
             Set\Integers::between(0, 12),
             Set\Integers::between(0, 31),
@@ -44,19 +34,19 @@ final class Period
     public static function anyNumberOfYear(): Set
     {
         return Set\Decorate::immutable(
-            static fn(int $year): Year => new Year($year),
+            Year::of(...),
             Set\Integers::between(0, 9999),
         )->take(100);
     }
 
     /**
-     * @return Set<Composite>
+     * @return Set<Model>
      */
     public static function lessThanAYear(): Set
     {
         return Set\Composite::immutable(
-            static function($day, $hour, $minute, $second, $millisecond): Composite {
-                return new Composite(
+            static function($day, $hour, $minute, $second, $millisecond): Model {
+                return Model::of(
                     0,
                     0,
                     $day,

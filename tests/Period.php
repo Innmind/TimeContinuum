@@ -1,22 +1,17 @@
 <?php
 declare(strict_types = 1);
 
-namespace Tests\Innmind\TimeContinuum\Earth\Period;
+namespace Tests\Innmind\TimeContinuum;
 
-use Innmind\TimeContinuum\{
-    Earth\Period\Composite,
-    Period,
-    Exception\PeriodCantBeNegative,
-};
+use Innmind\TimeContinuum\Period;
 use PHPUnit\Framework\TestCase;
 
 class CompositeTest extends TestCase
 {
     public function testInterface()
     {
-        $period = new Composite(1, 2, 3, 4, 5, 6, 7);
+        $period = Period::of(1, 2, 3, 4, 5, 6, 7);
 
-        $this->assertInstanceOf(Period::class, $period);
         $this->assertSame(1, $period->years());
         $this->assertSame(2, $period->months());
         $this->assertSame(3, $period->days());
@@ -28,7 +23,7 @@ class CompositeTest extends TestCase
 
     public function testAdjustEachComponent()
     {
-        $period = new Composite(
+        $period = Period::of(
             1,
             13,
             1,
@@ -47,29 +42,11 @@ class CompositeTest extends TestCase
         $this->assertSame(1, $period->milliseconds());
     }
 
-    /**
-     * @dataProvider wrongData
-     */
-    public function testThrowWhenAComponentIsNegative(
-        int $year,
-        int $month,
-        int $day,
-        int $hour,
-        int $minute,
-        int $second,
-        int $millisecond,
-    ) {
-        $this->expectException(PeriodCantBeNegative::class);
-        $this->expectExceptionMessage('-1');
-
-        new Composite($year, $month, $day, $hour, $minute, $second, $millisecond);
-    }
-
     public function testEquals()
     {
-        $period = new Composite(1, 2, 3, 4, 5, 6, 7);
-        $period2 = new Composite(1, 2, 3, 4, 5, 6, 8);
-        $period3 = new Composite(1, 2, 3, 4, 5, 6, 7);
+        $period = Period::of(1, 2, 3, 4, 5, 6, 7);
+        $period2 = Period::of(1, 2, 3, 4, 5, 6, 8);
+        $period3 = Period::of(1, 2, 3, 4, 5, 6, 7);
 
         $this->assertTrue($period->equals($period3));
         $this->assertFalse($period->equals($period2));
@@ -77,10 +54,9 @@ class CompositeTest extends TestCase
 
     public function testAdd()
     {
-        $period = new Composite(1, 2, 3, 4, 5, 6, 7);
+        $period = Period::of(1, 2, 3, 4, 5, 6, 7);
         $period2 = $period->add($period);
 
-        $this->assertInstanceOf(Period::class, $period);
         $this->assertNotSame($period, $period2);
         $this->assertSame(1, $period->years());
         $this->assertSame(2, $period->months());
@@ -102,20 +78,7 @@ class CompositeTest extends TestCase
     {
         $this->assertSame(
             90_061_001,
-            (new Composite(0, 0, 1, 1, 1, 1, 1))->asElapsedPeriod()->milliseconds(),
+            Period::of(0, 0, 1, 1, 1, 1, 1)->asElapsedPeriod()->milliseconds(),
         );
-    }
-
-    public static function wrongData()
-    {
-        return [
-            [-1, 0, 0, 0, 0, 0, 0],
-            [0, -1, 0, 0, 0, 0, 0],
-            [0, 0, -1, 0, 0, 0, 0],
-            [0, 0, 0, -1, 0, 0, 0],
-            [0, 0, 0, 0, -1, 0, 0],
-            [0, 0, 0, 0, 0, -1, 0],
-            [0, 0, 0, 0, 0, 0, -1],
-        ];
     }
 }

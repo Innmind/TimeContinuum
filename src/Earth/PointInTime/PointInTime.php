@@ -18,7 +18,6 @@ use Innmind\TimeContinuum\{
     PointInTime\Second,
     PointInTime\Millisecond,
     Earth\Timezone\UTC,
-    Earth\Period\Millisecond as MillisecondPeriod,
 };
 
 /**
@@ -132,7 +131,7 @@ final class PointInTime implements PointInTimeInterface
     {
         if ($this->millisecond()->toInt() > 0) {
             $period = $period->add(
-                new MillisecondPeriod(1000 - $this->millisecond()->toInt()),
+                Period\Millisecond::of(1000 - $this->millisecond()->toInt()),
             );
         }
         $date = $this->date;
@@ -168,7 +167,7 @@ final class PointInTime implements PointInTimeInterface
     public function goForward(Period $period): PointInTimeInterface
     {
         $period = $period->add(
-            new MillisecondPeriod($this->millisecond()->toInt()),
+            Period\Millisecond::of($this->millisecond()->toInt()),
         );
         $date = $this->date;
 
