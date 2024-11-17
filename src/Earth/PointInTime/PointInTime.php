@@ -10,14 +10,14 @@ use Innmind\TimeContinuum\{
     Earth\ElapsedPeriod,
     ElapsedPeriod as ElapsedPeriodInterface,
     Period,
+    Clock\Year,
+    Clock\Month,
+    Clock\Day,
+    Clock\Hour,
+    Clock\Minute,
+    Clock\Second,
+    Clock\Millisecond,
     Earth\Timezone\UTC,
-    Earth\Clock\Year,
-    Earth\Clock\Month,
-    Earth\Clock\Day,
-    Earth\Clock\Hour,
-    Earth\Clock\Minute,
-    Earth\Clock\Second,
-    Earth\Clock\Millisecond,
     Earth\Period\Millisecond as MillisecondPeriod,
 };
 
@@ -46,51 +46,61 @@ final class PointInTime implements PointInTimeInterface
 
     public function year(): Year
     {
-        return new Year((int) $this->date->format('Y'));
+        return Year::of((int) $this->date->format('Y'));
     }
 
     public function month(): Month
     {
-        return new Month(
+        /** @var int<1, 12> */
+        $month = (int) $this->date->format('n');
+
+        return Month::of(
             $this->year(),
-            (int) $this->date->format('n'),
+            $month,
         );
     }
 
     public function day(): Day
     {
-        return new Day(
+        /** @var int<1, 31> */
+        $day = (int) $this->date->format('j');
+
+        return Day::of(
             $this->year(),
             $this->month(),
-            (int) $this->date->format('j'),
+            $day,
         );
     }
 
     public function hour(): Hour
     {
-        return new Hour(
-            (int) $this->date->format('G'),
-        );
+        /** @var int<0, 23> */
+        $hour = (int) $this->date->format('G');
+
+        return Hour::of($hour);
     }
     public function minute(): Minute
     {
-        return new Minute(
-            (int) $this->date->format('i'),
-        );
+        /** @var int<0, 59> */
+        $minute = (int) $this->date->format('i');
+
+        return Minute::of($minute);
     }
 
     public function second(): Second
     {
-        return new Second(
-            (int) $this->date->format('s'),
-        );
+        /** @var int<0, 59> */
+        $second = (int) $this->date->format('s');
+
+        return Second::of($second);
     }
 
     public function millisecond(): Millisecond
     {
-        return new Millisecond(
-            (int) ((int) $this->date->format('u') / 1000),
-        );
+        /** @var int<0, 999> */
+        $millisecond = (int) ((int) $this->date->format('u') / 1000);
+
+        return Millisecond::of($millisecond);
     }
 
     public function format(Format $format): string

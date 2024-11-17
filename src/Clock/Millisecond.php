@@ -6,8 +6,40 @@ namespace Innmind\TimeContinuum\Clock;
 /**
  * @psalm-immutable
  */
-interface Millisecond
+final class Millisecond
 {
-    public function toInt(): int;
-    public function toString(): string;
+    /**
+     * @param int<0, 999> $millisecond
+     */
+    private function __construct(
+        private int $millisecond,
+    ) {
+    }
+
+    /**
+     * @psalm-pure
+     * @internal
+     *
+     * @param int<0, 999> $millisecond
+     */
+    public static function of(int $millisecond): self
+    {
+        return new self($millisecond);
+    }
+
+    /**
+     * @return int<0, 999>
+     */
+    public function toInt(): int
+    {
+        return $this->millisecond;
+    }
+
+    /**
+     * @return non-empty-string
+     */
+    public function toString(): string
+    {
+        return (string) $this->millisecond;
+    }
 }

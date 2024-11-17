@@ -5,11 +5,13 @@
 ### Changed
 
 - `Innmind\TimeContinuum\Format` is now a `final class`
+- Interfaces in the `Innmind\TimeContinuum\Clock` namespace are now `final class`es
 
 ### Removed
 
 - Support for `innmind/immutable` `4`
 - Classes in the `Innmind\TimeContinuum\Earth\Format` namespaces are now named constructors of `Innmind\TimeContinuum\Format`
+- Classes in the `Innmind\TimeContinuum\Earth\Clock` namespace
 
 ## 3.4.1 - 2023-09-17
 

@@ -6,9 +6,48 @@ namespace Innmind\TimeContinuum\Clock;
 /**
  * @psalm-immutable
  */
-interface Minute
+final class Minute
 {
-    public function numberOfSeconds(): int;
-    public function toInt(): int;
-    public function toString(): string;
+    /**
+     * @param int<0, 59> $minute
+     */
+    private function __construct(
+        private int $minute,
+    ) {
+    }
+
+    /**
+     * @psalm-pure
+     * @internal
+     *
+     * @param int<0, 59> $minute
+     */
+    public static function of(int $minute): self
+    {
+        return new self($minute);
+    }
+
+    /**
+     * @return 60
+     */
+    public function numberOfSeconds(): int
+    {
+        return 60;
+    }
+
+    /**
+     * @return int<0, 59>
+     */
+    public function toInt(): int
+    {
+        return $this->minute;
+    }
+
+    /**
+     * @return non-empty-string
+     */
+    public function toString(): string
+    {
+        return (string) $this->minute;
+    }
 }
