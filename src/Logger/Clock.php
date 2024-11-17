@@ -7,7 +7,6 @@ use Innmind\TimeContinuum\{
     Clock as ClockInterface,
     PointInTime,
     Format,
-    Earth\Format\ISO8601,
 };
 use Innmind\Immutable\Maybe;
 use Psr\Log\LoggerInterface;
@@ -27,7 +26,7 @@ final class Clock implements ClockInterface
     {
         $now = $this->clock->now();
         $this->logger->debug('Current time is {point}', [
-            'point' => $now->format(new ISO8601),
+            'point' => $now->format(Format::iso8601()),
         ]);
 
         return $now;
@@ -57,9 +56,7 @@ final class Clock implements ClockInterface
             return 'unknown';
         }
 
-        $class = \get_class($format);
-
-        return "{$class}({$format->toString()})";
+        return $format->toString();
     }
 
     private function log(
@@ -75,7 +72,7 @@ final class Clock implements ClockInterface
         $this->logger->debug('Asked time {date} ({format}) resolved to {point}', [
             'date' => $date,
             'format' => $this->format($format),
-            'point' => $point->format(new ISO8601),
+            'point' => $point->format(Format::iso8601()),
         ]);
 
         return $point;

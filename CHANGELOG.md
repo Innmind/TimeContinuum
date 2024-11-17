@@ -2,9 +2,14 @@
 
 ## [Unreleased]
 
+### Changed
+
+- `Innmind\TimeContinuum\Format` is now a `final class`
+
 ### Removed
 
 - Support for `innmind/immutable` `4`
+- Classes in the `Innmind\TimeContinuum\Earth\Format` namespaces are now named constructors of `Innmind\TimeContinuum\Format`
 
 ## 3.4.1 - 2023-09-17
 

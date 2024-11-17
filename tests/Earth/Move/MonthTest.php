@@ -18,12 +18,7 @@ class MonthTest extends TestCase
      */
     public function testInterface($time, $expectedForward, $expectedBackward)
     {
-        $format = new class implements Format {
-            public function toString(): string
-            {
-                return 'Y-m-d H:i:s.u';
-            }
-        };
+        $format = Format::of('Y-m-d H:i:s.u');
         $forward = Month::forward(1);
         $backward = Month::backward(1);
 

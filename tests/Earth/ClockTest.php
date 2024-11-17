@@ -9,7 +9,6 @@ use Innmind\TimeContinuum\{
     PointInTime,
     Format,
     Earth\Timezone\UTC,
-    Earth\Format\ISO8601,
 };
 use PHPUnit\Framework\TestCase;
 use Innmind\BlackBox\{
@@ -85,12 +84,7 @@ class ClockTest extends TestCase
     {
         $this->assertInstanceOf(
             PointInTime::class,
-            $point = (new Clock)->at('+02:00 2016-10-08 16:08:30', new class implements Format {
-                public function toString(): string
-                {
-                    return 'P Y-m-d H:i:s';
-                }
-            })->match(
+            $point = (new Clock)->at('+02:00 2016-10-08 16:08:30', Format::of('P Y-m-d H:i:s'))->match(
                 static fn($point) => $point,
                 static fn() => null,
             ),
@@ -110,7 +104,7 @@ class ClockTest extends TestCase
             ->then(function($date) {
                 $clock = new Clock;
 
-                $this->assertNull($clock->at($date, new ISO8601)->match(
+                $this->assertNull($clock->at($date, Format::iso8601())->match(
                     static fn($point) => $point,
                     static fn() => null,
                 ));
@@ -120,7 +114,7 @@ class ClockTest extends TestCase
     public function testAtWithNullDate()
     {
         $clock = new Clock;
-        $this->assertNull($clock->at("\x00", new ISO8601)->match(
+        $this->assertNull($clock->at("\x00", Format::iso8601())->match(
             static fn($point) => $point,
             static fn() => null,
         ));
@@ -139,12 +133,7 @@ class ClockTest extends TestCase
 
                 $this->assertNull(
                     (new Clock)
-                        ->at($date, new class implements Format {
-                            public function toString(): string
-                            {
-                                return 'Y-m-d';
-                            }
-                        })
+                        ->at($date, Format::of('Y-m-d'))
                         ->match(
                             static fn($point) => $point,
                             static fn() => null,

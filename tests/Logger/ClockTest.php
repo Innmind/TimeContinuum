@@ -8,7 +8,6 @@ use Innmind\TimeContinuum\{
     Clock as ClockInterface,
     PointInTime,
     Format,
-    Earth\Format\ISO8601,
 };
 use Innmind\Immutable\Maybe;
 use Psr\Log\LoggerInterface;
@@ -46,7 +45,7 @@ class ClockTest extends TestCase
                 $now
                     ->expects($this->once())
                     ->method('format')
-                    ->with(new ISO8601)
+                    ->with(Format::iso8601())
                     ->willReturn($value);
                 $logger = $this->createMock(LoggerInterface::class);
                 $logger
@@ -80,7 +79,7 @@ class ClockTest extends TestCase
                 $point
                     ->expects($this->once())
                     ->method('format')
-                    ->with(new ISO8601)
+                    ->with(Format::iso8601())
                     ->willReturn($value);
                 $logger = $this->createMock(LoggerInterface::class);
                 $logger
@@ -113,15 +112,19 @@ class ClockTest extends TestCase
             ->forAll(
                 Set\Strings::any(),
                 Set\Strings::any(),
-                Set\Strings::any(),
+                Set\Elements::of(
+                    Format::cookie(),
+                    Format::iso8601(),
+                    Format::rfc1036(),
+                    Format::rfc1123(),
+                    Format::rfc2822(),
+                    Format::rfc822(),
+                    Format::rfc850(),
+                    Format::rss(),
+                    Format::w3c(),
+                ),
             )
             ->then(function($date, $value, $format) {
-                $formatObject = $this->createMock(Format::class);
-                $formatObject
-                    ->expects($this->once())
-                    ->method('toString')
-                    ->willReturn($format);
-                $formatClass = \get_class($formatObject);
                 $concrete = $this->createMock(ClockInterface::class);
                 $concrete
                     ->expects($this->once())
@@ -131,7 +134,7 @@ class ClockTest extends TestCase
                 $point
                     ->expects($this->once())
                     ->method('format')
-                    ->with(new ISO8601)
+                    ->with(Format::iso8601())
                     ->willReturn($value);
                 $logger = $this->createMock(LoggerInterface::class);
                 $logger
@@ -141,7 +144,7 @@ class ClockTest extends TestCase
                         'Asked time {date} ({format}) resolved to {point}',
                         [
                             'date' => $date,
-                            'format' => "$formatClass($format)",
+                            'format' => $format->toString(),
                             'point' => $value,
                         ],
                     );
@@ -150,7 +153,7 @@ class ClockTest extends TestCase
 
                 $this->assertSame(
                     $point,
-                    $clock->at($date, $formatObject)->match(
+                    $clock->at($date, $format)->match(
                         static fn($point) => $point,
                         static fn() => null,
                     ),

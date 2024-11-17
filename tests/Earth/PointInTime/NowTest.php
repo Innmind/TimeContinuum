@@ -65,14 +65,7 @@ class NowTest extends TestCase
 
         $this->assertSame(
             \date('H:i:s d/m/Y'),
-            $point->format(
-                new class implements Format {
-                    public function toString(): string
-                    {
-                        return 'H:i:s d/m/Y';
-                    }
-                },
-            ),
+            $point->format(Format::of('H:i:s d/m/Y')),
         );
     }
 

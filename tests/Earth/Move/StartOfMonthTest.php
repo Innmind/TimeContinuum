@@ -23,12 +23,7 @@ class StartOfMonthTest extends TestCase
         $point = $startOfMonth(new PointInTime($time));
 
         $this->assertInstanceOf(PointInTimeInterface::class, $point);
-        $this->assertSame($expected, $point->format(new class implements Format {
-            public function toString(): string
-            {
-                return 'Y-m-d H:i:s.u';
-            }
-        }));
+        $this->assertSame($expected, $point->format(Format::of('Y-m-d H:i:s.u')));
     }
 
     public static function cases(): array

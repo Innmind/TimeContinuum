@@ -5,7 +5,7 @@ namespace Tests\Innmind\TimeContinuum\Earth;
 
 use Innmind\TimeContinuum\{
     Earth\FrozenClock,
-    Earth\Format\ISO8601,
+    Format,
     Clock,
     PointInTime as PointInTimeInterface,
 };
@@ -45,7 +45,7 @@ class FrozenClockTest extends TestCase
             ->then(function($now, $at) {
                 $clock = new FrozenClock($now);
 
-                $point = $clock->at($at->format(new ISO8601))->match(
+                $point = $clock->at($at->format(Format::iso8601()))->match(
                     static fn($point) => $point,
                     static fn() => null,
                 );

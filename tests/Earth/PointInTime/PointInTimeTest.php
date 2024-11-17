@@ -67,14 +67,7 @@ class PointInTimeTest extends TestCase
 
         $this->assertSame(
             '08:01:30 05/10/2016',
-            $point->format(
-                new class implements Format {
-                    public function toString(): string
-                    {
-                        return 'H:i:s d/m/Y';
-                    }
-                },
-            ),
+            $point->format(Format::of('H:i:s d/m/Y')),
         );
     }
 
@@ -183,14 +176,7 @@ class PointInTimeTest extends TestCase
             '2016-10-05T08:01:29.500000+02:00',
             $point
                 ->goBack(new MillisecondPeriod(623))
-                ->format(
-                    new class implements Format {
-                        public function toString(): string
-                        {
-                            return 'Y-m-d\TH:i:s.uP';
-                        }
-                    },
-                ),
+                ->format(Format::of('Y-m-d\TH:i:s.uP')),
         );
     }
 
@@ -198,12 +184,7 @@ class PointInTimeTest extends TestCase
     {
         $point = new PointInTime('2018-03-04');
         $point2 = $point->goBack(new Day(1));
-        $format = new class implements Format {
-            public function toString(): string
-            {
-                return 'Y-m-d\TH:i:s.u';
-            }
-        };
+        $format = Format::of('Y-m-d\TH:i:s.u');
 
         $this->assertSame(
             '2018-03-04T00:00:00.000000',
@@ -219,12 +200,7 @@ class PointInTimeTest extends TestCase
     {
         $point = new PointInTime('1402-07-21 02:42:53.000000');
         $point2 = $point->goBack(new MillisecondPeriod(1));
-        $format = new class implements Format {
-            public function toString(): string
-            {
-                return 'Y-m-d\TH:i:s.u';
-            }
-        };
+        $format = Format::of('Y-m-d\TH:i:s.u');
 
         $this->assertSame(
             '1402-07-21T02:42:53.000000',

@@ -10,7 +10,7 @@ use Innmind\BlackBox\{
 };
 use Innmind\TimeContinuum\{
     PointInTime as PointInTimeInterface,
-    Earth\Format\ISO8601,
+    Format,
 };
 use PHPUnit\Framework\TestCase;
 
@@ -40,7 +40,7 @@ class PointInTimeTest extends TestCase
         foreach ($points->values(Random::default) as $point) {
             $this->assertGreaterThanOrEqual(
                 '1970-01-01T12:13:14+02:00',
-                $point->unwrap()->format(new ISO8601),
+                $point->unwrap()->format(Format::iso8601()),
             );
         }
     }
@@ -55,7 +55,7 @@ class PointInTimeTest extends TestCase
         foreach ($points->values(Random::default) as $point) {
             $this->assertLessThanOrEqual(
                 '1970-01-01T12:13:14+02:00',
-                $point->unwrap()->format(new ISO8601),
+                $point->unwrap()->format(Format::iso8601()),
             );
         }
     }
