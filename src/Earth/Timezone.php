@@ -13,6 +13,9 @@ abstract class Timezone implements TimezoneInterface
     private Timezone\UTC $utc;
     private bool $dst;
 
+    /**
+     * @param non-empty-string $zone
+     */
     public function __construct(string $zone)
     {
         $zone = new \DateTimeZone($zone);

@@ -11,5 +11,9 @@ interface Timezone
     public function hours(): int;
     public function minutes(): int;
     public function daylightSavingTimeApplied(): bool;
+
+    /**
+     * @return non-empty-string
+     */
     public function toString(): string;
 }

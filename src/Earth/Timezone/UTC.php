@@ -16,6 +16,7 @@ final class UTC implements Timezone
     private int $hours;
     private int $minutes;
     private bool $dst = false;
+    /** @var non-empty-string */
     private string $string;
 
     public function __construct(int $hours = 0, int $minutes = 0)
@@ -79,12 +80,16 @@ final class UTC implements Timezone
         return $this->string;
     }
 
+    /**
+     * @return non-empty-string
+     */
     private function format(int $hours, int $minutes): string
     {
         if ($hours === 0 && $minutes === 0) {
             return 'Z';
         }
 
+        /** @var non-empty-string */
         return \sprintf(
             '%s%02d:%02d',
             $hours > 0 ? '+' : '-',
