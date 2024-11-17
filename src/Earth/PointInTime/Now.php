@@ -10,7 +10,6 @@ use Innmind\TimeContinuum\{
     Earth\ElapsedPeriod,
     ElapsedPeriod as ElapsedPeriodInterface,
     Period,
-    Timezone\Earth\UTC,
     Clock\Year,
     Clock\Month,
     Clock\Day,

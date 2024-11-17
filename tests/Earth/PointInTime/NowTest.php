@@ -17,7 +17,6 @@ use Innmind\TimeContinuum\{
     Clock\Second,
     Clock\Millisecond,
     Earth\Timezone\UTC,
-    Earth\Period\Composite,
     Earth\Period\Year,
     Earth\Period\Millisecond as MillisecondPeriod,
 };

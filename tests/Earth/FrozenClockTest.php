@@ -11,10 +11,7 @@ use Innmind\TimeContinuum\{
 };
 use Fixtures\Innmind\TimeContinuum\Earth\PointInTime;
 use PHPUnit\Framework\TestCase;
-use Innmind\BlackBox\{
-    PHPUnit\BlackBox,
-    Set,
-};
+use Innmind\BlackBox\PHPUnit\BlackBox;
 
 class FrozenClockTest extends TestCase
 {
