@@ -1,10 +1,10 @@
 <?php
 declare(strict_types = 1);
 
-namespace Innmind\TimeContinuum\Earth;
+namespace Innmind\TimeContinuum\Clock;
 
 use Innmind\TimeContinuum\{
-    Clock as ClockInterface,
+    Clock,
     Timezone,
     PointInTime,
     Format,
@@ -12,7 +12,7 @@ use Innmind\TimeContinuum\{
 };
 use Innmind\Immutable\Maybe;
 
-final class Clock implements ClockInterface
+final class Live implements Clock
 {
     private Timezone $timezone;
 

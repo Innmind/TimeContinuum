@@ -1,11 +1,11 @@
 <?php
 declare(strict_types = 1);
 
-namespace Tests\Innmind\TimeContinuum\Logger;
+namespace Tests\Innmind\TimeContinuum\Clock;
 
 use Innmind\TimeContinuum\{
-    Logger\Clock,
-    Clock as ClockInterface,
+    Clock\Logger,
+    Clock,
     Format,
 };
 use Fixtures\Innmind\TimeContinuum\PointInTime;
@@ -17,16 +17,16 @@ use Innmind\BlackBox\{
     Set,
 };
 
-class ClockTest extends TestCase
+class LoggerTest extends TestCase
 {
     use BlackBox;
 
     public function testInterface()
     {
         $this->assertInstanceOf(
-            ClockInterface::class,
-            new Clock(
-                $this->createMock(ClockInterface::class),
+            Clock::class,
+            new Logger(
+                $this->createMock(Clock::class),
                 $this->createMock(LoggerInterface::class),
             ),
         );
@@ -37,7 +37,7 @@ class ClockTest extends TestCase
         $this
             ->forAll(PointInTime::any())
             ->then(function($now) {
-                $concrete = $this->createMock(ClockInterface::class);
+                $concrete = $this->createMock(Clock::class);
                 $concrete
                     ->expects($this->once())
                     ->method('now')
@@ -51,7 +51,7 @@ class ClockTest extends TestCase
                         ['point' => $now->format(Format::iso8601())],
                     );
 
-                $clock = new Clock($concrete, $logger);
+                $clock = new Logger($concrete, $logger);
 
                 $this->assertSame($now, $clock->now());
             });
@@ -65,7 +65,7 @@ class ClockTest extends TestCase
                 PointInTime::any(),
             )
             ->then(function($date, $point) {
-                $concrete = $this->createMock(ClockInterface::class);
+                $concrete = $this->createMock(Clock::class);
                 $concrete
                     ->expects($this->once())
                     ->method('at')
@@ -84,7 +84,7 @@ class ClockTest extends TestCase
                         ],
                     );
 
-                $clock = new Clock($concrete, $logger);
+                $clock = new Logger($concrete, $logger);
 
                 $this->assertSame(
                     $point,
@@ -115,7 +115,7 @@ class ClockTest extends TestCase
                 ),
             )
             ->then(function($date, $point, $format) {
-                $concrete = $this->createMock(ClockInterface::class);
+                $concrete = $this->createMock(Clock::class);
                 $concrete
                     ->expects($this->once())
                     ->method('at')
@@ -134,7 +134,7 @@ class ClockTest extends TestCase
                         ],
                     );
 
-                $clock = new Clock($concrete, $logger);
+                $clock = new Logger($concrete, $logger);
 
                 $this->assertSame(
                     $point,

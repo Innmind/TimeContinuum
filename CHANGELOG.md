@@ -12,6 +12,9 @@
 - `Innmind\TimeContinuum\Earth\Period` has been renamed to `Innmind\TimeContinuum\Period\Value`
 - `Innmind\TimeContinuum\PointInTime` is now a `final class`
 - Classes in the `Fixtures\Innmind\TimeContinuum\Earth` namespace have been moved to `Fixtures\Innmind\TimeContinuum`
+- `Innmind\TimeContinuum\Earth\Clock` as been renamed `Innmind\TimeContinuum\Clock\Live`
+- `Innmind\TimeContinuum\Earth\FrozenClock` as been renamed `Innmind\TimeContinuum\Clock\Frozen`
+- `Innmind\TimeContinuum\Logger\Clock` as been renamed `Innmind\TimeContinuum\Clock\Logger`
 
 ### Removed
 

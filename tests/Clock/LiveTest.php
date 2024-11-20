@@ -1,11 +1,11 @@
 <?php
 declare(strict_types = 1);
 
-namespace Tests\Innmind\TimeContinuum\Earth;
+namespace Tests\Innmind\TimeContinuum\Clock;
 
 use Innmind\TimeContinuum\{
-    Earth\Clock,
-    Clock as ClockInterface,
+    Clock\Live,
+    Clock,
     PointInTime,
     Format,
     Earth\Timezone\UTC,
@@ -16,15 +16,15 @@ use Innmind\BlackBox\{
     Set,
 };
 
-class ClockTest extends TestCase
+class LiveTest extends TestCase
 {
     use BlackBox;
 
     public function testInterface()
     {
         $this->assertInstanceOf(
-            ClockInterface::class,
-            new Clock,
+            Clock::class,
+            new Live,
         );
     }
 
@@ -32,7 +32,7 @@ class ClockTest extends TestCase
     {
         $this->assertInstanceOf(
             PointInTime::class,
-            $now = (new Clock)->now(),
+            $now = (new Live)->now(),
         );
         $timezone = \date('P');
         $timezone = $timezone === '+00:00' ? 'Z' : $timezone;
@@ -46,7 +46,7 @@ class ClockTest extends TestCase
     {
         $this->assertInstanceOf(
             PointInTime::class,
-            $point = (new Clock)->at('2016-10-08T16:08:30+02:00')->match(
+            $point = (new Live)->at('2016-10-08T16:08:30+02:00')->match(
                 static fn($point) => $point,
                 static fn() => null,
             ),
@@ -63,7 +63,7 @@ class ClockTest extends TestCase
     {
         $this->assertInstanceOf(
             PointInTime::class,
-            $now = (new Clock(new UTC(6, 42)))->now(),
+            $now = (new Live(new UTC(6, 42)))->now(),
         );
         $this->assertSame('+06:42', $now->timezone()->toString());
     }
@@ -72,7 +72,7 @@ class ClockTest extends TestCase
     {
         $this->assertInstanceOf(
             PointInTime::class,
-            $point = (new Clock(new UTC(6, 42)))->at('2016-10-08T16:08:30+02:00')->match(
+            $point = (new Live(new UTC(6, 42)))->at('2016-10-08T16:08:30+02:00')->match(
                 static fn($point) => $point,
                 static fn() => null,
             ),
@@ -84,7 +84,7 @@ class ClockTest extends TestCase
     {
         $this->assertInstanceOf(
             PointInTime::class,
-            $point = (new Clock)->at('+02:00 2016-10-08 16:08:30', Format::of('P Y-m-d H:i:s'))->match(
+            $point = (new Live)->at('+02:00 2016-10-08 16:08:30', Format::of('P Y-m-d H:i:s'))->match(
                 static fn($point) => $point,
                 static fn() => null,
             ),
@@ -102,7 +102,7 @@ class ClockTest extends TestCase
         $this
             ->forAll(Set\Strings::any())
             ->then(function($date) {
-                $clock = new Clock;
+                $clock = new Live;
 
                 $this->assertNull($clock->at($date, Format::iso8601())->match(
                     static fn($point) => $point,
@@ -113,7 +113,7 @@ class ClockTest extends TestCase
 
     public function testAtWithNullDate()
     {
-        $clock = new Clock;
+        $clock = new Live;
         $this->assertNull($clock->at("\x00", Format::iso8601())->match(
             static fn($point) => $point,
             static fn() => null,
@@ -132,7 +132,7 @@ class ClockTest extends TestCase
                 $date = "$year-0$month-$day";
 
                 $this->assertNull(
-                    (new Clock)
+                    (new Live)
                         ->at($date, Format::of('Y-m-d'))
                         ->match(
                             static fn($point) => $point,

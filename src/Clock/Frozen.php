@@ -1,16 +1,16 @@
 <?php
 declare(strict_types = 1);
 
-namespace Innmind\TimeContinuum\Earth;
+namespace Innmind\TimeContinuum\Clock;
 
 use Innmind\TimeContinuum\{
-    Clock as ClockInterface,
+    Clock,
     PointInTime,
     Format,
 };
 use Innmind\Immutable\Maybe;
 
-final class FrozenClock implements ClockInterface
+final class Frozen implements Clock
 {
     private PointInTime $now;
     private Clock $concrete;
@@ -18,7 +18,7 @@ final class FrozenClock implements ClockInterface
     public function __construct(PointInTime $now)
     {
         $this->now = $now;
-        $this->concrete = new Clock;
+        $this->concrete = new Live;
     }
 
     public function now(): PointInTime

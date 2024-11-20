@@ -1,22 +1,22 @@
 <?php
 declare(strict_types = 1);
 
-namespace Innmind\TimeContinuum\Logger;
+namespace Innmind\TimeContinuum\Clock;
 
 use Innmind\TimeContinuum\{
-    Clock as ClockInterface,
+    Clock,
     PointInTime,
     Format,
 };
 use Innmind\Immutable\Maybe;
 use Psr\Log\LoggerInterface;
 
-final class Clock implements ClockInterface
+final class Logger implements Clock
 {
-    private ClockInterface $clock;
+    private Clock $clock;
     private LoggerInterface $logger;
 
-    public function __construct(ClockInterface $clock, LoggerInterface $logger)
+    public function __construct(Clock $clock, LoggerInterface $logger)
     {
         $this->clock = $clock;
         $this->logger = $logger;

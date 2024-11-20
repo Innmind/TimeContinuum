@@ -1,10 +1,10 @@
 <?php
 declare(strict_types = 1);
 
-namespace Tests\Innmind\TimeContinuum\Earth;
+namespace Tests\Innmind\TimeContinuum\Clock;
 
 use Innmind\TimeContinuum\{
-    Earth\FrozenClock,
+    Clock\Frozen,
     Format,
     Clock,
     PointInTime as PointInTimeInterface,
@@ -13,7 +13,7 @@ use Fixtures\Innmind\TimeContinuum\PointInTime;
 use PHPUnit\Framework\TestCase;
 use Innmind\BlackBox\PHPUnit\BlackBox;
 
-class FrozenClockTest extends TestCase
+class FrozenTest extends TestCase
 {
     use BlackBox;
 
@@ -22,7 +22,7 @@ class FrozenClockTest extends TestCase
         $this
             ->forAll(PointInTime::any())
             ->then(function($now) {
-                $this->assertInstanceOf(Clock::class, new FrozenClock($now));
+                $this->assertInstanceOf(Clock::class, new Frozen($now));
             });
     }
 
@@ -31,7 +31,7 @@ class FrozenClockTest extends TestCase
         $this
             ->forAll(PointInTime::any())
             ->then(function($now) {
-                $this->assertSame($now, (new FrozenClock($now))->now());
+                $this->assertSame($now, (new Frozen($now))->now());
             });
     }
 
@@ -43,7 +43,7 @@ class FrozenClockTest extends TestCase
                 PointInTime::any(),
             )
             ->then(function($now, $at) {
-                $clock = new FrozenClock($now);
+                $clock = new Frozen($now);
 
                 $point = $clock->at($at->format(Format::iso8601()))->match(
                     static fn($point) => $point,
