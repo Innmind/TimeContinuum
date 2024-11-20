@@ -5,8 +5,7 @@ namespace Tests\Innmind\TimeContinuum\Earth\Move;
 
 use Innmind\TimeContinuum\{
     Earth\Move\Month,
-    PointInTime as PointInTimeInterface,
-    Earth\PointInTime\PointInTime,
+    PointInTime,
     Format,
 };
 use PHPUnit\Framework\TestCase;
@@ -22,14 +21,12 @@ class MonthTest extends TestCase
         $forward = Month::forward(1);
         $backward = Month::backward(1);
 
-        $point = $forward(new PointInTime($time));
+        $point = $forward(PointInTime::at($time));
 
-        $this->assertInstanceOf(PointInTimeInterface::class, $point);
         $this->assertSame($expectedForward, $point->format($format));
 
-        $point = $backward(new PointInTime($time));
+        $point = $backward(PointInTime::at($time));
 
-        $this->assertInstanceOf(PointInTimeInterface::class, $point);
         $this->assertSame($expectedBackward, $point->format($format));
     }
 

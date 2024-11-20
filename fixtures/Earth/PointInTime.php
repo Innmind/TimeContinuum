@@ -3,7 +3,7 @@ declare(strict_types = 1);
 
 namespace Fixtures\Innmind\TimeContinuum\Earth;
 
-use Innmind\TimeContinuum\Earth\PointInTime\PointInTime as Model;
+use Innmind\TimeContinuum\PointInTime as Model;
 use Innmind\BlackBox\Set;
 
 final class PointInTime
@@ -22,7 +22,7 @@ final class PointInTime
      */
     public static function after(string $point): Set
     {
-        $lower = new Model($point);
+        $lower = Model::at($point);
 
         return self::yearRange($lower->year()->toInt(), 9999)->filter(static function($point) use ($lower): bool {
             return $point->aheadOf($lower);
@@ -35,7 +35,7 @@ final class PointInTime
      */
     public static function before(string $point): Set
     {
-        $upper = new Model($point);
+        $upper = Model::at($point);
 
         return self::yearRange(0, $upper->year()->toInt())->filter(static function($point) use ($upper): bool {
             return $upper->aheadOf($point);
@@ -59,7 +59,7 @@ final class PointInTime
                 int $hourOffset,
                 string $minuteOffset,
             ): Model {
-                return new Model("$year-$month-{$day}T$hour:$minute:$second$offsetDirection$hourOffset:$minuteOffset");
+                return Model::at("$year-$month-{$day}T$hour:$minute:$second$offsetDirection$hourOffset:$minuteOffset");
             },
             Set\Integers::between($lowerBound, $upperBound),
             Set\Integers::between(1, 12),

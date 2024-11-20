@@ -10,6 +10,7 @@
 - `Innmind\TimeContinuum\Period` is now a `final class`
 - `Innmind\TimeContinuum\ElapsedPeriod` is now a `final class`
 - `Innmind\TimeContinuum\Earth\Period` has been renamed to `Innmind\TimeContinuum\Period\Value`
+- `Innmind\TimeContinuum\PointInTime` is now a `final class`
 
 ### Removed
 
@@ -18,6 +19,9 @@
 - Classes in the `Innmind\TimeContinuum\Earth\Clock` namespace
 - Classes in the `Innmind\TimeContinuum\Earth\Period` namespace
 - `Innmind\TimeContinuum\Earth\ElapsedPeriod`
+- `Innmind\TimeContinuum\Earth\PointInTime\PointInTime`
+- `Innmind\TimeContinuum\Earth\PointInTime\Now`
+- `Innmind\TimeContinuum\Earth\PointInTime\HighResolution`
 
 ## 3.4.1 - 2023-09-17
 

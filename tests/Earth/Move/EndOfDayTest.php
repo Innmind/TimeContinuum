@@ -5,8 +5,7 @@ namespace Tests\Innmind\TimeContinuum\Earth\Move;
 
 use Innmind\TimeContinuum\{
     Earth\Move\EndOfDay,
-    PointInTime as PointInTimeInterface,
-    Earth\PointInTime\PointInTime,
+    PointInTime,
     Format,
 };
 use PHPUnit\Framework\TestCase;
@@ -20,9 +19,8 @@ class EndOfDayTest extends TestCase
     {
         $endOfDay = new EndOfDay;
 
-        $point = $endOfDay(new PointInTime($time));
+        $point = $endOfDay(PointInTime::at($time));
 
-        $this->assertInstanceOf(PointInTimeInterface::class, $point);
         $this->assertSame($expected, $point->format(Format::of('Y-m-d H:i:s.u')));
     }
 

@@ -8,8 +8,6 @@ use Innmind\TimeContinuum\{
     Timezone,
     PointInTime,
     Format,
-    Earth\PointInTime\PointInTime as EarthPointInTime,
-    Earth\PointInTime\Now,
     Earth\Timezone\UTC,
 };
 use Innmind\Immutable\Maybe;
@@ -30,7 +28,7 @@ final class Clock implements ClockInterface
 
     public function now(): PointInTime
     {
-        return (new Now)->changeTimezone($this->timezone);
+        return PointInTime::now()->changeTimezone($this->timezone);
     }
 
     /**
@@ -64,6 +62,6 @@ final class Clock implements ClockInterface
          * @psalm-suppress ImpureVariable
          * @psalm-suppress ImpurePropertyFetch
          */
-        return Maybe::just((new EarthPointInTime($date))->changeTimezone($this->timezone));
+        return Maybe::just(PointInTime::at($date)->changeTimezone($this->timezone));
     }
 }

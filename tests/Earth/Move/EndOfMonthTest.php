@@ -5,8 +5,7 @@ namespace Tests\Innmind\TimeContinuum\Earth\Move;
 
 use Innmind\TimeContinuum\{
     Earth\Move\EndOfMonth,
-    PointInTime as PointInTimeInterface,
-    Earth\PointInTime\PointInTime,
+    PointInTime,
     Format,
 };
 use PHPUnit\Framework\TestCase;
@@ -20,9 +19,8 @@ class EndOfMonthTest extends TestCase
     {
         $endOfMonth = new EndOfMonth;
 
-        $point = $endOfMonth(new PointInTime($time));
+        $point = $endOfMonth(PointInTime::at($time));
 
-        $this->assertInstanceOf(PointInTimeInterface::class, $point);
         $this->assertSame($expected, $point->format(Format::of('Y-m-d H:i:s.u')));
     }
 

@@ -12,6 +12,8 @@ interface Clock
     /**
      * @psalm-pure
      *
+     * @param non-empty-string $date
+     *
      * @return Maybe<PointInTime>
      */
     public function at(string $date, Format $format = null): Maybe;

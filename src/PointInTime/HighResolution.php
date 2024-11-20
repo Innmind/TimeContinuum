@@ -1,35 +1,34 @@
 <?php
 declare(strict_types = 1);
 
-namespace Innmind\TimeContinuum\Earth\PointInTime;
+namespace Innmind\TimeContinuum\PointInTime;
 
 use Innmind\TimeContinuum\ElapsedPeriod;
 
 /**
  * @psalm-immutable
+ * @internal
  */
 final class HighResolution
 {
-    /** @var 0|positive-int */
-    private int $seconds;
-    /** @var 0|positive-int */
-    private int $nanoseconds;
-
     /**
-     * @param 0|positive-int $seconds
-     * @param 0|positive-int $nanoseconds
+     * @param int<0, max> $seconds
+     * @param int<0, max> $nanoseconds
      */
-    private function __construct(int $seconds, int $nanoseconds)
-    {
-        $this->seconds = $seconds;
-        $this->nanoseconds = $nanoseconds;
+    private function __construct(
+        private int $seconds,
+        private int $nanoseconds,
+    ) {
     }
 
+    /**
+     * @internal
+     */
     public static function now(): self
     {
         /**
-         * @var 0|positive-int $seconds
-         * @var 0|positive-int $nanoseconds
+         * @var int<0, max> $seconds
+         * @var int<0, max> $nanoseconds
          */
         [$seconds, $nanoseconds] = \hrtime();
 
@@ -39,8 +38,8 @@ final class HighResolution
     /**
      * @internal
      *
-     * @param 0|positive-int $seconds
-     * @param 0|positive-int $nanoseconds
+     * @param int<0, max> $seconds
+     * @param int<0, max> $nanoseconds
      */
     public static function of(int $seconds, int $nanoseconds): self
     {

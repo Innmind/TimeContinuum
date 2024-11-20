@@ -1,10 +1,9 @@
 <?php
 declare(strict_types = 1);
 
-namespace Tests\Innmind\TimeContinuum\Earth\PointInTime;
+namespace Tests\Innmind\TimeContinuum;
 
 use Innmind\TimeContinuum\{
-    Earth\PointInTime\Now,
     PointInTime,
     Timezone,
     Format,
@@ -30,9 +29,8 @@ class NowTest extends TestCase
         $timestamp = (int) $time;
         //off by one due to the time it takes to reach microtime in Now::__construct
         $now = (int) ($time * 1000);
-        $point = new Now;
+        $point = PointInTime::now();
 
-        $this->assertInstanceOf(PointInTime::class, $point);
         $this->assertInstanceOf(YearInterface::class, $point->year());
         $this->assertInstanceOf(Month::class, $point->month());
         $this->assertInstanceOf(Day::class, $point->day());
@@ -61,7 +59,7 @@ class NowTest extends TestCase
 
     public function testFormat()
     {
-        $point = new Now;
+        $point = PointInTime::now();
 
         $this->assertSame(
             \date('H:i:s d/m/Y'),
@@ -73,10 +71,9 @@ class NowTest extends TestCase
     {
         $now = new \DateTimeImmutable;
         $now = $now->setTimezone(new \DateTimeZone('-02:30'));
-        $point = new Now;
+        $point = PointInTime::now();
         $point2 = $point->changeTimezone(new UTC(-2, 30));
 
-        $this->assertInstanceOf(PointInTime::class, $point2);
         $this->assertNotSame($point, $point2);
         $this->assertNotSame($point->year(), $point2->year());
         $this->assertNotSame($point->month(), $point2->month());
@@ -97,9 +94,9 @@ class NowTest extends TestCase
 
     public function testElapsedSince()
     {
-        $point = new Now;
+        $point = PointInTime::now();
         \sleep(1);
-        $point2 = new Now;
+        $point2 = PointInTime::now();
         $elapsed = $point2->elapsedSince($point);
 
         $this->assertInstanceOf(ElapsedPeriod::class, $elapsed);
@@ -109,9 +106,9 @@ class NowTest extends TestCase
 
     public function testAheadOf()
     {
-        $point = new Now;
+        $point = PointInTime::now();
         \sleep(1);
-        $point2 = new Now;
+        $point2 = PointInTime::now();
 
         $this->assertTrue($point2->aheadOf($point));
         $this->assertFalse($point->aheadOf($point2));
@@ -119,9 +116,9 @@ class NowTest extends TestCase
 
     public function testEquals()
     {
-        $point = new Now;
+        $point = PointInTime::now();
         \sleep(1);
-        $point2 = new Now;
+        $point2 = PointInTime::now();
         $point3 = clone $point;
 
         $this->assertTrue($point->equals($point3));
@@ -130,20 +127,18 @@ class NowTest extends TestCase
 
     public function testGoForward()
     {
-        $point = new Now;
+        $point = PointInTime::now();
         $point2 = $point->goForward(Year::of(1));
 
-        $this->assertInstanceOf(PointInTime::class, $point2);
         $this->assertNotSame($point, $point2);
         $this->assertSame($point->year()->toInt() + 1, $point2->year()->toInt());
     }
 
     public function testGoBack()
     {
-        $point = new Now;
+        $point = PointInTime::now();
         $point2 = $point->goBack(Year::of(1));
 
-        $this->assertInstanceOf(PointInTime::class, $point2);
         $this->assertNotSame($point, $point2);
         $this->assertSame($point->year()->toInt() - 1, $point2->year()->toInt());
 

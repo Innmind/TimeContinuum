@@ -1,11 +1,10 @@
 <?php
 declare(strict_types = 1);
 
-namespace Tests\Innmind\TimeContinuum\Earth\PointInTime;
+namespace Tests\Innmind\TimeContinuum;
 
 use Innmind\TimeContinuum\{
-    Earth\PointInTime\PointInTime,
-    PointInTime as PointInTimeInterface,
+    PointInTime,
     Timezone,
     Format,
     ElapsedPeriod,
@@ -26,9 +25,8 @@ class PointInTimeTest extends TestCase
 {
     public function testInterface()
     {
-        $point = new PointInTime('2016-10-05T08:01:30.123+02:00');
+        $point = PointInTime::at('2016-10-05T08:01:30.123+02:00');
 
-        $this->assertInstanceOf(PointInTimeInterface::class, $point);
         $this->assertInstanceOf(Year::class, $point->year());
         $this->assertInstanceOf(Month::class, $point->month());
         $this->assertInstanceOf(DayInterface::class, $point->day());
@@ -54,7 +52,7 @@ class PointInTimeTest extends TestCase
 
     public function testPreserveMillisecondsWhenNanosecondsInString()
     {
-        $point = new PointInTime('2016-10-05T08:01:30.999678+02:00');
+        $point = PointInTime::at('2016-10-05T08:01:30.999678+02:00');
 
         $this->assertSame(999, $point->millisecond()->toInt());
         $this->assertSame(30, $point->second()->toInt());
@@ -62,7 +60,7 @@ class PointInTimeTest extends TestCase
 
     public function testFormat()
     {
-        $point = new PointInTime('2016-10-05T08:01:30.123+02:00');
+        $point = PointInTime::at('2016-10-05T08:01:30.123+02:00');
 
         $this->assertSame(
             '08:01:30 05/10/2016',
@@ -72,10 +70,9 @@ class PointInTimeTest extends TestCase
 
     public function testChangeTimezone()
     {
-        $point = new PointInTime('2016-10-05T08:01:30.123+02:00');
+        $point = PointInTime::at('2016-10-05T08:01:30.123+02:00');
         $point2 = $point->changeTimezone(new UTC(-2, 30));
 
-        $this->assertInstanceOf(PointInTimeInterface::class, $point2);
         $this->assertNotSame($point, $point2);
         $this->assertNotSame($point->year(), $point2->year());
         $this->assertNotSame($point->month(), $point2->month());
@@ -97,8 +94,8 @@ class PointInTimeTest extends TestCase
 
     public function testElapsedSince()
     {
-        $point = new PointInTime('2016-10-05T08:01:30.123+02:00');
-        $point2 = new PointInTime('2016-10-05T08:03:30.234+02:00');
+        $point = PointInTime::at('2016-10-05T08:01:30.123+02:00');
+        $point2 = PointInTime::at('2016-10-05T08:03:30.234+02:00');
         $elapsed = $point2->elapsedSince($point);
 
         $this->assertInstanceOf(ElapsedPeriod::class, $elapsed);
@@ -107,8 +104,8 @@ class PointInTimeTest extends TestCase
 
     public function testAheadOf()
     {
-        $point = new PointInTime('2016-10-05T08:01:30.123+02:00');
-        $point2 = new PointInTime('2016-10-05T08:03:30.234+02:00');
+        $point = PointInTime::at('2016-10-05T08:01:30.123+02:00');
+        $point2 = PointInTime::at('2016-10-05T08:03:30.234+02:00');
 
         $this->assertTrue($point2->aheadOf($point));
         $this->assertFalse($point->aheadOf($point2));
@@ -116,9 +113,9 @@ class PointInTimeTest extends TestCase
 
     public function testEquals()
     {
-        $point = new PointInTime('2016-10-05T08:01:30.123+02:00');
-        $point2 = new PointInTime('2016-10-05T08:03:30.234+02:00');
-        $point3 = new PointInTime('2016-10-05T08:01:30.123+02:00');
+        $point = PointInTime::at('2016-10-05T08:01:30.123+02:00');
+        $point2 = PointInTime::at('2016-10-05T08:03:30.234+02:00');
+        $point3 = PointInTime::at('2016-10-05T08:01:30.123+02:00');
 
         $this->assertTrue($point->equals($point3));
         $this->assertFalse($point->equals($point2));
@@ -126,12 +123,11 @@ class PointInTimeTest extends TestCase
 
     public function testGoForward()
     {
-        $point = new PointInTime('2016-10-05T08:01:30.123+02:00');
+        $point = PointInTime::at('2016-10-05T08:01:30.123+02:00');
         $point2 = $point->goForward(
             Period::of(1, 1, 1, 1, 1, 30, 878),
         );
 
-        $this->assertInstanceOf(PointInTimeInterface::class, $point2);
         $this->assertSame(2016, $point->year()->toInt());
         $this->assertSame(10, $point->month()->toInt());
         $this->assertSame(5, $point->day()->toInt());
@@ -150,12 +146,11 @@ class PointInTimeTest extends TestCase
 
     public function testGoBack()
     {
-        $point = new PointInTime('2016-10-05T08:01:30.123+02:00');
+        $point = PointInTime::at('2016-10-05T08:01:30.123+02:00');
         $point2 = $point->goBack(
             Period::of(1, 1, 1, 1, 1, 30, 125),
         );
 
-        $this->assertInstanceOf(PointInTimeInterface::class, $point2);
         $this->assertSame(2016, $point->year()->toInt());
         $this->assertSame(10, $point->month()->toInt());
         $this->assertSame(5, $point->day()->toInt());
@@ -181,7 +176,7 @@ class PointInTimeTest extends TestCase
 
     public function testGoBackOneDay()
     {
-        $point = new PointInTime('2018-03-04');
+        $point = PointInTime::at('2018-03-04');
         $point2 = $point->goBack(Day::of(1));
         $format = Format::of('Y-m-d\TH:i:s.u');
 
@@ -197,7 +192,7 @@ class PointInTimeTest extends TestCase
 
     public function testGoBackOneMillisecondWhenCurrentPointIsAtPreciselyZeroMillisecond()
     {
-        $point = new PointInTime('1402-07-21 02:42:53.000000');
+        $point = PointInTime::at('1402-07-21 02:42:53.000000');
         $point2 = $point->goBack(Period\Millisecond::of(1));
         $format = Format::of('Y-m-d\TH:i:s.u');
 
