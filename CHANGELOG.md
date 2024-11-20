@@ -27,6 +27,7 @@
 - `Innmind\TimeContinuum\Earth\PointInTime\PointInTime`
 - `Innmind\TimeContinuum\Earth\PointInTime\Now`
 - `Innmind\TimeContinuum\Earth\PointInTime\HighResolution`
+- Earth timezones
 
 ## 3.4.1 - 2023-09-17
 
