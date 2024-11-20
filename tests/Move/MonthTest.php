@@ -1,10 +1,10 @@
 <?php
 declare(strict_types = 1);
 
-namespace Tests\Innmind\TimeContinuum\Earth\Move;
+namespace Tests\Innmind\TimeContinuum\Move;
 
 use Innmind\TimeContinuum\{
-    Earth\Move\Month,
+    Move\Month,
     PointInTime,
     Format,
 };

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace Innmind\TimeContinuum\Earth\Move;
+namespace Innmind\TimeContinuum\Move;
 
 use Innmind\TimeContinuum\{
     PointInTime,

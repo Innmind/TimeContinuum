@@ -15,6 +15,7 @@
 - `Innmind\TimeContinuum\Earth\Clock` as been renamed `Innmind\TimeContinuum\Clock\Live`
 - `Innmind\TimeContinuum\Earth\FrozenClock` as been renamed `Innmind\TimeContinuum\Clock\Frozen`
 - `Innmind\TimeContinuum\Logger\Clock` as been renamed `Innmind\TimeContinuum\Clock\Logger`
+- Classes in the `Innmind\TimeContinuum\Earth\Move` namespace have been moved to `Innmind\TimeContinuum\Move`
 
 ### Removed
 
