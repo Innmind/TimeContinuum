@@ -8,7 +8,7 @@ use Innmind\TimeContinuum\{
     Clock,
     PointInTime,
     Format,
-    Earth\Timezone\UTC,
+    Timezone,
 };
 use PHPUnit\Framework\TestCase;
 use Innmind\BlackBox\{
@@ -63,7 +63,7 @@ class LiveTest extends TestCase
     {
         $this->assertInstanceOf(
             PointInTime::class,
-            $now = (new Live(new UTC(6, 42)))->now(),
+            $now = (new Live(Timezone::of(6, 42)))->now(),
         );
         $this->assertSame('+06:42', $now->timezone()->toString());
     }
@@ -72,7 +72,7 @@ class LiveTest extends TestCase
     {
         $this->assertInstanceOf(
             PointInTime::class,
-            $point = (new Live(new UTC(6, 42)))->at('2016-10-08T16:08:30+02:00')->match(
+            $point = (new Live(Timezone::of(6, 42)))->at('2016-10-08T16:08:30+02:00')->match(
                 static fn($point) => $point,
                 static fn() => null,
             ),

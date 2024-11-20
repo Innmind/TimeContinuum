@@ -15,7 +15,6 @@ use Innmind\TimeContinuum\{
     PointInTime\Minute,
     PointInTime\Second,
     PointInTime\Millisecond,
-    Earth\Timezone\UTC,
     Period,
     Period\Year,
 };
@@ -72,7 +71,7 @@ class NowTest extends TestCase
         $now = new \DateTimeImmutable;
         $now = $now->setTimezone(new \DateTimeZone('-02:30'));
         $point = PointInTime::now();
-        $point2 = $point->changeTimezone(new UTC(-2, 30));
+        $point2 = $point->changeTimezone(Timezone::of(-2, 30));
 
         $this->assertNotSame($point, $point2);
         $this->assertNotSame($point->year(), $point2->year());

@@ -151,7 +151,11 @@ final class PointInTime
 
     public function timezone(): Timezone
     {
-        return UTC::of($this->date->format('P'));
+        $string = $this->date->format('P');
+        [$hour, $minute] = \explode(':', $string);
+
+        /** @psalm-suppress ArgumentTypeCoercion */
+        return Timezone::of((int) $hour, (int) $minute);
     }
 
     public function elapsedSince(self $point): ElapsedPeriod

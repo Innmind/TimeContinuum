@@ -15,7 +15,6 @@ use Innmind\TimeContinuum\{
     PointInTime\Minute,
     PointInTime\Second,
     PointInTime\Millisecond,
-    Earth\Timezone\UTC,
     Period,
     Period\Day,
 };
@@ -71,7 +70,7 @@ class PointInTimeTest extends TestCase
     public function testChangeTimezone()
     {
         $point = PointInTime::at('2016-10-05T08:01:30.123+02:00');
-        $point2 = $point->changeTimezone(new UTC(-2, 30));
+        $point2 = $point->changeTimezone(Timezone::of(-2, 30));
 
         $this->assertNotSame($point, $point2);
         $this->assertNotSame($point->year(), $point2->year());

@@ -8,7 +8,6 @@ use Innmind\TimeContinuum\{
     Timezone,
     PointInTime,
     Format,
-    Earth\Timezone\UTC,
 };
 use Innmind\Immutable\Maybe;
 
@@ -20,7 +19,8 @@ final class Live implements Clock
     {
         if ($timezone === null) {
             [$hour, $minute] = \explode(':', \date('P'));
-            $timezone = new UTC((int) $hour, (int) $minute);
+            /** @psalm-suppress ArgumentTypeCoercion */
+            $timezone = Timezone::of((int) $hour, (int) $minute);
         }
 
         $this->timezone = $timezone;
