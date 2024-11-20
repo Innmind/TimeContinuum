@@ -11,6 +11,7 @@
 - `Innmind\TimeContinuum\ElapsedPeriod` is now a `final class`
 - `Innmind\TimeContinuum\Earth\Period` has been renamed to `Innmind\TimeContinuum\Period\Value`
 - `Innmind\TimeContinuum\PointInTime` is now a `final class`
+- Classes in the `Fixtures\Innmind\TimeContinuum\Earth` namespace have been moved to `Fixtures\Innmind\TimeContinuum`
 
 ### Removed
 

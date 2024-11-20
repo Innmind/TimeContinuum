@@ -9,7 +9,7 @@ use Innmind\TimeContinuum\{
     Clock,
     PointInTime as PointInTimeInterface,
 };
-use Fixtures\Innmind\TimeContinuum\Earth\PointInTime;
+use Fixtures\Innmind\TimeContinuum\PointInTime;
 use PHPUnit\Framework\TestCase;
 use Innmind\BlackBox\PHPUnit\BlackBox;
 

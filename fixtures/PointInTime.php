@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace Fixtures\Innmind\TimeContinuum\Earth;
+namespace Fixtures\Innmind\TimeContinuum;
 
 use Innmind\TimeContinuum\PointInTime as Model;
 use Innmind\BlackBox\Set;

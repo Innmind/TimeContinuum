@@ -1,9 +1,9 @@
 <?php
 declare(strict_types = 1);
 
-namespace Tests\Innmind\TimeContinuum\Fixtures\Earth;
+namespace Tests\Innmind\TimeContinuum\Fixtures;
 
-use Fixtures\Innmind\TimeContinuum\Earth\Period;
+use Fixtures\Innmind\TimeContinuum\Period;
 use Innmind\BlackBox\{
     Set,
     Random,

@@ -8,7 +8,7 @@ use Innmind\TimeContinuum\{
     Clock as ClockInterface,
     Format,
 };
-use Fixtures\Innmind\TimeContinuum\Earth\PointInTime;
+use Fixtures\Innmind\TimeContinuum\PointInTime;
 use Innmind\Immutable\Maybe;
 use Psr\Log\LoggerInterface;
 use PHPUnit\Framework\TestCase;

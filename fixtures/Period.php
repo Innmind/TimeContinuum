@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace Fixtures\Innmind\TimeContinuum\Earth;
+namespace Fixtures\Innmind\TimeContinuum;
 
 use Innmind\TimeContinuum\{
     Period as Model,
