@@ -5,7 +5,7 @@ namespace Tests\Innmind\TimeContinuum;
 
 use Innmind\TimeContinuum\{
     PointInTime,
-    Timezone,
+    Offset,
     Format,
     ElapsedPeriod,
     PointInTime\Year,
@@ -33,7 +33,7 @@ class PointInTimeTest extends TestCase
         $this->assertInstanceOf(Minute::class, $point->minute());
         $this->assertInstanceOf(Second::class, $point->second());
         $this->assertInstanceOf(Millisecond::class, $point->millisecond());
-        $this->assertInstanceOf(Timezone::class, $point->timezone());
+        $this->assertInstanceOf(Offset::class, $point->offset());
         $this->assertSame(2016, $point->year()->toInt());
         $this->assertSame(10, $point->month()->toInt());
         $this->assertSame(5, $point->day()->toInt());
@@ -45,7 +45,7 @@ class PointInTimeTest extends TestCase
             (new \DateTimeImmutable('2016-10-05T08:01:30.123+02:00'))->getTimestamp() * 1000 + $point->millisecond()->toInt(),
             $point->milliseconds(),
         );
-        $this->assertSame('+02:00', $point->timezone()->toString());
+        $this->assertSame('+02:00', $point->offset()->toString());
         $this->assertSame('2016-10-05T08:01:30+02:00', $point->toString());
     }
 
@@ -67,10 +67,10 @@ class PointInTimeTest extends TestCase
         );
     }
 
-    public function testChangeTimezone()
+    public function testChangeOffset()
     {
         $point = PointInTime::at('2016-10-05T08:01:30.123+02:00');
-        $point2 = $point->changeTimezone(Timezone::of(-2, 30));
+        $point2 = $point->changeOffset(Offset::of(-2, 30));
 
         $this->assertNotSame($point, $point2);
         $this->assertNotSame($point->year(), $point2->year());
@@ -88,7 +88,7 @@ class PointInTimeTest extends TestCase
         $this->assertSame(31, $point2->minute()->toInt());
         $this->assertSame(30, $point2->second()->toInt());
         $this->assertSame(123, $point2->millisecond()->toInt());
-        $this->assertSame('-02:30', $point2->timezone()->toString());
+        $this->assertSame('-02:30', $point2->offset()->toString());
     }
 
     public function testElapsedSince()

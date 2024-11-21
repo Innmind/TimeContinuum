@@ -25,11 +25,11 @@ class LiveTest extends TestCase
             PointInTime::class,
             $now = Clock::live()->now(),
         );
-        $timezone = \date('P');
-        $timezone = $timezone === '+00:00' ? 'Z' : $timezone;
+        $offset = \date('P');
+        $offset = $offset === '+00:00' ? 'Z' : $offset;
         $this->assertSame(
-            $timezone,
-            $now->timezone()->toString(),
+            $offset,
+            $now->offset()->toString(),
         );
     }
 

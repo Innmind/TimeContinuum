@@ -4,7 +4,7 @@ declare(strict_types = 1);
 namespace Innmind\TimeContinuum\Clock;
 
 use Innmind\TimeContinuum\{
-    Timezone,
+    Offset,
     PointInTime,
     Format,
 };
@@ -15,16 +15,16 @@ use Innmind\Immutable\Maybe;
  */
 final class Live
 {
-    private Timezone $timezone;
+    private Offset $offset;
 
     public function __construct()
     {
-        $this->timezone = Timezone::of(0, 0);
+        $this->offset = Offset::utc();
     }
 
     public function now(): PointInTime
     {
-        return PointInTime::now()->changeTimezone($this->timezone);
+        return PointInTime::now()->changeOffset($this->offset);
     }
 
     /**
@@ -62,6 +62,6 @@ final class Live
          * @psalm-suppress ImpureVariable
          * @psalm-suppress ImpurePropertyFetch
          */
-        return Maybe::just(PointInTime::at($date)->changeTimezone($this->timezone));
+        return Maybe::just(PointInTime::at($date)->changeOffset($this->offset));
     }
 }

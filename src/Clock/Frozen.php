@@ -44,6 +44,6 @@ final class Frozen
         return $this
             ->concrete
             ->at($date, $format)
-            ->map(fn($point) => $point->changeTimezone($this->now->timezone()));
+            ->map(fn($point) => $point->changeOffset($this->now->offset()));
     }
 }

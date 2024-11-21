@@ -5,7 +5,7 @@ namespace Tests\Innmind\TimeContinuum;
 
 use Innmind\TimeContinuum\{
     PointInTime,
-    Timezone,
+    Offset,
     Format,
     ElapsedPeriod,
     PointInTime\Year as YearInterface,
@@ -37,7 +37,7 @@ class NowTest extends TestCase
         $this->assertInstanceOf(Minute::class, $point->minute());
         $this->assertInstanceOf(Second::class, $point->second());
         $this->assertInstanceOf(Millisecond::class, $point->millisecond());
-        $this->assertInstanceOf(Timezone::class, $point->timezone());
+        $this->assertInstanceOf(Offset::class, $point->offset());
         $this->assertSame((int) \date('Y', $timestamp), $point->year()->toInt());
         $this->assertSame((int) \date('m', $timestamp), $point->month()->toInt());
         $this->assertSame((int) \date('d', $timestamp), $point->day()->toInt());
@@ -52,7 +52,7 @@ class NowTest extends TestCase
         $this->assertTrue($point->milliseconds() <= $now + 50);
         $timezone = \date('P', $timestamp);
         $timezone = $timezone === '+00:00' ? 'Z' : $timezone;
-        $this->assertSame($timezone, $point->timezone()->toString());
+        $this->assertSame($timezone, $point->offset()->toString());
         $this->assertSame(\date('Y-m-d\TH:i:sP', $timestamp), $point->toString());
     }
 
@@ -66,12 +66,12 @@ class NowTest extends TestCase
         );
     }
 
-    public function testChangeTimezone()
+    public function testChangeOffset()
     {
         $now = new \DateTimeImmutable;
         $now = $now->setTimezone(new \DateTimeZone('-02:30'));
         $point = PointInTime::now();
-        $point2 = $point->changeTimezone(Timezone::of(-2, 30));
+        $point2 = $point->changeOffset(Offset::of(-2, 30));
 
         $this->assertNotSame($point, $point2);
         $this->assertNotSame($point->year(), $point2->year());
@@ -88,7 +88,7 @@ class NowTest extends TestCase
         $this->assertSame((int) $now->format('H'), $point2->hour()->toInt());
         $this->assertSame((int) $now->format('i'), $point2->minute()->toInt());
         $this->assertSame((int) $now->format('s'), $point2->second()->toInt());
-        $this->assertSame('-02:30', $point2->timezone()->toString());
+        $this->assertSame('-02:30', $point2->offset()->toString());
     }
 
     public function testElapsedSince()

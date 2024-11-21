@@ -6,7 +6,7 @@ namespace Innmind\TimeContinuum;
 /**
  * @psalm-immutable
  */
-final class Timezone
+final class Offset
 {
     /**
      * @param int<-12, 14> $hours
@@ -17,6 +17,14 @@ final class Timezone
         private int $minutes,
         private bool $plus,
     ) {
+    }
+
+    /**
+     * @psalm-pure
+     */
+    public static function utc(): self
+    {
+        return self::of(0, 0);
     }
 
     /**

@@ -41,7 +41,7 @@ class FrozenTest extends TestCase
                 );
 
                 $this->assertInstanceOf(PointInTimeInterface::class, $point);
-                $this->assertSame($now->timezone()->toString(), $point->timezone()->toString());
+                $this->assertSame($now->offset()->toString(), $point->offset()->toString());
             });
     }
 }

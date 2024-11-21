@@ -134,19 +134,19 @@ final class PointInTime
         return $this->date->format($format->toString());
     }
 
-    public function changeTimezone(Timezone $zone): self
+    public function changeOffset(Offset $offset): self
     {
         return new self(
             $this->date->setTimezone(
-                new \DateTimeZone($zone->toString()),
+                new \DateTimeZone($offset->toString()),
             ),
             $this->highResolution,
         );
     }
 
-    public function timezone(): Timezone
+    public function offset(): Offset
     {
-        return Timezone::from($this->date->format('P'));
+        return Offset::from($this->date->format('P'));
     }
 
     public function elapsedSince(self $point): ElapsedPeriod

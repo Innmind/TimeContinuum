@@ -18,6 +18,9 @@
 - Classes in the `Innmind\TimeContinuum\Earth\Move` namespace have been moved to `Innmind\TimeContinuum\Move`
 - `Innmind\TimeContinuum\Timezone` is now a `final class`
 - `Innmind\TimeContinuum\Clock` is now a `final class`
+- `Innmind\TimeContinuum\Timezone` has been renamed `Innmind\TimeContinuum\Offset`
+- `Innmind\TimeContinuum\PointInTime::changeTimezone()` has been renamed `Innmind\TimeContinuum\PointInTime::changeOffset()`
+- `Innmind\TimeContinuum\PointInTime::timezone()` has been renamed `Innmind\TimeContinuum\PointInTime::offset()`
 
 ### Removed
 
