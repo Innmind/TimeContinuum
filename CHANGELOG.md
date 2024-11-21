@@ -34,6 +34,7 @@
 - `Innmind\TimeContinuum\Earth\PointInTime\HighResolution`
 - Earth timezones
 - `Innmind\TimeContinuum\Timezone::daylightSavingTimeApplied()`
+- `Innmind\TimeContinuum\Exception`
 
 ## 3.4.1 - 2023-09-17
 
