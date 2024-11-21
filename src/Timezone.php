@@ -15,19 +15,7 @@ final class Timezone
     private function __construct(
         private int $hours,
         private int $minutes,
-        private bool $dst,
     ) {
-    }
-
-    /**
-     * @psalm-pure
-     *
-     * @param int<-12, 14> $hours
-     * @param int<0, 59> $minutes
-     */
-    public static function daylightSavingTime(int $hours, int $minutes = 0): self
-    {
-        return new self($hours, $minutes, true);
     }
 
     /**
@@ -38,7 +26,7 @@ final class Timezone
      */
     public static function of(int $hours, int $minutes = 0): self
     {
-        return new self($hours, $minutes, false);
+        return new self($hours, $minutes);
     }
 
     /**
@@ -55,11 +43,6 @@ final class Timezone
     public function minutes(): int
     {
         return $this->minutes;
-    }
-
-    public function daylightSavingTimeApplied(): bool
-    {
-        return $this->dst;
     }
 
     /**

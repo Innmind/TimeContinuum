@@ -30,6 +30,7 @@
 - `Innmind\TimeContinuum\Earth\PointInTime\Now`
 - `Innmind\TimeContinuum\Earth\PointInTime\HighResolution`
 - Earth timezones
+- `Innmind\TimeContinuum\Timezone::daylightSavingTimeApplied()`
 
 ## 3.4.1 - 2023-09-17
 
