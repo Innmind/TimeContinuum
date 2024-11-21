@@ -6,6 +6,8 @@ namespace Innmind\TimeContinuum\Clock;
 use Innmind\TimeContinuum\{
     PointInTime,
     Format,
+    Timezones,
+    Timezone,
 };
 use Innmind\Immutable\Maybe;
 
@@ -17,10 +19,21 @@ final class Frozen
     private PointInTime $now;
     private Live $concrete;
 
-    public function __construct(PointInTime $now)
+    public function __construct(PointInTime $now, Live $concrete)
     {
         $this->now = $now;
-        $this->concrete = new Live;
+        $this->concrete = $concrete;
+    }
+
+    /**
+     * @param callable(Timezones): Timezone $changeTimezone
+     */
+    public function switch(callable $changeTimezone): self
+    {
+        return new self(
+            $this->now,
+            $this->concrete->switch($changeTimezone),
+        );
     }
 
     public function now(): PointInTime

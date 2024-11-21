@@ -20,12 +20,12 @@ final class Clock
 
     public static function live(): self
     {
-        return new self(new Live);
+        return new self(new Live(Offset::utc()));
     }
 
     public static function frozen(PointInTime $point): self
     {
-        return new self(new Frozen($point));
+        return new self(new Frozen($point, new Live(Offset::utc())));
     }
 
     public static function logger(self $clock, LoggerInterface $logger): self
@@ -36,6 +36,14 @@ final class Clock
     public function now(): PointInTime
     {
         return $this->implementation->now();
+    }
+
+    /**
+     * @param callable(Timezones): Timezone $changeTimezone
+     */
+    public function switch(callable $changeTimezone): self
+    {
+        return new self($this->implementation->switch($changeTimezone));
     }
 
     /**

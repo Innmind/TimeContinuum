@@ -7,6 +7,8 @@ use Innmind\TimeContinuum\{
     Clock,
     PointInTime,
     Format,
+    Timezones,
+    Timezone,
 };
 use Innmind\Immutable\Maybe;
 use Psr\Log\LoggerInterface;
@@ -23,6 +25,17 @@ final class Logger
     {
         $this->clock = $clock;
         $this->logger = $logger;
+    }
+
+    /**
+     * @param callable(Timezones): Timezone $changeTimezone
+     */
+    public function switch(callable $changeTimezone): self
+    {
+        return new self(
+            $this->clock->switch($changeTimezone),
+            $this->logger,
+        );
     }
 
     public function now(): PointInTime

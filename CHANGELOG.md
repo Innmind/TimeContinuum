@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## Added
+
+- `Innmind\TimeContinuum\Clock::switch()`
+
 ### Changed
 
 - `Innmind\TimeContinuum\Format` is now a `final class`
