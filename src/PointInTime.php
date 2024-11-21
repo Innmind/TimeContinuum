@@ -61,12 +61,9 @@ final class PointInTime
 
     /**
      * Since 1970-01-01T00:00:00+00:00
-     *
-     * @return int<0, max>
      */
     public function milliseconds(): int
     {
-        /** @var int<0, max> */
         return (int) $this->date->format('Uv');
     }
 
