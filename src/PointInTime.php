@@ -19,13 +19,9 @@ use Innmind\TimeContinuum\{
  */
 final class PointInTime
 {
-    /**
-     * @param int<0, max> $milliseconds
-     */
     private function __construct(
         private \DateTimeImmutable $date,
         private ?HighResolution $highResolution,
-        private int $milliseconds,
     ) {
     }
 
@@ -44,7 +40,6 @@ final class PointInTime
         return new self(
             $datetime,
             null,
-            $milliseconds + self::millisecondOf($datetime),
         );
     }
 
@@ -56,13 +51,10 @@ final class PointInTime
         $now = new \DateTimeImmutable('now');
         /** @psalm-suppress ImpureMethodCallAcceptable since only a clock should instantiate this class */
         $highResolution = HighResolution::now();
-        /** @var int<0, max> */
-        $milliseconds = $now->getTimestamp() * 1000;
 
         return new self(
             $now,
             $highResolution,
-            $milliseconds + self::millisecondOf($now),
         );
     }
 
@@ -73,7 +65,8 @@ final class PointInTime
      */
     public function milliseconds(): int
     {
-        return $this->milliseconds;
+        /** @var int<0, max> */
+        return (int) $this->date->format('Uv');
     }
 
     public function year(): Year
@@ -129,7 +122,10 @@ final class PointInTime
 
     public function millisecond(): Millisecond
     {
-        return Millisecond::of(self::millisecondOf($this->date));
+        /** @var int<0, 999> */
+        $millisecond = (int) $this->date->format('v');
+
+        return Millisecond::of($millisecond);
     }
 
     public function format(Format $format): string
@@ -144,7 +140,6 @@ final class PointInTime
                 new \DateTimeZone($zone->toString()),
             ),
             $this->highResolution,
-            $this->milliseconds,
         );
     }
 
@@ -265,16 +260,5 @@ final class PointInTime
             'minutes',
             'seconds',
         ];
-    }
-
-    /**
-     * @psalm-pure
-     *
-     * @return int<0, 999>
-     */
-    private static function millisecondOf(\DateTimeImmutable $date): int
-    {
-        /** @var int<0, 999> */
-        return (int) ((int) $date->format('u') / 1000);
     }
 }
