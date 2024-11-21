@@ -81,13 +81,15 @@ class LoggerTest extends TestCase
                 Set\Elements::of(
                     Format::cookie(),
                     Format::iso8601(),
-                    Format::rfc1036(),
                     Format::rfc1123(),
                     Format::rfc2822(),
-                    Format::rfc822(),
-                    Format::rfc850(),
                     Format::rss(),
                     Format::w3c(),
+                    // the year is not precise enough to allow to correctly
+                    // parse any date with these formats
+                    // Format::rfc1036(),
+                    // Format::rfc822(),
+                    // Format::rfc850(),
                 ),
             )
             ->then(function($point, $format) {

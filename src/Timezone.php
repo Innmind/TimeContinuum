@@ -15,6 +15,7 @@ final class Timezone
     private function __construct(
         private int $hours,
         private int $minutes,
+        private bool $plus,
     ) {
     }
 
@@ -26,7 +27,23 @@ final class Timezone
      */
     public static function of(int $hours, int $minutes = 0): self
     {
-        return new self($hours, $minutes);
+        return new self($hours, $minutes, $hours > 0);
+    }
+
+    /**
+     * @psalm-pure
+     * @internal
+     */
+    public static function from(string $string): self
+    {
+        [$hours, $minutes] = \explode(':', $string);
+
+        /** @psalm-suppress ArgumentTypeCoercion */
+        return new self(
+            (int) $hours,
+            (int) $minutes,
+            \str_starts_with($string, '+'),
+        );
     }
 
     /**
@@ -57,7 +74,7 @@ final class Timezone
         /** @var non-empty-string */
         return \sprintf(
             '%s%02d:%02d',
-            $this->hours > 0 ? '+' : '-',
+            $this->plus ? '+' : '-',
             \abs($this->hours),
             $this->minutes,
         );
