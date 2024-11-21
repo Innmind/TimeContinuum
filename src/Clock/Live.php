@@ -17,15 +17,9 @@ final class Live
 {
     private Timezone $timezone;
 
-    public function __construct(Timezone $timezone = null)
+    public function __construct()
     {
-        if ($timezone === null) {
-            [$hour, $minute] = \explode(':', \date('P'));
-            /** @psalm-suppress ArgumentTypeCoercion */
-            $timezone = Timezone::of((int) $hour, (int) $minute);
-        }
-
-        $this->timezone = $timezone;
+        $this->timezone = Timezone::of(0, 0);
     }
 
     public function now(): PointInTime

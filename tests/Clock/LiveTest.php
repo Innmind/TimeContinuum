@@ -50,31 +50,6 @@ class LiveTest extends TestCase
         );
     }
 
-    public function testNowAtGivenExpectedTimezone()
-    {
-        $this->markTestSkipped();
-
-        $this->assertInstanceOf(
-            PointInTime::class,
-            $now = Clock::live(Timezone::of(6, 42))->now(),
-        );
-        $this->assertSame('+06:42', $now->timezone()->toString());
-    }
-
-    public function testAtWithExpectedTimezone()
-    {
-        $this->markTestSkipped();
-
-        $this->assertInstanceOf(
-            PointInTime::class,
-            $point = Clock::live(Timezone::of(6, 42))->at('2016-10-08T16:08:30+02:00')->match(
-                static fn($point) => $point,
-                static fn() => null,
-            ),
-        );
-        $this->assertSame('+06:42', $point->timezone()->toString());
-    }
-
     public function testAtWithSpecificFormat()
     {
         $this->assertInstanceOf(
