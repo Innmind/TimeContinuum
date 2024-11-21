@@ -4,14 +4,16 @@ declare(strict_types = 1);
 namespace Innmind\TimeContinuum\Clock;
 
 use Innmind\TimeContinuum\{
-    Clock,
     Timezone,
     PointInTime,
     Format,
 };
 use Innmind\Immutable\Maybe;
 
-final class Live implements Clock
+/**
+ * @internal
+ */
+final class Live
 {
     private Timezone $timezone;
 
@@ -33,6 +35,10 @@ final class Live implements Clock
 
     /**
      * @psalm-pure
+     *
+     * @param non-empty-string $date
+     *
+     * @return Maybe<PointInTime>
      */
     public function at(string $date, Format $format = null): Maybe
     {

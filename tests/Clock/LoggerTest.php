@@ -4,12 +4,10 @@ declare(strict_types = 1);
 namespace Tests\Innmind\TimeContinuum\Clock;
 
 use Innmind\TimeContinuum\{
-    Clock\Logger,
     Clock,
     Format,
 };
 use Fixtures\Innmind\TimeContinuum\PointInTime;
-use Innmind\Immutable\Maybe;
 use Psr\Log\LoggerInterface;
 use PHPUnit\Framework\TestCase;
 use Innmind\BlackBox\{
@@ -21,27 +19,12 @@ class LoggerTest extends TestCase
 {
     use BlackBox;
 
-    public function testInterface()
-    {
-        $this->assertInstanceOf(
-            Clock::class,
-            new Logger(
-                $this->createMock(Clock::class),
-                $this->createMock(LoggerInterface::class),
-            ),
-        );
-    }
-
     public function testGeneratedNowIsLogged()
     {
         $this
             ->forAll(PointInTime::any())
             ->then(function($now) {
-                $concrete = $this->createMock(Clock::class);
-                $concrete
-                    ->expects($this->once())
-                    ->method('now')
-                    ->willReturn($now);
+                $concrete = Clock::frozen($now);
                 $logger = $this->createMock(LoggerInterface::class);
                 $logger
                     ->expects($this->once())
@@ -51,7 +34,7 @@ class LoggerTest extends TestCase
                         ['point' => $now->format(Format::iso8601())],
                     );
 
-                $clock = new Logger($concrete, $logger);
+                $clock = Clock::logger($concrete, $logger);
 
                 $this->assertSame($now, $clock->now());
             });
@@ -61,16 +44,10 @@ class LoggerTest extends TestCase
     {
         $this
             ->forAll(
-                Set\Strings::any(),
                 PointInTime::any(),
             )
-            ->then(function($date, $point) {
-                $concrete = $this->createMock(Clock::class);
-                $concrete
-                    ->expects($this->once())
-                    ->method('at')
-                    ->with($date)
-                    ->willReturn(Maybe::just($point));
+            ->then(function($point) {
+                $concrete = Clock::frozen($point);
                 $logger = $this->createMock(LoggerInterface::class);
                 $logger
                     ->expects($this->once())
@@ -78,18 +55,18 @@ class LoggerTest extends TestCase
                     ->with(
                         'Asked time {date} ({format}) resolved to {point}',
                         [
-                            'date' => $date,
+                            'date' => $point->toString(),
                             'format' => 'unknown',
                             'point' => $point->format(Format::iso8601()),
                         ],
                     );
 
-                $clock = new Logger($concrete, $logger);
+                $clock = Clock::logger($concrete, $logger);
 
                 $this->assertSame(
-                    $point,
-                    $clock->at($date)->match(
-                        static fn($point) => $point,
+                    $point->toString(),
+                    $clock->at($point->toString())->match(
+                        static fn($found) => $found->toString(),
                         static fn() => null,
                     ),
                 );
@@ -100,7 +77,6 @@ class LoggerTest extends TestCase
     {
         $this
             ->forAll(
-                Set\Strings::any(),
                 PointInTime::any(),
                 Set\Elements::of(
                     Format::cookie(),
@@ -114,13 +90,8 @@ class LoggerTest extends TestCase
                     Format::w3c(),
                 ),
             )
-            ->then(function($date, $point, $format) {
-                $concrete = $this->createMock(Clock::class);
-                $concrete
-                    ->expects($this->once())
-                    ->method('at')
-                    ->with($date)
-                    ->willReturn(Maybe::just($point));
+            ->then(function($point, $format) {
+                $concrete = Clock::frozen($point);
                 $logger = $this->createMock(LoggerInterface::class);
                 $logger
                     ->expects($this->once())
@@ -128,18 +99,18 @@ class LoggerTest extends TestCase
                     ->with(
                         'Asked time {date} ({format}) resolved to {point}',
                         [
-                            'date' => $date,
+                            'date' => $point->format($format),
                             'format' => $format->toString(),
                             'point' => $point->format(Format::iso8601()),
                         ],
                     );
 
-                $clock = new Logger($concrete, $logger);
+                $clock = Clock::logger($concrete, $logger);
 
                 $this->assertSame(
-                    $point,
-                    $clock->at($date, $format)->match(
-                        static fn($point) => $point,
+                    $point->toString(),
+                    $clock->at($point->format($format), $format)->match(
+                        static fn($point) => $point->toString(),
                         static fn() => null,
                     ),
                 );

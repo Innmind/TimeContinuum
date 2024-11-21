@@ -4,16 +4,18 @@ declare(strict_types = 1);
 namespace Innmind\TimeContinuum\Clock;
 
 use Innmind\TimeContinuum\{
-    Clock,
     PointInTime,
     Format,
 };
 use Innmind\Immutable\Maybe;
 
-final class Frozen implements Clock
+/**
+ * @internal
+ */
+final class Frozen
 {
     private PointInTime $now;
-    private Clock $concrete;
+    private Live $concrete;
 
     public function __construct(PointInTime $now)
     {
@@ -28,6 +30,10 @@ final class Frozen implements Clock
 
     /**
      * @psalm-pure
+     *
+     * @param non-empty-string $date
+     *
+     * @return Maybe<PointInTime>
      */
     public function at(string $date, Format $format = null): Maybe
     {

@@ -17,6 +17,7 @@
 - `Innmind\TimeContinuum\Logger\Clock` as been renamed `Innmind\TimeContinuum\Clock\Logger`
 - Classes in the `Innmind\TimeContinuum\Earth\Move` namespace have been moved to `Innmind\TimeContinuum\Move`
 - `Innmind\TimeContinuum\Timezone` is now a `final class`
+- `Innmind\TimeContinuum\Clock` is now a `final class`
 
 ### Removed
 

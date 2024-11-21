@@ -4,9 +4,8 @@ declare(strict_types = 1);
 namespace Tests\Innmind\TimeContinuum\Clock;
 
 use Innmind\TimeContinuum\{
-    Clock\Frozen,
-    Format,
     Clock,
+    Format,
     PointInTime as PointInTimeInterface,
 };
 use Fixtures\Innmind\TimeContinuum\PointInTime;
@@ -17,21 +16,12 @@ class FrozenTest extends TestCase
 {
     use BlackBox;
 
-    public function testInterface()
-    {
-        $this
-            ->forAll(PointInTime::any())
-            ->then(function($now) {
-                $this->assertInstanceOf(Clock::class, new Frozen($now));
-            });
-    }
-
     public function testNow()
     {
         $this
             ->forAll(PointInTime::any())
             ->then(function($now) {
-                $this->assertSame($now, (new Frozen($now))->now());
+                $this->assertSame($now, Clock::frozen($now)->now());
             });
     }
 
@@ -43,7 +33,7 @@ class FrozenTest extends TestCase
                 PointInTime::any(),
             )
             ->then(function($now, $at) {
-                $clock = new Frozen($now);
+                $clock = Clock::frozen($now);
 
                 $point = $clock->at($at->format(Format::iso8601()))->match(
                     static fn($point) => $point,

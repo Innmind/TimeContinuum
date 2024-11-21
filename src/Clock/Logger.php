@@ -11,7 +11,10 @@ use Innmind\TimeContinuum\{
 use Innmind\Immutable\Maybe;
 use Psr\Log\LoggerInterface;
 
-final class Logger implements Clock
+/**
+ * @internal
+ */
+final class Logger
 {
     private Clock $clock;
     private LoggerInterface $logger;
@@ -34,6 +37,10 @@ final class Logger implements Clock
 
     /**
      * @psalm-pure
+     *
+     * @param non-empty-string $date
+     *
+     * @return Maybe<PointInTime>
      */
     public function at(string $date, Format $format = null): Maybe
     {
