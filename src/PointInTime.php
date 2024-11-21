@@ -33,6 +33,7 @@ final class PointInTime
      */
     public static function at(string $date): self
     {
+        /** @psalm-suppress ImpureMethodCall */
         $datetime = new \DateTimeImmutable($date);
         /** @var int<0, max> */
         $milliseconds = $datetime->getTimestamp() * 1000;
@@ -163,71 +164,30 @@ final class PointInTime
 
     public function goBack(Period $period): self
     {
-        if ($this->millisecond()->toInt() > 0) {
-            $period = $period->add(
-                Period\Millisecond::of(1000 - $this->millisecond()->toInt()),
-            );
-        }
-        $date = $this->date;
+        $interval = self::dateInterval($period);
 
-        foreach (self::periodComponents() as $component) {
-            /** @var int $periodComponent */
-            $periodComponent = $period->{$component}();
-
-            if ($periodComponent > 0) {
-                /** @psalm-suppress PossiblyFalseReference The input is validated so there shouldn't be any error */
-                $date = $date->modify(
-                    \sprintf(
-                        '-%s %s',
-                        $periodComponent,
-                        $component,
-                    ),
-                );
-            }
+        if (\is_null($interval)) {
+            return $this;
         }
 
-        if ($this->millisecond()->toInt() === 0 && $period->milliseconds() > 0) {
-            /** @psalm-suppress PossiblyFalseReference The input is validated so there shouldn't be any error */
-            $date = $date->modify('-1 second');
-        }
-
-        /** @psalm-suppress PossiblyFalseReference The input is validated so there shouldn't be any error */
-        // todo avoid using the string representation
-        return self::at(\sprintf(
-            $date->format('Y-m-d\TH:i:s.%03\sP'),
-            $period->milliseconds() > 0 ? 1000 - $period->milliseconds() : 0,
-        ));
+        return new self(
+            $this->date->sub($interval),
+            null,
+        );
     }
 
     public function goForward(Period $period): self
     {
-        $period = $period->add(
-            Period\Millisecond::of($this->millisecond()->toInt()),
-        );
-        $date = $this->date;
+        $interval = self::dateInterval($period);
 
-        foreach (self::periodComponents() as $component) {
-            /** @var int $periodComponent */
-            $periodComponent = $period->{$component}();
-
-            if ($periodComponent > 0) {
-                /** @psalm-suppress PossiblyFalseReference The input is validated so there shouldn't be any error */
-                $date = $date->modify(
-                    \sprintf(
-                        '+%s %s',
-                        $periodComponent,
-                        $component,
-                    ),
-                );
-            }
+        if (\is_null($interval)) {
+            return $this;
         }
 
-        /** @psalm-suppress PossiblyFalseReference The input is validated so there shouldn't be any error */
-        // todo avoid using the string representation
-        return self::at(\sprintf(
-            $date->format('Y-m-d\TH:i:s.%03\sP'),
-            $period->milliseconds(),
-        ));
+        return new self(
+            $this->date->add($interval),
+            null,
+        );
     }
 
     public function equals(self $point): bool
@@ -247,18 +207,66 @@ final class PointInTime
 
     /**
      * @psalm-pure
-     *
-     * @return list<string>
      */
-    private static function periodComponents(): array
+    private static function dateInterval(Period $period): ?\DateInterval
     {
-        return [
-            'years',
-            'months',
-            'days',
-            'hours',
-            'minutes',
-            'seconds',
-        ];
+        /** @var list<non-empty-string> */
+        $parts = [];
+
+        if ($period->years() > 0) {
+            $parts[] = \sprintf(
+                '%s years',
+                $period->years(),
+            );
+        }
+
+        if ($period->months() > 0) {
+            $parts[] = \sprintf(
+                '%s months',
+                $period->months(),
+            );
+        }
+
+        if ($period->days() > 0) {
+            $parts[] = \sprintf(
+                '%s days',
+                $period->days(),
+            );
+        }
+
+        if ($period->hours() > 0) {
+            $parts[] = \sprintf(
+                '%s hours',
+                $period->hours(),
+            );
+        }
+
+        if ($period->minutes() > 0) {
+            $parts[] = \sprintf(
+                '%s minutes',
+                $period->minutes(),
+            );
+        }
+
+        if ($period->seconds() > 0) {
+            $parts[] = \sprintf(
+                '%s seconds',
+                $period->seconds(),
+            );
+        }
+
+        if ($period->milliseconds() > 0) {
+            $parts[] = \sprintf(
+                '%s milliseconds',
+                $period->milliseconds(),
+            );
+        }
+
+        if (\count($parts) === 0) {
+            return null;
+        }
+
+        /** @psalm-suppress ImpureMethodCall */
+        return \DateInterval::createFromDateString(\implode(' + ', $parts));
     }
 }
