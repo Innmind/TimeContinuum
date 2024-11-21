@@ -12,7 +12,6 @@ use Innmind\TimeContinuum\{
     PointInTime\Second,
     PointInTime\Millisecond,
     PointInTime\HighResolution,
-    Earth\Timezone\UTC,
 };
 
 /**
