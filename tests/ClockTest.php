@@ -162,6 +162,34 @@ class ClockTest extends TestCase
             });
     }
 
+    #[DataProvider('formats')]
+    public function testAllDefaultFormatsAreValid($format)
+    {
+        $clock = Clock::live();
+        $now = $clock->now();
+
+        $this->assertSame(
+            $now->format($format),
+            $clock->at($now->format($format), $format)->match(
+                static fn($point) => $point->format($format),
+                static fn() => null,
+            ),
+        );
+    }
+
+    public static function formats()
+    {
+        yield [Format::cookie()];
+        yield [Format::iso8601()];
+        yield [Format::rfc1036()];
+        yield [Format::rfc1123()];
+        yield [Format::rfc2822()];
+        yield [Format::rfc822()];
+        yield [Format::rfc850()];
+        yield [Format::rss()];
+        yield [Format::w3c()];
+    }
+
     public static function zones()
     {
         yield from self::africa();
