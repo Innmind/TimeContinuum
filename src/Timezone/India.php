@@ -27,56 +27,56 @@ final class India
 
     public function cocos(): Timezone
     {
-        return ($this->of)('India/Cocos');
+        return ($this->of)('Indian/Cocos');
     }
 
     public function antananarivo(): Timezone
     {
-        return ($this->of)('India/Antananarivo');
+        return ($this->of)('Indian/Antananarivo');
     }
 
     public function reunion(): Timezone
     {
-        return ($this->of)('India/Reunion');
+        return ($this->of)('Indian/Reunion');
     }
 
     public function chagos(): Timezone
     {
-        return ($this->of)('India/Chagos');
+        return ($this->of)('Indian/Chagos');
     }
 
     public function comoro(): Timezone
     {
-        return ($this->of)('India/Comoro');
+        return ($this->of)('Indian/Comoro');
     }
 
     public function mayotte(): Timezone
     {
-        return ($this->of)('India/Mayotte');
+        return ($this->of)('Indian/Mayotte');
     }
 
     public function maldives(): Timezone
     {
-        return ($this->of)('India/Maldives');
+        return ($this->of)('Indian/Maldives');
     }
 
     public function mauritius(): Timezone
     {
-        return ($this->of)('India/Mauritius');
+        return ($this->of)('Indian/Mauritius');
     }
 
     public function mahe(): Timezone
     {
-        return ($this->of)('India/Mahe');
+        return ($this->of)('Indian/Mahe');
     }
 
     public function kerguelen(): Timezone
     {
-        return ($this->of)('India/Kerguelen');
+        return ($this->of)('Indian/Kerguelen');
     }
 
     public function christmas(): Timezone
     {
-        return ($this->of)('India/Christmas');
+        return ($this->of)('Indian/Christmas');
     }
 }

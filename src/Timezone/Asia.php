@@ -52,7 +52,7 @@ final class Asia
 
     public function ustNera(): Timezone
     {
-        return ($this->of)('Asia/Ust');
+        return ($this->of)('Asia/Ust-Nera');
     }
 
     public function pontianak(): Timezone
