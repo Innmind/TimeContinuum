@@ -253,6 +253,13 @@ final class PointInTime
             );
         }
 
+        if ($period->microseconds() > 0) {
+            $parts[] = \sprintf(
+                '%s microseconds',
+                $period->microseconds(),
+            );
+        }
+
         if (\count($parts) === 0) {
             return null;
         }

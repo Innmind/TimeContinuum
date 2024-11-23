@@ -46,6 +46,10 @@ return static function() {
                 0,
                 $startOfDay->millisecond()->toInt(),
             );
+            $assert->same(
+                0,
+                $startOfDay->microsecond()->toInt(),
+            );
         },
     );
 };

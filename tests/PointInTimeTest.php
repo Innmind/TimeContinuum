@@ -203,4 +203,20 @@ class PointInTimeTest extends TestCase
             $point2->format($format),
         );
     }
+
+    public function testGoBackOneMicrosecondWhenCurrentPointIsAtPreciselyZeroMillisecond()
+    {
+        $point = PointInTime::at(new \DateTimeImmutable('1402-07-21 02:42:53.000000'));
+        $point2 = $point->goBack(Period::microsecond(1));
+        $format = Format::of('Y-m-d\TH:i:s.u');
+
+        $this->assertSame(
+            '1402-07-21T02:42:53.000000',
+            $point->format($format),
+        );
+        $this->assertSame(
+            '1402-07-21T02:42:52.999999',
+            $point2->format($format),
+        );
+    }
 }

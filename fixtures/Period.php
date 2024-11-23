@@ -22,6 +22,7 @@ final class Period
             Set\Integers::between(0, 59),
             Set\Integers::between(0, 59),
             Set\Integers::between(0, 999),
+            Set\Integers::between(0, 999),
         )->take(100);
     }
 
@@ -42,7 +43,7 @@ final class Period
     public static function lessThanAYear(): Set
     {
         return Set\Composite::immutable(
-            static function($day, $hour, $minute, $second, $millisecond): Model {
+            static function($day, $hour, $minute, $second, $millisecond, $microsecond): Model {
                 return Model::of(
                     0,
                     0,
@@ -51,12 +52,14 @@ final class Period
                     $minute,
                     $second,
                     $millisecond,
+                    $microsecond,
                 );
             },
             Set\Integers::between(0, 364),
             Set\Integers::between(0, 23),
             Set\Integers::between(0, 59),
             Set\Integers::between(0, 59),
+            Set\Integers::between(0, 999),
             Set\Integers::between(0, 999),
         )->take(100);
     }

@@ -46,6 +46,10 @@ return static function() {
                 999,
                 $endOfYear->millisecond()->toInt(),
             );
+            $assert->same(
+                999,
+                $endOfYear->microsecond()->toInt(),
+            );
         },
     );
 };

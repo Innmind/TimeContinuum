@@ -13,7 +13,8 @@ return static function() {
         Set\Integers::between(0, 1_000_000), // hour
         Set\Integers::between(0, 1_000_000_000), // minute
         Set\Integers::above(0), // second
-        Set\Integers::above(0), // millsecond
+        Set\Integers::above(0), // millisecond
+        Set\Integers::above(0), // microsecond
     );
 
     yield proof(
@@ -57,6 +58,11 @@ return static function() {
                 ->lessThanOrEqual(59);
             $assert
                 ->number($period->milliseconds())
+                ->int()
+                ->greaterThanOrEqual(0)
+                ->lessThanOrEqual(999);
+            $assert
+                ->number($period->microseconds())
                 ->int()
                 ->greaterThanOrEqual(0)
                 ->lessThanOrEqual(999);

@@ -16,7 +16,8 @@ final class EndOfDay
             Period::hour(23 - $point->hour()->toInt())
                 ->add(Period::minute(59 - $point->minute()->toInt()))
                 ->add(Period::second(59 - $point->second()->toInt()))
-                ->add(Period::millisecond(999 - $point->millisecond()->toInt())),
+                ->add(Period::millisecond(999 - $point->millisecond()->toInt()))
+                ->add(Period::microsecond(999 - $point->microsecond()->toInt())),
         );
     }
 }
