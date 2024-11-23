@@ -35,7 +35,7 @@ class PointInTimeTest extends TestCase
         $this->assertInstanceOf(Millisecond::class, $point->millisecond());
         $this->assertInstanceOf(Offset::class, $point->offset());
         $this->assertSame(2016, $point->year()->toInt());
-        $this->assertSame(10, $point->month()->toInt());
+        $this->assertSame(10, $point->month()->calendar()->toInt());
         $this->assertSame(5, $point->day()->toInt());
         $this->assertSame(8, $point->hour()->toInt());
         $this->assertSame(1, $point->minute()->toInt());
@@ -82,7 +82,7 @@ class PointInTimeTest extends TestCase
         $this->assertNotSame($point->millisecond(), $point2->millisecond());
         $this->assertSame($point->milliseconds(), $point2->milliseconds());
         $this->assertSame(2016, $point2->year()->toInt());
-        $this->assertSame(10, $point2->month()->toInt());
+        $this->assertSame(10, $point2->month()->calendar()->toInt());
         $this->assertSame(5, $point2->day()->toInt());
         $this->assertSame(3, $point2->hour()->toInt());
         $this->assertSame(31, $point2->minute()->toInt());
@@ -128,14 +128,14 @@ class PointInTimeTest extends TestCase
         );
 
         $this->assertSame(2016, $point->year()->toInt());
-        $this->assertSame(10, $point->month()->toInt());
+        $this->assertSame(10, $point->month()->calendar()->toInt());
         $this->assertSame(5, $point->day()->toInt());
         $this->assertSame(8, $point->hour()->toInt());
         $this->assertSame(1, $point->minute()->toInt());
         $this->assertSame(30, $point->second()->toInt());
         $this->assertSame(123, $point->millisecond()->toInt());
         $this->assertSame(2017, $point2->year()->toInt());
-        $this->assertSame(11, $point2->month()->toInt());
+        $this->assertSame(11, $point2->month()->calendar()->toInt());
         $this->assertSame(6, $point2->day()->toInt());
         $this->assertSame(9, $point2->hour()->toInt());
         $this->assertSame(3, $point2->minute()->toInt());
@@ -151,14 +151,14 @@ class PointInTimeTest extends TestCase
         );
 
         $this->assertSame(2016, $point->year()->toInt());
-        $this->assertSame(10, $point->month()->toInt());
+        $this->assertSame(10, $point->month()->calendar()->toInt());
         $this->assertSame(5, $point->day()->toInt());
         $this->assertSame(8, $point->hour()->toInt());
         $this->assertSame(1, $point->minute()->toInt());
         $this->assertSame(30, $point->second()->toInt());
         $this->assertSame(123, $point->millisecond()->toInt());
         $this->assertSame(2015, $point2->year()->toInt());
-        $this->assertSame(9, $point2->month()->toInt());
+        $this->assertSame(9, $point2->month()->calendar()->toInt());
         $this->assertSame(4, $point2->day()->toInt());
         $this->assertSame(6, $point2->hour()->toInt());
         $this->assertSame(59, $point2->minute()->toInt());

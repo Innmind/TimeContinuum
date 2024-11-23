@@ -74,12 +74,9 @@ final class PointInTime
 
     public function month(): Month
     {
-        /** @var int<1, 12> */
-        $month = (int) $this->date->format('n');
-
         return Month::of(
             $this->year(),
-            $month,
+            Calendar\Month::of((int) $this->date->format('n')),
         );
     }
 
