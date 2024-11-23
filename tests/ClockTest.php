@@ -65,18 +65,22 @@ class ClockTest extends TestCase
     {
         $this
             ->forAll(
-                Set\Elements::of(...\array_values(\iterator_to_array(self::america())))
-                    ->map(static fn($switch) => $switch[0]),
+                self::genToSet(self::america())->filter(
+                    // timezone that collides with other continents
+                    static fn($pair) => $pair[0] !== 'danmarkshavn',
+                ),
                 Set\Either::any(
-                    Set\Elements::of(...\array_values(\iterator_to_array(self::africa()))),
-                    Set\Elements::of(...\array_values(\iterator_to_array(self::europe()))),
-                    Set\Elements::of(...\array_values(\iterator_to_array(self::indian()))),
-                    Set\Elements::of(...\array_values(\iterator_to_array(self::asia()))),
-                    Set\Elements::of(...\array_values(\iterator_to_array(self::australia()))),
-                )
-                    ->map(static fn($switch) => $switch[0]),
+                    self::genToSet(self::africa()),
+                    self::genToSet(self::europe()),
+                    self::genToSet(self::indian()),
+                    self::genToSet(self::asia()),
+                    self::genToSet(self::australia()),
+                ),
             )
             ->then(function($america, $other) {
+                $america = $america[1];
+                $other = $other[1];
+
                 $america = Clock::live()->switch($america);
                 $other = Clock::live()->switch($other);
 
@@ -115,30 +119,18 @@ class ClockTest extends TestCase
 
     public function testLoggerUseNewTimezone()
     {
-        $gen = static function($zones) {
-            $zones = \iterator_to_array($zones);
-
-            return Set\Elements::of(
-                ...\array_map(
-                    static fn($name, $switch) => [$name, $switch[0]],
-                    \array_keys($zones),
-                    \array_values($zones),
-                ),
-            );
-        };
-
         $this
             ->forAll(
-                $gen(self::america())->filter(
+                self::genToSet(self::america())->filter(
                     // timezone that collides with other continents
                     static fn($pair) => $pair[0] !== 'danmarkshavn',
                 ),
                 Set\Either::any(
-                    $gen(self::africa()),
-                    $gen(self::europe()),
-                    $gen(self::indian()),
-                    $gen(self::asia()),
-                    $gen(self::australia()),
+                    self::genToSet(self::africa()),
+                    self::genToSet(self::europe()),
+                    self::genToSet(self::indian()),
+                    self::genToSet(self::asia()),
+                    self::genToSet(self::australia()),
                 ),
             )
             ->then(function($america, $other) {
@@ -202,6 +194,19 @@ class ClockTest extends TestCase
                 ),
             );
         }
+    }
+
+    public static function genToSet($zones): Set
+    {
+        $zones = \iterator_to_array($zones);
+
+        return Set\Elements::of(
+            ...\array_map(
+                static fn($name, $switch) => [$name, $switch[0]],
+                \array_keys($zones),
+                \array_values($zones),
+            ),
+        );
     }
 
     public static function zones()
