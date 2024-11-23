@@ -2,7 +2,6 @@
 declare(strict_types = 1);
 
 use Innmind\TimeContinuum\Period;
-use Fixtures\Innmind\TimeContinuum\PointInTime;
 use Innmind\BlackBox\Set;
 
 return static function() {
