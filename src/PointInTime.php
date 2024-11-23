@@ -183,17 +183,35 @@ final class PointInTime
 
     public function equals(self $point): bool
     {
-        return $this->milliseconds() === $point->milliseconds();
+        [$self, $other] = self::compare($this, $point);
+
+        return $self === $other;
     }
 
     public function aheadOf(self $point): bool
     {
-        return $this->milliseconds() > $point->milliseconds();
+        [$self, $other] = self::compare($this, $point);
+
+        return $self > $other;
     }
 
     public function toString(): string
     {
         return $this->date->format(\DateTime::ATOM);
+    }
+
+    /**
+     * @psalm-pure
+     * @return array{string, string}
+     */
+    private static function compare(self $self, self $other): array
+    {
+        $format = Format::of('Y-m-dTH:i:s.u');
+
+        return [
+            $self->changeOffset(Offset::utc())->format($format),
+            $other->changeOffset(Offset::utc())->format($format),
+        ];
     }
 
     /**

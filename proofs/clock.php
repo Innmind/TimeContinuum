@@ -1,7 +1,10 @@
 <?php
 declare(strict_types = 1);
 
-use Innmind\TimeContinuum\Clock;
+use Innmind\TimeContinuum\{
+    Clock,
+    Period,
+};
 use Fixtures\Innmind\TimeContinuum\PointInTime;
 use Innmind\BlackBox\Set;
 
@@ -58,6 +61,34 @@ return static function() {
                 ->int()
                 ->greaterThanOrEqual(365)
                 ->lessThanOrEqual(366);
+        },
+    );
+
+    yield proof(
+        'Point in times precision is down to the microsecond',
+        given(PointInTime::any()),
+        static function($assert, $point) {
+            $assert->false(
+                $point->equals(
+                    $point->goBack(Period::microsecond(1)),
+                ),
+            );
+            $assert->false(
+                $point->equals(
+                    $point->goForward(Period::microsecond(1)),
+                ),
+            );
+
+            $assert->true(
+                $point->goForward(Period::microsecond(1))->aheadOf(
+                    $point,
+                ),
+            );
+            $assert->true(
+                $point->aheadOf(
+                    $point->goBack(Period::microsecond(1)),
+                ),
+            );
         },
     );
 };
