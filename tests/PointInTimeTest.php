@@ -123,7 +123,7 @@ class PointInTimeTest extends TestCase
     {
         $point = PointInTime::at(new \DateTimeImmutable('2016-10-05T08:01:30.123+02:00'));
         $point2 = $point->goForward(
-            Period::of(1, 1, 1, 1, 1, 30, 878),
+            Period::of(1, 1, 1, 1, 1, 30, 878, 0),
         );
 
         $this->assertSame(2016, $point->year()->toInt());
@@ -146,7 +146,7 @@ class PointInTimeTest extends TestCase
     {
         $point = PointInTime::at(new \DateTimeImmutable('2016-10-05T08:01:30.123+02:00'));
         $point2 = $point->goBack(
-            Period::of(1, 1, 1, 1, 1, 30, 125),
+            Period::of(1, 1, 1, 1, 1, 30, 125, 0),
         );
 
         $this->assertSame(2016, $point->year()->toInt());

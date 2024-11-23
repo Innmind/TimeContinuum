@@ -50,7 +50,7 @@ final class Period
         int $minute,
         int $second,
         int $millisecond,
-        int $microsecond = 0,
+        int $microsecond,
     ): self {
         return new self(
             $year,
@@ -84,7 +84,7 @@ final class Period
         int $minute,
         int $second,
         int $millisecond,
-        int $microsecond = 0,
+        int $microsecond,
     ): self {
         return self::microsecond($microsecond)
             ->add(self::millisecond($millisecond))
