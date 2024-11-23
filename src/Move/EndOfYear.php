@@ -5,7 +5,7 @@ namespace Innmind\TimeContinuum\Move;
 
 use Innmind\TimeContinuum\{
     PointInTime,
-    Period\Month,
+    Period,
 };
 
 final class EndOfYear
@@ -13,7 +13,7 @@ final class EndOfYear
     public function __invoke(PointInTime $point): PointInTime
     {
         $point = (new StartOfMonth)($point)->goForward(
-            Month::of(12 - $point->month()->ofYear()->toInt()),
+            Period::month(12 - $point->month()->ofYear()->toInt()),
         );
 
         return (new EndOfMonth)($point);

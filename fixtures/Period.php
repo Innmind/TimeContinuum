@@ -3,10 +3,7 @@ declare(strict_types = 1);
 
 namespace Fixtures\Innmind\TimeContinuum;
 
-use Innmind\TimeContinuum\{
-    Period as Model,
-    Period\Year,
-};
+use Innmind\TimeContinuum\Period as Model;
 use Innmind\BlackBox\Set;
 
 final class Period
@@ -29,12 +26,12 @@ final class Period
     }
 
     /**
-     * @return Set<Year>
+     * @return Set<Model>
      */
     public static function anyNumberOfYear(): Set
     {
         return Set\Decorate::immutable(
-            Year::of(...),
+            Model::year(...),
             Set\Integers::between(0, 9999),
         )->take(100);
     }

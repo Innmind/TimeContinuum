@@ -6,11 +6,6 @@ namespace Innmind\TimeContinuum\Move;
 use Innmind\TimeContinuum\{
     PointInTime,
     Period,
-    Period\Day,
-    Period\Hour,
-    Period\Minute,
-    Period\Second,
-    Period\Millisecond,
 };
 
 final class Month
@@ -29,20 +24,20 @@ final class Month
         /** @var PointInTime $newPoint */
         $newPoint = (new StartOfMonth)($point)->{$this->direction}($this->months);
         $newPoint = $newPoint->goForward(
-            Hour::of($point->hour()->toInt())
-                ->add(Minute::of($point->minute()->toInt()))
-                ->add(Second::of($point->second()->toInt()))
-                ->add(Millisecond::of($point->millisecond()->toInt())),
+            Period::hour($point->hour()->toInt())
+                ->add(Period::minute($point->minute()->toInt()))
+                ->add(Period::second($point->second()->toInt()))
+                ->add(Period::millisecond($point->millisecond()->toInt())),
         );
 
         if ($newPoint->month()->numberOfDays() < $point->day()->ofMonth()) {
             return $newPoint->goForward(
-                Day::of($newPoint->month()->numberOfDays() - 1),
+                Period::day($newPoint->month()->numberOfDays() - 1),
             );
         }
 
         return $newPoint->goForward(
-            Day::of($point->day()->ofMonth() - 1),
+            Period::day($point->day()->ofMonth() - 1),
         );
     }
 
@@ -51,7 +46,7 @@ final class Month
      */
     public static function forward(int $months): self
     {
-        return new self('goForward', Period\Month::of($months));
+        return new self('goForward', Period::month($months));
     }
 
     /**
@@ -59,6 +54,6 @@ final class Month
      */
     public static function backward(int $months): self
     {
-        return new self('goBack', Period\Month::of($months));
+        return new self('goBack', Period::month($months));
     }
 }

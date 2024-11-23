@@ -3,17 +3,14 @@ declare(strict_types = 1);
 
 namespace Tests\Innmind\TimeContinuum\Period;
 
-use Innmind\TimeContinuum\{
-    Period,
-    Period\Day,
-};
+use Innmind\TimeContinuum\Period;
 use Innmind\BlackBox\PHPUnit\Framework\TestCase;
 
 class DayTest extends TestCase
 {
     public function testInterface()
     {
-        $period = Day::of(1000);
+        $period = Period::day(1000);
 
         $this->assertInstanceOf(Period::class, $period);
         $this->assertSame(0, $period->years());
@@ -27,13 +24,13 @@ class DayTest extends TestCase
 
     public function testEquals()
     {
-        $this->assertTrue(Day::of(2)->equals(Day::of(2)));
-        $this->assertFalse(Day::of(2)->equals(Day::of(3)));
+        $this->assertTrue(Period::day(2)->equals(Period::day(2)));
+        $this->assertFalse(Period::day(2)->equals(Period::day(3)));
     }
 
     public function testAdd()
     {
-        $period = Day::of(1000);
+        $period = Period::day(1000);
         $period2 = $period->add($period);
 
         $this->assertInstanceOf(Period::class, $period);
@@ -58,15 +55,15 @@ class DayTest extends TestCase
     {
         $this->assertSame(
             86_400_000,
-            Day::of(1)->asElapsedPeriod()->milliseconds(),
+            Period::day(1)->asElapsedPeriod()->milliseconds(),
         );
         $this->assertSame(
             172_800_000,
-            Day::of(2)->asElapsedPeriod()->milliseconds(),
+            Period::day(2)->asElapsedPeriod()->milliseconds(),
         );
         $this->assertSame(
             259_200_000,
-            Day::of(3)->asElapsedPeriod()->milliseconds(),
+            Period::day(3)->asElapsedPeriod()->milliseconds(),
         );
     }
 }

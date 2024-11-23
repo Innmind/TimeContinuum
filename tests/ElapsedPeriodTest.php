@@ -5,8 +5,7 @@ namespace Tests\Innmind\TimeContinuum;
 
 use Innmind\TimeContinuum\{
     ElapsedPeriod,
-    Period\Year,
-    Period\Month,
+    Period,
 };
 use Innmind\BlackBox\PHPUnit\Framework\TestCase;
 
@@ -71,13 +70,13 @@ class ElapsedPeriodTest extends TestCase
     {
         $this->expectException(\LogicException::class);
 
-        ElapsedPeriod::ofPeriod(Year::of(1));
+        ElapsedPeriod::ofPeriod(Period::year(1));
     }
 
     public function testThrowWhenTryingToBuildFromMonthPeriod()
     {
         $this->expectException(\LogicException::class);
 
-        ElapsedPeriod::ofPeriod(Month::of(1));
+        ElapsedPeriod::ofPeriod(Period::month(1));
     }
 }

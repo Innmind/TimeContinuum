@@ -10,13 +10,12 @@ use Innmind\TimeContinuum\{
     ElapsedPeriod,
     PointInTime\Year,
     PointInTime\Month,
-    PointInTime\Day as DayInterface,
+    PointInTime\Day,
     PointInTime\Hour,
     PointInTime\Minute,
     PointInTime\Second,
     PointInTime\Millisecond,
     Period,
-    Period\Day,
 };
 use Innmind\BlackBox\PHPUnit\Framework\TestCase;
 
@@ -28,7 +27,7 @@ class PointInTimeTest extends TestCase
 
         $this->assertInstanceOf(Year::class, $point->year());
         $this->assertInstanceOf(Month::class, $point->month());
-        $this->assertInstanceOf(DayInterface::class, $point->day());
+        $this->assertInstanceOf(Day::class, $point->day());
         $this->assertInstanceOf(Hour::class, $point->hour());
         $this->assertInstanceOf(Minute::class, $point->minute());
         $this->assertInstanceOf(Second::class, $point->second());
@@ -168,7 +167,7 @@ class PointInTimeTest extends TestCase
         $this->assertSame(
             '2016-10-05T08:01:29.500000+02:00',
             $point
-                ->goBack(Period\Millisecond::of(623))
+                ->goBack(Period::millisecond(623))
                 ->format(Format::of('Y-m-d\TH:i:s.uP')),
         );
     }
@@ -176,7 +175,7 @@ class PointInTimeTest extends TestCase
     public function testGoBackOneDay()
     {
         $point = PointInTime::at('2018-03-04');
-        $point2 = $point->goBack(Day::of(1));
+        $point2 = $point->goBack(Period::day(1));
         $format = Format::of('Y-m-d\TH:i:s.u');
 
         $this->assertSame(
@@ -192,7 +191,7 @@ class PointInTimeTest extends TestCase
     public function testGoBackOneMillisecondWhenCurrentPointIsAtPreciselyZeroMillisecond()
     {
         $point = PointInTime::at('1402-07-21 02:42:53.000000');
-        $point2 = $point->goBack(Period\Millisecond::of(1));
+        $point2 = $point->goBack(Period::millisecond(1));
         $format = Format::of('Y-m-d\TH:i:s.u');
 
         $this->assertSame(

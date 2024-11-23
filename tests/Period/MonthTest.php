@@ -3,10 +3,7 @@ declare(strict_types = 1);
 
 namespace Tests\Innmind\TimeContinuum\Period;
 
-use Innmind\TimeContinuum\{
-    Period,
-    Period\Month,
-};
+use Innmind\TimeContinuum\Period;
 use Innmind\BlackBox\PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
 
@@ -14,7 +11,7 @@ class MonthTest extends TestCase
 {
     public function testInterface()
     {
-        $period = Month::of(10);
+        $period = Period::month(10);
 
         $this->assertInstanceOf(Period::class, $period);
         $this->assertSame(0, $period->years());
@@ -29,7 +26,7 @@ class MonthTest extends TestCase
     #[DataProvider('cases')]
     public function testConvertMonthsIntoYears(int $months, int $year, int $expectedMonths)
     {
-        $period = Month::of($months);
+        $period = Period::month($months);
 
         $this->assertSame($year, $period->years());
         $this->assertSame($expectedMonths, $period->months());
@@ -42,13 +39,13 @@ class MonthTest extends TestCase
 
     public function testEquals()
     {
-        $this->assertTrue(Month::of(20)->equals(Month::of(20)));
-        $this->assertFalse(Month::of(2)->equals(Month::of(3)));
+        $this->assertTrue(Period::month(20)->equals(Period::month(20)));
+        $this->assertFalse(Period::month(2)->equals(Period::month(3)));
     }
 
     public function testAdd()
     {
-        $period = Month::of(10);
+        $period = Period::month(10);
         $period2 = $period->add($period);
 
         $this->assertInstanceOf(Period::class, $period2);

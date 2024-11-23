@@ -8,7 +8,7 @@ use Innmind\TimeContinuum\{
     Offset,
     Format,
     ElapsedPeriod,
-    PointInTime\Year as YearInterface,
+    PointInTime\Year,
     PointInTime\Month,
     PointInTime\Day,
     PointInTime\Hour,
@@ -16,7 +16,6 @@ use Innmind\TimeContinuum\{
     PointInTime\Second,
     PointInTime\Millisecond,
     Period,
-    Period\Year,
 };
 use Innmind\BlackBox\PHPUnit\Framework\TestCase;
 
@@ -30,7 +29,7 @@ class NowTest extends TestCase
         $now = (int) ($time * 1000);
         $point = PointInTime::now();
 
-        $this->assertInstanceOf(YearInterface::class, $point->year());
+        $this->assertInstanceOf(Year::class, $point->year());
         $this->assertInstanceOf(Month::class, $point->month());
         $this->assertInstanceOf(Day::class, $point->day());
         $this->assertInstanceOf(Hour::class, $point->hour());
@@ -127,7 +126,7 @@ class NowTest extends TestCase
     public function testGoForward()
     {
         $point = PointInTime::now();
-        $point2 = $point->goForward(Year::of(1));
+        $point2 = $point->goForward(Period::year(1));
 
         $this->assertNotSame($point, $point2);
         $this->assertSame($point->year()->toInt() + 1, $point2->year()->toInt());
@@ -136,12 +135,12 @@ class NowTest extends TestCase
     public function testGoBack()
     {
         $point = PointInTime::now();
-        $point2 = $point->goBack(Year::of(1));
+        $point2 = $point->goBack(Period::year(1));
 
         $this->assertNotSame($point, $point2);
         $this->assertSame($point->year()->toInt() - 1, $point2->year()->toInt());
 
-        $point3 = $point->goBack(Period\Millisecond::of(500));
+        $point3 = $point->goBack(Period::millisecond(500));
 
         if ($point->millisecond()->toInt() > 500) {
             $this->assertSame(
