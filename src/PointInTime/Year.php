@@ -9,13 +9,13 @@ namespace Innmind\TimeContinuum\PointInTime;
 final class Year
 {
     private int $year;
-    /** @var int<0, 365> */
+    /** @var 365|366 */
     private int $days;
 
     private function __construct(int $year)
     {
         $this->year = $year;
-        /** @var int<0, 365> */
+        /** @var 365|366 */
         $this->days = (int) \date('z', \mktime(0, 0, 0, 12, 31, $year)) + 1;
     }
 
@@ -29,7 +29,7 @@ final class Year
     }
 
     /**
-     * @return int<0, 365>
+     * @return 365|366
      */
     public function numberOfDays(): int
     {

@@ -8,7 +8,7 @@ use Innmind\TimeContinuum\{
     Period\Year,
     Period\Month,
 };
-use PHPUnit\Framework\TestCase;
+use Innmind\BlackBox\PHPUnit\Framework\TestCase;
 
 class ElapsedPeriodTest extends TestCase
 {

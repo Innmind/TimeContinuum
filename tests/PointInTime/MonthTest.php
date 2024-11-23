@@ -8,7 +8,7 @@ use Innmind\TimeContinuum\{
     PointInTime\Year,
     Calendar,
 };
-use PHPUnit\Framework\TestCase;
+use Innmind\BlackBox\PHPUnit\Framework\TestCase;
 
 class MonthTest extends TestCase
 {

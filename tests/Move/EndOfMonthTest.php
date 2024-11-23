@@ -8,13 +8,12 @@ use Innmind\TimeContinuum\{
     PointInTime,
     Format,
 };
-use PHPUnit\Framework\TestCase;
+use Innmind\BlackBox\PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 class EndOfMonthTest extends TestCase
 {
-    /**
-     * @dataProvider cases
-     */
+    #[DataProvider('cases')]
     public function testInterface($time, $expected)
     {
         $endOfMonth = new EndOfMonth;

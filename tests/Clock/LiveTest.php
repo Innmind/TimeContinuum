@@ -9,8 +9,8 @@ use Innmind\TimeContinuum\{
     Format,
     Timezone,
 };
-use PHPUnit\Framework\TestCase;
 use Innmind\BlackBox\{
+    PHPUnit\Framework\TestCase,
     PHPUnit\BlackBox,
     Set,
 };

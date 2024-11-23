@@ -4,7 +4,7 @@ declare(strict_types = 1);
 namespace Tests\Innmind\TimeContinuum\PointInTime;
 
 use Innmind\TimeContinuum\PointInTime\Hour;
-use PHPUnit\Framework\TestCase;
+use Innmind\BlackBox\PHPUnit\Framework\TestCase;
 
 class HourTest extends TestCase
 {

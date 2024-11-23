@@ -7,18 +7,16 @@ use Innmind\TimeContinuum\{
     Clock,
     Format,
 };
-use PHPUnit\Framework\{
-    TestCase,
-    Attributes\DataProvider,
-};
 use Psr\Log\{
     LoggerInterface,
     LoggerTrait,
 };
 use Innmind\BlackBox\{
+    PHPUnit\Framework\TestCase,
     PHPUnit\BlackBox,
     Set,
 };
+use PHPUnit\Framework\Attributes\DataProvider;
 use Fixtures\Innmind\TimeContinuum\PointInTime;
 
 class ClockTest extends TestCase

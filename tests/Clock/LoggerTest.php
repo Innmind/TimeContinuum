@@ -8,9 +8,12 @@ use Innmind\TimeContinuum\{
     Format,
 };
 use Fixtures\Innmind\TimeContinuum\PointInTime;
-use Psr\Log\LoggerInterface;
-use PHPUnit\Framework\TestCase;
+use Psr\Log\{
+    LoggerInterface,
+    LoggerTrait,
+};
 use Innmind\BlackBox\{
+    PHPUnit\Framework\TestCase,
     PHPUnit\BlackBox,
     Set,
 };
@@ -25,18 +28,29 @@ class LoggerTest extends TestCase
             ->forAll(PointInTime::any())
             ->then(function($now) {
                 $concrete = Clock::frozen($now);
-                $logger = $this->createMock(LoggerInterface::class);
-                $logger
-                    ->expects($this->once())
-                    ->method('debug')
-                    ->with(
-                        'Current time is {point}',
-                        ['point' => $now->format(Format::iso8601())],
-                    );
+                $logger = new class implements LoggerInterface {
+                    use LoggerTrait;
+
+                    public array $logs = [];
+
+                    public function log($level, string|\Stringable $message, array $context = []): void
+                    {
+                        $this->logs[] = [$level, $message, $context];
+                    }
+                };
 
                 $clock = Clock::logger($concrete, $logger);
 
                 $this->assertSame($now, $clock->now());
+                $this->assertCount(1, $logger->logs);
+                $this->assertSame(
+                    [
+                        'debug',
+                        'Current time is {point}',
+                        ['point' => $now->format(Format::iso8601())],
+                    ],
+                    $logger->logs[0],
+                );
             });
     }
 
@@ -48,18 +62,16 @@ class LoggerTest extends TestCase
             )
             ->then(function($point) {
                 $concrete = Clock::frozen($point);
-                $logger = $this->createMock(LoggerInterface::class);
-                $logger
-                    ->expects($this->once())
-                    ->method('debug')
-                    ->with(
-                        'Asked time {date} ({format}) resolved to {point}',
-                        [
-                            'date' => $point->toString(),
-                            'format' => 'unknown',
-                            'point' => $point->format(Format::iso8601()),
-                        ],
-                    );
+                $logger = new class implements LoggerInterface {
+                    use LoggerTrait;
+
+                    public array $logs = [];
+
+                    public function log($level, string|\Stringable $message, array $context = []): void
+                    {
+                        $this->logs[] = [$level, $message, $context];
+                    }
+                };
 
                 $clock = Clock::logger($concrete, $logger);
 
@@ -69,6 +81,19 @@ class LoggerTest extends TestCase
                         static fn($found) => $found->toString(),
                         static fn() => null,
                     ),
+                );
+                $this->assertCount(1, $logger->logs);
+                $this->assertSame(
+                    [
+                        'debug',
+                        'Asked time {date} ({format}) resolved to {point}',
+                        [
+                            'date' => $point->toString(),
+                            'format' => 'unknown',
+                            'point' => $point->format(Format::iso8601()),
+                        ],
+                    ],
+                    $logger->logs[0],
                 );
             });
     }
@@ -94,18 +119,16 @@ class LoggerTest extends TestCase
             )
             ->then(function($point, $format) {
                 $concrete = Clock::frozen($point);
-                $logger = $this->createMock(LoggerInterface::class);
-                $logger
-                    ->expects($this->once())
-                    ->method('debug')
-                    ->with(
-                        'Asked time {date} ({format}) resolved to {point}',
-                        [
-                            'date' => $point->format($format),
-                            'format' => $format->toString(),
-                            'point' => $point->format(Format::iso8601()),
-                        ],
-                    );
+                $logger = new class implements LoggerInterface {
+                    use LoggerTrait;
+
+                    public array $logs = [];
+
+                    public function log($level, string|\Stringable $message, array $context = []): void
+                    {
+                        $this->logs[] = [$level, $message, $context];
+                    }
+                };
 
                 $clock = Clock::logger($concrete, $logger);
 
@@ -115,6 +138,19 @@ class LoggerTest extends TestCase
                         static fn($point) => $point->toString(),
                         static fn() => null,
                     ),
+                );
+                $this->assertCount(1, $logger->logs);
+                $this->assertSame(
+                    [
+                        'debug',
+                        'Asked time {date} ({format}) resolved to {point}',
+                        [
+                            'date' => $point->format($format),
+                            'format' => $format->toString(),
+                            'point' => $point->format(Format::iso8601()),
+                        ],
+                    ],
+                    $logger->logs[0],
                 );
             });
     }

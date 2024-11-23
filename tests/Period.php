@@ -4,7 +4,7 @@ declare(strict_types = 1);
 namespace Tests\Innmind\TimeContinuum;
 
 use Innmind\TimeContinuum\Period;
-use PHPUnit\Framework\TestCase;
+use Innmind\BlackBox\PHPUnit\Framework\TestCase;
 
 class CompositeTest extends TestCase
 {

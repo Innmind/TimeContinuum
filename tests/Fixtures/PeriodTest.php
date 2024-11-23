@@ -9,7 +9,7 @@ use Innmind\BlackBox\{
     Random,
 };
 use Innmind\TimeContinuum\Period as Model;
-use PHPUnit\Framework\TestCase;
+use Innmind\BlackBox\PHPUnit\Framework\TestCase;
 
 class PeriodTest extends TestCase
 {
