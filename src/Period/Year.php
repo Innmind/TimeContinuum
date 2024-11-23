@@ -7,10 +7,6 @@ use Innmind\TimeContinuum\Period;
 
 final class Year
 {
-    private function __construct()
-    {
-    }
-
     /**
      * @psalm-pure
      *

@@ -7,10 +7,6 @@ use Innmind\TimeContinuum\Period;
 
 final class Day
 {
-    private function __construct()
-    {
-    }
-
     /**
      * @psalm-pure
      *
