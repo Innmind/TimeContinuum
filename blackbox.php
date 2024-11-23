@@ -5,8 +5,9 @@ require 'vendor/autoload.php';
 
 use Innmind\BlackBox\{
     Application,
+    Runner\Load,
     Runner\CodeCoverage,
-    PHPUnit\Load,
+    PHPUnit,
 };
 
 Application::new($argv)
@@ -23,5 +24,8 @@ Application::new($argv)
                     ->enableWhen(true),
             )
     )
-    ->tryToProve(Load::directory(__DIR__.'/tests/'))
+    ->tryToProve(static function() {
+        yield from Load::everythingIn(__DIR__.'/proofs/')();
+        yield from PHPUnit\Load::testsAt(__DIR__.'/tests/');
+    })
     ->exit();
