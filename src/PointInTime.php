@@ -35,8 +35,6 @@ final class PointInTime
     {
         /** @psalm-suppress ImpureMethodCall */
         $datetime = new \DateTimeImmutable($date);
-        /** @var int<0, max> */
-        $milliseconds = $datetime->getTimestamp() * 1000;
 
         return new self(
             $datetime,
