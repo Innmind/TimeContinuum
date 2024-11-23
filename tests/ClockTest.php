@@ -101,20 +101,32 @@ class ClockTest extends TestCase
 
     public function testLoggerUseNewTimezone()
     {
+        $gen = static function($zones) {
+            $zones = \iterator_to_array($zones);
+
+            return Set\Elements::of(
+                ...\array_map(
+                    static fn($name, $switch) => [$name, $switch[0]],
+                    \array_keys($zones),
+                    \array_values($zones),
+                ),
+            );
+        };
+
         $this
             ->forAll(
-                Set\Elements::of(...\array_values(\iterator_to_array(self::america())))
-                    ->map(static fn($switch) => $switch[0]),
+                $gen(self::america()),
                 Set\Either::any(
-                    Set\Elements::of(...\array_values(\iterator_to_array(self::africa()))),
-                    Set\Elements::of(...\array_values(\iterator_to_array(self::europe()))),
-                    Set\Elements::of(...\array_values(\iterator_to_array(self::indian()))),
-                    Set\Elements::of(...\array_values(\iterator_to_array(self::asia()))),
-                    Set\Elements::of(...\array_values(\iterator_to_array(self::australia()))),
-                )
-                    ->map(static fn($switch) => $switch[0]),
+                    $gen(self::africa()),
+                    $gen(self::europe()),
+                    $gen(self::indian()),
+                    $gen(self::asia()),
+                    $gen(self::australia()),
+                ),
             )
             ->then(function($america, $other) {
+                $america = $america[1];
+                $other = $other[1];
                 $gather = new class implements LoggerInterface {
                     use LoggerTrait;
 
@@ -142,6 +154,7 @@ class ClockTest extends TestCase
                 $this->assertNotSame(
                     $gather->logs[0],
                     $gather->logs[1],
+                    $gather->logs[0]['point'],
                 );
             });
     }
