@@ -16,6 +16,7 @@
 - `Innmind\TimeContinuum\Period::minute()` named constructor
 - `Innmind\TimeContinuum\Period::second()` named constructor
 - `Innmind\TimeContinuum\Period::millisecond()` named constructor
+- `Innmind\TimeContinuum\PointInTime::microsecond()`
 
 ### Changed
 

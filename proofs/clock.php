@@ -34,6 +34,11 @@ return static function() {
                 ->greaterThanOrEqual(0)
                 ->lessThanOrEqual(999);
             $assert
+                ->number($point->microsecond()->toInt())
+                ->int()
+                ->greaterThanOrEqual(0)
+                ->lessThanOrEqual(999);
+            $assert
                 ->number($point->minute()->toInt())
                 ->int()
                 ->greaterThanOrEqual(0)

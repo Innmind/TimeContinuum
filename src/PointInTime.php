@@ -11,6 +11,7 @@ use Innmind\TimeContinuum\{
     PointInTime\Minute,
     PointInTime\Second,
     PointInTime\Millisecond,
+    PointInTime\Microsecond,
     PointInTime\HighResolution,
 };
 
@@ -118,6 +119,14 @@ final class PointInTime
         $millisecond = (int) $this->date->format('v');
 
         return Millisecond::of($millisecond);
+    }
+
+    public function microsecond(): Microsecond
+    {
+        /** @var int<0, 999> */
+        $microsecond = ((int) $this->date->format('u')) % 1000;
+
+        return Microsecond::of($microsecond);
     }
 
     public function format(Format $format): string
