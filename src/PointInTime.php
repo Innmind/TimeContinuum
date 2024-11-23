@@ -48,7 +48,6 @@ final class PointInTime
     public static function now(): self
     {
         $now = new \DateTimeImmutable('now');
-        /** @psalm-suppress ImpureMethodCallAcceptable since only a clock should instantiate this class */
         $highResolution = HighResolution::now();
 
         return new self(
