@@ -9,6 +9,13 @@
 - `Innmind\TimeContinuum\PointInTime\Month::ofYear()`
 - `Innmind\TimeContinuum\Calendar\Day`
 - `Innmind\TimeContinuum\PointInTime\Day::ofWeek()`
+- `Innmind\TimeContinuum\Period::year()` named constructor
+- `Innmind\TimeContinuum\Period::month()` named constructor
+- `Innmind\TimeContinuum\Period::day()` named constructor
+- `Innmind\TimeContinuum\Period::hour()` named constructor
+- `Innmind\TimeContinuum\Period::minute()` named constructor
+- `Innmind\TimeContinuum\Period::second()` named constructor
+- `Innmind\TimeContinuum\Period::millisecond()` named constructor
 
 ### Changed
 

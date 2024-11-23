@@ -3,10 +3,7 @@ declare(strict_types = 1);
 
 namespace Tests\Innmind\TimeContinuum\Period;
 
-use Innmind\TimeContinuum\{
-    Period,
-    Period\Hour,
-};
+use Innmind\TimeContinuum\Period;
 use Innmind\BlackBox\PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
 
@@ -14,7 +11,7 @@ class HourTest extends TestCase
 {
     public function testInterface()
     {
-        $period = Hour::of(20);
+        $period = Period::hour(20);
 
         $this->assertInstanceOf(Period::class, $period);
         $this->assertSame(0, $period->years());
@@ -29,7 +26,7 @@ class HourTest extends TestCase
     #[DataProvider('cases')]
     public function testConvertToDays(int $hour, int $days, int $expectedHours)
     {
-        $period = Hour::of($hour);
+        $period = Period::hour($hour);
 
         $this->assertSame(0, $period->years());
         $this->assertSame(0, $period->months());
@@ -42,13 +39,13 @@ class HourTest extends TestCase
 
     public function testEquals()
     {
-        $this->assertTrue(Hour::of(25)->equals(Hour::of(25)));
-        $this->assertFalse(Hour::of(2)->equals(Hour::of(3)));
+        $this->assertTrue(Period::hour(25)->equals(Period::hour(25)));
+        $this->assertFalse(Period::hour(2)->equals(Period::hour(3)));
     }
 
     public function testAdd()
     {
-        $period = Hour::of(20);
+        $period = Period::hour(20);
         $period2 = $period->add($period);
 
         $this->assertInstanceOf(Period::class, $period2);
@@ -72,15 +69,15 @@ class HourTest extends TestCase
     {
         $this->assertSame(
             3_600_000,
-            Hour::of(1)->asElapsedPeriod()->milliseconds(),
+            Period::hour(1)->asElapsedPeriod()->milliseconds(),
         );
         $this->assertSame(
             7_200_000,
-            Hour::of(2)->asElapsedPeriod()->milliseconds(),
+            Period::hour(2)->asElapsedPeriod()->milliseconds(),
         );
         $this->assertSame(
             10_800_000,
-            Hour::of(3)->asElapsedPeriod()->milliseconds(),
+            Period::hour(3)->asElapsedPeriod()->milliseconds(),
         );
     }
 

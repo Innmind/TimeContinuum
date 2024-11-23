@@ -3,17 +3,14 @@ declare(strict_types = 1);
 
 namespace Tests\Innmind\TimeContinuum\Period;
 
-use Innmind\TimeContinuum\{
-    Period,
-    Period\Year,
-};
+use Innmind\TimeContinuum\Period;
 use Innmind\BlackBox\PHPUnit\Framework\TestCase;
 
 class YearTest extends TestCase
 {
     public function testInterface()
     {
-        $period = Year::of(42);
+        $period = Period::year(42);
 
         $this->assertInstanceOf(Period::class, $period);
         $this->assertSame(42, $period->years());
@@ -27,13 +24,13 @@ class YearTest extends TestCase
 
     public function testEquals()
     {
-        $this->assertTrue(Year::of(2)->equals(Year::of(2)));
-        $this->assertFalse(Year::of(2)->equals(Year::of(3)));
+        $this->assertTrue(Period::year(2)->equals(Period::year(2)));
+        $this->assertFalse(Period::year(2)->equals(Period::year(3)));
     }
 
     public function testAdd()
     {
-        $period = Year::of(42);
+        $period = Period::year(42);
         $period2 = $period->add($period);
 
         $this->assertInstanceOf(Period::class, $period2);

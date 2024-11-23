@@ -5,7 +5,7 @@ namespace Innmind\TimeContinuum\Move;
 
 use Innmind\TimeContinuum\{
     PointInTime,
-    Period\Day,
+    Period,
 };
 
 final class EndOfMonth
@@ -14,7 +14,7 @@ final class EndOfMonth
     {
         /** @psalm-suppress InvalidArgument The negative values can only happen when working with 2 different points in time */
         return (new EndOfDay)($point)->goForward(
-            Day::of($point->month()->numberOfDays() - $point->day()->ofMonth()),
+            Period::day($point->month()->numberOfDays() - $point->day()->ofMonth()),
         );
     }
 }

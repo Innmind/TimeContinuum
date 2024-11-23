@@ -3,16 +3,6 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum;
 
-use Innmind\TimeContinuum\Period\{
-    Year,
-    Month,
-    Day,
-    Hour,
-    Minute,
-    Second,
-    Millisecond,
-};
-
 /**
  * @psalm-immutable
  */
@@ -89,13 +79,182 @@ final class Period
         int $second,
         int $millisecond,
     ): self {
-        return Millisecond::of($millisecond)
-            ->add(Second::of($second))
-            ->add(Minute::of($minute))
-            ->add(Hour::of($hour))
-            ->add(Day::of($day))
-            ->add(Month::of($month))
-            ->add(Year::of($year));
+        return self::millisecond($millisecond)
+            ->add(self::second($second))
+            ->add(self::minute($minute))
+            ->add(self::hour($hour))
+            ->add(self::day($day))
+            ->add(self::month($month))
+            ->add(self::year($year));
+    }
+
+    /**
+     * @psalm-pure
+     *
+     * @param 0|positive-int $year
+     */
+    public static function year(int $year): self
+    {
+        return new self(
+            $year,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+        );
+    }
+
+    /**
+     * @psalm-pure
+     *
+     * @param 0|positive-int $month
+     */
+    public static function month(int $month): self
+    {
+        if ($month < 12) {
+            return new self(0, $month, 0, 0, 0, 0, 0);
+        }
+
+        /** @var int<0, max> */
+        $year = (int) ($month / 12);
+        $month = $month % 12;
+
+        return new self(
+            $year,
+            $month,
+            0,
+            0,
+            0,
+            0,
+            0,
+        );
+    }
+
+    /**
+     * @psalm-pure
+     *
+     * @param 0|positive-int $day
+     */
+    public static function day(int $day): self
+    {
+        return new self(
+            0,
+            0,
+            $day,
+            0,
+            0,
+            0,
+            0,
+        );
+    }
+
+    /**
+     * @psalm-pure
+     *
+     * @param 0|positive-int $hour
+     */
+    public static function hour(int $hour): self
+    {
+        if ($hour < 24) {
+            return new self(0, 0, 0, $hour, 0, 0, 0);
+        }
+
+        /** @var int<0, max> */
+        $day = (int) ($hour / 24);
+        $hour = $hour % 24;
+
+        return new self(
+            0,
+            0,
+            $day,
+            $hour,
+            0,
+            0,
+            0,
+        );
+    }
+
+    /**
+     * @psalm-pure
+     *
+     * @param 0|positive-int $minute
+     */
+    public static function minute(int $minute): self
+    {
+        if ($minute < 60) {
+            return new self(0, 0, 0, 0, $minute, 0, 0);
+        }
+
+        /** @var int<0, max> */
+        $hour = (int) ($minute / 60);
+        $hour = self::hour($hour);
+        $minute = $minute % 60;
+
+        return new self(
+            $hour->years(),
+            $hour->months(),
+            $hour->days(),
+            $hour->hours(),
+            $minute,
+            0,
+            0,
+        );
+    }
+
+    /**
+     * @psalm-pure
+     *
+     * @param 0|positive-int $second
+     */
+    public static function second(int $second): self
+    {
+        if ($second < 60) {
+            return new self(0, 0, 0, 0, 0, $second, 0);
+        }
+
+        /** @var int<0, max> */
+        $minute = (int) ($second / 60);
+        $minute = self::minute($minute);
+        $second = $second % 60;
+
+        return new self(
+            $minute->years(),
+            $minute->months(),
+            $minute->days(),
+            $minute->hours(),
+            $minute->minutes(),
+            $second,
+            0,
+        );
+    }
+
+    /**
+     * @psalm-pure
+     *
+     * @param 0|positive-int $millisecond
+     */
+    public static function millisecond(int $millisecond): self
+    {
+        if ($millisecond < 1_000) {
+            return new self(0, 0, 0, 0, 0, 0, $millisecond);
+        }
+
+        /** @var int<0, max> */
+        $second = (int) ($millisecond / 1000);
+        $second = self::second($second);
+        $millisecond = $millisecond % 1000;
+
+        return new self(
+            $second->years(),
+            $second->months(),
+            $second->days(),
+            $second->hours(),
+            $second->minutes(),
+            $second->seconds(),
+            $millisecond,
+        );
     }
 
     /**
@@ -167,24 +326,24 @@ final class Period
 
     public function add(self $period): self
     {
-        $millisecond = Millisecond::of($this->millisecond + $period->milliseconds());
-        $second = Second::of(
+        $millisecond = self::millisecond($this->millisecond + $period->milliseconds());
+        $second = self::second(
             $this->second + $period->seconds() + $millisecond->seconds(),
         );
-        $minute = Minute::of(
+        $minute = self::minute(
             $this->minute +
             $period->minutes() +
             $second->minutes() +
             $millisecond->minutes(),
         );
-        $hour = Hour::of(
+        $hour = self::hour(
             $this->hour +
             $period->hours() +
             $minute->hours() +
             $second->hours() +
             $millisecond->hours(),
         );
-        $day = Day::of(
+        $day = self::day(
             $this->day +
             $period->days() +
             $hour->days() +
@@ -192,7 +351,7 @@ final class Period
             $second->days() +
             $millisecond->days(),
         );
-        $month = Month::of(
+        $month = self::month(
             $this->month +
             $period->months() +
             $day->months() +
@@ -201,7 +360,7 @@ final class Period
             $second->months() +
             $millisecond->months(),
         );
-        $year = Year::of(
+        $year = self::year(
             $this->year +
             $period->years() +
             $month->years() +
