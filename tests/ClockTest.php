@@ -11,9 +11,20 @@ use PHPUnit\Framework\{
     TestCase,
     Attributes\DataProvider,
 };
+use Psr\Log\{
+    LoggerInterface,
+    LoggerTrait,
+};
+use Innmind\BlackBox\{
+    PHPUnit\BlackBox,
+    Set,
+};
+use Fixtures\Innmind\TimeContinuum\PointInTime;
 
 class ClockTest extends TestCase
 {
+    use BlackBox;
+
     public function testUtcIsDefaultTimezones()
     {
         $live = Clock::live();
@@ -36,7 +47,120 @@ class ClockTest extends TestCase
         $this->assertIsString($clock->now()->format(Format::iso8601()));
     }
 
+    public function testTimezoneDifferences()
+    {
+        $this
+            ->forAll(
+                Set\Elements::of(...\array_values(\iterator_to_array(self::america())))
+                    ->map(static fn($switch) => $switch[0]),
+                Set\Either::any(
+                    Set\Elements::of(...\array_values(\iterator_to_array(self::africa()))),
+                    Set\Elements::of(...\array_values(\iterator_to_array(self::europe()))),
+                    Set\Elements::of(...\array_values(\iterator_to_array(self::india()))),
+                    Set\Elements::of(...\array_values(\iterator_to_array(self::asia()))),
+                    Set\Elements::of(...\array_values(\iterator_to_array(self::australia()))),
+                )
+                    ->map(static fn($switch) => $switch[0]),
+            )
+            ->then(function($america, $other) {
+                $america = Clock::live()->switch($america);
+                $other = Clock::live()->switch($other);
+
+                $this->assertNotSame(
+                    $america->now()->toString(),
+                    $other->now()->toString(),
+                );
+            });
+    }
+
+    public function testFrozenClockDoesntChangeItsTimezone()
+    {
+        $this
+            ->forAll(PointInTime::any())
+            ->then(function($point) {
+                $frozen = Clock::frozen($point);
+                $clock = $frozen->switch(static fn($timezones) => $timezones->europe()->paris());
+
+                $this->assertSame(
+                    $point->toString(),
+                    $clock->now()->toString(),
+                );
+                $this->assertSame(
+                    $frozen->now()->toString(),
+                    $clock->now()->toString(),
+                );
+                $this->assertSame(
+                    $frozen->now()->toString(),
+                    $clock->at($point->toString())->match(
+                        static fn($point) => $point->toString(),
+                        static fn() => null,
+                    ),
+                );
+            });
+    }
+
+    public function testLoggerUseNewTimezone()
+    {
+        $this
+            ->forAll(
+                Set\Elements::of(...\array_values(\iterator_to_array(self::america())))
+                    ->map(static fn($switch) => $switch[0]),
+                Set\Either::any(
+                    Set\Elements::of(...\array_values(\iterator_to_array(self::africa()))),
+                    Set\Elements::of(...\array_values(\iterator_to_array(self::europe()))),
+                    Set\Elements::of(...\array_values(\iterator_to_array(self::india()))),
+                    Set\Elements::of(...\array_values(\iterator_to_array(self::asia()))),
+                    Set\Elements::of(...\array_values(\iterator_to_array(self::australia()))),
+                )
+                    ->map(static fn($switch) => $switch[0]),
+            )
+            ->then(function($america, $other) {
+                $gather = new class implements LoggerInterface {
+                    use LoggerTrait;
+
+                    public array $logs = [];
+
+                    public function log($level, string|\Stringable $message, array $context = []): void
+                    {
+                        $this->logs[] = $context;
+                    }
+                };
+                $america = Clock::logger(Clock::live(), $gather)->switch($america);
+                $new = $america->switch($other);
+
+                $now1 = $america->now();
+                $now2 = $new->now();
+
+                $this->assertSame(
+                    $now1->toString(),
+                    $gather->logs[0]['point'],
+                );
+                $this->assertSame(
+                    $now2->toString(),
+                    $gather->logs[1]['point'],
+                );
+                $this->assertNotSame(
+                    $gather->logs[0],
+                    $gather->logs[1],
+                );
+            });
+    }
+
     public static function zones()
+    {
+        yield from self::africa();
+        yield from self::america();
+        yield from self::antartica();
+        yield 'longyearbyen' => [static fn($timezones) => $timezones->arctic()->longyearbyen()];
+        yield from self::asia();
+        yield from self::atlantic();
+        yield from self::australia();
+        yield from self::europe();
+        yield from self::india();
+        yield from self::pacific();
+    }
+
+    public static function africa()
     {
         yield 'lome' => [static fn($timezones) => $timezones->africa()->lome()];
         yield 'ceuta' => [static fn($timezones) => $timezones->africa()->ceuta()];
@@ -92,6 +216,10 @@ class ClockTest extends TestCase
         yield 'asmara' => [static fn($timezones) => $timezones->africa()->asmara()];
         yield 'bangui' => [static fn($timezones) => $timezones->africa()->bangui()];
         yield 'addisAbaba' => [static fn($timezones) => $timezones->africa()->addisAbaba()];
+    }
+
+    public static function america()
+    {
         yield 'rioGallegos' => [static fn($timezones) => $timezones->america()->argentina()->rioGallegos()];
         yield 'mendoza' => [static fn($timezones) => $timezones->america()->argentina()->mendoza()];
         yield 'buenosAires' => [static fn($timezones) => $timezones->america()->argentina()->buenosAires()];
@@ -249,6 +377,10 @@ class ClockTest extends TestCase
         yield 'tijuana' => [static fn($timezones) => $timezones->america()->tijuana()];
         yield 'belize' => [static fn($timezones) => $timezones->america()->belize()];
         yield 'atka' => [static fn($timezones) => $timezones->america()->atka()];
+    }
+
+    public static function antartica()
+    {
         yield 'davis' => [static fn($timezones) => $timezones->antartica()->davis()];
         yield 'palmer' => [static fn($timezones) => $timezones->antartica()->palmer()];
         yield 'syowa' => [static fn($timezones) => $timezones->antartica()->syowa()];
@@ -261,7 +393,10 @@ class ClockTest extends TestCase
         yield 'macquarie' => [static fn($timezones) => $timezones->antartica()->macquarie()];
         yield 'southPole' => [static fn($timezones) => $timezones->antartica()->southPole()];
         yield 'dumontDUrville' => [static fn($timezones) => $timezones->antartica()->dumontDUrville()];
-        yield 'longyearbyen' => [static fn($timezones) => $timezones->arctic()->longyearbyen()];
+    }
+
+    public static function asia()
+    {
         yield 'manila' => [static fn($timezones) => $timezones->asia()->manila()];
         yield 'baghdad' => [static fn($timezones) => $timezones->asia()->baghdad()];
         yield 'ulaanbaatar' => [static fn($timezones) => $timezones->asia()->ulaanbaatar()];
@@ -353,6 +488,10 @@ class ClockTest extends TestCase
         yield 'taipei' => [static fn($timezones) => $timezones->asia()->taipei()];
         yield 'dushanbe' => [static fn($timezones) => $timezones->asia()->dushanbe()];
         yield 'anadyr' => [static fn($timezones) => $timezones->asia()->anadyr()];
+    }
+
+    public static function atlantic()
+    {
         yield 'faroe' => [static fn($timezones) => $timezones->atlantic()->faroe()];
         yield 'southGeorgia' => [static fn($timezones) => $timezones->atlantic()->southGeorgia()];
         yield 'capeVerde' => [static fn($timezones) => $timezones->atlantic()->capeVerde()];
@@ -365,6 +504,10 @@ class ClockTest extends TestCase
         yield 'madeira' => [static fn($timezones) => $timezones->atlantic()->madeira()];
         yield 'azores' => [static fn($timezones) => $timezones->atlantic()->azores()];
         yield 'stanley' => [static fn($timezones) => $timezones->atlantic()->stanley()];
+    }
+
+    public static function australia()
+    {
         yield 'lindeman' => [static fn($timezones) => $timezones->australia()->lindeman()];
         yield 'currie' => [static fn($timezones) => $timezones->australia()->currie()];
         yield 'victoria' => [static fn($timezones) => $timezones->australia()->victoria()];
@@ -387,6 +530,10 @@ class ClockTest extends TestCase
         yield 'hobart' => [static fn($timezones) => $timezones->australia()->hobart()];
         yield 'brokenHill' => [static fn($timezones) => $timezones->australia()->brokenHill()];
         yield 'tasmania' => [static fn($timezones) => $timezones->australia()->tasmania()];
+    }
+
+    public static function europe()
+    {
         yield 'uzhgorod' => [static fn($timezones) => $timezones->europe()->uzhgorod()];
         yield 'riga' => [static fn($timezones) => $timezones->europe()->riga()];
         yield 'paris' => [static fn($timezones) => $timezones->europe()->paris()];
@@ -446,6 +593,10 @@ class ClockTest extends TestCase
         yield 'volgograd' => [static fn($timezones) => $timezones->europe()->volgograd()];
         yield 'malta' => [static fn($timezones) => $timezones->europe()->malta()];
         yield 'warsaw' => [static fn($timezones) => $timezones->europe()->warsaw()];
+    }
+
+    public static function india()
+    {
         yield 'cocos' => [static fn($timezones) => $timezones->india()->cocos()];
         yield 'antananarivo' => [static fn($timezones) => $timezones->india()->antananarivo()];
         yield 'reunion' => [static fn($timezones) => $timezones->india()->reunion()];
@@ -457,6 +608,10 @@ class ClockTest extends TestCase
         yield 'mahe' => [static fn($timezones) => $timezones->india()->mahe()];
         yield 'kerguelen' => [static fn($timezones) => $timezones->india()->kerguelen()];
         yield 'christmas' => [static fn($timezones) => $timezones->india()->christmas()];
+    }
+
+    public static function pacific()
+    {
         yield 'kosrae' => [static fn($timezones) => $timezones->pacific()->kosrae()];
         yield 'enderbury' => [static fn($timezones) => $timezones->pacific()->enderbury()];
         yield 'apia' => [static fn($timezones) => $timezones->pacific()->apia()];
