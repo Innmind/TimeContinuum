@@ -29,6 +29,7 @@
 - `Innmind\TimeContinuum\Timezone` has been renamed `Innmind\TimeContinuum\Offset`
 - `Innmind\TimeContinuum\PointInTime::changeTimezone()` has been renamed `Innmind\TimeContinuum\PointInTime::changeOffset()`
 - `Innmind\TimeContinuum\PointInTime::timezone()` has been renamed `Innmind\TimeContinuum\PointInTime::offset()`
+- `Innmind\TimeContinuum\PointInTime\Day::toInt()` has been renamed `Innmind\TimeContinuum\PointInTime\Day::ofMonth()`
 
 ### Removed
 

@@ -35,14 +35,14 @@ final class Month
                 ->add(Millisecond::of($point->millisecond()->toInt())),
         );
 
-        if ($newPoint->month()->numberOfDays() < $point->day()->toInt()) {
+        if ($newPoint->month()->numberOfDays() < $point->day()->ofMonth()) {
             return $newPoint->goForward(
                 Day::of($newPoint->month()->numberOfDays() - 1),
             );
         }
 
         return $newPoint->goForward(
-            Day::of($point->day()->toInt() - 1),
+            Day::of($point->day()->ofMonth() - 1),
         );
     }
 

@@ -14,7 +14,7 @@ final class EndOfMonth
     {
         /** @psalm-suppress InvalidArgument The negative values can only happen when working with 2 different points in time */
         return (new EndOfDay)($point)->goForward(
-            Day::of($point->month()->numberOfDays() - $point->day()->toInt()),
+            Day::of($point->month()->numberOfDays() - $point->day()->ofMonth()),
         );
     }
 }

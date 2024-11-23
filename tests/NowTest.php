@@ -40,7 +40,7 @@ class NowTest extends TestCase
         $this->assertInstanceOf(Offset::class, $point->offset());
         $this->assertSame((int) \date('Y', $timestamp), $point->year()->toInt());
         $this->assertSame((int) \date('m', $timestamp), $point->month()->ofYear()->toInt());
-        $this->assertSame((int) \date('d', $timestamp), $point->day()->toInt());
+        $this->assertSame((int) \date('d', $timestamp), $point->day()->ofMonth());
         $this->assertSame((int) \date('H', $timestamp), $point->hour()->toInt());
         $this->assertSame((int) \date('i', $timestamp), $point->minute()->toInt());
         $this->assertSame((int) \date('s', $timestamp), $point->second()->toInt());
@@ -84,7 +84,7 @@ class NowTest extends TestCase
         $this->assertSame($point->milliseconds(), $point2->milliseconds());
         $this->assertSame((int) $now->format('Y'), $point2->year()->toInt());
         $this->assertSame((int) $now->format('m'), $point2->month()->ofYear()->toInt());
-        $this->assertSame((int) $now->format('d'), $point2->day()->toInt());
+        $this->assertSame((int) $now->format('d'), $point2->day()->ofMonth());
         $this->assertSame((int) $now->format('H'), $point2->hour()->toInt());
         $this->assertSame((int) $now->format('i'), $point2->minute()->toInt());
         $this->assertSame((int) $now->format('s'), $point2->second()->toInt());

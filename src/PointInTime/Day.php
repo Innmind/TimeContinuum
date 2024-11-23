@@ -65,9 +65,8 @@ final class Day
     /**
      * @return int<1, 31>
      */
-    public function toInt(): int
+    public function ofMonth(): int
     {
-        // todo rename to ofMonth
         return $this->day;
     }
 }

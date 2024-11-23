@@ -27,7 +27,7 @@ class DayTest extends TestCase
         $this->assertSame(3, $day->ofWeek()->toInt());
         $this->assertSame(278, $day->ofYear());
         $this->assertSame(24, $day->numberOfHours());
-        $this->assertSame(5, $day->toInt());
+        $this->assertSame(5, $day->ofMonth());
         $this->assertSame('wednesday', $day->ofWeek()->name);
     }
 }
