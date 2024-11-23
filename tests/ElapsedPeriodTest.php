@@ -13,7 +13,7 @@ class ElapsedPeriodTest extends TestCase
 {
     public function testInterface()
     {
-        $period = ElapsedPeriod::literal(42);
+        $period = ElapsedPeriod::of(42);
 
         $this->assertSame(42, $period->milliseconds());
     }

@@ -25,17 +25,7 @@ final class ElapsedPeriod
      *
      * @throws \RuntimeException
      */
-    public static function of(int $milliseconds): self
-    {
-        return new self($milliseconds);
-    }
-
-    /**
-     * @psalm-pure
-     *
-     * @param int<0, max> $milliseconds
-     */
-    public static function literal(int $milliseconds): self
+    public static function of(int $microseconds): self
     {
         return new self($milliseconds);
     }
