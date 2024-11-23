@@ -56,7 +56,7 @@ class ClockTest extends TestCase
                 Set\Either::any(
                     Set\Elements::of(...\array_values(\iterator_to_array(self::africa()))),
                     Set\Elements::of(...\array_values(\iterator_to_array(self::europe()))),
-                    Set\Elements::of(...\array_values(\iterator_to_array(self::india()))),
+                    Set\Elements::of(...\array_values(\iterator_to_array(self::indian()))),
                     Set\Elements::of(...\array_values(\iterator_to_array(self::asia()))),
                     Set\Elements::of(...\array_values(\iterator_to_array(self::australia()))),
                 )
@@ -108,7 +108,7 @@ class ClockTest extends TestCase
                 Set\Either::any(
                     Set\Elements::of(...\array_values(\iterator_to_array(self::africa()))),
                     Set\Elements::of(...\array_values(\iterator_to_array(self::europe()))),
-                    Set\Elements::of(...\array_values(\iterator_to_array(self::india()))),
+                    Set\Elements::of(...\array_values(\iterator_to_array(self::indian()))),
                     Set\Elements::of(...\array_values(\iterator_to_array(self::asia()))),
                     Set\Elements::of(...\array_values(\iterator_to_array(self::australia()))),
                 )
@@ -156,7 +156,7 @@ class ClockTest extends TestCase
         yield from self::atlantic();
         yield from self::australia();
         yield from self::europe();
-        yield from self::india();
+        yield from self::indian();
         yield from self::pacific();
     }
 
@@ -595,19 +595,19 @@ class ClockTest extends TestCase
         yield 'warsaw' => [static fn($timezones) => $timezones->europe()->warsaw()];
     }
 
-    public static function india()
+    public static function indian()
     {
-        yield 'cocos' => [static fn($timezones) => $timezones->india()->cocos()];
-        yield 'antananarivo' => [static fn($timezones) => $timezones->india()->antananarivo()];
-        yield 'reunion' => [static fn($timezones) => $timezones->india()->reunion()];
-        yield 'chagos' => [static fn($timezones) => $timezones->india()->chagos()];
-        yield 'comoro' => [static fn($timezones) => $timezones->india()->comoro()];
-        yield 'mayotte' => [static fn($timezones) => $timezones->india()->mayotte()];
-        yield 'maldives' => [static fn($timezones) => $timezones->india()->maldives()];
-        yield 'mauritius' => [static fn($timezones) => $timezones->india()->mauritius()];
-        yield 'mahe' => [static fn($timezones) => $timezones->india()->mahe()];
-        yield 'kerguelen' => [static fn($timezones) => $timezones->india()->kerguelen()];
-        yield 'christmas' => [static fn($timezones) => $timezones->india()->christmas()];
+        yield 'cocos' => [static fn($timezones) => $timezones->indian()->cocos()];
+        yield 'antananarivo' => [static fn($timezones) => $timezones->indian()->antananarivo()];
+        yield 'reunion' => [static fn($timezones) => $timezones->indian()->reunion()];
+        yield 'chagos' => [static fn($timezones) => $timezones->indian()->chagos()];
+        yield 'comoro' => [static fn($timezones) => $timezones->indian()->comoro()];
+        yield 'mayotte' => [static fn($timezones) => $timezones->indian()->mayotte()];
+        yield 'maldives' => [static fn($timezones) => $timezones->indian()->maldives()];
+        yield 'mauritius' => [static fn($timezones) => $timezones->indian()->mauritius()];
+        yield 'mahe' => [static fn($timezones) => $timezones->indian()->mahe()];
+        yield 'kerguelen' => [static fn($timezones) => $timezones->indian()->kerguelen()];
+        yield 'christmas' => [static fn($timezones) => $timezones->indian()->christmas()];
     }
 
     public static function pacific()

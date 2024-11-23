@@ -12,7 +12,7 @@ use Innmind\TimeContinuum\Timezone\{
     Atlantic,
     Australia,
     Europe,
-    India,
+    Indian,
     Pacific,
 };
 
@@ -81,9 +81,9 @@ final class Timezones
         return Europe::new($this->of);
     }
 
-    public function india(): India
+    public function indian(): Indian
     {
-        return India::new($this->of);
+        return Indian::new($this->of);
     }
 
     public function pacific(): Pacific

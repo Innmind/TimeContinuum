@@ -5,7 +5,7 @@ namespace Innmind\TimeContinuum\Timezone;
 
 use Innmind\TimeContinuum\Timezone;
 
-final class India
+final class Indian
 {
     /**
      * @param callable(non-empty-string): Timezone $of
