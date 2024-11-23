@@ -113,6 +113,10 @@ final class Period
      */
     public static function month(int $month): self
     {
+        if ($month < 12) {
+            return new self(0, $month, 0, 0, 0, 0, 0);
+        }
+
         /** @var int<0, max> */
         $year = (int) ($month / 12);
         $month = $month % 12;
@@ -153,6 +157,10 @@ final class Period
      */
     public static function hour(int $hour): self
     {
+        if ($hour < 24) {
+            return new self(0, 0, 0, $hour, 0, 0, 0);
+        }
+
         /** @var int<0, max> */
         $day = (int) ($hour / 24);
         $hour = $hour % 24;
@@ -175,6 +183,10 @@ final class Period
      */
     public static function minute(int $minute): self
     {
+        if ($minute < 60) {
+            return new self(0, 0, 0, 0, $minute, 0, 0);
+        }
+
         /** @var int<0, max> */
         $hour = (int) ($minute / 60);
         $hour = self::hour($hour);
@@ -198,6 +210,10 @@ final class Period
      */
     public static function second(int $second): self
     {
+        if ($second < 60) {
+            return new self(0, 0, 0, 0, 0, $second, 0);
+        }
+
         /** @var int<0, max> */
         $minute = (int) ($second / 60);
         $minute = self::minute($minute);
@@ -221,6 +237,10 @@ final class Period
      */
     public static function millisecond(int $millisecond): self
     {
+        if ($millisecond < 1_000) {
+            return new self(0, 0, 0, 0, 0, 0, $millisecond);
+        }
+
         /** @var int<0, max> */
         $second = (int) ($millisecond / 1000);
         $second = self::second($second);
