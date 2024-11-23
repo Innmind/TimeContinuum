@@ -6,7 +6,7 @@
 
 - `Innmind\TimeContinuum\Clock::switch()`
 - `Innmind\TimeContinuum\Calendar\Month`
-- `Innmind\TimeContinuum\PointInTime\Month::calendar()`
+- `Innmind\TimeContinuum\PointInTime\Month::ofYear()`
 - `Innmind\TimeContinuum\Calendar\Day`
 - `Innmind\TimeContinuum\PointInTime\Day::ofWeek()`
 

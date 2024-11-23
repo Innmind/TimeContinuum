@@ -17,7 +17,7 @@ class MonthTest extends TestCase
         $month = Month::of(Year::of(2016), Calendar\Month::of(10));
 
         $this->assertSame(31, $month->numberOfDays());
-        $this->assertSame(10, $month->calendar()->toInt());
-        $this->assertSame('october', $month->calendar()->name);
+        $this->assertSame(10, $month->ofYear()->toInt());
+        $this->assertSame('october', $month->ofYear()->name);
     }
 }

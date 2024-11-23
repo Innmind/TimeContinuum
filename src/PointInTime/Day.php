@@ -24,7 +24,7 @@ final class Day
         $this->day = $day;
         $this->week = Calendar\Day::of((int) \date(
             'w',
-            $time = \mktime(0, 0, 0, $month->calendar()->toInt(), $day, $year->toInt()),
+            $time = \mktime(0, 0, 0, $month->ofYear()->toInt(), $day, $year->toInt()),
         ));
         /** @var int<0, 365> */
         $this->ofYear = (int) \date('z', $time);

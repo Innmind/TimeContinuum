@@ -41,7 +41,7 @@ final class Month
         return $this->days;
     }
 
-    public function calendar(): Calendar\Month
+    public function ofYear(): Calendar\Month
     {
         return $this->month;
     }
