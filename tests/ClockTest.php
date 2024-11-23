@@ -115,7 +115,10 @@ class ClockTest extends TestCase
 
         $this
             ->forAll(
-                $gen(self::america()),
+                $gen(self::america())->filter(
+                    // timezone that collides with other continents
+                    static fn($pair) => $pair[0] !== 'danmarkshavn',
+                ),
                 Set\Either::any(
                     $gen(self::africa()),
                     $gen(self::europe()),
