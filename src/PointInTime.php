@@ -150,7 +150,12 @@ final class PointInTime
             return $this->highResolution->elapsedSince($point->highResolution);
         }
 
-        return ElapsedPeriod::of($this->milliseconds() - $point->milliseconds());
+        $milliseconds = $this->milliseconds() - $point->milliseconds();
+        $microseconds = $milliseconds * 1_000;
+        $microseconds += $this->microsecond()->toInt();
+        $microseconds -= $point->microsecond()->toInt();
+
+        return ElapsedPeriod::of($microseconds);
     }
 
     public function goBack(Period $period): self

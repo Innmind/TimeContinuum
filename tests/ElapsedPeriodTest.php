@@ -15,7 +15,13 @@ class ElapsedPeriodTest extends TestCase
     {
         $period = ElapsedPeriod::of(42);
 
+        $this->assertSame(0, $period->milliseconds());
+        $this->assertSame(42, $period->microseconds());
+
+        $period = ElapsedPeriod::of(42_000);
+
         $this->assertSame(42, $period->milliseconds());
+        $this->assertSame(42_000, $period->microseconds());
     }
 
     public function testThrowWhenTryingToBuildANegativePeriod()

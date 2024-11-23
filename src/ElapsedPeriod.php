@@ -9,15 +9,15 @@ namespace Innmind\TimeContinuum;
 final class ElapsedPeriod
 {
     /** @var int<0, max> */
-    private int $milliseconds;
+    private int $microseconds;
 
-    private function __construct(int $milliseconds)
+    private function __construct(int $microseconds)
     {
-        if ($milliseconds < 0) {
-            throw new \RuntimeException((string) $milliseconds);
+        if ($microseconds < 0) {
+            throw new \RuntimeException((string) $microseconds);
         }
 
-        $this->milliseconds = $milliseconds;
+        $this->microseconds = $microseconds;
     }
 
     /**
@@ -28,7 +28,7 @@ final class ElapsedPeriod
      */
     public static function of(int $microseconds): self
     {
-        return new self($milliseconds);
+        return new self($microseconds);
     }
 
     /**
@@ -40,7 +40,7 @@ final class ElapsedPeriod
     {
         if ($period->months() !== 0 || $period->years() !== 0) {
             // a month or a year is not constant
-            throw new \LogicException('Months and years can not be converted to milliseconds');
+            throw new \LogicException('Months and years can not be converted to microseconds');
         }
 
         $milliseconds = Period\Value::day->milliseconds($period->days()) +
@@ -48,22 +48,35 @@ final class ElapsedPeriod
             Period\Value::minute->milliseconds($period->minutes()) +
             Period\Value::second->milliseconds($period->seconds()) +
             $period->milliseconds();
+        $milliseconds *= 1_000;
 
-        return new self($milliseconds);
+        return new self($milliseconds + $period->microseconds());
     }
 
+    /**
+     * @return int<0, max>
+     */
     public function milliseconds(): int
     {
-        return $this->milliseconds;
+        /** @var int<0, max> */
+        return (int) ($this->microseconds / 1_000);
+    }
+
+    /**
+     * @return int<0, max>
+     */
+    public function microseconds(): int
+    {
+        return $this->microseconds;
     }
 
     public function longerThan(self $period): bool
     {
-        return $this->milliseconds > $period->milliseconds();
+        return $this->microseconds > $period->microseconds;
     }
 
     public function equals(self $period): bool
     {
-        return $this->milliseconds === $period->milliseconds();
+        return $this->microseconds === $period->microseconds;
     }
 }

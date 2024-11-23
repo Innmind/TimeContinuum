@@ -53,6 +53,7 @@ class HighResolutionTest extends TestCase
         $started = HighResolution::of(684461, 547614375);
         $end = HighResolution::of(684462, 602541);
 
-        $this->assertSame(453, $end->elapsedSince($started)->milliseconds());
+        $this->assertSame(452, $end->elapsedSince($started)->milliseconds());
+        $this->assertSame(452989, $end->elapsedSince($started)->microseconds());
     }
 }
