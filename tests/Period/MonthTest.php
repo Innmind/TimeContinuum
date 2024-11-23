@@ -7,7 +7,8 @@ use Innmind\TimeContinuum\{
     Period,
     Period\Month,
 };
-use PHPUnit\Framework\TestCase;
+use Innmind\BlackBox\PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 class MonthTest extends TestCase
 {
@@ -25,9 +26,7 @@ class MonthTest extends TestCase
         $this->assertSame(0, $period->milliseconds());
     }
 
-    /**
-     * @dataProvider cases
-     */
+    #[DataProvider('cases')]
     public function testConvertMonthsIntoYears(int $months, int $year, int $expectedMonths)
     {
         $period = Month::of($months);

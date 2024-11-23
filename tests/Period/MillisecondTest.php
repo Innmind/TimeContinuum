@@ -7,7 +7,8 @@ use Innmind\TimeContinuum\{
     Period,
     Period\Millisecond,
 };
-use PHPUnit\Framework\TestCase;
+use Innmind\BlackBox\PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 class MillisecondTest extends TestCase
 {
@@ -25,9 +26,7 @@ class MillisecondTest extends TestCase
         $this->assertSame(20, $period->milliseconds());
     }
 
-    /**
-     * @dataProvider cases
-     */
+    #[DataProvider('cases')]
     public function testConvertToSeconds(
         int $millisecond,
         int $days,

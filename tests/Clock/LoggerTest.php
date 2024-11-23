@@ -12,8 +12,8 @@ use Psr\Log\{
     LoggerInterface,
     LoggerTrait,
 };
-use PHPUnit\Framework\TestCase;
 use Innmind\BlackBox\{
+    PHPUnit\Framework\TestCase,
     PHPUnit\BlackBox,
     Set,
 };

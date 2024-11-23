@@ -8,11 +8,8 @@ use Innmind\BlackBox\{
     Set,
     Random,
 };
-use Innmind\TimeContinuum\{
-    PointInTime as PointInTimeInterface,
-    Format,
-};
-use PHPUnit\Framework\TestCase;
+use Innmind\TimeContinuum\PointInTime as Model;
+use Innmind\BlackBox\PHPUnit\Framework\TestCase;
 
 class PointInTimeTest extends TestCase
 {
@@ -25,13 +22,14 @@ class PointInTimeTest extends TestCase
 
         foreach ($pointsInTime->values(Random::default) as $pointInTime) {
             $this->assertInstanceOf(Set\Value::class, $pointInTime);
-            $this->assertInstanceOf(PointInTimeInterface::class, $pointInTime->unwrap());
+            $this->assertInstanceOf(Model::class, $pointInTime->unwrap());
             $this->assertTrue($pointInTime->isImmutable());
         }
     }
 
     public function testAfter()
     {
+        $start = Model::at('1970-01-01T12:13:14+02:00');
         $points = PointInTime::after('1970-01-01T12:13:14+02:00');
 
         $this->assertInstanceOf(Set::class, $points);
@@ -39,14 +37,15 @@ class PointInTimeTest extends TestCase
 
         foreach ($points->values(Random::default) as $point) {
             $this->assertGreaterThanOrEqual(
-                '1970-01-01T12:13:14+02:00',
-                $point->unwrap()->format(Format::iso8601()),
+                $start->milliseconds(),
+                $point->unwrap()->milliseconds(),
             );
         }
     }
 
     public function testBefore()
     {
+        $start = Model::at('1970-01-01T12:13:14+02:00');
         $points = PointInTime::before('1970-01-01T12:13:14+02:00');
 
         $this->assertInstanceOf(Set::class, $points);
@@ -54,8 +53,8 @@ class PointInTimeTest extends TestCase
 
         foreach ($points->values(Random::default) as $point) {
             $this->assertLessThanOrEqual(
-                '1970-01-01T12:13:14+02:00',
-                $point->unwrap()->format(Format::iso8601()),
+                $start->milliseconds(),
+                $point->unwrap()->milliseconds(),
             );
         }
     }

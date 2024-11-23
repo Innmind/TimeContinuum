@@ -10,7 +10,7 @@ jobs:
         os: [ubuntu-latest, macOS-latest]
         php-version: ['8.2', '8.3']
         dependencies: ['lowest', 'highest']
-    name: 'PHPUnit'
+    name: 'BlackBox'
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -24,8 +24,10 @@ jobs:
         uses: "ramsey/composer-install@v3"
         with:
           dependency-versions: ${{ matrix.dependencies }}
-      - name: PHPUnit
-        run: vendor/bin/phpunit --coverage-clover=coverage.clover
+      - name: BlackBox
+        run: php blackbox.php
+        env:
+          ENABLE_COVERAGE: 'true'
       - uses: codecov/codecov-action@v4
         with:
           token: ${{ secrets.CODECOV_TOKEN }}

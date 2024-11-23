@@ -9,8 +9,10 @@ use Innmind\TimeContinuum\{
     PointInTime as PointInTimeInterface,
 };
 use Fixtures\Innmind\TimeContinuum\PointInTime;
-use PHPUnit\Framework\TestCase;
-use Innmind\BlackBox\PHPUnit\BlackBox;
+use Innmind\BlackBox\{
+    PHPUnit\Framework\TestCase,
+    PHPUnit\BlackBox,
+};
 
 class FrozenTest extends TestCase
 {

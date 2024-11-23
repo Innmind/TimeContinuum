@@ -4,10 +4,8 @@ declare(strict_types = 1);
 namespace Tests\Innmind\TimeContinuum;
 
 use Innmind\TimeContinuum\Format;
-use PHPUnit\Framework\{
-    TestCase,
-    Attributes\DataProvider,
-};
+use Innmind\BlackBox\PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 class FormatTest extends TestCase
 {

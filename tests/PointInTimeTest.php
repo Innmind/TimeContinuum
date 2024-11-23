@@ -18,7 +18,7 @@ use Innmind\TimeContinuum\{
     Period,
     Period\Day,
 };
-use PHPUnit\Framework\TestCase;
+use Innmind\BlackBox\PHPUnit\Framework\TestCase;
 
 class PointInTimeTest extends TestCase
 {

@@ -8,13 +8,12 @@ use Innmind\TimeContinuum\{
     PointInTime,
     Format,
 };
-use PHPUnit\Framework\TestCase;
+use Innmind\BlackBox\PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 class StartOfDayTest extends TestCase
 {
-    /**
-     * @dataProvider cases
-     */
+    #[DataProvider('cases')]
     public function testInterface($time, $expected)
     {
         $startOfDay = new StartOfDay;

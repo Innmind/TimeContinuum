@@ -7,7 +7,8 @@ use Innmind\TimeContinuum\{
     Period,
     Period\Minute,
 };
-use PHPUnit\Framework\TestCase;
+use Innmind\BlackBox\PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 class MinuteTest extends TestCase
 {
@@ -25,9 +26,7 @@ class MinuteTest extends TestCase
         $this->assertSame(0, $period->milliseconds());
     }
 
-    /**
-     * @dataProvider cases
-     */
+    #[DataProvider('cases')]
     public function testConvertToHours(
         int $minute,
         int $days,
