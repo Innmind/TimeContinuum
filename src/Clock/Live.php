@@ -63,7 +63,7 @@ final class Live
             try {
                 /** @psalm-suppress ImpureMethodCall */
                 $datetime = \DateTimeImmutable::createFromFormat($format->toString(), $date);
-            } catch (\ValueError) {
+            } catch (\Throwable) {
                 /** @var Maybe<PointInTime> */
                 return Maybe::nothing();
             }
@@ -83,7 +83,7 @@ final class Live
             try {
                 /** @psalm-suppress ImpureMethodCall */
                 $datetime = new \DateTimeImmutable($date);
-            } catch (\ValueError) {
+            } catch (\Throwable) {
                 /** @var Maybe<PointInTime> */
                 return Maybe::nothing();
             }

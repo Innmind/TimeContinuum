@@ -4,6 +4,7 @@ declare(strict_types = 1);
 use Innmind\TimeContinuum\{
     Clock,
     Period,
+    Format,
 };
 use Fixtures\Innmind\TimeContinuum\PointInTime;
 use Innmind\BlackBox\Set;
@@ -90,5 +91,30 @@ return static function() {
                 ),
             );
         },
+    );
+
+    yield proof(
+        'Clock::at() returns nothing for invalid strings',
+        given(
+            Set\Unicode::strings(),
+            Set\Elements::of(
+                null,
+                Format::cookie(),
+                Format::iso8601(),
+                Format::rfc1036(),
+                Format::rfc1123(),
+                Format::rfc2822(),
+                Format::rfc822(),
+                Format::rfc850(),
+                Format::rss(),
+                Format::w3c(),
+            ),
+        ),
+        static fn($assert, $string, $format) => $assert->null(
+            Clock::live()->at($string, $format)->match(
+                static fn($point) => $point,
+                static fn() => null,
+            ),
+        ),
     );
 };
