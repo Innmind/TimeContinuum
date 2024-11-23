@@ -22,6 +22,7 @@ final class ElapsedPeriod
 
     /**
      * @psalm-pure
+     * @internal
      *
      * @throws \RuntimeException
      */
