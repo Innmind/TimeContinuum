@@ -24,10 +24,10 @@ class DayTest extends TestCase
             5,
         );
 
-        $this->assertSame(3, $day->weekNumber());
+        $this->assertSame(3, $day->ofWeek()->toInt());
         $this->assertSame(278, $day->ofYear());
         $this->assertSame(24, $day->numberOfHours());
         $this->assertSame(5, $day->toInt());
-        $this->assertSame('Wednesday', $day->toString());
+        $this->assertSame('wednesday', $day->ofWeek()->name);
     }
 }

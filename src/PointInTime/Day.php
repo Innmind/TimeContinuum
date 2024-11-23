@@ -3,6 +3,8 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum\PointInTime;
 
+use Innmind\TimeContinuum\Calendar;
+
 /**
  * @psalm-immutable
  */
@@ -10,12 +12,9 @@ final class Day
 {
     /** @var int<1, 31> */
     private int $day;
-    /** @var int<0, 6> */
-    private int $week;
+    private Calendar\Day $week;
     /** @var int<0, 365> */
     private int $ofYear;
-    /** @var 'Monday'|'Tuesday'|'Wednesday'|'Thursday'|'Friday'|'Saturday'|'Sunday' */
-    private string $string;
 
     /**
      * @param int<1, 31> $day
@@ -23,15 +22,12 @@ final class Day
     private function __construct(Year $year, Month $month, int $day)
     {
         $this->day = $day;
-        /** @var int<0, 6> */
-        $this->week = (int) \date(
+        $this->week = Calendar\Day::of((int) \date(
             'w',
             $time = \mktime(0, 0, 0, $month->calendar()->toInt(), $day, $year->toInt()),
-        );
+        ));
         /** @var int<0, 365> */
         $this->ofYear = (int) \date('z', $time);
-        /** @var 'Monday'|'Tuesday'|'Wednesday'|'Thursday'|'Friday'|'Saturday'|'Sunday' */
-        $this->string = \date('l', $time);
     }
 
     /**
@@ -45,12 +41,8 @@ final class Day
         return new self($year, $month, $day);
     }
 
-    /**
-     * @return int<0, 6>
-     */
-    public function weekNumber(): int
+    public function ofWeek(): Calendar\Day
     {
-        // todo move to the Day\Week enum
         return $this->week;
     }
 
@@ -77,14 +69,5 @@ final class Day
     {
         // todo rename to ofMonth
         return $this->day;
-    }
-
-    /**
-     * @return 'Monday'|'Tuesday'|'Wednesday'|'Thursday'|'Friday'|'Saturday'|'Sunday'
-     */
-    public function toString(): string
-    {
-        // todo transform into an enum
-        return $this->string;
     }
 }

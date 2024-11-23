@@ -7,6 +7,8 @@
 - `Innmind\TimeContinuum\Clock::switch()`
 - `Innmind\TimeContinuum\Calendar\Month`
 - `Innmind\TimeContinuum\PointInTime\Month::calendar()`
+- `Innmind\TimeContinuum\Calendar\Day`
+- `Innmind\TimeContinuum\PointInTime\Day::ofWeek()`
 
 ### Changed
 
@@ -43,6 +45,8 @@
 - `Innmind\TimeContinuum\Exception`
 - `Innmind\TimeContinuum\PointInTime\Month::toInt()`
 - `Innmind\TimeContinuum\PointInTime\Month::toString()`
+- `Innmind\TimeContinuum\PointInTime\Day::weekNumber()`
+- `Innmind\TimeContinuum\PointInTime\Day::toString()`
 
 ## 3.4.1 - 2023-09-17
 
