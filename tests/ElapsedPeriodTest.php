@@ -64,13 +64,13 @@ class ElapsedPeriodTest extends TestCase
     {
         $this->expectException(\LogicException::class);
 
-        ElapsedPeriod::ofPeriod(Period::year(1));
+        Period::year(1)->asElapsedPeriod();
     }
 
     public function testThrowWhenTryingToBuildFromMonthPeriod()
     {
         $this->expectException(\LogicException::class);
 
-        ElapsedPeriod::ofPeriod(Period::month(1));
+        Period::month(1)->asElapsedPeriod();
     }
 }

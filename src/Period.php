@@ -448,8 +448,23 @@ final class Period
         );
     }
 
+    /**
+     * @throws \LogicException When using a period containing months or years
+     */
     public function asElapsedPeriod(): ElapsedPeriod
     {
-        return ElapsedPeriod::ofPeriod($this);
+        if ($this->months() !== 0 || $this->years() !== 0) {
+            // a month or a year is not constant
+            throw new \LogicException('Months and years can not be converted to microseconds');
+        }
+
+        $milliseconds = Period\Value::day->milliseconds($this->days()) +
+            Period\Value::hour->milliseconds($this->hours()) +
+            Period\Value::minute->milliseconds($this->minutes()) +
+            Period\Value::second->milliseconds($this->seconds()) +
+            $this->milliseconds();
+        $milliseconds *= 1_000;
+
+        return ElapsedPeriod::of($milliseconds + $this->microseconds());
     }
 }
