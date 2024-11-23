@@ -26,18 +26,6 @@ class ElapsedPeriodTest extends TestCase
         ElapsedPeriod::of(-42);
     }
 
-    public function testMaybe()
-    {
-        $this->assertInstanceOf(ElapsedPeriod::class, ElapsedPeriod::maybe(42)->match(
-            static fn($period) => $period,
-            static fn() => null,
-        ));
-        $this->assertNull(ElapsedPeriod::maybe(-42)->match(
-            static fn($period) => $period,
-            static fn() => null,
-        ));
-    }
-
     public function testLongerThan()
     {
         $this->assertTrue(

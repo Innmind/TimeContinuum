@@ -3,8 +3,6 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum;
 
-use Innmind\Immutable\Maybe;
-
 /**
  * @psalm-immutable
  */
@@ -40,21 +38,6 @@ final class ElapsedPeriod
     public static function literal(int $milliseconds): self
     {
         return new self($milliseconds);
-    }
-
-    /**
-     * @psalm-pure
-     *
-     * @return Maybe<self>
-     */
-    public static function maybe(int $milliseconds): Maybe
-    {
-        try {
-            return Maybe::just(new self($milliseconds));
-        } catch (\RuntimeException $e) {
-            /** @var Maybe<self> */
-            return Maybe::nothing();
-        }
     }
 
     /**

@@ -56,6 +56,7 @@
 - `Innmind\TimeContinuum\PointInTime\Month::toString()`
 - `Innmind\TimeContinuum\PointInTime\Day::weekNumber()`
 - `Innmind\TimeContinuum\PointInTime\Day::toString()`
+- `Innmind\TimeContinuum\ElapsedPeriod::maybe()`
 
 ## 3.4.1 - 2023-09-17
 
