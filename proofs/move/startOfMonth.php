@@ -46,6 +46,10 @@ return static function() {
                 0,
                 $startOfMonth->millisecond()->toInt(),
             );
+            $assert->same(
+                0,
+                $startOfMonth->microsecond()->toInt(),
+            );
         },
     );
 };

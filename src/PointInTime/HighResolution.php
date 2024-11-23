@@ -51,8 +51,8 @@ final class HighResolution
         $seconds = $this->seconds - $time->seconds;
         $nanoseconds = $this->nanoseconds - $time->nanoseconds;
 
-        $milliseconds = ($seconds * 1_000) + (int) ($nanoseconds / 1_000_000);
+        $microseconds = ($seconds * 1_000_000) + (int) ($nanoseconds / 1_000);
 
-        return ElapsedPeriod::of($milliseconds);
+        return ElapsedPeriod::of($microseconds);
     }
 }

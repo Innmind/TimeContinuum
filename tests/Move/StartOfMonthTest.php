@@ -18,7 +18,7 @@ class StartOfMonthTest extends TestCase
     {
         $startOfMonth = new StartOfMonth;
 
-        $point = $startOfMonth(PointInTime::at($time));
+        $point = $startOfMonth(PointInTime::at(new \DateTimeImmutable($time)));
 
         $this->assertSame($expected, $point->format(Format::of('Y-m-d H:i:s.u')));
     }

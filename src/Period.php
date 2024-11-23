@@ -16,6 +16,7 @@ final class Period
      * @param int<0, 59> $minute
      * @param int<0, 59> $second
      * @param int<0, 999> $millisecond
+     * @param int<0, 999> $microsecond
      */
     private function __construct(
         private int $year,
@@ -25,6 +26,7 @@ final class Period
         private int $minute,
         private int $second,
         private int $millisecond,
+        private int $microsecond,
     ) {
     }
 
@@ -38,6 +40,7 @@ final class Period
      * @param int<0, 59> $minute
      * @param int<0, 59> $second
      * @param int<0, 999> $millisecond
+     * @param int<0, 999> $microsecond
      */
     public static function of(
         int $year,
@@ -47,6 +50,7 @@ final class Period
         int $minute,
         int $second,
         int $millisecond,
+        int $microsecond,
     ): self {
         return new self(
             $year,
@@ -56,6 +60,7 @@ final class Period
             $minute,
             $second,
             $millisecond,
+            $microsecond,
         );
     }
 
@@ -69,6 +74,7 @@ final class Period
      * @param int<0, max> $minute
      * @param int<0, max> $second
      * @param int<0, max> $millisecond
+     * @param int<0, max> $microsecond
      */
     public static function composite(
         int $year,
@@ -78,8 +84,10 @@ final class Period
         int $minute,
         int $second,
         int $millisecond,
+        int $microsecond,
     ): self {
-        return self::millisecond($millisecond)
+        return self::microsecond($microsecond)
+            ->add(self::millisecond($millisecond))
             ->add(self::second($second))
             ->add(self::minute($minute))
             ->add(self::hour($hour))
@@ -103,6 +111,7 @@ final class Period
             0,
             0,
             0,
+            0,
         );
     }
 
@@ -114,7 +123,7 @@ final class Period
     public static function month(int $month): self
     {
         if ($month < 12) {
-            return new self(0, $month, 0, 0, 0, 0, 0);
+            return new self(0, $month, 0, 0, 0, 0, 0, 0);
         }
 
         /** @var int<0, max> */
@@ -124,6 +133,7 @@ final class Period
         return new self(
             $year,
             $month,
+            0,
             0,
             0,
             0,
@@ -147,6 +157,7 @@ final class Period
             0,
             0,
             0,
+            0,
         );
     }
 
@@ -158,7 +169,7 @@ final class Period
     public static function hour(int $hour): self
     {
         if ($hour < 24) {
-            return new self(0, 0, 0, $hour, 0, 0, 0);
+            return new self(0, 0, 0, $hour, 0, 0, 0, 0);
         }
 
         /** @var int<0, max> */
@@ -173,6 +184,7 @@ final class Period
             0,
             0,
             0,
+            0,
         );
     }
 
@@ -184,7 +196,7 @@ final class Period
     public static function minute(int $minute): self
     {
         if ($minute < 60) {
-            return new self(0, 0, 0, 0, $minute, 0, 0);
+            return new self(0, 0, 0, 0, $minute, 0, 0, 0);
         }
 
         /** @var int<0, max> */
@@ -200,6 +212,7 @@ final class Period
             $minute,
             0,
             0,
+            0,
         );
     }
 
@@ -211,7 +224,7 @@ final class Period
     public static function second(int $second): self
     {
         if ($second < 60) {
-            return new self(0, 0, 0, 0, 0, $second, 0);
+            return new self(0, 0, 0, 0, 0, $second, 0, 0);
         }
 
         /** @var int<0, max> */
@@ -227,6 +240,7 @@ final class Period
             $minute->minutes(),
             $second,
             0,
+            0,
         );
     }
 
@@ -238,7 +252,7 @@ final class Period
     public static function millisecond(int $millisecond): self
     {
         if ($millisecond < 1_000) {
-            return new self(0, 0, 0, 0, 0, 0, $millisecond);
+            return new self(0, 0, 0, 0, 0, 0, $millisecond, 0);
         }
 
         /** @var int<0, max> */
@@ -254,6 +268,35 @@ final class Period
             $second->minutes(),
             $second->seconds(),
             $millisecond,
+            0,
+        );
+    }
+
+    /**
+     * @psalm-pure
+     *
+     * @param 0|positive-int $microsecond
+     */
+    public static function microsecond(int $microsecond): self
+    {
+        if ($microsecond < 1_000) {
+            return new self(0, 0, 0, 0, 0, 0, 0, $microsecond);
+        }
+
+        /** @var int<0, max> */
+        $millisecond = (int) ($microsecond / 1000);
+        $millisecond = self::millisecond($millisecond);
+        $microsecond = $microsecond % 1000;
+
+        return new self(
+            $millisecond->years(),
+            $millisecond->months(),
+            $millisecond->days(),
+            $millisecond->hours(),
+            $millisecond->minutes(),
+            $millisecond->seconds(),
+            $millisecond->milliseconds(),
+            $microsecond,
         );
     }
 
@@ -313,6 +356,14 @@ final class Period
         return $this->millisecond;
     }
 
+    /**
+     * @return int<0, 999>
+     */
+    public function microseconds(): int
+    {
+        return $this->microsecond;
+    }
+
     public function equals(self $period): bool
     {
         return $this->year === $period->years() &&
@@ -321,27 +372,38 @@ final class Period
             $this->hour === $period->hours() &&
             $this->minute === $period->minutes() &&
             $this->second === $period->seconds() &&
-            $this->millisecond === $period->milliseconds();
+            $this->millisecond === $period->milliseconds() &&
+            $this->microsecond === $period->microseconds();
     }
 
     public function add(self $period): self
     {
-        $millisecond = self::millisecond($this->millisecond + $period->milliseconds());
+        $microsecond = self::microsecond($this->microsecond + $period->microseconds());
+        $millisecond = self::millisecond(
+            $this->millisecond +
+            $period->milliseconds() +
+            $microsecond->milliseconds(),
+        );
         $second = self::second(
-            $this->second + $period->seconds() + $millisecond->seconds(),
+            $this->second +
+            $period->seconds() +
+            $millisecond->seconds() +
+            $microsecond->seconds(),
         );
         $minute = self::minute(
             $this->minute +
             $period->minutes() +
             $second->minutes() +
-            $millisecond->minutes(),
+            $millisecond->minutes() +
+            $microsecond->minutes(),
         );
         $hour = self::hour(
             $this->hour +
             $period->hours() +
             $minute->hours() +
             $second->hours() +
-            $millisecond->hours(),
+            $millisecond->hours() +
+            $microsecond->hours(),
         );
         $day = self::day(
             $this->day +
@@ -349,7 +411,8 @@ final class Period
             $hour->days() +
             $minute->days() +
             $second->days() +
-            $millisecond->days(),
+            $millisecond->days() +
+            $microsecond->days(),
         );
         $month = self::month(
             $this->month +
@@ -358,7 +421,8 @@ final class Period
             $hour->months() +
             $minute->months() +
             $second->months() +
-            $millisecond->months(),
+            $millisecond->months() +
+            $microsecond->months(),
         );
         $year = self::year(
             $this->year +
@@ -368,7 +432,8 @@ final class Period
             $hour->years() +
             $minute->years() +
             $second->years() +
-            $millisecond->years(),
+            $millisecond->years() +
+            $microsecond->years(),
         );
 
         return new self(
@@ -379,11 +444,27 @@ final class Period
             $minute->minutes(),
             $second->seconds(),
             $millisecond->milliseconds(),
+            $microsecond->microseconds(),
         );
     }
 
+    /**
+     * @throws \LogicException When using a period containing months or years
+     */
     public function asElapsedPeriod(): ElapsedPeriod
     {
-        return ElapsedPeriod::ofPeriod($this);
+        if ($this->months() !== 0 || $this->years() !== 0) {
+            // a month or a year is not constant
+            throw new \LogicException('Months and years can not be converted to microseconds');
+        }
+
+        $milliseconds = Period\Value::day->milliseconds($this->days()) +
+            Period\Value::hour->milliseconds($this->hours()) +
+            Period\Value::minute->milliseconds($this->minutes()) +
+            Period\Value::second->milliseconds($this->seconds()) +
+            $this->milliseconds();
+        $milliseconds *= 1_000;
+
+        return ElapsedPeriod::of($milliseconds + $this->microseconds());
     }
 }

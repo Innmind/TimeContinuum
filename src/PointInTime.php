@@ -11,6 +11,7 @@ use Innmind\TimeContinuum\{
     PointInTime\Minute,
     PointInTime\Second,
     PointInTime\Millisecond,
+    PointInTime\Microsecond,
     PointInTime\HighResolution,
 };
 
@@ -28,18 +29,11 @@ final class PointInTime
     /**
      * @psalm-pure
      * @internal
-     *
-     * @param non-empty-string $date
      */
-    public static function at(string $date): self
+    public static function at(\DateTimeImmutable $date): self
     {
-        /** @psalm-suppress ImpureMethodCall */
-        $datetime = new \DateTimeImmutable($date);
-        /** @var int<0, max> */
-        $milliseconds = $datetime->getTimestamp() * 1000;
-
         return new self(
-            $datetime,
+            $date,
             null,
         );
     }
@@ -50,7 +44,6 @@ final class PointInTime
     public static function now(): self
     {
         $now = new \DateTimeImmutable('now');
-        /** @psalm-suppress ImpureMethodCallAcceptable since only a clock should instantiate this class */
         $highResolution = HighResolution::now();
 
         return new self(
@@ -123,6 +116,14 @@ final class PointInTime
         return Millisecond::of($millisecond);
     }
 
+    public function microsecond(): Microsecond
+    {
+        /** @var int<0, 999> */
+        $microsecond = ((int) $this->date->format('u')) % 1000;
+
+        return Microsecond::of($microsecond);
+    }
+
     public function format(Format $format): string
     {
         return $this->date->format($format->toString());
@@ -149,7 +150,12 @@ final class PointInTime
             return $this->highResolution->elapsedSince($point->highResolution);
         }
 
-        return ElapsedPeriod::of($this->milliseconds() - $point->milliseconds());
+        $milliseconds = $this->milliseconds() - $point->milliseconds();
+        $microseconds = $milliseconds * 1_000;
+        $microseconds += $this->microsecond()->toInt();
+        $microseconds -= $point->microsecond()->toInt();
+
+        return ElapsedPeriod::of($microseconds);
     }
 
     public function goBack(Period $period): self
@@ -182,17 +188,35 @@ final class PointInTime
 
     public function equals(self $point): bool
     {
-        return $this->milliseconds() === $point->milliseconds();
+        [$self, $other] = self::compare($this, $point);
+
+        return $self === $other;
     }
 
     public function aheadOf(self $point): bool
     {
-        return $this->milliseconds() > $point->milliseconds();
+        [$self, $other] = self::compare($this, $point);
+
+        return $self > $other;
     }
 
     public function toString(): string
     {
         return $this->date->format(\DateTime::ATOM);
+    }
+
+    /**
+     * @psalm-pure
+     * @return array{string, string}
+     */
+    private static function compare(self $self, self $other): array
+    {
+        $format = Format::of('Y-m-dTH:i:s.u');
+
+        return [
+            $self->changeOffset(Offset::utc())->format($format),
+            $other->changeOffset(Offset::utc())->format($format),
+        ];
     }
 
     /**
@@ -249,6 +273,13 @@ final class PointInTime
             $parts[] = \sprintf(
                 '%s milliseconds',
                 $period->milliseconds(),
+            );
+        }
+
+        if ($period->microseconds() > 0) {
+            $parts[] = \sprintf(
+                '%s microseconds',
+                $period->microseconds(),
             );
         }
 

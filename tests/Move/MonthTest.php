@@ -20,11 +20,11 @@ class MonthTest extends TestCase
         $forward = Month::forward(1);
         $backward = Month::backward(1);
 
-        $point = $forward(PointInTime::at($time));
+        $point = $forward(PointInTime::at(new \DateTimeImmutable($time)));
 
         $this->assertSame($expectedForward, $point->format($format));
 
-        $point = $backward(PointInTime::at($time));
+        $point = $backward(PointInTime::at(new \DateTimeImmutable($time)));
 
         $this->assertSame($expectedBackward, $point->format($format));
     }
@@ -32,9 +32,9 @@ class MonthTest extends TestCase
     public static function cases(): array
     {
         return [
-            ['2016-02-29 13:12:11.675', '2016-03-29 13:12:11.675000', '2016-01-29 13:12:11.675000'],
-            ['2016-01-30 13:12:11.675', '2016-02-29 13:12:11.675000', '2015-12-30 13:12:11.675000'],
-            ['2017-12-31 13:12:11.675', '2018-01-31 13:12:11.675000', '2017-11-30 13:12:11.675000'],
+            ['2016-02-29 13:12:11.675342', '2016-03-29 13:12:11.675342', '2016-01-29 13:12:11.675342'],
+            ['2016-01-30 13:12:11.675342', '2016-02-29 13:12:11.675342', '2015-12-30 13:12:11.675342'],
+            ['2017-12-31 13:12:11.675342', '2018-01-31 13:12:11.675342', '2017-11-30 13:12:11.675342'],
         ];
     }
 }

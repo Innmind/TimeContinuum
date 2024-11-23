@@ -29,7 +29,7 @@ class PointInTimeTest extends TestCase
 
     public function testAfter()
     {
-        $start = Model::at('1970-01-01T12:13:14+02:00');
+        $start = Model::at(new \DateTimeImmutable('1970-01-01T12:13:14+02:00'));
         $points = PointInTime::after('1970-01-01T12:13:14+02:00');
 
         $this->assertInstanceOf(Set::class, $points);
@@ -45,7 +45,7 @@ class PointInTimeTest extends TestCase
 
     public function testBefore()
     {
-        $start = Model::at('1970-01-01T12:13:14+02:00');
+        $start = Model::at(new \DateTimeImmutable('1970-01-01T12:13:14+02:00'));
         $points = PointInTime::before('1970-01-01T12:13:14+02:00');
 
         $this->assertInstanceOf(Set::class, $points);

@@ -63,7 +63,7 @@ final class Live
             try {
                 /** @psalm-suppress ImpureMethodCall */
                 $datetime = \DateTimeImmutable::createFromFormat($format->toString(), $date);
-            } catch (\ValueError) {
+            } catch (\Throwable) {
                 /** @var Maybe<PointInTime> */
                 return Maybe::nothing();
             }
@@ -79,12 +79,20 @@ final class Live
             }
 
             $date = $datetime->format(\DateTime::ATOM);
+        } else {
+            try {
+                /** @psalm-suppress ImpureMethodCall */
+                $datetime = new \DateTimeImmutable($date);
+            } catch (\Throwable) {
+                /** @var Maybe<PointInTime> */
+                return Maybe::nothing();
+            }
         }
 
         /**
          * @psalm-suppress ImpureVariable
          * @psalm-suppress ImpurePropertyFetch
          */
-        return Maybe::just(PointInTime::at($date)->changeOffset($this->offset));
+        return Maybe::just(PointInTime::at($datetime)->changeOffset($this->offset));
     }
 }

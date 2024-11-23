@@ -13,9 +13,15 @@ class ElapsedPeriodTest extends TestCase
 {
     public function testInterface()
     {
-        $period = ElapsedPeriod::literal(42);
+        $period = ElapsedPeriod::of(42);
+
+        $this->assertSame(0, $period->milliseconds());
+        $this->assertSame(42, $period->microseconds());
+
+        $period = ElapsedPeriod::of(42_000);
 
         $this->assertSame(42, $period->milliseconds());
+        $this->assertSame(42_000, $period->microseconds());
     }
 
     public function testThrowWhenTryingToBuildANegativePeriod()
@@ -24,18 +30,6 @@ class ElapsedPeriodTest extends TestCase
         $this->expectExceptionMessage('-42');
 
         ElapsedPeriod::of(-42);
-    }
-
-    public function testMaybe()
-    {
-        $this->assertInstanceOf(ElapsedPeriod::class, ElapsedPeriod::maybe(42)->match(
-            static fn($period) => $period,
-            static fn() => null,
-        ));
-        $this->assertNull(ElapsedPeriod::maybe(-42)->match(
-            static fn($period) => $period,
-            static fn() => null,
-        ));
     }
 
     public function testLongerThan()
@@ -70,13 +64,13 @@ class ElapsedPeriodTest extends TestCase
     {
         $this->expectException(\LogicException::class);
 
-        ElapsedPeriod::ofPeriod(Period::year(1));
+        Period::year(1)->asElapsedPeriod();
     }
 
     public function testThrowWhenTryingToBuildFromMonthPeriod()
     {
         $this->expectException(\LogicException::class);
 
-        ElapsedPeriod::ofPeriod(Period::month(1));
+        Period::month(1)->asElapsedPeriod();
     }
 }

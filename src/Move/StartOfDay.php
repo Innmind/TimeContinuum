@@ -16,7 +16,8 @@ final class StartOfDay
             Period::hour($point->hour()->toInt())
                 ->add(Period::minute($point->minute()->toInt()))
                 ->add(Period::second($point->second()->toInt()))
-                ->add(Period::millisecond($point->millisecond()->toInt())),
+                ->add(Period::millisecond($point->millisecond()->toInt()))
+                ->add(Period::microsecond($point->microsecond()->toInt())),
         );
     }
 }

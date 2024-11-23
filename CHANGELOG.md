@@ -16,6 +16,7 @@
 - `Innmind\TimeContinuum\Period::minute()` named constructor
 - `Innmind\TimeContinuum\Period::second()` named constructor
 - `Innmind\TimeContinuum\Period::millisecond()` named constructor
+- `Innmind\TimeContinuum\PointInTime::microsecond()`
 
 ### Changed
 
@@ -37,6 +38,7 @@
 - `Innmind\TimeContinuum\PointInTime::changeTimezone()` has been renamed `Innmind\TimeContinuum\PointInTime::changeOffset()`
 - `Innmind\TimeContinuum\PointInTime::timezone()` has been renamed `Innmind\TimeContinuum\PointInTime::offset()`
 - `Innmind\TimeContinuum\PointInTime\Day::toInt()` has been renamed `Innmind\TimeContinuum\PointInTime\Day::ofMonth()`
+- `Innmind\TimeContinuum\ElapsedPeriod::of()` is now an `internal` method
 
 ### Removed
 
@@ -55,6 +57,8 @@
 - `Innmind\TimeContinuum\PointInTime\Month::toString()`
 - `Innmind\TimeContinuum\PointInTime\Day::weekNumber()`
 - `Innmind\TimeContinuum\PointInTime\Day::toString()`
+- `Innmind\TimeContinuum\ElapsedPeriod::maybe()`
+- `Innmind\TimeContinuum\ElapsedPeriod::ofPeriod()`
 
 ## 3.4.1 - 2023-09-17
 

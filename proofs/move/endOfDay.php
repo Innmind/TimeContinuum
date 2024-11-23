@@ -46,6 +46,10 @@ return static function() {
                 999,
                 $endOfDay->millisecond()->toInt(),
             );
+            $assert->same(
+                999,
+                $endOfDay->microsecond()->toInt(),
+            );
         },
     );
 };

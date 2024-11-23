@@ -79,6 +79,7 @@ class PeriodTest extends TestCase
                 $value->minutes(),
                 $value->seconds(),
                 $value->milliseconds(),
+                $value->microseconds(),
             ];
 
             if (!\in_array($generated, $unique, true)) {
