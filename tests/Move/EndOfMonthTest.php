@@ -18,7 +18,7 @@ class EndOfMonthTest extends TestCase
     {
         $endOfMonth = new EndOfMonth;
 
-        $point = $endOfMonth(PointInTime::at($time));
+        $point = $endOfMonth(PointInTime::at(new \DateTimeImmutable($time)));
 
         $this->assertSame($expected, $point->format(Format::of('Y-m-d H:i:s.u')));
     }

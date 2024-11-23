@@ -18,7 +18,7 @@ class StartOfYearTest extends TestCase
     {
         $startOfYear = new StartOfYear;
 
-        $point = $startOfYear(PointInTime::at($time));
+        $point = $startOfYear(PointInTime::at(new \DateTimeImmutable($time)));
 
         $this->assertSame($expected, $point->format(Format::of('Y-m-d H:i:s.u')));
     }

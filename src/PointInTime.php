@@ -29,16 +29,11 @@ final class PointInTime
     /**
      * @psalm-pure
      * @internal
-     *
-     * @param non-empty-string $date
      */
-    public static function at(string $date): self
+    public static function at(\DateTimeImmutable $date): self
     {
-        /** @psalm-suppress ImpureMethodCall */
-        $datetime = new \DateTimeImmutable($date);
-
         return new self(
-            $datetime,
+            $date,
             null,
         );
     }

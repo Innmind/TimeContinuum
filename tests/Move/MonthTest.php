@@ -20,11 +20,11 @@ class MonthTest extends TestCase
         $forward = Month::forward(1);
         $backward = Month::backward(1);
 
-        $point = $forward(PointInTime::at($time));
+        $point = $forward(PointInTime::at(new \DateTimeImmutable($time)));
 
         $this->assertSame($expectedForward, $point->format($format));
 
-        $point = $backward(PointInTime::at($time));
+        $point = $backward(PointInTime::at(new \DateTimeImmutable($time)));
 
         $this->assertSame($expectedBackward, $point->format($format));
     }

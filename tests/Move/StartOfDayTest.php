@@ -18,7 +18,7 @@ class StartOfDayTest extends TestCase
     {
         $startOfDay = new StartOfDay;
 
-        $point = $startOfDay(PointInTime::at($time));
+        $point = $startOfDay(PointInTime::at(new \DateTimeImmutable($time)));
 
         $this->assertSame($expected, $point->format(Format::of('Y-m-d H:i:s.u')));
     }

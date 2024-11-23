@@ -18,7 +18,7 @@ class EndOfDayTest extends TestCase
     {
         $endOfDay = new EndOfDay;
 
-        $point = $endOfDay(PointInTime::at($time));
+        $point = $endOfDay(PointInTime::at(new \DateTimeImmutable($time)));
 
         $this->assertSame($expected, $point->format(Format::of('Y-m-d H:i:s.u')));
     }

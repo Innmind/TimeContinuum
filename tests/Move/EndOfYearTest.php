@@ -18,7 +18,7 @@ class EndOfYearTest extends TestCase
     {
         $endOfYear = new EndOfYear;
 
-        $point = $endOfYear(PointInTime::at($time));
+        $point = $endOfYear(PointInTime::at(new \DateTimeImmutable($time)));
 
         $this->assertSame($expected, $point->format(Format::of('Y-m-d H:i:s.u')));
     }
