@@ -47,6 +47,20 @@ class ClockTest extends TestCase
         $this->assertIsString($clock->now()->format(Format::iso8601()));
     }
 
+    #[DataProvider('zones')]
+    public function testTimezoneAreAlwaysInBounds($switch)
+    {
+        $offset = Clock::live()
+            ->switch($switch)
+            ->now()
+            ->offset();
+
+        $this->assertGreaterThanOrEqual(-12, $offset->hours());
+        $this->assertLessThanOrEqual(14, $offset->hours());
+        $this->assertGreaterThanOrEqual(0, $offset->minutes());
+        $this->assertLessThanOrEqual(59, $offset->minutes());
+    }
+
     public function testTimezoneDifferences()
     {
         $this
