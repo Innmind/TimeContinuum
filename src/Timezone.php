@@ -3,13 +3,29 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum;
 
-/**
- * @psalm-immutable
- */
-interface Timezone
+final class Timezone
 {
-    public function hours(): int;
-    public function minutes(): int;
-    public function daylightSavingTimeApplied(): bool;
-    public function toString(): string;
+    private function __construct(
+        private Offset $offset,
+        private bool $dst,
+    ) {
+    }
+
+    /**
+     * @internal
+     */
+    public static function of(Offset $offset, bool $daylightSavingTime): self
+    {
+        return new self($offset, $daylightSavingTime);
+    }
+
+    public function offset(): Offset
+    {
+        return $this->offset;
+    }
+
+    public function daylightSavingTimeApplied(): bool
+    {
+        return $this->dst;
+    }
 }

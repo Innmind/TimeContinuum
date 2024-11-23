@@ -1,5 +1,54 @@
 # Changelog
 
+## [Unreleased]
+
+## Added
+
+- `Innmind\TimeContinuum\Clock::switch()`
+- `Innmind\TimeContinuum\Calendar\Month`
+- `Innmind\TimeContinuum\PointInTime\Month::ofYear()`
+- `Innmind\TimeContinuum\Calendar\Day`
+- `Innmind\TimeContinuum\PointInTime\Day::ofWeek()`
+
+### Changed
+
+- `Innmind\TimeContinuum\Format` is now a `final class`
+- Interfaces in the `Innmind\TimeContinuum\Clock` namespace are now `final class`es
+- Classes in the `Innmind\TimeContinuum\Clock` namespace have been moved to `Innmind\TimeContinuum\PointInTime`
+- `Innmind\TimeContinuum\Period` is now a `final class`
+- `Innmind\TimeContinuum\ElapsedPeriod` is now a `final class`
+- `Innmind\TimeContinuum\Earth\Period` has been renamed to `Innmind\TimeContinuum\Period\Value`
+- `Innmind\TimeContinuum\PointInTime` is now a `final class`
+- Classes in the `Fixtures\Innmind\TimeContinuum\Earth` namespace have been moved to `Fixtures\Innmind\TimeContinuum`
+- `Innmind\TimeContinuum\Earth\Clock` as been renamed `Innmind\TimeContinuum\Clock\Live`
+- `Innmind\TimeContinuum\Earth\FrozenClock` as been renamed `Innmind\TimeContinuum\Clock\Frozen`
+- `Innmind\TimeContinuum\Logger\Clock` as been renamed `Innmind\TimeContinuum\Clock\Logger`
+- Classes in the `Innmind\TimeContinuum\Earth\Move` namespace have been moved to `Innmind\TimeContinuum\Move`
+- `Innmind\TimeContinuum\Timezone` is now a `final class`
+- `Innmind\TimeContinuum\Clock` is now a `final class`
+- `Innmind\TimeContinuum\Timezone` has been renamed `Innmind\TimeContinuum\Offset`
+- `Innmind\TimeContinuum\PointInTime::changeTimezone()` has been renamed `Innmind\TimeContinuum\PointInTime::changeOffset()`
+- `Innmind\TimeContinuum\PointInTime::timezone()` has been renamed `Innmind\TimeContinuum\PointInTime::offset()`
+- `Innmind\TimeContinuum\PointInTime\Day::toInt()` has been renamed `Innmind\TimeContinuum\PointInTime\Day::ofMonth()`
+
+### Removed
+
+- Support for `innmind/immutable` `4`
+- Classes in the `Innmind\TimeContinuum\Earth\Format` namespaces are now named constructors of `Innmind\TimeContinuum\Format`
+- Classes in the `Innmind\TimeContinuum\Earth\Clock` namespace
+- Classes in the `Innmind\TimeContinuum\Earth\Period` namespace
+- `Innmind\TimeContinuum\Earth\ElapsedPeriod`
+- `Innmind\TimeContinuum\Earth\PointInTime\PointInTime`
+- `Innmind\TimeContinuum\Earth\PointInTime\Now`
+- `Innmind\TimeContinuum\Earth\PointInTime\HighResolution`
+- Earth timezones
+- `Innmind\TimeContinuum\Timezone::daylightSavingTimeApplied()`
+- `Innmind\TimeContinuum\Exception`
+- `Innmind\TimeContinuum\PointInTime\Month::toInt()`
+- `Innmind\TimeContinuum\PointInTime\Month::toString()`
+- `Innmind\TimeContinuum\PointInTime\Day::weekNumber()`
+- `Innmind\TimeContinuum\PointInTime\Day::toString()`
+
 ## 3.4.1 - 2023-09-17
 
 ### Fixed
