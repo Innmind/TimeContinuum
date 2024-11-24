@@ -76,9 +76,9 @@ class LoggerTest extends TestCase
                 $clock = Clock::logger($concrete, $logger);
 
                 $this->assertSame(
-                    $point->toString(),
+                    $point->format(Format::iso8601()),
                     $clock->at($point->format(Format::iso8601()), Format::iso8601())->match(
-                        static fn($found) => $found->toString(),
+                        static fn($found) => $found->format(Format::iso8601()),
                         static fn() => null,
                     ),
                 );
@@ -133,9 +133,9 @@ class LoggerTest extends TestCase
                 $clock = Clock::logger($concrete, $logger);
 
                 $this->assertSame(
-                    $point->toString(),
+                    $point->format($format),
                     $clock->at($point->format($format), $format)->match(
-                        static fn($point) => $point->toString(),
+                        static fn($point) => $point->format($format),
                         static fn() => null,
                     ),
                 );

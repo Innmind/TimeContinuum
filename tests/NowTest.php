@@ -50,7 +50,6 @@ class NowTest extends TestCase
         $timezone = \date('P', $timestamp);
         $timezone = $timezone === '+00:00' ? 'Z' : $timezone;
         $this->assertSame($timezone, $point->offset()->toString());
-        $this->assertSame(\date('Y-m-d\TH:i:sP', $timestamp), $point->toString());
     }
 
     public function testFormat()

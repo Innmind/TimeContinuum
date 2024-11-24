@@ -41,6 +41,7 @@
 - `Innmind\TimeContinuum\PointInTime\Day::toInt()` has been renamed `Innmind\TimeContinuum\PointInTime\Day::ofMonth()`
 - `Innmind\TimeContinuum\ElapsedPeriod::of()` is now an `internal` method
 - `Innmind\TimeContinuum\Clock::at()` now requires a `Format`
+- `Innmind\TimeContinuum\PointInTime::toString()` now contains the microseconds
 
 ### Removed
 
