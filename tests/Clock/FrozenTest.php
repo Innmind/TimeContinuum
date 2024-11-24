@@ -37,7 +37,7 @@ class FrozenTest extends TestCase
             ->then(function($now, $at) {
                 $clock = Clock::frozen($now);
 
-                $point = $clock->at($at->format(Format::iso8601()))->match(
+                $point = $clock->at($at->format(Format::iso8601()), Format::iso8601())->match(
                     static fn($point) => $point,
                     static fn() => null,
                 );

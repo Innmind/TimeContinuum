@@ -48,7 +48,7 @@ final class Frozen
      *
      * @return Maybe<PointInTime>
      */
-    public function at(string $date, Format $format = null): Maybe
+    public function at(string $date, Format $format): Maybe
     {
         /**
          * @psalm-suppress ImpureVariable

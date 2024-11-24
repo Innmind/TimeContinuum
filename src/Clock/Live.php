@@ -57,36 +57,24 @@ final class Live
      *
      * @return Maybe<PointInTime>
      */
-    public function at(string $date, Format $format = null): Maybe
+    public function at(string $date, Format $format): Maybe
     {
-        if ($format instanceof Format) {
-            try {
-                /** @psalm-suppress ImpureMethodCall */
-                $datetime = \DateTimeImmutable::createFromFormat($format->toString(), $date);
-            } catch (\Throwable) {
-                /** @var Maybe<PointInTime> */
-                return Maybe::nothing();
-            }
+        try {
+            /** @psalm-suppress ImpureMethodCall */
+            $datetime = \DateTimeImmutable::createFromFormat($format->toString(), $date);
+        } catch (\Throwable) {
+            /** @var Maybe<PointInTime> */
+            return Maybe::nothing();
+        }
 
-            if ($datetime === false) {
-                /** @var Maybe<PointInTime> */
-                return Maybe::nothing();
-            }
+        if ($datetime === false) {
+            /** @var Maybe<PointInTime> */
+            return Maybe::nothing();
+        }
 
-            if ($datetime->format($format->toString()) !== $date) {
-                /** @var Maybe<PointInTime> */
-                return Maybe::nothing();
-            }
-
-            $date = $datetime->format(\DateTime::ATOM);
-        } else {
-            try {
-                /** @psalm-suppress ImpureMethodCall */
-                $datetime = new \DateTimeImmutable($date);
-            } catch (\Throwable) {
-                /** @var Maybe<PointInTime> */
-                return Maybe::nothing();
-            }
+        if ($datetime->format($format->toString()) !== $date) {
+            /** @var Maybe<PointInTime> */
+            return Maybe::nothing();
         }
 
         /**

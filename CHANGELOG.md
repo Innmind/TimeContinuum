@@ -39,6 +39,7 @@
 - `Innmind\TimeContinuum\PointInTime::timezone()` has been renamed `Innmind\TimeContinuum\PointInTime::offset()`
 - `Innmind\TimeContinuum\PointInTime\Day::toInt()` has been renamed `Innmind\TimeContinuum\PointInTime\Day::ofMonth()`
 - `Innmind\TimeContinuum\ElapsedPeriod::of()` is now an `internal` method
+- `Innmind\TimeContinuum\Clock::at()` now requires a `Format`
 
 ### Removed
 

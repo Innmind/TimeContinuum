@@ -98,7 +98,6 @@ return static function() {
         given(
             Set\Unicode::strings(),
             Set\Elements::of(
-                null,
                 Format::cookie(),
                 Format::iso8601(),
                 Format::rfc1036(),

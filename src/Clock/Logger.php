@@ -55,7 +55,7 @@ final class Logger
      *
      * @return Maybe<PointInTime>
      */
-    public function at(string $date, Format $format = null): Maybe
+    public function at(string $date, Format $format): Maybe
     {
         /**
          * @psalm-suppress ImpureVariable
@@ -67,22 +67,10 @@ final class Logger
             ->map(fn($point) => $this->log($point, $date, $format));
     }
 
-    /**
-     * @psalm-pure
-     */
-    private function format(?Format $format): string
-    {
-        if (\is_null($format)) {
-            return 'unknown';
-        }
-
-        return $format->toString();
-    }
-
     private function log(
         PointInTime $point,
         string $date,
-        ?Format $format,
+        Format $format,
     ): PointInTime {
         /**
          * @psalm-suppress ImpureVariable
@@ -91,7 +79,7 @@ final class Logger
          */
         $this->logger->debug('Asked time {date} ({format}) resolved to {point}', [
             'date' => $date,
-            'format' => $this->format($format),
+            'format' => $format->toString(),
             'point' => $point->format(Format::iso8601()),
         ]);
 
