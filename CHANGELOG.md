@@ -66,6 +66,7 @@
 - `Innmind\TimeContinuum\PointInTime\Year::toString()`
 - `Innmind\TimeContinuum\ElapsedPeriod::maybe()`
 - `Innmind\TimeContinuum\ElapsedPeriod::ofPeriod()`
+- `Innmind\TimeContinuum\PointInTime::milliseconds()`
 
 ## 3.4.1 - 2023-09-17
 

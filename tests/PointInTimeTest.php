@@ -40,10 +40,6 @@ class PointInTimeTest extends TestCase
         $this->assertSame(1, $point->minute()->toInt());
         $this->assertSame(30, $point->second()->toInt());
         $this->assertSame(123, $point->millisecond()->toInt());
-        $this->assertSame(
-            (new \DateTimeImmutable('2016-10-05T08:01:30.123+02:00'))->getTimestamp() * 1000 + $point->millisecond()->toInt(),
-            $point->milliseconds(),
-        );
         $this->assertSame('+02:00', $point->offset()->toString());
         $this->assertSame('2016-10-05T08:01:30+02:00', $point->toString());
     }
@@ -79,7 +75,6 @@ class PointInTimeTest extends TestCase
         $this->assertNotSame($point->minute(), $point2->minute());
         $this->assertNotSame($point->second(), $point2->second());
         $this->assertNotSame($point->millisecond(), $point2->millisecond());
-        $this->assertSame($point->milliseconds(), $point2->milliseconds());
         $this->assertSame(2016, $point2->year()->toInt());
         $this->assertSame(10, $point2->month()->ofYear()->toInt());
         $this->assertSame(5, $point2->day()->ofMonth());
