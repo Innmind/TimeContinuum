@@ -8,7 +8,10 @@ use Innmind\BlackBox\{
     Set,
     Random,
 };
-use Innmind\TimeContinuum\PointInTime as Model;
+use Innmind\TimeContinuum\{
+    PointInTime as Model,
+    Format,
+};
 use Innmind\BlackBox\PHPUnit\Framework\TestCase;
 
 class PointInTimeTest extends TestCase
@@ -37,8 +40,8 @@ class PointInTimeTest extends TestCase
 
         foreach ($points->values(Random::default) as $point) {
             $this->assertGreaterThanOrEqual(
-                $start->milliseconds(),
-                $point->unwrap()->milliseconds(),
+                (int) $start->format(Format::of('U')),
+                (int) $point->unwrap()->format(Format::of('U')),
             );
         }
     }
@@ -53,8 +56,8 @@ class PointInTimeTest extends TestCase
 
         foreach ($points->values(Random::default) as $point) {
             $this->assertLessThanOrEqual(
-                $start->milliseconds(),
-                $point->unwrap()->milliseconds(),
+                (int) $start->format(Format::of('U')),
+                (int) $point->unwrap()->format(Format::of('U')),
             );
         }
     }

@@ -52,14 +52,6 @@ final class PointInTime
         );
     }
 
-    /**
-     * Since 1970-01-01T00:00:00+00:00
-     */
-    public function milliseconds(): int
-    {
-        return (int) $this->date->format('Uv');
-    }
-
     public function year(): Year
     {
         return Year::of((int) $this->date->format('Y'));
@@ -150,7 +142,10 @@ final class PointInTime
             return $this->highResolution->elapsedSince($point->highResolution);
         }
 
-        $milliseconds = $this->milliseconds() - $point->milliseconds();
+        $seconds = ((int) $this->date->format('U')) - ((int) $point->date->format('U'));
+        $milliseconds = $seconds * 1_000;
+        $milliseconds += $this->millisecond()->toInt();
+        $milliseconds -= $point->millisecond()->toInt();
         $microseconds = $milliseconds * 1_000;
         $microseconds += $this->microsecond()->toInt();
         $microseconds -= $point->microsecond()->toInt();

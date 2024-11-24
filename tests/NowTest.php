@@ -47,8 +47,6 @@ class NowTest extends TestCase
         //and the one in Now::__construct
         $this->assertTrue($point->millisecond()->toInt() >= $now - ($timestamp * 1000));
         $this->assertTrue($point->millisecond()->toInt() <= $now - ($timestamp * 1000) + 50);
-        $this->assertTrue($point->milliseconds() >= $now);
-        $this->assertTrue($point->milliseconds() <= $now + 50);
         $timezone = \date('P', $timestamp);
         $timezone = $timezone === '+00:00' ? 'Z' : $timezone;
         $this->assertSame($timezone, $point->offset()->toString());
@@ -80,7 +78,6 @@ class NowTest extends TestCase
         $this->assertNotSame($point->minute(), $point2->minute());
         $this->assertNotSame($point->second(), $point2->second());
         $this->assertNotSame($point->millisecond(), $point2->millisecond());
-        $this->assertSame($point->milliseconds(), $point2->milliseconds());
         $this->assertSame((int) $now->format('Y'), $point2->year()->toInt());
         $this->assertSame((int) $now->format('m'), $point2->month()->ofYear()->toInt());
         $this->assertSame((int) $now->format('d'), $point2->day()->ofMonth());
