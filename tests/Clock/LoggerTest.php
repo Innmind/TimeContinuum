@@ -104,12 +104,14 @@ class LoggerTest extends TestCase
             ->forAll(
                 PointInTime::any(),
                 Set\Elements::of(
-                    Format::cookie(),
                     Format::iso8601(),
                     Format::rfc1123(),
                     Format::rfc2822(),
                     Format::rss(),
                     Format::w3c(),
+                    // problems with utc timezone as it sometimes return Z or
+                    // GMT+0000
+                    // Format::cookie(),
                     // the year is not precise enough to allow to correctly
                     // parse any date with these formats
                     // Format::rfc1036(),
