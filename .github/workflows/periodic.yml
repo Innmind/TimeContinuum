@@ -1,0 +1,33 @@
+name: Periodic CI
+
+on:
+  schedule:
+    - cron: '0 1 * * 0'
+  push:
+    paths:
+      - '.github/workflows/periodic.yml'
+
+jobs:
+  blackbox:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        php-version: ['8.3']
+        dependency-versions: ['highest']
+    name: 'BlackBox'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+          extensions: mbstring, intl
+          coverage: none
+      - name: Composer
+        uses: "ramsey/composer-install@v3"
+        with:
+          dependency-versions: ${{ matrix.dependencies }}
+      - name: BlackBox
+        run: php blackbox.php ci
