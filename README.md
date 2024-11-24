@@ -34,7 +34,7 @@ $epoch = $clock->at(
 ); // Maybe<PointInTime>
 ```
 
-Here we reference 2 points in time, the first is the exact moment we call `now` down to the millisecond and the second one is the epoch time (you can verify it via `$epoch->milliseconds()` that returns `0`).
+Here we reference 2 points in time, the first is the exact moment we call `now` down to the millisecond and the second one is the epoch time.
 
 The method `at()` accepts any string that is allowed by `\DateTimeImmutable`.
 

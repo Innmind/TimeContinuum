@@ -92,16 +92,6 @@ $point->microsecond()->toInt();
 
 This returns an `int` between `#!php 0` and `#!php 999`.
 
-## Milliseconds from epoch
-
-Since `#!php '1970-01-01T00:00:00.000+00:00'`.
-
-```php
-$point->milliseconds();
-```
-
-This returns an `int` that will be negative if the point is before epoch.
-
 ## Offset
 
 ```php
