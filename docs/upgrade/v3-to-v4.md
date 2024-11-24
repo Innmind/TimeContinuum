@@ -81,7 +81,7 @@ These are the main changes, for an extensive list of changes go to the [changelo
     $clock->now()->timezone()->minutes();
     ```
 
-=== "Before"
+=== "After"
     ```php
     $clock->now()->offset()->hours();
     $clock->now()->offset()->minutes();
@@ -94,9 +94,9 @@ These are the main changes, for an extensive list of changes go to the [changelo
     $clock->now()->changeTimezone(new Earth\Timezone\UTC(2, 0));
     ```
 
-=== "Before"
+=== "After"
     ```php
-    $clock->now()->changeOffset(Offset::of(2, 0));
+    $clock->now()->changeOffset(Offset::plus(2, 0));
     ```
 
 ## Periods

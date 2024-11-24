@@ -62,7 +62,7 @@ use Innmind\TimeContinuum\{
 
 function foo(PointInTime $point)
 {
-    $point = $point->changeOffset(Offset::of(1, 0));
+    $point = $point->changeOffset(Offset::plus(1, 0));
 }
 ```
 

@@ -67,7 +67,7 @@ class NowTest extends TestCase
         $now = new \DateTimeImmutable;
         $now = $now->setTimezone(new \DateTimeZone('-02:30'));
         $point = PointInTime::now();
-        $point2 = $point->changeOffset(Offset::of(-2, 30));
+        $point2 = $point->changeOffset(Offset::minus(2, 30));
 
         $this->assertNotSame($point, $point2);
         $this->assertNotSame($point->year(), $point2->year());

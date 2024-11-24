@@ -24,18 +24,29 @@ final class Offset
      */
     public static function utc(): self
     {
-        return self::of(0, 0);
+        return self::plus(0, 0);
     }
 
     /**
      * @psalm-pure
      *
-     * @param int<-12, 14> $hours
+     * @param int<0, 14> $hours
      * @param int<0, 59> $minutes
      */
-    public static function of(int $hours, int $minutes = 0): self
+    public static function plus(int $hours, int $minutes = 0): self
     {
-        return new self($hours, $minutes, $hours > 0);
+        return new self($hours, $minutes, true);
+    }
+
+    /**
+     * @psalm-pure
+     *
+     * @param int<0, 12> $hours
+     * @param int<0, 59> $minutes
+     */
+    public static function minus(int $hours, int $minutes = 0): self
+    {
+        return new self(-$hours, $minutes, false);
     }
 
     /**
