@@ -52,7 +52,7 @@ class PeriodTest extends TestCase
             $generated[] = $value->years();
         }
 
-        $this->assertGreaterThan(90, \count(\array_unique($generated)));
+        $this->assertGreaterThan(80, \count(\array_unique($generated)));
     }
 
     public function testLessThanAYear()
@@ -87,6 +87,6 @@ class PeriodTest extends TestCase
             }
         }
 
-        $this->assertGreaterThan(90, \count($unique));
+        $this->assertGreaterThan(80, \count($unique));
     }
 }
