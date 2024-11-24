@@ -42,12 +42,4 @@ final class Hour
     {
         return $this->hour;
     }
-
-    /**
-     * @return non-empty-string
-     */
-    public function toString(): string
-    {
-        return (string) $this->hour;
-    }
 }

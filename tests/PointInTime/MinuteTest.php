@@ -14,6 +14,5 @@ class MinuteTest extends TestCase
 
         $this->assertSame(60, $minute->numberOfSeconds());
         $this->assertSame(13, $minute->toInt());
-        $this->assertSame('13', $minute->toString());
     }
 }

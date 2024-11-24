@@ -57,6 +57,12 @@
 - `Innmind\TimeContinuum\PointInTime\Month::toString()`
 - `Innmind\TimeContinuum\PointInTime\Day::weekNumber()`
 - `Innmind\TimeContinuum\PointInTime\Day::toString()`
+- `Innmind\TimeContinuum\PointInTime\Hour::toString()`
+- `Innmind\TimeContinuum\PointInTime\Microsecond::toString()`
+- `Innmind\TimeContinuum\PointInTime\Millisecond::toString()`
+- `Innmind\TimeContinuum\PointInTime\Minute::toString()`
+- `Innmind\TimeContinuum\PointInTime\Second::toString()`
+- `Innmind\TimeContinuum\PointInTime\Year::toString()`
 - `Innmind\TimeContinuum\ElapsedPeriod::maybe()`
 - `Innmind\TimeContinuum\ElapsedPeriod::ofPeriod()`
 

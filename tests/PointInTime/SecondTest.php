@@ -13,6 +13,5 @@ class SecondTest extends TestCase
         $second = Second::of(13);
 
         $this->assertSame(13, $second->toInt());
-        $this->assertSame('13', $second->toString());
     }
 }

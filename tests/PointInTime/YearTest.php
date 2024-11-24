@@ -15,7 +15,6 @@ class YearTest extends TestCase
         $this->assertSame(366, $year->numberOfDays());
         $this->assertSame(12, $year->numberOfMonths());
         $this->assertSame(2016, $year->toInt());
-        $this->assertSame('2016', $year->toString());
 
         $this->assertSame(365, Year::of(2017)->numberOfDays());
     }

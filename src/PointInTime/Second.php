@@ -34,12 +34,4 @@ final class Second
     {
         return $this->second;
     }
-
-    /**
-     * @return non-empty-string
-     */
-    public function toString(): string
-    {
-        return (string) $this->second;
-    }
 }

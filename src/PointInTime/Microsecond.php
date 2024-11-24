@@ -34,12 +34,4 @@ final class Microsecond
     {
         return $this->microsecond;
     }
-
-    /**
-     * @return non-empty-string
-     */
-    public function toString(): string
-    {
-        return (string) $this->microsecond;
-    }
 }

@@ -48,12 +48,4 @@ final class Year
     {
         return $this->year;
     }
-
-    /**
-     * @return non-empty-string
-     */
-    public function toString(): string
-    {
-        return (string) $this->year;
-    }
 }

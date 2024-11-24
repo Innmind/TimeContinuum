@@ -42,12 +42,4 @@ final class Minute
     {
         return $this->minute;
     }
-
-    /**
-     * @return non-empty-string
-     */
-    public function toString(): string
-    {
-        return (string) $this->minute;
-    }
 }
