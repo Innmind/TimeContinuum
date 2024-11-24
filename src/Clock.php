@@ -7,6 +7,7 @@ use Innmind\TimeContinuum\Clock\{
     Live,
     Frozen,
     Logger,
+    OfFormat,
 };
 use Innmind\Immutable\Maybe;
 use Psr\Log\LoggerInterface;
@@ -47,7 +48,7 @@ final class Clock
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      *
      * @param non-empty-string $date
      *
@@ -55,10 +56,14 @@ final class Clock
      */
     public function at(string $date, Format $format): Maybe
     {
-        /**
-         * @psalm-suppress ImpureVariable
-         * @psalm-suppress ImpurePropertyFetch
-         */
         return $this->implementation->at($date, $format);
+    }
+
+    /**
+     * @psalm-mutation-free
+     */
+    public function ofFormat(Format $format): OfFormat
+    {
+        return OfFormat::new($this, $format);
     }
 }

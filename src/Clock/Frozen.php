@@ -42,7 +42,7 @@ final class Frozen
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      *
      * @param non-empty-string $date
      *
@@ -50,10 +50,6 @@ final class Frozen
      */
     public function at(string $date, Format $format): Maybe
     {
-        /**
-         * @psalm-suppress ImpureVariable
-         * @psalm-suppress ImpurePropertyFetch
-         */
         return $this
             ->concrete
             ->at($date, $format)
