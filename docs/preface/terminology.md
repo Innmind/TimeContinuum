@@ -30,7 +30,7 @@ Due to politics a city may change its offset at any time (1). And for economic r
 1. This means some points in time don't exist in certain countries or exist twice.
 2. Usually they increase/decrease their offset by 1 or 2 hours.
 
-Because asking the offset for a timezone will yeild different results depending on when you ask for it, it's part of the world that changes. This means that timezones are handled at the [clock](#clock) level.
+Because asking the offset for a timezone will yield different results depending on when you ask for it, it's part of the world that changes. This means that timezones are handled at the [clock](#clock) level.
 
 ## Period
 
