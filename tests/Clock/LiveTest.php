@@ -45,7 +45,7 @@ class LiveTest extends TestCase
         $date = new \DateTimeImmutable('2016-10-08T16:08:30+02:00');
         $date = $date->setTimezone(new \DateTimeZone(\date('P'))); //system timezone
         $this->assertSame(
-            $date->format(\DateTime::ATOM),
+            $date->format('Y-m-d\TH:i:s.uP'),
             $point->toString(),
         );
     }
@@ -62,7 +62,7 @@ class LiveTest extends TestCase
         $date = new \DateTimeImmutable('2016-10-08T16:08:30+02:00');
         $date = $date->setTimezone(new \DateTimeZone(\date('P'))); //system timezone
         $this->assertSame(
-            $date->format(\DateTime::ATOM),
+            $date->format('Y-m-d\TH:i:s.uP'),
             $point->toString(),
         );
     }

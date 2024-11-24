@@ -197,7 +197,7 @@ final class PointInTime
 
     public function toString(): string
     {
-        return $this->date->format(\DateTime::ATOM);
+        return $this->date->format('Y-m-d\TH:i:s.uP');
     }
 
     /**
