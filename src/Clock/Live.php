@@ -51,7 +51,7 @@ final class Live
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      *
      * @param non-empty-string $date
      *
@@ -60,7 +60,6 @@ final class Live
     public function at(string $date, Format $format): Maybe
     {
         try {
-            /** @psalm-suppress ImpureMethodCall */
             $datetime = \DateTimeImmutable::createFromFormat($format->toString(), $date);
         } catch (\Throwable) {
             /** @var Maybe<PointInTime> */
@@ -77,10 +76,6 @@ final class Live
             return Maybe::nothing();
         }
 
-        /**
-         * @psalm-suppress ImpureVariable
-         * @psalm-suppress ImpurePropertyFetch
-         */
         return Maybe::just(PointInTime::at($datetime)->changeOffset($this->offset));
     }
 }

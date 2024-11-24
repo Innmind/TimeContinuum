@@ -49,7 +49,7 @@ final class Logger
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      *
      * @param non-empty-string $date
      *
@@ -57,10 +57,6 @@ final class Logger
      */
     public function at(string $date, Format $format): Maybe
     {
-        /**
-         * @psalm-suppress ImpureVariable
-         * @psalm-suppress ImpurePropertyFetch
-         */
         return $this
             ->clock
             ->at($date, $format)
