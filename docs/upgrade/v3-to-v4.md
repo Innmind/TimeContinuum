@@ -96,7 +96,7 @@ These are the main changes, for an extensive list of changes go to the [changelo
 
 === "Before"
     ```php
-    $clock->now()->changeOffset(Offset::of(2, 0));
+    $clock->now()->changeOffset(Offset::plus(2, 0));
     ```
 
 ## Periods

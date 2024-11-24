@@ -18,6 +18,8 @@
 - `Innmind\TimeContinuum\Period::millisecond()` named constructor
 - `Innmind\TimeContinuum\PointInTime::microsecond()`
 - `Innmind\TimeContinuum\Clock::ofFormat()`
+- `Innmind\TimeContinuum\Offset::plus()`
+- `Innmind\TimeContinuum\Offset::minus()`
 
 ### Changed
 
@@ -69,6 +71,7 @@
 - `Innmind\TimeContinuum\ElapsedPeriod::maybe()`
 - `Innmind\TimeContinuum\ElapsedPeriod::ofPeriod()`
 - `Innmind\TimeContinuum\PointInTime::milliseconds()`
+- `Innmind\TimeContinuum\Offset::of()`
 
 ## 3.4.1 - 2023-09-17
 

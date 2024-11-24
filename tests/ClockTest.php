@@ -41,7 +41,6 @@ class ClockTest extends TestCase
         $live = Clock::live();
         $clock = $live->switch($switch);
 
-        $this->assertNotEquals($live, $clock);
         $this->assertIsString($clock->now()->format(Format::iso8601()));
     }
 

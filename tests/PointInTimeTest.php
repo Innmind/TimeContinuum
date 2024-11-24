@@ -65,7 +65,7 @@ class PointInTimeTest extends TestCase
     public function testChangeOffset()
     {
         $point = PointInTime::at(new \DateTimeImmutable('2016-10-05T08:01:30.123+02:00'));
-        $point2 = $point->changeOffset(Offset::of(-2, 30));
+        $point2 = $point->changeOffset(Offset::minus(2, 30));
 
         $this->assertNotSame($point, $point2);
         $this->assertNotSame($point->year(), $point2->year());

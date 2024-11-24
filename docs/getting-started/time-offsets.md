@@ -22,7 +22,7 @@ use Innmind\TimeContinuum\{
 };
 
 $utc = Clock::live()->now();
-$newYork = $utc->changeOffset(Offset::of(-5));
+$newYork = $utc->changeOffset(Offset::minus(5));
 ```
 
 If `#!php $utc` represents `#!php '2024-11-24T14:25:00+00:00'` then `#!php $newYork` represents `#!php '2024-11-24T09:25:00-05:00'`.
