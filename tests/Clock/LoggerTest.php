@@ -77,7 +77,7 @@ class LoggerTest extends TestCase
 
                 $this->assertSame(
                     $point->toString(),
-                    $clock->at($point->toString())->match(
+                    $clock->at($point->format(Format::iso8601()), Format::iso8601())->match(
                         static fn($found) => $found->toString(),
                         static fn() => null,
                     ),
@@ -88,8 +88,8 @@ class LoggerTest extends TestCase
                         'debug',
                         'Asked time {date} ({format}) resolved to {point}',
                         [
-                            'date' => $point->toString(),
-                            'format' => 'unknown',
+                            'date' => $point->format(Format::iso8601()),
+                            'format' => Format::iso8601()->toString(),
                             'point' => $point->format(Format::iso8601()),
                         ],
                     ],

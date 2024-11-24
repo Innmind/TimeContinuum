@@ -37,7 +37,7 @@ class LiveTest extends TestCase
     {
         $this->assertInstanceOf(
             PointInTime::class,
-            $point = Clock::live()->at('2016-10-08T16:08:30+02:00')->match(
+            $point = Clock::live()->at('2016-10-08T16:08:30+02:00', Format::iso8601())->match(
                 static fn($point) => $point,
                 static fn() => null,
             ),

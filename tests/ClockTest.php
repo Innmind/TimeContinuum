@@ -107,7 +107,7 @@ class ClockTest extends TestCase
                 );
                 $this->assertSame(
                     $frozen->now()->toString(),
-                    $clock->at($point->toString())->match(
+                    $clock->at($point->format(Format::iso8601()), Format::iso8601())->match(
                         static fn($point) => $point->toString(),
                         static fn() => null,
                     ),
