@@ -156,7 +156,18 @@ final class PointInTime
             $microseconds += 1_000;
         }
 
-        if ($seconds < 0 || $milliseconds < 0) {
+        if ($milliseconds < 0) {
+            // This handles the case where any second diff is positive, but zero
+            // milliseconds and any microsecond diff.
+            // Duplication could be avoided by switching the 2 previous if but
+            // it would require to compute the number of seconds to subtract.
+            // The duplication seems more obvious to understand (at least for
+            // now).
+            $seconds -= 1;
+            $milliseconds += 1_000;
+        }
+
+        if ($seconds < 0) {
             throw new \RuntimeException(\sprintf(
                 'Negative period : %ss, %smillis, %smicros',
                 $seconds,
