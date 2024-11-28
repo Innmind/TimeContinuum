@@ -73,16 +73,16 @@ class SecondTest extends TestCase
     public function testAsElapsedPeriod()
     {
         $this->assertSame(
-            1000,
-            Period::second(1)->asElapsedPeriod()->milliseconds(),
+            1,
+            Period::second(1)->asElapsedPeriod()->asPeriod()->seconds(),
         );
         $this->assertSame(
-            2000,
-            Period::second(2)->asElapsedPeriod()->milliseconds(),
+            2,
+            Period::second(2)->asElapsedPeriod()->asPeriod()->seconds(),
         );
         $this->assertSame(
-            3000,
-            Period::second(3)->asElapsedPeriod()->milliseconds(),
+            3,
+            Period::second(3)->asElapsedPeriod()->asPeriod()->seconds(),
         );
     }
 

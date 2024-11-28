@@ -72,16 +72,16 @@ class MinuteTest extends TestCase
     public function testAsElapsedPeriod()
     {
         $this->assertSame(
-            60_000,
-            Period::minute(1)->asElapsedPeriod()->milliseconds(),
+            1,
+            Period::minute(1)->asElapsedPeriod()->asPeriod()->minutes(),
         );
         $this->assertSame(
-            120_000,
-            Period::minute(2)->asElapsedPeriod()->milliseconds(),
+            2,
+            Period::minute(2)->asElapsedPeriod()->asPeriod()->minutes(),
         );
         $this->assertSame(
-            180_000,
-            Period::minute(3)->asElapsedPeriod()->milliseconds(),
+            3,
+            Period::minute(3)->asElapsedPeriod()->asPeriod()->minutes(),
         );
     }
 

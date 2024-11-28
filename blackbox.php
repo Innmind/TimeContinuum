@@ -23,6 +23,7 @@ Application::new($argv)
                     ->dumpTo('coverage.clover')
                     ->enableWhen(true),
             )
+            ->scenariiPerProof(1_000),
     )
     ->tryToProve(static function() {
         yield from Load::everythingIn(__DIR__.'/proofs/')();

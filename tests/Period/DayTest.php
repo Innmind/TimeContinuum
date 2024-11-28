@@ -54,16 +54,16 @@ class DayTest extends TestCase
     public function testAsElapsedPeriod()
     {
         $this->assertSame(
-            86_400_000,
-            Period::day(1)->asElapsedPeriod()->milliseconds(),
+            1,
+            Period::day(1)->asElapsedPeriod()->asPeriod()->days(),
         );
         $this->assertSame(
-            172_800_000,
-            Period::day(2)->asElapsedPeriod()->milliseconds(),
+            2,
+            Period::day(2)->asElapsedPeriod()->asPeriod()->days(),
         );
         $this->assertSame(
-            259_200_000,
-            Period::day(3)->asElapsedPeriod()->milliseconds(),
+            3,
+            Period::day(3)->asElapsedPeriod()->asPeriod()->days(),
         );
     }
 }

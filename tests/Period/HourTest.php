@@ -68,16 +68,16 @@ class HourTest extends TestCase
     public function testAsElapsedPeriod()
     {
         $this->assertSame(
-            3_600_000,
-            Period::hour(1)->asElapsedPeriod()->milliseconds(),
+            1,
+            Period::hour(1)->asElapsedPeriod()->asPeriod()->hours(),
         );
         $this->assertSame(
-            7_200_000,
-            Period::hour(2)->asElapsedPeriod()->milliseconds(),
+            2,
+            Period::hour(2)->asElapsedPeriod()->asPeriod()->hours(),
         );
         $this->assertSame(
-            10_800_000,
-            Period::hour(3)->asElapsedPeriod()->milliseconds(),
+            3,
+            Period::hour(3)->asElapsedPeriod()->asPeriod()->hours(),
         );
     }
 

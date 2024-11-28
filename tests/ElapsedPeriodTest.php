@@ -13,35 +13,41 @@ class ElapsedPeriodTest extends TestCase
 {
     public function testInterface()
     {
-        $period = ElapsedPeriod::of(42);
+        $period = ElapsedPeriod::of(0, 0, 42);
 
-        $this->assertSame(0, $period->milliseconds());
-        $this->assertSame(42, $period->microseconds());
+        $this->assertTrue(
+            $period->equals(
+                Period::microsecond(42)->asElapsedPeriod(),
+            ),
+        );
 
-        $period = ElapsedPeriod::of(42_000);
+        $period = ElapsedPeriod::of(0, 42, 0);
 
-        $this->assertSame(42, $period->milliseconds());
-        $this->assertSame(42_000, $period->microseconds());
-    }
+        $this->assertTrue(
+            $period->equals(
+                Period::millisecond(42)->asElapsedPeriod(),
+            ),
+        );
 
-    public function testThrowWhenTryingToBuildANegativePeriod()
-    {
-        $this->expectException(\RuntimeException::class);
-        $this->expectExceptionMessage('-42');
+        $period = ElapsedPeriod::of(42, 0, 0);
 
-        ElapsedPeriod::of(-42);
+        $this->assertTrue(
+            $period->equals(
+                Period::second(42)->asElapsedPeriod(),
+            ),
+        );
     }
 
     public function testLongerThan()
     {
         $this->assertTrue(
-            ElapsedPeriod::of(42)->longerThan(
-                ElapsedPeriod::of(0),
+            ElapsedPeriod::of(0, 0, 42)->longerThan(
+                ElapsedPeriod::of(0, 0, 0),
             ),
         );
         $this->assertFalse(
-            ElapsedPeriod::of(42)->longerThan(
-                ElapsedPeriod::of(66),
+            ElapsedPeriod::of(0, 0, 42)->longerThan(
+                ElapsedPeriod::of(0, 0, 66),
             ),
         );
     }
@@ -49,13 +55,13 @@ class ElapsedPeriodTest extends TestCase
     public function testEquals()
     {
         $this->assertTrue(
-            ElapsedPeriod::of(42)->equals(
-                ElapsedPeriod::of(42),
+            ElapsedPeriod::of(0, 0, 42)->equals(
+                ElapsedPeriod::of(0, 0, 42),
             ),
         );
         $this->assertFalse(
-            ElapsedPeriod::of(42)->equals(
-                ElapsedPeriod::of(66),
+            ElapsedPeriod::of(0, 0, 42)->equals(
+                ElapsedPeriod::of(0, 0, 66),
             ),
         );
     }

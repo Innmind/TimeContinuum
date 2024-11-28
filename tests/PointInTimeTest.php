@@ -7,7 +7,6 @@ use Innmind\TimeContinuum\{
     PointInTime,
     Offset,
     Format,
-    ElapsedPeriod,
     PointInTime\Year,
     PointInTime\Month,
     PointInTime\Day,
@@ -89,10 +88,12 @@ class PointInTimeTest extends TestCase
     {
         $point = PointInTime::at(new \DateTimeImmutable('2016-10-05T08:01:30.123+02:00'));
         $point2 = PointInTime::at(new \DateTimeImmutable('2016-10-05T08:03:30.234+02:00'));
-        $elapsed = $point2->elapsedSince($point);
+        $elapsed = $point2->elapsedSince($point)->asPeriod();
 
-        $this->assertInstanceOf(ElapsedPeriod::class, $elapsed);
-        $this->assertSame(120111, $elapsed->milliseconds());
+        $this->assertSame(2, $elapsed->minutes());
+        $this->assertSame(0, $elapsed->seconds());
+        $this->assertSame(111, $elapsed->milliseconds());
+        $this->assertSame(0, $elapsed->microseconds());
     }
 
     public function testAheadOf()
