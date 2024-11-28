@@ -46,6 +46,15 @@ final class HighResolution
         return new self($seconds, $nanoseconds);
     }
 
+    public function aheadOf(self $other): bool
+    {
+        if ($this->seconds > $other->seconds) {
+            return true;
+        }
+
+        return $this->nanoseconds > $other->nanoseconds;
+    }
+
     public function elapsedSince(self $other): ElapsedPeriod
     {
         $seconds = $this->seconds - $other->seconds;
