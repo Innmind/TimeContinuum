@@ -143,14 +143,33 @@ final class PointInTime
         }
 
         $seconds = ((int) $this->date->format('U')) - ((int) $point->date->format('U'));
-        $milliseconds = $seconds * 1_000;
-        $milliseconds += $this->millisecond()->toInt();
-        $milliseconds -= $point->millisecond()->toInt();
-        $microseconds = $milliseconds * 1_000;
-        $microseconds += $this->microsecond()->toInt();
-        $microseconds -= $point->microsecond()->toInt();
+        $milliseconds = $this->millisecond()->toInt() - $point->millisecond()->toInt();
+        $microseconds = $this->microsecond()->toInt() - $point->microsecond()->toInt();
 
-        return ElapsedPeriod::of($microseconds);
+        if ($milliseconds < 0) {
+            $seconds -= 1;
+            $milliseconds += 1_000;
+        }
+
+        if ($microseconds < 0) {
+            $milliseconds -= 1;
+            $microseconds += 1_000;
+        }
+
+        if ($seconds < 0 || $milliseconds < 0) {
+            throw new \RuntimeException(\sprintf(
+                'Negative period : %ss, %smillis, %smicros',
+                $seconds,
+                $milliseconds,
+                $microseconds,
+            ));
+        }
+
+        return ElapsedPeriod::of(
+            $seconds,
+            $milliseconds,
+            $microseconds,
+        );
     }
 
     public function goBack(Period $period): self

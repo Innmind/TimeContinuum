@@ -458,13 +458,15 @@ final class Period
             throw new \LogicException('Months and years can not be converted to microseconds');
         }
 
-        $milliseconds = Period\Value::day->milliseconds($this->days()) +
-            Period\Value::hour->milliseconds($this->hours()) +
-            Period\Value::minute->milliseconds($this->minutes()) +
-            Period\Value::second->milliseconds($this->seconds()) +
-            $this->milliseconds();
-        $milliseconds *= 1_000;
+        $seconds = Period\Value::day->seconds($this->days()) +
+            Period\Value::hour->seconds($this->hours()) +
+            Period\Value::minute->seconds($this->minutes()) +
+            $this->second;
 
-        return ElapsedPeriod::of($milliseconds + $this->microseconds());
+        return ElapsedPeriod::of(
+            $seconds,
+            $this->millisecond,
+            $this->microsecond,
+        );
     }
 }

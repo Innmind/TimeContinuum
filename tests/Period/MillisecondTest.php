@@ -75,15 +75,15 @@ class MillisecondTest extends TestCase
     {
         $this->assertSame(
             1,
-            Period::millisecond(1)->asElapsedPeriod()->milliseconds(),
+            Period::millisecond(1)->asElapsedPeriod()->asPeriod()->milliseconds(),
         );
         $this->assertSame(
             2,
-            Period::millisecond(2)->asElapsedPeriod()->milliseconds(),
+            Period::millisecond(2)->asElapsedPeriod()->asPeriod()->milliseconds(),
         );
         $this->assertSame(
             3,
-            Period::millisecond(3)->asElapsedPeriod()->milliseconds(),
+            Period::millisecond(3)->asElapsedPeriod()->asPeriod()->milliseconds(),
         );
     }
 

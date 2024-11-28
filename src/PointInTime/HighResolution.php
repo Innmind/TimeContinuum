@@ -13,7 +13,7 @@ final class HighResolution
 {
     /**
      * @param int<0, max> $seconds
-     * @param int<0, max> $nanoseconds
+     * @param int<0, 999_999_999> $nanoseconds
      */
     private function __construct(
         private int $seconds,
@@ -28,7 +28,7 @@ final class HighResolution
     {
         /**
          * @var int<0, max> $seconds
-         * @var int<0, max> $nanoseconds
+         * @var int<0, 999_999_999> $nanoseconds
          */
         [$seconds, $nanoseconds] = \hrtime();
 
@@ -39,20 +39,41 @@ final class HighResolution
      * @internal
      *
      * @param int<0, max> $seconds
-     * @param int<0, max> $nanoseconds
+     * @param int<0, 999_999_999> $nanoseconds
      */
     public static function of(int $seconds, int $nanoseconds): self
     {
         return new self($seconds, $nanoseconds);
     }
 
-    public function elapsedSince(self $time): ElapsedPeriod
+    public function elapsedSince(self $other): ElapsedPeriod
     {
-        $seconds = $this->seconds - $time->seconds;
-        $nanoseconds = $this->nanoseconds - $time->nanoseconds;
+        $seconds = $this->seconds - $other->seconds;
+        $nanoseconds = $this->nanoseconds - $other->nanoseconds;
 
-        $microseconds = ($seconds * 1_000_000) + (int) ($nanoseconds / 1_000);
+        if ($nanoseconds < 0) {
+            $seconds -= 1;
+            $nanoseconds += 1_000_000_000;
+        }
 
-        return ElapsedPeriod::of($microseconds);
+        /** @var int<0, 999> */
+        $microseconds = ((int) ($nanoseconds / 1_000)) % 1_000;
+        /** @var int<0, 999> */
+        $milliseconds = ((int) ($nanoseconds / 1_000_000)) % 1_000;
+
+        if ($seconds < 0) {
+            throw new \RuntimeException(\sprintf(
+                'Negative period : %ss, %smillis, %smicros',
+                $seconds,
+                $milliseconds,
+                $microseconds,
+            ));
+        }
+
+        return ElapsedPeriod::of(
+            $seconds,
+            $milliseconds,
+            $microseconds,
+        );
     }
 }

@@ -20,6 +20,8 @@
 - `Innmind\TimeContinuum\Clock::ofFormat()`
 - `Innmind\TimeContinuum\Offset::plus()`
 - `Innmind\TimeContinuum\Offset::minus()`
+- `Innmind\TimeContinuum\ElapsedPeriod::asPeriod()`
+- `Innmind\TimeContinuum\Period\Value::seconds()`
 
 ### Changed
 
@@ -72,6 +74,9 @@
 - `Innmind\TimeContinuum\ElapsedPeriod::ofPeriod()`
 - `Innmind\TimeContinuum\PointInTime::milliseconds()`
 - `Innmind\TimeContinuum\Offset::of()`
+- `Innmind\TimeContinuum\ElapsedPeriod::milliseconds()`
+- `Innmind\TimeContinuum\Period\Value::second`
+- `Innmind\TimeContinuum\Period\Value::milliseconds()`
 
 ## 3.4.1 - 2023-09-17
 

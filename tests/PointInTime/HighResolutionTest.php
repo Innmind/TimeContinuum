@@ -13,7 +13,10 @@ class HighResolutionTest extends TestCase
         $started = HighResolution::of(1, 1_000_000);
         $end = HighResolution::of(1, 2_000_000);
 
-        $this->assertSame(1, $end->elapsedSince($started)->milliseconds());
+        $period = $end->elapsedSince($started)->asPeriod();
+        $this->assertSame(0, $period->seconds());
+        $this->assertSame(1, $period->milliseconds());
+        $this->assertSame(0, $period->microseconds());
     }
 
     public function testDiffLessThanOneSecondButNotInSameSecond()
@@ -21,7 +24,10 @@ class HighResolutionTest extends TestCase
         $started = HighResolution::of(1, 2_000_000);
         $end = HighResolution::of(2, 1_000_000);
 
-        $this->assertSame(999, $end->elapsedSince($started)->milliseconds());
+        $period = $end->elapsedSince($started)->asPeriod();
+        $this->assertSame(0, $period->seconds());
+        $this->assertSame(999, $period->milliseconds());
+        $this->assertSame(0, $period->microseconds());
     }
 
     public function testDiffMoreThanOneSecond()
@@ -29,7 +35,10 @@ class HighResolutionTest extends TestCase
         $started = HighResolution::of(1, 2_000_000);
         $end = HighResolution::of(2, 3_000_000);
 
-        $this->assertSame(1001, $end->elapsedSince($started)->milliseconds());
+        $period = $end->elapsedSince($started)->asPeriod();
+        $this->assertSame(1, $period->seconds());
+        $this->assertSame(1, $period->milliseconds());
+        $this->assertSame(0, $period->microseconds());
     }
 
     public function testDiffMoreThanMultipleSeconds()
@@ -37,7 +46,10 @@ class HighResolutionTest extends TestCase
         $started = HighResolution::of(1, 2_000_000);
         $end = HighResolution::of(3, 3_000_000);
 
-        $this->assertSame(2001, $end->elapsedSince($started)->milliseconds());
+        $period = $end->elapsedSince($started)->asPeriod();
+        $this->assertSame(2, $period->seconds());
+        $this->assertSame(1, $period->milliseconds());
+        $this->assertSame(0, $period->microseconds());
     }
 
     public function testDiffMoreThanMultipleSeconds2()
@@ -45,7 +57,10 @@ class HighResolutionTest extends TestCase
         $started = HighResolution::of(1, 2_000_000);
         $end = HighResolution::of(3, 1_000_000);
 
-        $this->assertSame(1999, $end->elapsedSince($started)->milliseconds());
+        $period = $end->elapsedSince($started)->asPeriod();
+        $this->assertSame(1, $period->seconds());
+        $this->assertSame(999, $period->milliseconds());
+        $this->assertSame(0, $period->microseconds());
     }
 
     public function test1()
@@ -53,7 +68,8 @@ class HighResolutionTest extends TestCase
         $started = HighResolution::of(684461, 547614375);
         $end = HighResolution::of(684462, 602541);
 
-        $this->assertSame(452, $end->elapsedSince($started)->milliseconds());
-        $this->assertSame(452989, $end->elapsedSince($started)->microseconds());
+        $period = $end->elapsedSince($started)->asPeriod();
+        $this->assertSame(452, $period->milliseconds());
+        $this->assertSame(988, $period->microseconds());
     }
 }

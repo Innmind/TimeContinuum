@@ -95,7 +95,11 @@ class NowTest extends TestCase
 
         $this->assertInstanceOf(ElapsedPeriod::class, $elapsed);
         //make sure there's at least 1 second elapsed due to the sleep()
-        $this->assertTrue(1000 <= $elapsed->milliseconds());
+        $this->assertTrue(
+            $elapsed->longerThan(
+                Period::second(1)->asElapsedPeriod(),
+            ),
+        );
     }
 
     public function testAheadOf()

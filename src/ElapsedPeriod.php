@@ -9,14 +9,24 @@ namespace Innmind\TimeContinuum;
 final class ElapsedPeriod
 {
     /** @var int<0, max> */
+    private int $seconds;
+    /** @var int<0, 999> */
+    private int $milliseconds;
+    /** @var int<0, 999> */
     private int $microseconds;
 
-    private function __construct(int $microseconds)
-    {
-        if ($microseconds < 0) {
-            throw new \RuntimeException((string) $microseconds);
-        }
-
+    /**
+     * @param int<0, max> $seconds
+     * @param int<0, 999> $milliseconds
+     * @param int<0, 999> $microseconds
+     */
+    private function __construct(
+        int $seconds,
+        int $milliseconds,
+        int $microseconds,
+    ) {
+        $this->seconds = $seconds;
+        $this->milliseconds = $milliseconds;
         $this->microseconds = $microseconds;
     }
 
@@ -24,37 +34,42 @@ final class ElapsedPeriod
      * @psalm-pure
      * @internal
      *
-     * @throws \RuntimeException
+     * @param int<0, max> $seconds
+     * @param int<0, 999> $milliseconds
+     * @param int<0, 999> $microseconds
      */
-    public static function of(int $microseconds): self
-    {
-        return new self($microseconds);
-    }
-
-    /**
-     * @return int<0, max>
-     */
-    public function milliseconds(): int
-    {
-        /** @var int<0, max> */
-        return (int) ($this->microseconds / 1_000);
-    }
-
-    /**
-     * @return int<0, max>
-     */
-    public function microseconds(): int
-    {
-        return $this->microseconds;
+    public static function of(
+        int $seconds,
+        int $milliseconds,
+        int $microseconds,
+    ): self {
+        return new self($seconds, $milliseconds, $microseconds);
     }
 
     public function longerThan(self $period): bool
     {
+        if ($this->seconds > $period->seconds) {
+            return true;
+        }
+
+        if ($this->milliseconds > $period->milliseconds) {
+            return true;
+        }
+
         return $this->microseconds > $period->microseconds;
     }
 
     public function equals(self $period): bool
     {
-        return $this->microseconds === $period->microseconds;
+        return $this->seconds === $period->seconds &&
+            $this->milliseconds === $period->milliseconds &&
+            $this->microseconds === $period->microseconds;
+    }
+
+    public function asPeriod(): Period
+    {
+        return Period::second($this->seconds)
+            ->add(Period::millisecond($this->milliseconds))
+            ->add(Period::microsecond($this->microseconds));
     }
 }

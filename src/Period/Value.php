@@ -8,22 +8,24 @@ namespace Innmind\TimeContinuum\Period;
  */
 enum Value
 {
-    case second;
     case minute;
     case hour;
     case day;
 
     /**
-     * Returns the number of milliseconds contained in the number of seconds,
-     * minutes, hours and days
+     * Returns the number of seconds contained in the number of  minutes, hours
+     * and days
+     *
+     * @param int<0, max> $number
+     *
+     * @return int<0, max>
      */
-    public function milliseconds(int $number): int
+    public function seconds(int $number): int
     {
         return match ($this) {
-            self::second => $number * 1000,
-            self::minute => $number * self::second->milliseconds(60),
-            self::hour => $number * self::minute->milliseconds(60),
-            self::day => $number * self::hour->milliseconds(24),
+            self::minute => $number * 60,
+            self::hour => $number * self::minute->seconds(60),
+            self::day => $number * self::hour->seconds(24),
         };
     }
 }
