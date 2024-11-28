@@ -134,3 +134,22 @@ These are the main changes, for an extensive list of changes go to the [changelo
     ```php
     $clock->now()->format(Format::iso8601());
     ```
+
+## Elapsed periods
+
+=== "Before"
+    ```php
+    $elapsed = /* any instance of ElapsedPeriod */
+    $milliseconds = $elapsed->milliseconds();
+    ```
+
+=== "After"
+    ```php
+    $elapsed = /* any instance of ElapsedPeriod */
+    $period = $elapsed->asPeriod();
+    $milliseconds = Period\Value::day->seconds($period->days());
+    $milliseconds += Period\Value::hour->seconds($period->hours());
+    $milliseconds += Period\Value::minute->seconds($period->minutes());
+    $milliseconds *= 1_000;
+    $milliseconds += $period->milliseconds();
+    ```

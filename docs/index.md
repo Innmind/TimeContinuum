@@ -26,12 +26,15 @@ It achieves this via:
     $start = $clock->now();
     // do some stuff
     $end = $clock->now();
+    $took = $end
+        ->elapsedSince($start)
+        ->asPeriod();
 
     \printf(
-        'The script ended at %s and it took %s microsecond(s).',
+        'The script ended at %s and it took %s second(s), %s millisecond(s) %s microsecond(s).',
         $end->format(Format::iso8601()),
-        $end
-            ->elapsedSince($start)
-            ->microseconds(),
+        $took->seconds(),
+        $took->milliseconds(),
+        $took->microseconds(),
     );
     ```
