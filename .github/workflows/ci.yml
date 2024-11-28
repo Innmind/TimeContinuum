@@ -10,10 +10,10 @@ jobs:
         os: [ubuntu-latest, macOS-latest]
         php-version: ['8.2', '8.3']
         dependencies: ['lowest', 'highest']
-    name: 'PHPUnit'
+    name: 'BlackBox'
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
@@ -21,12 +21,14 @@ jobs:
           extensions: mbstring, intl
           coverage: xdebug
       - name: Composer
-        uses: "ramsey/composer-install@v2"
+        uses: "ramsey/composer-install@v3"
         with:
           dependency-versions: ${{ matrix.dependencies }}
-      - name: PHPUnit
-        run: vendor/bin/phpunit --coverage-clover=coverage.clover
-      - uses: codecov/codecov-action@v1
+      - name: BlackBox
+        run: php blackbox.php
+        env:
+          ENABLE_COVERAGE: 'true'
+      - uses: codecov/codecov-action@v4
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
   psalm:
@@ -38,14 +40,14 @@ jobs:
     name: 'Psalm'
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-version }}
           extensions: mbstring, intl
       - name: Composer
-        uses: "ramsey/composer-install@v2"
+        uses: "ramsey/composer-install@v3"
         with:
           dependency-versions: ${{ matrix.dependencies }}
       - name: Psalm
@@ -58,13 +60,13 @@ jobs:
     name: 'CS'
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-version }}
           extensions: mbstring, intl
       - name: Composer
-        uses: "ramsey/composer-install@v2"
+        uses: "ramsey/composer-install@v3"
       - name: CS
         run: vendor/bin/php-cs-fixer fix --diff --dry-run

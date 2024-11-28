@@ -3,39 +3,306 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum;
 
-use Innmind\TimeContinuum\Clock\{
-    Year,
-    Month,
-    Day,
-    Hour,
-    Minute,
-    Second,
-    Millisecond,
+use Innmind\TimeContinuum\{
+    PointInTime\Year,
+    PointInTime\Month,
+    PointInTime\Day,
+    PointInTime\Hour,
+    PointInTime\Minute,
+    PointInTime\Second,
+    PointInTime\Millisecond,
+    PointInTime\Microsecond,
+    PointInTime\HighResolution,
 };
 
 /**
  * @psalm-immutable
  */
-interface PointInTime
+final class PointInTime
 {
+    private function __construct(
+        private \DateTimeImmutable $date,
+        private ?HighResolution $highResolution,
+    ) {
+    }
+
     /**
-     * Since 1970-01-01T00:00:00+00:00
+     * @psalm-pure
+     * @internal
      */
-    public function milliseconds(): int;
-    public function year(): Year;
-    public function month(): Month;
-    public function day(): Day;
-    public function hour(): Hour;
-    public function minute(): Minute;
-    public function second(): Second;
-    public function millisecond(): Millisecond;
-    public function format(Format $format): string;
-    public function changeTimezone(Timezone $zone): self;
-    public function timezone(): Timezone;
-    public function elapsedSince(self $point): ElapsedPeriod;
-    public function goBack(Period $period): self;
-    public function goForward(Period $period): self;
-    public function equals(self $point): bool;
-    public function aheadOf(self $point): bool;
-    public function toString(): string;
+    public static function at(\DateTimeImmutable $date): self
+    {
+        return new self(
+            $date,
+            null,
+        );
+    }
+
+    /**
+     * @internal
+     */
+    public static function now(): self
+    {
+        $now = new \DateTimeImmutable('now');
+        $highResolution = HighResolution::now();
+
+        return new self(
+            $now,
+            $highResolution,
+        );
+    }
+
+    public function year(): Year
+    {
+        return Year::of((int) $this->date->format('Y'));
+    }
+
+    public function month(): Month
+    {
+        return Month::of(
+            $this->year(),
+            Calendar\Month::of((int) $this->date->format('n')),
+        );
+    }
+
+    public function day(): Day
+    {
+        /** @var int<1, 31> */
+        $day = (int) $this->date->format('j');
+
+        return Day::of(
+            $this->year(),
+            $this->month(),
+            $day,
+        );
+    }
+
+    public function hour(): Hour
+    {
+        /** @var int<0, 23> */
+        $hour = (int) $this->date->format('G');
+
+        return Hour::of($hour);
+    }
+    public function minute(): Minute
+    {
+        /** @var int<0, 59> */
+        $minute = (int) $this->date->format('i');
+
+        return Minute::of($minute);
+    }
+
+    public function second(): Second
+    {
+        /** @var int<0, 59> */
+        $second = (int) $this->date->format('s');
+
+        return Second::of($second);
+    }
+
+    public function millisecond(): Millisecond
+    {
+        /** @var int<0, 999> */
+        $millisecond = (int) $this->date->format('v');
+
+        return Millisecond::of($millisecond);
+    }
+
+    public function microsecond(): Microsecond
+    {
+        /** @var int<0, 999> */
+        $microsecond = ((int) $this->date->format('u')) % 1000;
+
+        return Microsecond::of($microsecond);
+    }
+
+    public function format(Format $format): string
+    {
+        return $this->date->format($format->toString());
+    }
+
+    public function changeOffset(Offset $offset): self
+    {
+        return new self(
+            $this->date->setTimezone(
+                new \DateTimeZone($offset->toString()),
+            ),
+            $this->highResolution,
+        );
+    }
+
+    public function offset(): Offset
+    {
+        return Offset::from($this->date->format('P'));
+    }
+
+    public function elapsedSince(self $point): ElapsedPeriod
+    {
+        if (!\is_null($this->highResolution) && !\is_null($point->highResolution)) {
+            return $this->highResolution->elapsedSince($point->highResolution);
+        }
+
+        $seconds = ((int) $this->date->format('U')) - ((int) $point->date->format('U'));
+        $milliseconds = $this->millisecond()->toInt() - $point->millisecond()->toInt();
+        $microseconds = $this->microsecond()->toInt() - $point->microsecond()->toInt();
+
+        if ($milliseconds < 0) {
+            $seconds -= 1;
+            $milliseconds += 1_000;
+        }
+
+        if ($microseconds < 0) {
+            $milliseconds -= 1;
+            $microseconds += 1_000;
+        }
+
+        if ($milliseconds < 0) {
+            // This handles the case where any second diff is positive, but zero
+            // milliseconds and any microsecond diff.
+            // Duplication could be avoided by switching the 2 previous if but
+            // it would require to compute the number of seconds to subtract.
+            // The duplication seems more obvious to understand (at least for
+            // now).
+            $seconds -= 1;
+            $milliseconds += 1_000;
+        }
+
+        if ($seconds < 0) {
+            throw new \RuntimeException(\sprintf(
+                'Negative period : %ss, %smillis, %smicros',
+                $seconds,
+                $milliseconds,
+                $microseconds,
+            ));
+        }
+
+        return ElapsedPeriod::of(
+            $seconds,
+            $milliseconds,
+            $microseconds,
+        );
+    }
+
+    public function goBack(Period $period): self
+    {
+        $interval = self::dateInterval($period);
+
+        if (\is_null($interval)) {
+            return $this;
+        }
+
+        return new self(
+            $this->date->sub($interval),
+            null,
+        );
+    }
+
+    public function goForward(Period $period): self
+    {
+        $interval = self::dateInterval($period);
+
+        if (\is_null($interval)) {
+            return $this;
+        }
+
+        return new self(
+            $this->date->add($interval),
+            null,
+        );
+    }
+
+    public function equals(self $point): bool
+    {
+        $format = Format::of('Y-m-dTH:i:s.u');
+        $self = $this->changeOffset(Offset::utc())->format($format);
+        $other = $point->changeOffset(Offset::utc())->format($format);
+
+        return $self === $other;
+    }
+
+    public function aheadOf(self $point): bool
+    {
+        if (!\is_null($this->highResolution) && !\is_null($point->highResolution)) {
+            return $this->highResolution->aheadOf($point->highResolution);
+        }
+
+        return $this->date > $point->date;
+    }
+
+    public function toString(): string
+    {
+        return $this->date->format('Y-m-d\TH:i:s.uP');
+    }
+
+    /**
+     * @psalm-pure
+     */
+    private static function dateInterval(Period $period): ?\DateInterval
+    {
+        /** @var list<non-empty-string> */
+        $parts = [];
+
+        if ($period->years() > 0) {
+            $parts[] = \sprintf(
+                '%s years',
+                $period->years(),
+            );
+        }
+
+        if ($period->months() > 0) {
+            $parts[] = \sprintf(
+                '%s months',
+                $period->months(),
+            );
+        }
+
+        if ($period->days() > 0) {
+            $parts[] = \sprintf(
+                '%s days',
+                $period->days(),
+            );
+        }
+
+        if ($period->hours() > 0) {
+            $parts[] = \sprintf(
+                '%s hours',
+                $period->hours(),
+            );
+        }
+
+        if ($period->minutes() > 0) {
+            $parts[] = \sprintf(
+                '%s minutes',
+                $period->minutes(),
+            );
+        }
+
+        if ($period->seconds() > 0) {
+            $parts[] = \sprintf(
+                '%s seconds',
+                $period->seconds(),
+            );
+        }
+
+        if ($period->milliseconds() > 0) {
+            $parts[] = \sprintf(
+                '%s milliseconds',
+                $period->milliseconds(),
+            );
+        }
+
+        if ($period->microseconds() > 0) {
+            $parts[] = \sprintf(
+                '%s microseconds',
+                $period->microseconds(),
+            );
+        }
+
+        if (\count($parts) === 0) {
+            return null;
+        }
+
+        /** @psalm-suppress ImpureMethodCall */
+        return \DateInterval::createFromDateString(\implode(' + ', $parts));
+    }
 }
