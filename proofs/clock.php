@@ -141,4 +141,33 @@ return static function() {
             );
         },
     );
+
+    yield proof(
+        'Each call to Clock::now() is ahead of the previous',
+        given(Set\Nullable::of(Set\Integers::between(1, 2_000_000))), // up to 2 seconds
+        static function($assert, $microsecond) {
+            $clock = Clock::live();
+            $start = $clock->now();
+
+            if (\is_int($microsecond)) {
+                \usleep($microsecond);
+            }
+
+            $assert->true(
+                $clock->now()->aheadOf(
+                    $start,
+                ),
+            );
+        },
+    );
+
+    yield test(
+        'Clock::now() is equal to iteself',
+        static function($assert) {
+            $clock = Clock::live();
+            $now = $clock->now();
+
+            $assert->true($now->equals($now));
+        },
+    );
 };
