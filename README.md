@@ -40,4 +40,4 @@ The method `at()` accepts any string that is allowed by `\DateTimeImmutable`.
 
 ## Documentation
 
-Full documentation is available at <http://innmind.org/TimeContinuum/>.
+Full documentation is available at <https://innmind.org/TimeContinuum/>.
