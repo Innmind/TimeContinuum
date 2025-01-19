@@ -110,11 +110,11 @@ class NowTest extends TestCase
 
         $this->assertTrue(
             $point2->aheadOf($point),
-            $point->format(Format::iso8601()).' '.$point2->format(Format::iso8601()),
+            $point->format(Format::of('Y-m-d\TH:i:s.uP')).' '.$point2->format(Format::of('Y-m-d\TH:i:s.uP')),
         );
         $this->assertFalse(
             $point->aheadOf($point2),
-            $point->format(Format::iso8601()).' '.$point2->format(Format::iso8601()),
+            $point->format(Format::of('Y-m-d\TH:i:s.uP')).' '.$point2->format(Format::of('Y-m-d\TH:i:s.uP')),
         );
     }
 
