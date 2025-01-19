@@ -16,7 +16,7 @@ final class Year
     {
         $this->year = $year;
         /** @var 365|366 */
-        $this->days = (int) \date('z', \mktime(0, 0, 0, 12, 31, $year)) + 1;
+        $this->days = ((int) (new \DateTimeImmutable("{$year}-12-31T00:00:00"))->format('z')) + 1;
     }
 
     /**

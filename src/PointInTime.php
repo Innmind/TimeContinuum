@@ -59,22 +59,12 @@ final class PointInTime
 
     public function month(): Month
     {
-        return Month::of(
-            $this->year(),
-            Calendar\Month::of((int) $this->date->format('n')),
-        );
+        return Month::of($this->date);
     }
 
     public function day(): Day
     {
-        /** @var int<1, 31> */
-        $day = (int) $this->date->format('j');
-
-        return Day::of(
-            $this->year(),
-            $this->month(),
-            $day,
-        );
+        return Day::of($this->date);
     }
 
     public function hour(): Hour
