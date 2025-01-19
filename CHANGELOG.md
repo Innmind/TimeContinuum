@@ -1,5 +1,12 @@
 # Changelog
 
+## [Unreleased]
+
+### Fixed
+
+- Support for PHP `8.4`
+- An error were `Innmind\TimeContinuum\MoveEndOfMonth` would change the month on leap years
+
 ## 4.0.0 - 2024-11-28
 
 ## Added

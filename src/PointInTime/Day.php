@@ -16,29 +16,24 @@ final class Day
     /** @var int<0, 365> */
     private int $ofYear;
 
-    /**
-     * @param int<1, 31> $day
-     */
-    private function __construct(Year $year, Month $month, int $day)
+    private function __construct(\DateTimeImmutable $date)
     {
+        /** @var int<1, 31> */
+        $day = (int) $date->format('j');
+
         $this->day = $day;
-        $this->week = Calendar\Day::of((int) \date(
-            'w',
-            $time = \mktime(0, 0, 0, $month->ofYear()->toInt(), $day, $year->toInt()),
-        ));
+        $this->week = Calendar\Day::of((int) $date->format('w'));
         /** @var int<0, 365> */
-        $this->ofYear = (int) \date('z', $time);
+        $this->ofYear = (int) $date->format('z');
     }
 
     /**
      * @psalm-pure
      * @internal
-     *
-     * @param int<1, 31> $day
      */
-    public static function of(Year $year, Month $month, int $day): self
+    public static function of(\DateTimeImmutable $date): self
     {
-        return new self($year, $month, $day);
+        return new self($date);
     }
 
     public function ofWeek(): Calendar\Day

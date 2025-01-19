@@ -14,23 +14,20 @@ final class Month
     /** @var int<28, 31> */
     private int $days;
 
-    private function __construct(Year $year, Calendar\Month $month)
+    private function __construct(\DateTimeImmutable $date)
     {
-        $this->month = $month;
+        $this->month = Calendar\Month::of((int) $date->format('n'));
         /** @var int<28, 31> */
-        $this->days = (int) \date(
-            't',
-            \mktime(0, 0, 0, $month->toInt(), 1, $year->toInt()),
-        );
+        $this->days = (int) $date->format('t');
     }
 
     /**
      * @psalm-pure
      * @internal
      */
-    public static function of(Year $year, Calendar\Month $month): self
+    public static function of(\DateTimeImmutable $date): self
     {
-        return new self($year, $month);
+        return new self($date);
     }
 
     /**
