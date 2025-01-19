@@ -303,6 +303,6 @@ final class PointInTime
         }
 
         /** @psalm-suppress ImpureMethodCall */
-        return \DateInterval::createFromDateString(\implode(' + ', $parts));
+        return \DateInterval::createFromDateString(\implode(' + ', $parts)) ?: null;
     }
 }
