@@ -9,25 +9,9 @@ on:
 
 jobs:
   blackbox:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-        php-version: ['8.3']
-        dependency-versions: ['highest']
-    name: 'BlackBox'
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: ${{ matrix.php-version }}
-          extensions: mbstring, intl
-          coverage: none
-      - name: Composer
-        uses: "ramsey/composer-install@v3"
-        with:
-          dependency-versions: ${{ matrix.dependencies }}
-      - name: BlackBox
-        run: php blackbox.php ci
+    uses: innmind/github-workflows/.github/workflows/coverage.yml@main
+    secrets: inherit
+    with:
+      tags: ci
+      os: ubuntu-latest
+      php-version: '8.3'
