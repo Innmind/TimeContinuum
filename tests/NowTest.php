@@ -108,8 +108,14 @@ class NowTest extends TestCase
         \sleep(1);
         $point2 = PointInTime::now();
 
-        $this->assertTrue($point2->aheadOf($point));
-        $this->assertFalse($point->aheadOf($point2));
+        $this->assertTrue(
+            $point2->aheadOf($point),
+            $point->format(Format::iso8601()).' '.$point2->format(Format::iso8601()),
+        );
+        $this->assertFalse(
+            $point->aheadOf($point2),
+            $point->format(Format::iso8601()).' '.$point2->format(Format::iso8601()),
+        );
     }
 
     public function testEquals()
