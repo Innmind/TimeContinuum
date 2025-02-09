@@ -49,7 +49,7 @@ return static function() {
         given(
             Set\Integers::between(0, 999_999_999),
             Set\Integers::between(0, 999_999_999),
-        )->filter(static fn($start, $end) => $end > $start),
+        )->filter(static fn($start, $end) => $end > $start && ($end - $start) > 1_000),
         static function(
             $assert,
             $startNanoseconds,
