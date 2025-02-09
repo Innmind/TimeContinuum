@@ -20,7 +20,7 @@ return static function() {
             $assert->true($end->aheadOf($start));
             $assert->false($start->aheadOf($end));
         },
-    )->tag(\Innmind\BlackBox\Tag::wip);
+    );
 
     yield proof(
         'HighResolution::aheadOf() in same second',
@@ -36,5 +36,5 @@ return static function() {
             $assert->true($end->aheadOf($start));
             $assert->false($start->aheadOf($end));
         },
-    )->tag(\Innmind\BlackBox\Tag::wip);
+    );
 };
