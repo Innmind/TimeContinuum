@@ -52,6 +52,10 @@ final class HighResolution
             return true;
         }
 
+        if ($this->seconds < $other->seconds) {
+            return false;
+        }
+
         return $this->nanoseconds > $other->nanoseconds;
     }
 
