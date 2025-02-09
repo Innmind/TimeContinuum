@@ -10,7 +10,7 @@ use Innmind\BlackBox\Set;
 
 return static function() {
     yield proof(
-        'End of day',
+        'Start of month',
         given(Set\Either::any(
             PointInTime::any(),
             Set\Call::of(static fn() => Clock::live()->now()),
