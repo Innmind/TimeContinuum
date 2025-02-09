@@ -1,5 +1,11 @@
 # Changelog
 
+## 4.0.2 - 2025-02-09
+
+### Fixed
+
+- When comparing 2 high resolution points in time, if the elapsed time between the 2 is higher than a second it could return that the start point is ahead of the end one.
+
 ## 4.0.1 - 2025-01-19
 
 ### Fixed
