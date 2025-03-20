@@ -1,5 +1,11 @@
 # Changelog
 
+## [Unreleased]
+
+### Added
+
+- Support for `innmind/black-box` `6`
+
 ## 3.4.1 - 2023-09-17
 
 ### Fixed
