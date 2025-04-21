@@ -4,6 +4,7 @@ declare(strict_types = 1);
 use Innmind\TimeContinuum\{
     PointInTime\HighResolution,
     Period,
+    ElapsedPeriod,
 };
 use Fixtures\Innmind\TimeContinuum as Fixtures;
 use Innmind\BlackBox\Set;
@@ -144,6 +145,30 @@ return static function() {
             $assert->throws(
                 static fn() => $start->elapsedSince($end),
             );
+        },
+    );
+
+    yield test(
+        'Regression elapsed period',
+        static function($assert) {
+            $before = ElapsedPeriod::of(1, 987, 564);
+            $threshold = ElapsedPeriod::of(2, 0, 0);
+            $after = ElapsedPeriod::of(2, 40, 375);
+
+            $assert->false($before->longerThan($threshold));
+            $assert->true($after->longerThan($threshold));
+
+            $before = ElapsedPeriod::of(1, 0, 0);
+            $threshold = ElapsedPeriod::of(2, 0, 0);
+            $after = ElapsedPeriod::of(2, 0, 1);
+
+            $assert->false($before->longerThan($threshold));
+            $assert->true($after->longerThan($threshold));
+
+            $threshold = ElapsedPeriod::of(2, 2, 0);
+            $after = ElapsedPeriod::of(2, 1, 1);
+
+            $assert->false($after->longerThan($threshold));
         },
     );
 };
