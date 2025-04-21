@@ -1,5 +1,11 @@
 # Changelog
 
+## [Unreleased]
+
+### Fixed
+
+- When within the same unit of time (seconds or milliseconds) 2 elapsed periods falsely reported than one was longer than the other.
+
 ## 4.0.2 - 2025-02-09
 
 ### Fixed
