@@ -52,8 +52,16 @@ final class ElapsedPeriod
             return true;
         }
 
+        if ($period->seconds > $this->seconds) {
+            return false;
+        }
+
         if ($this->milliseconds > $period->milliseconds) {
             return true;
+        }
+
+        if ($period->milliseconds > $this->milliseconds) {
+            return false;
         }
 
         return $this->microseconds > $period->microseconds;
