@@ -164,6 +164,11 @@ return static function() {
 
             $assert->false($before->longerThan($threshold));
             $assert->true($after->longerThan($threshold));
+
+            $threshold = ElapsedPeriod::of(2, 2, 0);
+            $after = ElapsedPeriod::of(2, 1, 1);
+
+            $assert->false($after->longerThan($threshold));
         },
     );
 };
