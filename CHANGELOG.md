@@ -6,6 +6,12 @@
 
 - When within the same unit of time (seconds or milliseconds) 2 elapsed periods falsely reported than one was longer than the other.
 
+## 4.1.0 - 2025-03-20
+
+### Added
+
+- Support for `innmind/black-box` `6`
+
 ## 4.0.2 - 2025-02-09
 
 ### Fixed

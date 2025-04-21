@@ -26,7 +26,12 @@ class PointInTimeTest extends TestCase
         foreach ($pointsInTime->values(Random::default) as $pointInTime) {
             $this->assertInstanceOf(Set\Value::class, $pointInTime);
             $this->assertInstanceOf(Model::class, $pointInTime->unwrap());
-            $this->assertTrue($pointInTime->isImmutable());
+
+            if (\interface_exists(Set\Implementation::class)) {
+                $this->assertTrue($pointInTime->immutable());
+            } else {
+                $this->assertTrue($pointInTime->isImmutable());
+            }
         }
     }
 
