@@ -67,6 +67,6 @@ final class PointInTime
             Set\Elements::of('-', '+'),
             Set\Integers::between(0, 12),
             Set\Elements::of('00', '15', '30', '45'),
-        )->take(100);
+        );
     }
 }
