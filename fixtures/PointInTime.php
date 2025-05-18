@@ -13,7 +13,7 @@ final class PointInTime
      */
     public static function any(): Set
     {
-        return self::yearRange(0, 9999);
+        return self::yearRange(0, 9999)->take(100);
     }
 
     /**
@@ -24,9 +24,11 @@ final class PointInTime
     {
         $lower = Model::at(new \DateTimeImmutable($point));
 
-        return self::yearRange($lower->year()->toInt(), 9999)->filter(static function($point) use ($lower): bool {
-            return $point->aheadOf($lower);
-        });
+        return self::yearRange($lower->year()->toInt(), 9999)
+            ->filter(static function($point) use ($lower): bool {
+                return $point->aheadOf($lower);
+            })
+            ->take(100);
     }
 
     /**
@@ -37,9 +39,11 @@ final class PointInTime
     {
         $upper = Model::at(new \DateTimeImmutable($point));
 
-        return self::yearRange(0, $upper->year()->toInt())->filter(static function($point) use ($upper): bool {
-            return $upper->aheadOf($point);
-        });
+        return self::yearRange(0, $upper->year()->toInt())
+            ->filter(static function($point) use ($upper): bool {
+                return $upper->aheadOf($point);
+            })
+            ->take(100);
     }
 
     /**
