@@ -12,6 +12,5 @@ jobs:
     uses: innmind/github-workflows/.github/workflows/coverage.yml@main
     secrets: inherit
     with:
-      tags: ci
       os: ubuntu-latest
       php-version: '8.3'

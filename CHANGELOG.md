@@ -1,5 +1,11 @@
 # Changelog
 
+## 4.2.0 - 2025-06-02
+
+### Added
+
+- `Innmind\TimeContinuum\Format\Custom`
+
 ## 4.1.1 - 2025-04-21
 
 ### Fixed

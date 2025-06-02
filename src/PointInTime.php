@@ -106,8 +106,12 @@ final class PointInTime
         return Microsecond::of($microsecond);
     }
 
-    public function format(Format $format): string
+    public function format(Format|Format\Custom $format): string
     {
+        if ($format instanceof Format\Custom) {
+            $format = $format->normalize();
+        }
+
         return $this->date->format($format->toString());
     }
 

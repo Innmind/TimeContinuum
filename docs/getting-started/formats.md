@@ -59,14 +59,30 @@ If you want to use your own format you can do this via `#!php Format::of('date f
 
 You're encouraged to statically define these formats somewhere in your program like this:
 
-```php
-use Innmind\TimeContinuum\Format;
+=== "Static method"
+    ```php
+    use Innmind\TimeContinuum\Format;
 
-final class MyFormats
-{
-    public static function iso8601WithMicroseconds(): Format
+    final class MyFormats
     {
-        return Format::of('Y-m-dT:H:i:s.uP');
+        public static function iso8601WithMicroseconds(): Format
+        {
+            return Format::of('Y-m-dT:H:i:s.uP');
+        }
     }
-}
-```
+    ```
+
+=== "Enum"
+    ```php
+    use Innmind\TimeContinuum\Format;
+
+    enum MyFormats: string implements Format\Custom
+    {
+        case iso8601WithMicroseconds = 'Y-m-dT:H:i:s.uP';
+
+        public function normalize(): Format
+        {
+            return Format::of($this->value);
+        }
+    }
+    ```
