@@ -119,22 +119,33 @@ return static function() {
 
     yield proof(
         'Clock::ofFormat()->at()',
-        given(PointInTime::any()),
-        static function($assert, $point) {
+        given(
+            PointInTime::any(),
+            Set\Elements::of(
+                Format::iso8601(),
+                new class implements Format\Custom {
+                    public function normalize(): Format
+                    {
+                        return Format::iso8601();
+                    }
+                },
+            ),
+        ),
+        static function($assert, $point, $format) {
             $parsed = Clock::live()
-                ->ofFormat(Format::iso8601())
-                ->at($point->format(Format::iso8601()))
+                ->ofFormat($format)
+                ->at($point->format($format))
                 ->match(
-                    static fn($point) => $point->format(Format::iso8601()),
+                    static fn($point) => $point->format($format),
                     static fn() => null,
                 );
 
             $assert->not()->null($parsed);
             $assert->same(
                 Clock::live()
-                    ->at($point->format(Format::iso8601()), Format::iso8601())
+                    ->at($point->format($format), $format)
                     ->match(
-                        static fn($point) => $point->format(Format::iso8601()),
+                        static fn($point) => $point->format($format),
                         static fn() => null,
                     ),
                 $parsed,
