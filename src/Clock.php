@@ -54,16 +54,24 @@ final class Clock
      *
      * @return Maybe<PointInTime>
      */
-    public function at(string $date, Format $format): Maybe
+    public function at(string $date, Format|Format\Custom $format): Maybe
     {
+        if ($format instanceof Format\Custom) {
+            $format = $format->normalize();
+        }
+
         return $this->implementation->at($date, $format);
     }
 
     /**
      * @psalm-mutation-free
      */
-    public function ofFormat(Format $format): OfFormat
+    public function ofFormat(Format|Format\Custom $format): OfFormat
     {
+        if ($format instanceof Format\Custom) {
+            $format = $format->normalize();
+        }
+
         return OfFormat::new($this, $format);
     }
 }
