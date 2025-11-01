@@ -7,7 +7,7 @@ use Innmind\TimeContinuum\{
     PointInTime,
     Format,
 };
-use Innmind\Immutable\Maybe;
+use Innmind\Immutable\Attempt;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -46,10 +46,10 @@ final class Logger implements Implementation
      *
      * @param non-empty-string $date
      *
-     * @return Maybe<PointInTime>
+     * @return Attempt<PointInTime>
      */
     #[\Override]
-    public function at(string $date, Format $format): Maybe
+    public function at(string $date, Format $format): Attempt
     {
         return $this
             ->clock

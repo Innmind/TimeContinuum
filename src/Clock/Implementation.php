@@ -9,7 +9,7 @@ use Innmind\TimeContinuum\{
     Timezones,
     Timezone,
 };
-use Innmind\Immutable\Maybe;
+use Innmind\Immutable\Attempt;
 
 /**
  * @internal
@@ -28,7 +28,7 @@ interface Implementation
      *
      * @param non-empty-string $date
      *
-     * @return Maybe<PointInTime>
+     * @return Attempt<PointInTime>
      */
-    public function at(string $date, Format $format): Maybe;
+    public function at(string $date, Format $format): Attempt;
 }

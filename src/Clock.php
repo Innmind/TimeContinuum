@@ -9,7 +9,7 @@ use Innmind\TimeContinuum\Clock\{
     Via,
     OfFormat,
 };
-use Innmind\Immutable\Maybe;
+use Innmind\Immutable\Attempt;
 use Psr\Log\LoggerInterface;
 
 final class Clock
@@ -71,9 +71,9 @@ final class Clock
      *
      * @param non-empty-string $date
      *
-     * @return Maybe<PointInTime>
+     * @return Attempt<PointInTime>
      */
-    public function at(string $date, Format|Format\Custom $format): Maybe
+    public function at(string $date, Format|Format\Custom $format): Attempt
     {
         if ($format instanceof Format\Custom) {
             $format = $format->normalize();

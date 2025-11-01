@@ -10,7 +10,7 @@ use Innmind\TimeContinuum\{
     Timezone,
     Timezones,
 };
-use Innmind\Immutable\Maybe;
+use Innmind\Immutable\Attempt;
 
 /**
  * @internal
@@ -60,28 +60,39 @@ final class Via implements Implementation
      *
      * @param non-empty-string $date
      *
-     * @return Maybe<PointInTime>
+     * @return Attempt<PointInTime>
      */
     #[\Override]
-    public function at(string $date, Format $format): Maybe
+    public function at(string $date, Format $format): Attempt
     {
         try {
             $datetime = \DateTimeImmutable::createFromFormat($format->toString(), $date);
-        } catch (\Throwable) {
-            /** @var Maybe<PointInTime> */
-            return Maybe::nothing();
+        } catch (\Throwable $e) {
+            /** @var Attempt<PointInTime> */
+            return Attempt::error($e);
         }
 
         if ($datetime === false) {
-            /** @var Maybe<PointInTime> */
-            return Maybe::nothing();
+            $lastErrors = \DateTimeImmutable::getLastErrors();
+            $warnings = \implode(', ', \array_values($lastErrors['warnings'] ?? []));
+            $errors = \implode(', ', \array_values($lastErrors['errors'] ?? []));
+
+            /** @var Attempt<PointInTime> */
+            return Attempt::error(new \RuntimeException(<<<MESSAGE
+            Warnings: $warnings
+            Errors: $errors
+            MESSAGE));
         }
 
         if ($datetime->format($format->toString()) !== $date) {
-            /** @var Maybe<PointInTime> */
-            return Maybe::nothing();
+            /** @var Attempt<PointInTime> */
+            return Attempt::error(new \RuntimeException(\sprintf(
+                'Date "%s" is not exactly of the expected format "%s"',
+                $date,
+                $format->toString(),
+            )));
         }
 
-        return Maybe::just(PointInTime::at($datetime)->changeOffset($this->offset));
+        return Attempt::result(PointInTime::at($datetime)->changeOffset($this->offset));
     }
 }
