@@ -8,6 +8,7 @@ use Innmind\TimeContinuum\Clock\{
     Live,
     Frozen,
     Logger,
+    Via,
     OfFormat,
 };
 use Innmind\Immutable\Maybe;
@@ -35,6 +36,19 @@ final class Clock
         return new self(new Logger(
             $clock->implementation,
             $logger,
+        ));
+    }
+
+    /**
+     * @internal
+     *
+     * @param callable(): PointInTime $now
+     */
+    public static function via(callable $now): self
+    {
+        return new self(new Via(
+            \Closure::fromCallable($now),
+            static fn(Timezones $timezones) => $timezones->utc(),
         ));
     }
 
