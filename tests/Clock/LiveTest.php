@@ -67,11 +67,11 @@ class LiveTest extends TestCase
         );
     }
 
-    public function testAtWithDateNotOfExpectedFormat()
+    public function testAtWithDateNotOfExpectedFormat(): BlackBox\Proof
     {
-        $this
+        return $this
             ->forAll(Set::strings())
-            ->then(function($date) {
+            ->prove(function($date) {
                 $clock = Clock::live();
 
                 $this->assertNull($clock->at($date, Format::iso8601())->match(
@@ -90,15 +90,15 @@ class LiveTest extends TestCase
         ));
     }
 
-    public function testDateCorrectlyRespectTheFormatGiven()
+    public function testDateCorrectlyRespectTheFormatGiven(): BlackBox\Proof
     {
-        $this
+        return $this
             ->forAll(
                 Set::integers()->between(10, 99),
                 Set::integers()->between(1, 9),
                 Set::integers()->between(10, 28),
             )
-            ->then(function($year, $month, $day) {
+            ->prove(function($year, $month, $day) {
                 $date = "$year-0$month-$day";
 
                 $this->assertNull(

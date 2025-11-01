@@ -57,9 +57,9 @@ class ClockTest extends TestCase
         $this->assertLessThanOrEqual(59, $offset->minutes());
     }
 
-    public function testTimezoneDifferences()
+    public function testTimezoneDifferences(): BlackBox\Proof
     {
-        $this
+        return $this
             ->forAll(
                 self::genToSet(self::america())->exclude(
                     // timezone that collides with other continents
@@ -73,7 +73,7 @@ class ClockTest extends TestCase
                     self::genToSet(self::australia()),
                 ),
             )
-            ->then(function($america, $other) {
+            ->prove(function($america, $other) {
                 $america = $america[1];
                 $other = $other[1];
 
@@ -87,9 +87,9 @@ class ClockTest extends TestCase
             });
     }
 
-    public function testLoggerUseNewTimezone()
+    public function testLoggerUseNewTimezone(): BlackBox\Proof
     {
-        $this
+        return $this
             ->forAll(
                 self::genToSet(self::america())->filter(
                     // timezone that collides with other continents
@@ -103,7 +103,7 @@ class ClockTest extends TestCase
                     self::genToSet(self::australia()),
                 ),
             )
-            ->then(function($america, $other) {
+            ->prove(function($america, $other) {
                 $america = $america[1];
                 $other = $other[1];
                 $gather = new class implements LoggerInterface {
