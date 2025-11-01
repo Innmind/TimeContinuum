@@ -70,7 +70,7 @@ class LiveTest extends TestCase
     public function testAtWithDateNotOfExpectedFormat()
     {
         $this
-            ->forAll(Set\Strings::any())
+            ->forAll(Set::strings())
             ->then(function($date) {
                 $clock = Clock::live();
 
@@ -94,9 +94,9 @@ class LiveTest extends TestCase
     {
         $this
             ->forAll(
-                Set\Integers::between(10, 99),
-                Set\Integers::between(1, 9),
-                Set\Integers::between(10, 28),
+                Set::integers()->between(10, 99),
+                Set::integers()->between(1, 9),
+                Set::integers()->between(10, 28),
             )
             ->then(function($year, $month, $day) {
                 $date = "$year-0$month-$day";

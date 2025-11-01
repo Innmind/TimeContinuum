@@ -62,11 +62,11 @@ class ClockTest extends TestCase
     {
         $this
             ->forAll(
-                self::genToSet(self::america())->filter(
+                self::genToSet(self::america())->exclude(
                     // timezone that collides with other continents
-                    static fn($pair) => $pair[0] !== 'danmarkshavn',
+                    static fn($pair) => $pair[0] === 'danmarkshavn',
                 ),
-                Set\Either::any(
+                Set::either(
                     self::genToSet(self::africa()),
                     self::genToSet(self::europe()),
                     self::genToSet(self::indian()),
@@ -122,7 +122,7 @@ class ClockTest extends TestCase
                     // timezone that collides with other continents
                     static fn($pair) => $pair[0] !== 'danmarkshavn',
                 ),
-                Set\Either::any(
+                Set::either(
                     self::genToSet(self::africa()),
                     self::genToSet(self::europe()),
                     self::genToSet(self::indian()),
@@ -197,7 +197,7 @@ class ClockTest extends TestCase
     {
         $zones = \iterator_to_array($zones);
 
-        return Set\Elements::of(
+        return Set::of(
             ...\array_map(
                 static fn($name, $switch) => [$name, $switch[0]],
                 \array_keys($zones),

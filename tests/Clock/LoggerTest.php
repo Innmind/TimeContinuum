@@ -103,7 +103,7 @@ class LoggerTest extends TestCase
         $this
             ->forAll(
                 PointInTime::any(),
-                Set\Elements::of(
+                Set::of(
                     Format::iso8601(),
                     Format::rfc1123(),
                     Format::rfc2822(),

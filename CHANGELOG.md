@@ -5,6 +5,7 @@
 ### Changed
 
 - Requires PHP `8.4`
+- Requires `innmind/black-box:~6.5`
 
 ## 4.2.0 - 2025-06-02
 
