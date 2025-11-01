@@ -41,7 +41,7 @@ class LoggerTest extends TestCase
 
                 $clock = Clock::logger($concrete, $logger);
 
-                $this->assertSame($now, $clock->now());
+                $this->assertSame($now->toString(), $clock->now()->toString());
                 $this->assertCount(1, $logger->logs);
                 $this->assertSame(
                     [

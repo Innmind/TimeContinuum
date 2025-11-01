@@ -23,7 +23,10 @@ class FrozenTest extends TestCase
         $this
             ->forAll(PointInTime::any())
             ->then(function($now) {
-                $this->assertSame($now, Clock::frozen($now)->now());
+                $this->assertSame(
+                    $now->toString(),
+                    Clock::frozen($now)->now()->toString(),
+                );
             });
     }
 

@@ -218,4 +218,31 @@ return static function() {
             );
         },
     );
+
+    yield test(
+        'Clock::frozen()->switch()->now() applies the offset at the provided now date',
+        static function($assert) {
+            $clock = Clock::frozen(
+                Point::at(
+                    new DateTimeImmutable('2025-11-01 12:00:00'),
+                ),
+            )->switch(static fn($timezones) => $timezones->europe()->paris());
+
+            $assert->same(
+                '+01:00',
+                $clock->now()->offset()->toString(),
+            );
+
+            $clock = Clock::frozen(
+                Point::at(
+                    new DateTimeImmutable('2025-10-25 12:00:00'),
+                ),
+            )->switch(static fn($timezones) => $timezones->europe()->paris());
+
+            $assert->same(
+                '+02:00',
+                $clock->now()->offset()->toString(),
+            );
+        },
+    );
 };

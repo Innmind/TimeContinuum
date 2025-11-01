@@ -6,6 +6,7 @@
 
 - Requires PHP `8.4`
 - Requires `innmind/black-box:~6.5`
+- `Clock::frozen()->switch()` now applies the new offset (for behaviour consistency)
 
 ## 4.2.0 - 2025-06-02
 

@@ -17,7 +17,6 @@ use Innmind\BlackBox\{
     Set,
 };
 use PHPUnit\Framework\Attributes\DataProvider;
-use Fixtures\Innmind\TimeContinuum\PointInTime;
 
 class ClockTest extends TestCase
 {
@@ -84,32 +83,6 @@ class ClockTest extends TestCase
                 $this->assertNotSame(
                     $america->now()->toString(),
                     $other->now()->toString(),
-                );
-            });
-    }
-
-    public function testFrozenClockDoesntChangeItsTimezone()
-    {
-        $this
-            ->forAll(PointInTime::any())
-            ->then(function($point) {
-                $frozen = Clock::frozen($point);
-                $clock = $frozen->switch(static fn($timezones) => $timezones->europe()->paris());
-
-                $this->assertSame(
-                    $point->toString(),
-                    $clock->now()->toString(),
-                );
-                $this->assertSame(
-                    $frozen->now()->toString(),
-                    $clock->now()->toString(),
-                );
-                $this->assertSame(
-                    $frozen->now()->format(Format::iso8601()),
-                    $clock->at($point->format(Format::iso8601()), Format::iso8601())->match(
-                        static fn($point) => $point->format(Format::iso8601()),
-                        static fn() => null,
-                    ),
                 );
             });
     }
