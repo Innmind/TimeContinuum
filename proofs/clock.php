@@ -11,7 +11,7 @@ use Innmind\BlackBox\Set;
 
 return static function() {
     yield proof(
-        'All models are always withing bounds',
+        'All models are always within bounds',
         given(Set\Either::any(
             PointInTime::any(),
             Set\Call::of(static fn() => Clock::live()->now()),
