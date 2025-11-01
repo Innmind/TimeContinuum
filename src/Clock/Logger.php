@@ -4,7 +4,6 @@ declare(strict_types = 1);
 namespace Innmind\TimeContinuum\Clock;
 
 use Innmind\TimeContinuum\{
-    Clock,
     PointInTime,
     Format,
     Timezones,
@@ -18,10 +17,10 @@ use Psr\Log\LoggerInterface;
  */
 final class Logger implements Implementation
 {
-    private Clock $clock;
+    private Implementation $clock;
     private LoggerInterface $logger;
 
-    public function __construct(Clock $clock, LoggerInterface $logger)
+    public function __construct(Implementation $clock, LoggerInterface $logger)
     {
         $this->clock = $clock;
         $this->logger = $logger;

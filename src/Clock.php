@@ -32,7 +32,10 @@ final class Clock
 
     public static function logger(self $clock, LoggerInterface $logger): self
     {
-        return new self(new Logger($clock, $logger));
+        return new self(new Logger(
+            $clock->implementation,
+            $logger,
+        ));
     }
 
     public function now(): PointInTime
