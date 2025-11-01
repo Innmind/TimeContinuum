@@ -28,7 +28,10 @@ final class Clock
 
     public static function frozen(PointInTime $point): self
     {
-        return new self(new Frozen($point, new Live(Offset::utc())));
+        return new self(new Frozen(
+            $point,
+            new Live(Offset::utc()),
+        ));
     }
 
     public static function logger(self $clock, LoggerInterface $logger): self
@@ -48,7 +51,7 @@ final class Clock
     {
         return new self(new Via(
             \Closure::fromCallable($now),
-            static fn(Timezones $timezones) => $timezones->utc(),
+            Offset::utc(),
         ));
     }
 
@@ -62,7 +65,21 @@ final class Clock
      */
     public function switch(callable $changeTimezone): self
     {
-        return new self($this->implementation->switch($changeTimezone));
+        $now = $this->now();
+        /** @var callable(non-empty-string): Timezone */
+        $of = static function(string $zone) use ($now): Timezone {
+            /** @var non-empty-string $zone */
+            $now = (new \DateTimeImmutable($now->format(Format::iso8601())))->setTimezone(new \DateTimeZone($zone));
+
+            return Timezone::of(
+                Offset::from($now->format('P')),
+                (bool) (int) $now->format('I'),
+            );
+        };
+
+        $offset = $changeTimezone(Timezones::new($of))->offset();
+
+        return new self($this->implementation->use($offset));
     }
 
     /**

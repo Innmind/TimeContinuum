@@ -6,8 +6,7 @@ namespace Innmind\TimeContinuum\Clock;
 use Innmind\TimeContinuum\{
     PointInTime,
     Format,
-    Timezones,
-    Timezone,
+    Offset,
 };
 use Innmind\Immutable\Maybe;
 use Psr\Log\LoggerInterface;
@@ -23,14 +22,11 @@ final class Logger implements Implementation
     ) {
     }
 
-    /**
-     * @param callable(Timezones): Timezone $changeTimezone
-     */
     #[\Override]
-    public function switch(callable $changeTimezone): self
+    public function use(Offset $offset): self
     {
         return new self(
-            $this->clock->switch($changeTimezone),
+            $this->clock->use($offset),
             $this->logger,
         );
     }

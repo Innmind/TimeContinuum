@@ -6,8 +6,7 @@ namespace Innmind\TimeContinuum\Clock;
 use Innmind\TimeContinuum\{
     PointInTime,
     Format,
-    Timezones,
-    Timezone,
+    Offset,
 };
 use Innmind\Immutable\Maybe;
 
@@ -22,15 +21,12 @@ final class Frozen implements Implementation
     ) {
     }
 
-    /**
-     * @param callable(Timezones): Timezone $changeTimezone
-     */
     #[\Override]
-    public function switch(callable $changeTimezone): self
+    public function use(Offset $offset): self
     {
         return new self(
             $this->now,
-            $this->concrete->switch($changeTimezone),
+            $this->concrete->use($offset),
         );
     }
 

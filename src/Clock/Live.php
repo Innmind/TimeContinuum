@@ -7,8 +7,6 @@ use Innmind\TimeContinuum\{
     Offset,
     PointInTime,
     Format,
-    Timezones,
-    Timezone,
 };
 use Innmind\Immutable\Maybe;
 
@@ -21,26 +19,10 @@ final class Live implements Implementation
     {
     }
 
-    /**
-     * @param callable(Timezones): Timezone $changeTimezone
-     */
     #[\Override]
-    public function switch(callable $changeTimezone): self
+    public function use(Offset $offset): self
     {
-        /** @var callable(non-empty-string): Timezone */
-        $of = static function(string $zone): Timezone {
-            /** @var non-empty-string $zone */
-            $now = (new \DateTimeImmutable('now'))->setTimezone(new \DateTimeZone($zone));
-
-            return Timezone::of(
-                Offset::from($now->format('P')),
-                (bool) (int) $now->format('I'),
-            );
-        };
-
-        return new self(
-            $changeTimezone(Timezones::new($of))->offset(),
-        );
+        return new self($offset);
     }
 
     #[\Override]
