@@ -9,8 +9,8 @@ on:
 
 jobs:
   blackbox:
-    uses: innmind/github-workflows/.github/workflows/coverage.yml@main
+    uses: innmind/github-workflows/.github/workflows/coverage.yml@next
     secrets: inherit
     with:
       os: ubuntu-latest
-      php-version: '8.3'
+      php-version: '8.4'
