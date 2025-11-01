@@ -4,6 +4,7 @@ declare(strict_types = 1);
 namespace Innmind\TimeContinuum;
 
 use Innmind\TimeContinuum\Clock\{
+    Implementation,
     Live,
     Frozen,
     Logger,
@@ -15,7 +16,7 @@ use Psr\Log\LoggerInterface;
 final class Clock
 {
     private function __construct(
-        private Live|Frozen|Logger $implementation,
+        private Implementation $implementation,
     ) {
     }
 

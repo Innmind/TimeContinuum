@@ -14,7 +14,7 @@ use Innmind\Immutable\Maybe;
 /**
  * @internal
  */
-final class Frozen
+final class Frozen implements Implementation
 {
     private PointInTime $now;
     private Live $concrete;
@@ -28,6 +28,7 @@ final class Frozen
     /**
      * @param callable(Timezones): Timezone $changeTimezone
      */
+    #[\Override]
     public function switch(callable $changeTimezone): self
     {
         return new self(
@@ -36,6 +37,7 @@ final class Frozen
         );
     }
 
+    #[\Override]
     public function now(): PointInTime
     {
         return $this->now;
@@ -48,6 +50,7 @@ final class Frozen
      *
      * @return Maybe<PointInTime>
      */
+    #[\Override]
     public function at(string $date, Format $format): Maybe
     {
         return $this

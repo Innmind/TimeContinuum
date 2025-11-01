@@ -16,7 +16,7 @@ use Psr\Log\LoggerInterface;
 /**
  * @internal
  */
-final class Logger
+final class Logger implements Implementation
 {
     private Clock $clock;
     private LoggerInterface $logger;
@@ -30,6 +30,7 @@ final class Logger
     /**
      * @param callable(Timezones): Timezone $changeTimezone
      */
+    #[\Override]
     public function switch(callable $changeTimezone): self
     {
         return new self(
@@ -38,6 +39,7 @@ final class Logger
         );
     }
 
+    #[\Override]
     public function now(): PointInTime
     {
         $now = $this->clock->now();
@@ -55,6 +57,7 @@ final class Logger
      *
      * @return Maybe<PointInTime>
      */
+    #[\Override]
     public function at(string $date, Format $format): Maybe
     {
         return $this

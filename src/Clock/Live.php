@@ -15,7 +15,7 @@ use Innmind\Immutable\Maybe;
 /**
  * @internal
  */
-final class Live
+final class Live implements Implementation
 {
     private Offset $offset;
 
@@ -27,6 +27,7 @@ final class Live
     /**
      * @param callable(Timezones): Timezone $changeTimezone
      */
+    #[\Override]
     public function switch(callable $changeTimezone): self
     {
         /** @var callable(non-empty-string): Timezone */
@@ -45,6 +46,7 @@ final class Live
         );
     }
 
+    #[\Override]
     public function now(): PointInTime
     {
         return PointInTime::now()->changeOffset($this->offset);
@@ -57,6 +59,7 @@ final class Live
      *
      * @return Maybe<PointInTime>
      */
+    #[\Override]
     public function at(string $date, Format $format): Maybe
     {
         try {
