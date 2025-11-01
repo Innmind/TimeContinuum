@@ -5,7 +5,6 @@ namespace Innmind\TimeContinuum;
 
 use Innmind\TimeContinuum\Clock\{
     Implementation,
-    Live,
     Logger,
     Via,
     OfFormat,
@@ -22,7 +21,7 @@ final class Clock
 
     public static function live(): self
     {
-        return new self(new Live(Offset::utc()));
+        return self::via(PointInTime::now(...));
     }
 
     public static function frozen(PointInTime $point): self

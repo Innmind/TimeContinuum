@@ -49,8 +49,23 @@ final class Via implements Implementation
     #[\Override]
     public function at(string $date, Format $format): Maybe
     {
-        return new Live(Offset::utc())
-            ->at($date, $format)
-            ->map(fn($point) => $point->changeOffset($this->offset));
+        try {
+            $datetime = \DateTimeImmutable::createFromFormat($format->toString(), $date);
+        } catch (\Throwable) {
+            /** @var Maybe<PointInTime> */
+            return Maybe::nothing();
+        }
+
+        if ($datetime === false) {
+            /** @var Maybe<PointInTime> */
+            return Maybe::nothing();
+        }
+
+        if ($datetime->format($format->toString()) !== $date) {
+            /** @var Maybe<PointInTime> */
+            return Maybe::nothing();
+        }
+
+        return Maybe::just(PointInTime::at($datetime)->changeOffset($this->offset));
     }
 }
