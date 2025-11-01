@@ -6,7 +6,8 @@ namespace Innmind\TimeContinuum\Clock;
 use Innmind\TimeContinuum\{
     PointInTime,
     Format,
-    Offset,
+    Timezones,
+    Timezone,
 };
 use Innmind\Immutable\Maybe;
 
@@ -15,7 +16,11 @@ use Innmind\Immutable\Maybe;
  */
 interface Implementation
 {
-    public function use(Offset $offset): self;
+    /**
+     * @param callable(Timezones): Timezone $changeTimezone
+     */
+    public function switch(callable $changeTimezone): self;
+
     public function now(): PointInTime;
 
     /**

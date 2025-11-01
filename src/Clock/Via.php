@@ -7,6 +7,8 @@ use Innmind\TimeContinuum\{
     PointInTime,
     Format,
     Offset,
+    Timezone,
+    Timezones,
 };
 use Innmind\Immutable\Maybe;
 
@@ -25,8 +27,22 @@ final class Via implements Implementation
     }
 
     #[\Override]
-    public function use(Offset $offset): self
+    public function switch(callable $changeTimezone): self
     {
+        $now = $this->now();
+        /** @var callable(non-empty-string): Timezone */
+        $of = static function(string $zone) use ($now): Timezone {
+            /** @var non-empty-string $zone */
+            $now = (new \DateTimeImmutable($now->format(Format::iso8601())))->setTimezone(new \DateTimeZone($zone));
+
+            return Timezone::of(
+                Offset::from($now->format('P')),
+                (bool) (int) $now->format('I'),
+            );
+        };
+
+        $offset = $changeTimezone(Timezones::new($of))->offset();
+
         return new self(
             $this->now,
             $offset,

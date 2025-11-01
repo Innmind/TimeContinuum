@@ -122,19 +122,18 @@ class ClockTest extends TestCase
                 $now1 = $america->now();
                 $now2 = $new->now();
 
-                // The first 2 logs are due to the switches
                 $this->assertSame(
                     $now1->format(Format::iso8601()),
-                    $gather->logs[2]['point'],
+                    $gather->logs[0]['point'],
                 );
                 $this->assertSame(
                     $now2->format(Format::iso8601()),
-                    $gather->logs[3]['point'],
+                    $gather->logs[1]['point'],
                 );
                 $this->assertNotSame(
-                    $gather->logs[2],
-                    $gather->logs[3],
-                    $gather->logs[2]['point'],
+                    $gather->logs[0],
+                    $gather->logs[1],
+                    $gather->logs[0]['point'],
                 );
             });
     }
