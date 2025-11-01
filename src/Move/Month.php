@@ -10,13 +10,10 @@ use Innmind\TimeContinuum\{
 
 final class Month
 {
-    private string $direction;
-    private Period $months;
-
-    private function __construct(string $direction, Period $months)
-    {
-        $this->direction = $direction;
-        $this->months = $months;
+    private function __construct(
+        private string $direction,
+        private Period $months,
+    ) {
     }
 
     public function __invoke(PointInTime $point): PointInTime

@@ -17,11 +17,8 @@ use Innmind\Immutable\Maybe;
  */
 final class Live implements Implementation
 {
-    private Offset $offset;
-
-    public function __construct(Offset $offset)
+    public function __construct(private Offset $offset)
     {
-        $this->offset = $offset;
     }
 
     /**

@@ -16,13 +16,10 @@ use Innmind\Immutable\Maybe;
  */
 final class Frozen implements Implementation
 {
-    private PointInTime $now;
-    private Live $concrete;
-
-    public function __construct(PointInTime $now, Live $concrete)
-    {
-        $this->now = $now;
-        $this->concrete = $concrete;
+    public function __construct(
+        private PointInTime $now,
+        private Live $concrete,
+    ) {
     }
 
     /**
