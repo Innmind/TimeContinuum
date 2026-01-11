@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Added
+
+- `Fixtures\Innmind\TimeContinuum\Timezone`
+
 ### Changed
 
 - Requires PHP `8.4`
