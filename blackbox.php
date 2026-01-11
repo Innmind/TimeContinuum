@@ -11,7 +11,7 @@ use Innmind\BlackBox\{
 };
 
 Application::new($argv)
-->when(
+    ->when(
         \getenv('BLACKBOX_SET_SIZE') !== false,
         static fn(Application $app) => $app->scenariiPerProof((int) \getenv('BLACKBOX_SET_SIZE')),
     )
