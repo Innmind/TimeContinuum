@@ -10,6 +10,7 @@ use Innmind\TimeContinuum\{
 
 final class EndOfDay
 {
+    #[\NoDiscard]
     public function __invoke(PointInTime $point): PointInTime
     {
         return $point->goForward(

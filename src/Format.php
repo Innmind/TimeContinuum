@@ -21,6 +21,7 @@ final class Format
      *
      * @param non-empty-string $value
      */
+    #[\NoDiscard]
     public static function of(string $value): self
     {
         return new self($value);
@@ -29,6 +30,7 @@ final class Format
     /**
      * @psalm-pure
      */
+    #[\NoDiscard]
     public static function cookie(): self
     {
         return new self(\DateTime::COOKIE);
@@ -37,6 +39,7 @@ final class Format
     /**
      * @psalm-pure
      */
+    #[\NoDiscard]
     public static function iso8601(): self
     {
         return new self(\DateTime::ATOM);
@@ -45,6 +48,7 @@ final class Format
     /**
      * @psalm-pure
      */
+    #[\NoDiscard]
     public static function rfc1036(): self
     {
         return new self(\DateTime::RFC1036);
@@ -53,6 +57,7 @@ final class Format
     /**
      * @psalm-pure
      */
+    #[\NoDiscard]
     public static function rfc1123(): self
     {
         return new self(\DateTime::RFC1123);
@@ -61,6 +66,7 @@ final class Format
     /**
      * @psalm-pure
      */
+    #[\NoDiscard]
     public static function rfc2822(): self
     {
         return new self(\DateTime::RFC2822);
@@ -69,6 +75,7 @@ final class Format
     /**
      * @psalm-pure
      */
+    #[\NoDiscard]
     public static function rfc822(): self
     {
         return new self(\DateTime::RFC822);
@@ -77,6 +84,7 @@ final class Format
     /**
      * @psalm-pure
      */
+    #[\NoDiscard]
     public static function rfc850(): self
     {
         return new self(\DateTime::RFC850);
@@ -85,6 +93,7 @@ final class Format
     /**
      * @psalm-pure
      */
+    #[\NoDiscard]
     public static function rss(): self
     {
         return new self(\DateTime::RSS);
@@ -93,6 +102,7 @@ final class Format
     /**
      * @psalm-pure
      */
+    #[\NoDiscard]
     public static function w3c(): self
     {
         return new self(\DateTime::W3C);
@@ -101,6 +111,7 @@ final class Format
     /**
      * @return non-empty-string
      */
+    #[\NoDiscard]
     public function toString(): string
     {
         return $this->value;

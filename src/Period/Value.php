@@ -20,6 +20,7 @@ enum Value
      *
      * @return int<0, max>
      */
+    #[\NoDiscard]
     public function seconds(int $number): int
     {
         return match ($this) {

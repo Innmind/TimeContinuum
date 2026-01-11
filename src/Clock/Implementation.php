@@ -19,8 +19,10 @@ interface Implementation
     /**
      * @param callable(Timezones): Timezone $changeTimezone
      */
+    #[\NoDiscard]
     public function switch(callable $changeTimezone): self;
 
+    #[\NoDiscard]
     public function now(): PointInTime;
 
     /**
@@ -30,5 +32,6 @@ interface Implementation
      *
      * @return Attempt<PointInTime>
      */
+    #[\NoDiscard]
     public function at(string $date, Format $format): Attempt;
 }

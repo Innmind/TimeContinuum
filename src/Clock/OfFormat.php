@@ -25,6 +25,7 @@ final class OfFormat
      * @psalm-pure
      * @internal
      */
+    #[\NoDiscard]
     public static function new(Clock $clock, Format $format): self
     {
         return new self($clock, $format);
@@ -35,6 +36,7 @@ final class OfFormat
      *
      * @return Attempt<PointInTime>
      */
+    #[\NoDiscard]
     public function at(string $date): Attempt
     {
         return $this->clock->at($date, $this->format);

@@ -10,6 +10,7 @@ use Innmind\TimeContinuum\{
 
 final class StartOfDay
 {
+    #[\NoDiscard]
     public function __invoke(PointInTime $point): PointInTime
     {
         return $point->goBack(

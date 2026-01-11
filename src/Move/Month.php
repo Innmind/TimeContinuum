@@ -16,6 +16,7 @@ final class Month
     ) {
     }
 
+    #[\NoDiscard]
     public function __invoke(PointInTime $point): PointInTime
     {
         /** @var PointInTime $newPoint */
@@ -42,6 +43,7 @@ final class Month
     /**
      * @param int<1, max> $months
      */
+    #[\NoDiscard]
     public static function forward(int $months): self
     {
         return new self('goForward', Period::month($months));
@@ -50,6 +52,7 @@ final class Month
     /**
      * @param int<1, max> $months
      */
+    #[\NoDiscard]
     public static function backward(int $months): self
     {
         return new self('goBack', Period::month($months));

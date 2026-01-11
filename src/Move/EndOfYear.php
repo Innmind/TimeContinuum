@@ -10,6 +10,7 @@ use Innmind\TimeContinuum\{
 
 final class EndOfYear
 {
+    #[\NoDiscard]
     public function __invoke(PointInTime $point): PointInTime
     {
         $point = (new StartOfMonth)($point)->goForward(

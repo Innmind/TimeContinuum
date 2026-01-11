@@ -22,6 +22,7 @@ final class Second
      *
      * @param int<0, 59> $second
      */
+    #[\NoDiscard]
     public static function of(int $second): self
     {
         return new self($second);
@@ -30,6 +31,7 @@ final class Second
     /**
      * @return int<0, 59>
      */
+    #[\NoDiscard]
     public function toInt(): int
     {
         return $this->second;

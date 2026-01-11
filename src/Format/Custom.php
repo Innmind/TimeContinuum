@@ -10,5 +10,6 @@ use Innmind\TimeContinuum\Format;
  */
 interface Custom
 {
+    #[\NoDiscard]
     public function normalize(): Format;
 }

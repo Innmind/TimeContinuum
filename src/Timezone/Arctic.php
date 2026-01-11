@@ -20,11 +20,13 @@ final class Arctic
      *
      * @param callable(non-empty-string): Timezone $of
      */
+    #[\NoDiscard]
     public static function new(callable $of): self
     {
         return new self($of);
     }
 
+    #[\NoDiscard]
     public function longyearbyen(): Timezone
     {
         return ($this->of)('Arctic/Longyearbyen');

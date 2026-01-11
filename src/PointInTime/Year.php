@@ -23,6 +23,7 @@ final class Year
      * @psalm-pure
      * @internal
      */
+    #[\NoDiscard]
     public static function of(int $year): self
     {
         return new self($year);
@@ -31,6 +32,7 @@ final class Year
     /**
      * @return 365|366
      */
+    #[\NoDiscard]
     public function numberOfDays(): int
     {
         return $this->days;
@@ -39,11 +41,13 @@ final class Year
     /**
      * @return 12
      */
+    #[\NoDiscard]
     public function numberOfMonths(): int
     {
         return 12;
     }
 
+    #[\NoDiscard]
     public function toInt(): int
     {
         return $this->year;

@@ -25,6 +25,7 @@ final class Month
      * @psalm-pure
      * @internal
      */
+    #[\NoDiscard]
     public static function of(\DateTimeImmutable $date): self
     {
         return new self($date);
@@ -33,11 +34,13 @@ final class Month
     /**
      * @return int<28, 31>
      */
+    #[\NoDiscard]
     public function numberOfDays(): int
     {
         return $this->days;
     }
 
+    #[\NoDiscard]
     public function ofYear(): Calendar\Month
     {
         return $this->month;

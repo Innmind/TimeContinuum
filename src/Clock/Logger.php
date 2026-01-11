@@ -57,6 +57,7 @@ final class Logger implements Implementation
             ->map(fn($point) => $this->log($point, $date, $format));
     }
 
+    #[\NoDiscard]
     private function log(
         PointInTime $point,
         string $date,
