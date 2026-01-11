@@ -8,6 +8,9 @@ use Innmind\TimeContinuum\{
     Period,
 };
 
+/**
+ * @psalm-immutable
+ */
 final class StartOfYear
 {
     #[\NoDiscard]

@@ -8,6 +8,9 @@ use Innmind\TimeContinuum\{
     Period,
 };
 
+/**
+ * @psalm-immutable
+ */
 final class Month
 {
     private function __construct(
@@ -41,6 +44,8 @@ final class Month
     }
 
     /**
+     * @psalm-pure
+     *
      * @param int<1, max> $months
      */
     #[\NoDiscard]
@@ -50,6 +55,8 @@ final class Month
     }
 
     /**
+     * @psalm-pure
+     *
      * @param int<1, max> $months
      */
     #[\NoDiscard]
