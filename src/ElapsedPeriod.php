@@ -28,6 +28,7 @@ final class ElapsedPeriod
      * @param int<0, 999> $milliseconds
      * @param int<0, 999> $microseconds
      */
+    #[\NoDiscard]
     public static function of(
         int $seconds,
         int $milliseconds,
@@ -36,6 +37,7 @@ final class ElapsedPeriod
         return new self($seconds, $milliseconds, $microseconds);
     }
 
+    #[\NoDiscard]
     public function longerThan(self $period): bool
     {
         if ($this->seconds > $period->seconds) {
@@ -57,6 +59,7 @@ final class ElapsedPeriod
         return $this->microseconds > $period->microseconds;
     }
 
+    #[\NoDiscard]
     public function equals(self $period): bool
     {
         return $this->seconds === $period->seconds &&
@@ -64,6 +67,7 @@ final class ElapsedPeriod
             $this->microseconds === $period->microseconds;
     }
 
+    #[\NoDiscard]
     public function asPeriod(): Period
     {
         return Period::second($this->seconds)

@@ -20,6 +20,7 @@ enum Day
      * @psalm-pure
      * @internal
      */
+    #[\NoDiscard]
     public static function of(int $index): self
     {
         return match ($index) {
@@ -36,6 +37,7 @@ enum Day
     /**
      * @return int<0, 6>
      */
+    #[\NoDiscard]
     public function toInt(): int
     {
         return match ($this) {

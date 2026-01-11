@@ -19,11 +19,13 @@ final class Clock
     ) {
     }
 
+    #[\NoDiscard]
     public static function live(): self
     {
         return self::via(PointInTime::now(...));
     }
 
+    #[\NoDiscard]
     public static function frozen(PointInTime $point): self
     {
         return new self(new Via(
@@ -32,6 +34,7 @@ final class Clock
         ));
     }
 
+    #[\NoDiscard]
     public static function logger(self $clock, LoggerInterface $logger): self
     {
         return new self(new Logger(
@@ -45,6 +48,7 @@ final class Clock
      *
      * @param callable(): PointInTime $now
      */
+    #[\NoDiscard]
     public static function via(callable $now): self
     {
         return new self(new Via(
@@ -53,6 +57,7 @@ final class Clock
         ));
     }
 
+    #[\NoDiscard]
     public function now(): PointInTime
     {
         return $this->implementation->now();
@@ -61,6 +66,7 @@ final class Clock
     /**
      * @param callable(Timezones): Timezone $changeTimezone
      */
+    #[\NoDiscard]
     public function switch(callable $changeTimezone): self
     {
         return new self($this->implementation->switch($changeTimezone));
@@ -73,6 +79,7 @@ final class Clock
      *
      * @return Attempt<PointInTime>
      */
+    #[\NoDiscard]
     public function at(string $date, Format|Format\Custom $format): Attempt
     {
         if ($format instanceof Format\Custom) {
@@ -85,6 +92,7 @@ final class Clock
     /**
      * @psalm-mutation-free
      */
+    #[\NoDiscard]
     public function ofFormat(Format|Format\Custom $format): OfFormat
     {
         if ($format instanceof Format\Custom) {

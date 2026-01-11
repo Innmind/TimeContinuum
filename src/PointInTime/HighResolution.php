@@ -24,6 +24,7 @@ final class HighResolution
     /**
      * @internal
      */
+    #[\NoDiscard]
     public static function now(): self
     {
         /**
@@ -41,11 +42,13 @@ final class HighResolution
      * @param int<0, max> $seconds
      * @param int<0, 999_999_999> $nanoseconds
      */
+    #[\NoDiscard]
     public static function of(int $seconds, int $nanoseconds): self
     {
         return new self($seconds, $nanoseconds);
     }
 
+    #[\NoDiscard]
     public function aheadOf(self $other): bool
     {
         if ($this->seconds > $other->seconds) {
@@ -59,6 +62,7 @@ final class HighResolution
         return $this->nanoseconds > $other->nanoseconds;
     }
 
+    #[\NoDiscard]
     public function elapsedSince(self $other): ElapsedPeriod
     {
         $seconds = $this->seconds - $other->seconds;

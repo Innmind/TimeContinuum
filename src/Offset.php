@@ -22,6 +22,7 @@ final class Offset
     /**
      * @psalm-pure
      */
+    #[\NoDiscard]
     public static function utc(): self
     {
         return self::plus(0, 0);
@@ -33,6 +34,7 @@ final class Offset
      * @param int<0, 14> $hours
      * @param int<0, 59> $minutes
      */
+    #[\NoDiscard]
     public static function plus(int $hours, int $minutes = 0): self
     {
         return new self($hours, $minutes, true);
@@ -44,6 +46,7 @@ final class Offset
      * @param int<0, 12> $hours
      * @param int<0, 59> $minutes
      */
+    #[\NoDiscard]
     public static function minus(int $hours, int $minutes = 0): self
     {
         return new self(-$hours, $minutes, false);
@@ -53,6 +56,7 @@ final class Offset
      * @psalm-pure
      * @internal
      */
+    #[\NoDiscard]
     public static function from(string $string): self
     {
         [$hours, $minutes] = \explode(':', $string);
@@ -68,6 +72,7 @@ final class Offset
     /**
      * @return int<-12, 14>
      */
+    #[\NoDiscard]
     public function hours(): int
     {
         return $this->hours;
@@ -76,6 +81,7 @@ final class Offset
     /**
      * @return int<0, 59>
      */
+    #[\NoDiscard]
     public function minutes(): int
     {
         return $this->minutes;
@@ -84,6 +90,7 @@ final class Offset
     /**
      * @return non-empty-string
      */
+    #[\NoDiscard]
     public function toString(): string
     {
         if ($this->hours === 0 && $this->minutes === 0) {

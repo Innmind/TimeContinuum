@@ -30,6 +30,7 @@ final class PointInTime
      * @psalm-pure
      * @internal
      */
+    #[\NoDiscard]
     public static function at(\DateTimeImmutable $date): self
     {
         return new self(
@@ -41,6 +42,7 @@ final class PointInTime
     /**
      * @internal
      */
+    #[\NoDiscard]
     public static function now(): self
     {
         $now = new \DateTimeImmutable('now');
@@ -52,21 +54,25 @@ final class PointInTime
         );
     }
 
+    #[\NoDiscard]
     public function year(): Year
     {
         return Year::of((int) $this->date->format('Y'));
     }
 
+    #[\NoDiscard]
     public function month(): Month
     {
         return Month::of($this->date);
     }
 
+    #[\NoDiscard]
     public function day(): Day
     {
         return Day::of($this->date);
     }
 
+    #[\NoDiscard]
     public function hour(): Hour
     {
         /** @var int<0, 23> */
@@ -74,6 +80,8 @@ final class PointInTime
 
         return Hour::of($hour);
     }
+
+    #[\NoDiscard]
     public function minute(): Minute
     {
         /** @var int<0, 59> */
@@ -82,6 +90,7 @@ final class PointInTime
         return Minute::of($minute);
     }
 
+    #[\NoDiscard]
     public function second(): Second
     {
         /** @var int<0, 59> */
@@ -90,6 +99,7 @@ final class PointInTime
         return Second::of($second);
     }
 
+    #[\NoDiscard]
     public function millisecond(): Millisecond
     {
         /** @var int<0, 999> */
@@ -98,6 +108,7 @@ final class PointInTime
         return Millisecond::of($millisecond);
     }
 
+    #[\NoDiscard]
     public function microsecond(): Microsecond
     {
         /** @var int<0, 999> */
@@ -106,6 +117,7 @@ final class PointInTime
         return Microsecond::of($microsecond);
     }
 
+    #[\NoDiscard]
     public function format(Format|Format\Custom $format): string
     {
         if ($format instanceof Format\Custom) {
@@ -115,6 +127,7 @@ final class PointInTime
         return $this->date->format($format->toString());
     }
 
+    #[\NoDiscard]
     public function changeOffset(Offset $offset): self
     {
         return new self(
@@ -125,11 +138,13 @@ final class PointInTime
         );
     }
 
+    #[\NoDiscard]
     public function offset(): Offset
     {
         return Offset::from($this->date->format('P'));
     }
 
+    #[\NoDiscard]
     public function elapsedSince(self $point): ElapsedPeriod
     {
         if (!\is_null($this->highResolution) && !\is_null($point->highResolution)) {
@@ -177,6 +192,7 @@ final class PointInTime
         );
     }
 
+    #[\NoDiscard]
     public function goBack(Period $period): self
     {
         $interval = self::dateInterval($period);
@@ -191,6 +207,7 @@ final class PointInTime
         );
     }
 
+    #[\NoDiscard]
     public function goForward(Period $period): self
     {
         $interval = self::dateInterval($period);
@@ -205,6 +222,7 @@ final class PointInTime
         );
     }
 
+    #[\NoDiscard]
     public function equals(self $point): bool
     {
         $format = Format::of('Y-m-dTH:i:s.u');
@@ -214,6 +232,7 @@ final class PointInTime
         return $self === $other;
     }
 
+    #[\NoDiscard]
     public function aheadOf(self $point): bool
     {
         if (!\is_null($this->highResolution) && !\is_null($point->highResolution)) {
@@ -223,6 +242,7 @@ final class PointInTime
         return $this->date > $point->date;
     }
 
+    #[\NoDiscard]
     public function toString(): string
     {
         return $this->date->format('Y-m-d\TH:i:s.uP');
@@ -231,6 +251,7 @@ final class PointInTime
     /**
      * @psalm-pure
      */
+    #[\NoDiscard]
     private static function dateInterval(Period $period): ?\DateInterval
     {
         /** @var list<non-empty-string> */

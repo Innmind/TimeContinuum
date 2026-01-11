@@ -31,11 +31,13 @@ final class Day
      * @psalm-pure
      * @internal
      */
+    #[\NoDiscard]
     public static function of(\DateTimeImmutable $date): self
     {
         return new self($date);
     }
 
+    #[\NoDiscard]
     public function ofWeek(): Calendar\Day
     {
         return $this->week;
@@ -44,6 +46,7 @@ final class Day
     /**
      * @return int<0, 365>
      */
+    #[\NoDiscard]
     public function ofYear(): int
     {
         return $this->ofYear;
@@ -52,6 +55,7 @@ final class Day
     /**
      * @return 24
      */
+    #[\NoDiscard]
     public function numberOfHours(): int
     {
         return 24;
@@ -60,6 +64,7 @@ final class Day
     /**
      * @return int<1, 31>
      */
+    #[\NoDiscard]
     public function ofMonth(): int
     {
         return $this->day;

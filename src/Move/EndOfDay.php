@@ -8,8 +8,12 @@ use Innmind\TimeContinuum\{
     Period,
 };
 
+/**
+ * @psalm-immutable
+ */
 final class EndOfDay
 {
+    #[\NoDiscard]
     public function __invoke(PointInTime $point): PointInTime
     {
         return $point->goForward(
