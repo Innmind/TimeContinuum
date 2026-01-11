@@ -7,7 +7,10 @@ use Innmind\TimeContinuum\{
     Format,
     PointInTime as Point,
 };
-use Fixtures\Innmind\TimeContinuum\PointInTime;
+use Fixtures\Innmind\TimeContinuum\{
+    PointInTime,
+    Timezone,
+};
 use Innmind\BlackBox\Set;
 
 return static function() {
@@ -243,6 +246,16 @@ return static function() {
                 '+02:00',
                 $clock->now()->offset()->toString(),
             );
+        },
+    );
+
+    yield proof(
+        'Timezone fixtures',
+        given(Timezone::any()),
+        static function($assert, $timezone) {
+            $clock = Clock::live()->switch($timezone);
+
+            $assert->string($clock->now()->toString());
         },
     );
 };
