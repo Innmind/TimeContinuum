@@ -76,12 +76,13 @@ final class Via implements Implementation
             $lastErrors = \DateTimeImmutable::getLastErrors();
             $warnings = \implode(', ', \array_values($lastErrors['warnings'] ?? []));
             $errors = \implode(', ', \array_values($lastErrors['errors'] ?? []));
-
-            /** @var Attempt<PointInTime> */
-            return Attempt::error(new \RuntimeException(<<<MESSAGE
+            $message = <<<MESSAGE
             Warnings: $warnings
             Errors: $errors
-            MESSAGE));
+            MESSAGE;
+
+            /** @var Attempt<PointInTime> */
+            return Attempt::error(new \RuntimeException($message));
         }
 
         if ($datetime->format($format->toString()) !== $date) {
