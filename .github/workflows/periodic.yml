@@ -9,7 +9,7 @@ on:
 
 jobs:
   blackbox:
-    uses: innmind/github-workflows/.github/workflows/coverage.yml@next
+    uses: innmind/github-workflows/.github/workflows/coverage.yml@main
     secrets: inherit
     with:
       os: ubuntu-latest
