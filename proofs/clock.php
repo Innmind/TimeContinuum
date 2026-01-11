@@ -5,16 +5,17 @@ use Innmind\TimeContinuum\{
     Clock,
     Period,
     Format,
+    PointInTime as Point,
 };
 use Fixtures\Innmind\TimeContinuum\PointInTime;
 use Innmind\BlackBox\Set;
 
 return static function() {
     yield proof(
-        'All models are always withing bounds',
-        given(Set\Either::any(
+        'All models are always within bounds',
+        given(Set::either(
             PointInTime::any(),
-            Set\Call::of(static fn() => Clock::live()->now()),
+            Set::call(static fn() => Clock::live()->now()),
         )),
         static function($assert, $point) {
             $assert
@@ -96,8 +97,8 @@ return static function() {
     yield proof(
         'Clock::at() returns nothing for invalid strings',
         given(
-            Set\Unicode::strings(),
-            Set\Elements::of(
+            Set::strings()->unicode(),
+            Set::of(
                 Format::cookie(),
                 Format::iso8601(),
                 Format::rfc1036(),
@@ -121,7 +122,7 @@ return static function() {
         'Clock::ofFormat()->at()',
         given(
             PointInTime::any(),
-            Set\Elements::of(
+            Set::of(
                 Format::iso8601(),
                 new class implements Format\Custom {
                     public function normalize(): Format
@@ -155,9 +156,18 @@ return static function() {
 
     yield proof(
         'Each call to Clock::now() is ahead of the previous',
-        given(Set\Nullable::of(Set\Integers::between(1, 2_000_000))), // up to 2 seconds
-        static function($assert, $microsecond) {
-            $clock = Clock::live();
+        given(
+            Set::of(
+                Clock::live(),
+                Clock::via( // to make sure the now is not memoized
+                    static fn() => Clock::live()->now(),
+                ),
+            ),
+            Set::integers()
+                ->between(1, 2_000_000) // up to 2 seconds
+                ->nullable(),
+        ),
+        static function($assert, $clock, $microsecond) {
             $start = $clock->now();
 
             if (\is_int($microsecond)) {
@@ -179,6 +189,60 @@ return static function() {
             $now = $clock->now();
 
             $assert->true($now->equals($now));
+        },
+    );
+
+    yield test(
+        'Clock::via()->switch()->now() applies the offset at the provided now date',
+        static function($assert) {
+            $clock = Clock::via(
+                static fn() => Point::at(
+                    new DateTimeImmutable('2025-11-01 12:00:00'),
+                ),
+            )->switch(static fn($timezones) => $timezones->europe()->paris());
+
+            $assert->same(
+                '+01:00',
+                $clock->now()->offset()->toString(),
+            );
+
+            $clock = Clock::via(
+                static fn() => Point::at(
+                    new DateTimeImmutable('2025-10-25 12:00:00'),
+                ),
+            )->switch(static fn($timezones) => $timezones->europe()->paris());
+
+            $assert->same(
+                '+02:00',
+                $clock->now()->offset()->toString(),
+            );
+        },
+    );
+
+    yield test(
+        'Clock::frozen()->switch()->now() applies the offset at the provided now date',
+        static function($assert) {
+            $clock = Clock::frozen(
+                Point::at(
+                    new DateTimeImmutable('2025-11-01 12:00:00'),
+                ),
+            )->switch(static fn($timezones) => $timezones->europe()->paris());
+
+            $assert->same(
+                '+01:00',
+                $clock->now()->offset()->toString(),
+            );
+
+            $clock = Clock::frozen(
+                Point::at(
+                    new DateTimeImmutable('2025-10-25 12:00:00'),
+                ),
+            )->switch(static fn($timezones) => $timezones->europe()->paris());
+
+            $assert->same(
+                '+02:00',
+                $clock->now()->offset()->toString(),
+            );
         },
     );
 };

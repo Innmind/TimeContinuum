@@ -8,7 +8,7 @@ use Innmind\TimeContinuum\{
     Format,
     PointInTime,
 };
-use Innmind\Immutable\Maybe;
+use Innmind\Immutable\Attempt;
 
 /**
  * @psalm-immutable
@@ -33,9 +33,9 @@ final class OfFormat
     /**
      * @param non-empty-string $date
      *
-     * @return Maybe<PointInTime>
+     * @return Attempt<PointInTime>
      */
-    public function at(string $date): Maybe
+    public function at(string $date): Attempt
     {
         return $this->clock->at($date, $this->format);
     }

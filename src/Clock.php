@@ -4,34 +4,53 @@ declare(strict_types = 1);
 namespace Innmind\TimeContinuum;
 
 use Innmind\TimeContinuum\Clock\{
-    Live,
-    Frozen,
+    Implementation,
     Logger,
+    Via,
     OfFormat,
 };
-use Innmind\Immutable\Maybe;
+use Innmind\Immutable\Attempt;
 use Psr\Log\LoggerInterface;
 
 final class Clock
 {
     private function __construct(
-        private Live|Frozen|Logger $implementation,
+        private Implementation $implementation,
     ) {
     }
 
     public static function live(): self
     {
-        return new self(new Live(Offset::utc()));
+        return self::via(PointInTime::now(...));
     }
 
     public static function frozen(PointInTime $point): self
     {
-        return new self(new Frozen($point, new Live(Offset::utc())));
+        return new self(new Via(
+            static fn() => $point,
+            $point->offset(),
+        ));
     }
 
     public static function logger(self $clock, LoggerInterface $logger): self
     {
-        return new self(new Logger($clock, $logger));
+        return new self(new Logger(
+            $clock->implementation,
+            $logger,
+        ));
+    }
+
+    /**
+     * @internal
+     *
+     * @param callable(): PointInTime $now
+     */
+    public static function via(callable $now): self
+    {
+        return new self(new Via(
+            \Closure::fromCallable($now),
+            Offset::utc(),
+        ));
     }
 
     public function now(): PointInTime
@@ -52,9 +71,9 @@ final class Clock
      *
      * @param non-empty-string $date
      *
-     * @return Maybe<PointInTime>
+     * @return Attempt<PointInTime>
      */
-    public function at(string $date, Format|Format\Custom $format): Maybe
+    public function at(string $date, Format|Format\Custom $format): Attempt
     {
         if ($format instanceof Format\Custom) {
             $format = $format->normalize();

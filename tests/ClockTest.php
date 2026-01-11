@@ -17,7 +17,6 @@ use Innmind\BlackBox\{
     Set,
 };
 use PHPUnit\Framework\Attributes\DataProvider;
-use Fixtures\Innmind\TimeContinuum\PointInTime;
 
 class ClockTest extends TestCase
 {
@@ -58,15 +57,15 @@ class ClockTest extends TestCase
         $this->assertLessThanOrEqual(59, $offset->minutes());
     }
 
-    public function testTimezoneDifferences()
+    public function testTimezoneDifferences(): BlackBox\Proof
     {
-        $this
+        return $this
             ->forAll(
-                self::genToSet(self::america())->filter(
+                self::genToSet(self::america())->exclude(
                     // timezone that collides with other continents
-                    static fn($pair) => $pair[0] !== 'danmarkshavn',
+                    static fn($pair) => $pair[0] === 'danmarkshavn',
                 ),
-                Set\Either::any(
+                Set::either(
                     self::genToSet(self::africa()),
                     self::genToSet(self::europe()),
                     self::genToSet(self::indian()),
@@ -74,7 +73,7 @@ class ClockTest extends TestCase
                     self::genToSet(self::australia()),
                 ),
             )
-            ->then(function($america, $other) {
+            ->prove(function($america, $other) {
                 $america = $america[1];
                 $other = $other[1];
 
@@ -88,41 +87,15 @@ class ClockTest extends TestCase
             });
     }
 
-    public function testFrozenClockDoesntChangeItsTimezone()
+    public function testLoggerUseNewTimezone(): BlackBox\Proof
     {
-        $this
-            ->forAll(PointInTime::any())
-            ->then(function($point) {
-                $frozen = Clock::frozen($point);
-                $clock = $frozen->switch(static fn($timezones) => $timezones->europe()->paris());
-
-                $this->assertSame(
-                    $point->toString(),
-                    $clock->now()->toString(),
-                );
-                $this->assertSame(
-                    $frozen->now()->toString(),
-                    $clock->now()->toString(),
-                );
-                $this->assertSame(
-                    $frozen->now()->format(Format::iso8601()),
-                    $clock->at($point->format(Format::iso8601()), Format::iso8601())->match(
-                        static fn($point) => $point->format(Format::iso8601()),
-                        static fn() => null,
-                    ),
-                );
-            });
-    }
-
-    public function testLoggerUseNewTimezone()
-    {
-        $this
+        return $this
             ->forAll(
                 self::genToSet(self::america())->filter(
                     // timezone that collides with other continents
                     static fn($pair) => $pair[0] !== 'danmarkshavn',
                 ),
-                Set\Either::any(
+                Set::either(
                     self::genToSet(self::africa()),
                     self::genToSet(self::europe()),
                     self::genToSet(self::indian()),
@@ -130,7 +103,7 @@ class ClockTest extends TestCase
                     self::genToSet(self::australia()),
                 ),
             )
-            ->then(function($america, $other) {
+            ->prove(function($america, $other) {
                 $america = $america[1];
                 $other = $other[1];
                 $gather = new class implements LoggerInterface {
@@ -197,7 +170,7 @@ class ClockTest extends TestCase
     {
         $zones = \iterator_to_array($zones);
 
-        return Set\Elements::of(
+        return Set::of(
             ...\array_map(
                 static fn($name, $switch) => [$name, $switch[0]],
                 \array_keys($zones),

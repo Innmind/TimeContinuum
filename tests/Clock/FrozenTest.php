@@ -18,23 +18,26 @@ class FrozenTest extends TestCase
 {
     use BlackBox;
 
-    public function testNow()
+    public function testNow(): BlackBox\Proof
     {
-        $this
+        return $this
             ->forAll(PointInTime::any())
-            ->then(function($now) {
-                $this->assertSame($now, Clock::frozen($now)->now());
+            ->prove(function($now) {
+                $this->assertSame(
+                    $now->toString(),
+                    Clock::frozen($now)->now()->toString(),
+                );
             });
     }
 
-    public function testAtReturnWithTheSameTimezoneAsNow()
+    public function testAtReturnWithTheSameTimezoneAsNow(): BlackBox\Proof
     {
-        $this
+        return $this
             ->forAll(
                 PointInTime::any(),
                 PointInTime::any(),
             )
-            ->then(function($now, $at) {
+            ->prove(function($now, $at) {
                 $clock = Clock::frozen($now);
 
                 $point = $clock->at($at->format(Format::iso8601()), Format::iso8601())->match(

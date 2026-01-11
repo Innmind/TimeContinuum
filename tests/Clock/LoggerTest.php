@@ -22,11 +22,11 @@ class LoggerTest extends TestCase
 {
     use BlackBox;
 
-    public function testGeneratedNowIsLogged()
+    public function testGeneratedNowIsLogged(): BlackBox\Proof
     {
-        $this
+        return $this
             ->forAll(PointInTime::any())
-            ->then(function($now) {
+            ->prove(function($now) {
                 $concrete = Clock::frozen($now);
                 $logger = new class implements LoggerInterface {
                     use LoggerTrait;
@@ -41,7 +41,7 @@ class LoggerTest extends TestCase
 
                 $clock = Clock::logger($concrete, $logger);
 
-                $this->assertSame($now, $clock->now());
+                $this->assertSame($now->toString(), $clock->now()->toString());
                 $this->assertCount(1, $logger->logs);
                 $this->assertSame(
                     [
@@ -54,13 +54,13 @@ class LoggerTest extends TestCase
             });
     }
 
-    public function testAskedDateIsLogged()
+    public function testAskedDateIsLogged(): BlackBox\Proof
     {
-        $this
+        return $this
             ->forAll(
                 PointInTime::any(),
             )
-            ->then(function($point) {
+            ->prove(function($point) {
                 $concrete = Clock::frozen($point);
                 $logger = new class implements LoggerInterface {
                     use LoggerTrait;
@@ -98,12 +98,12 @@ class LoggerTest extends TestCase
             });
     }
 
-    public function testAskedDateWithSpecificFormatIsLogged()
+    public function testAskedDateWithSpecificFormatIsLogged(): BlackBox\Proof
     {
-        $this
+        return $this
             ->forAll(
                 PointInTime::any(),
-                Set\Elements::of(
+                Set::of(
                     Format::iso8601(),
                     Format::rfc1123(),
                     Format::rfc2822(),
@@ -119,7 +119,7 @@ class LoggerTest extends TestCase
                     // Format::rfc850(),
                 ),
             )
-            ->then(function($point, $format) {
+            ->prove(function($point, $format) {
                 $concrete = Clock::frozen($point);
                 $logger = new class implements LoggerInterface {
                     use LoggerTrait;
