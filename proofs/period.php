@@ -5,23 +5,23 @@ use Innmind\TimeContinuum\Period;
 use Innmind\BlackBox\Set;
 
 return static function() {
-    $period = Set\Composite::immutable(
+    $period = Set::compose(
         Period::composite(...),
-        Set\Integers::between(0, 10_000), // year
-        Set\Integers::between(0, 10_000), // month
-        Set\Integers::between(0, 100_000), // day
-        Set\Integers::between(0, 1_000_000), // hour
-        Set\Integers::between(0, 1_000_000_000), // minute
-        Set\Integers::above(0), // second
-        Set\Integers::above(0), // millisecond
-        Set\Integers::above(0), // microsecond
+        Set::integers()->between(0, 10_000), // year
+        Set::integers()->between(0, 10_000), // month
+        Set::integers()->between(0, 100_000), // day
+        Set::integers()->between(0, 1_000_000), // hour
+        Set::integers()->between(0, 1_000_000_000), // minute
+        Set::integers()->above(0), // second
+        Set::integers()->above(0), // millisecond
+        Set::integers()->above(0), // microsecond
     );
 
     yield proof(
         'Periods components are always within bounds',
-        given(Set\Either::any(
+        given(Set::either(
             $period,
-            Set\Composite::immutable(
+            Set::compose(
                 static fn($p1, $p2) => $p1->add($p2),
                 $period,
                 $period,

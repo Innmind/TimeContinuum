@@ -8,8 +8,12 @@ use Innmind\TimeContinuum\{
     Period,
 };
 
+/**
+ * @psalm-immutable
+ */
 final class EndOfMonth
 {
+    #[\NoDiscard]
     public function __invoke(PointInTime $point): PointInTime
     {
         /** @psalm-suppress InvalidArgument The negative values can only happen when working with 2 different points in time */

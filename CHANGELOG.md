@@ -1,5 +1,18 @@
 # Changelog
 
+## 5.0.0 - 2026-01-11
+
+### Added
+
+- `Fixtures\Innmind\TimeContinuum\Timezone`
+
+### Changed
+
+- Requires PHP `8.4`
+- Requires `innmind/black-box:~6.5`
+- `Clock::frozen()->switch()` now applies the new offset (for behaviour consistency)
+- `Clock->at()` now returns an `Innmind\Immutable\Attempt` to ease debugging
+
 ## 4.2.0 - 2025-06-02
 
 ### Added

@@ -42,6 +42,7 @@ final class Period
      * @param int<0, 999> $millisecond
      * @param int<0, 999> $microsecond
      */
+    #[\NoDiscard]
     public static function of(
         int $year,
         int $month,
@@ -76,6 +77,7 @@ final class Period
      * @param int<0, max> $millisecond
      * @param int<0, max> $microsecond
      */
+    #[\NoDiscard]
     public static function composite(
         int $year,
         int $month,
@@ -101,6 +103,7 @@ final class Period
      *
      * @param 0|positive-int $year
      */
+    #[\NoDiscard]
     public static function year(int $year): self
     {
         return new self(
@@ -120,6 +123,7 @@ final class Period
      *
      * @param 0|positive-int $month
      */
+    #[\NoDiscard]
     public static function month(int $month): self
     {
         if ($month < 12) {
@@ -147,6 +151,7 @@ final class Period
      *
      * @param 0|positive-int $day
      */
+    #[\NoDiscard]
     public static function day(int $day): self
     {
         return new self(
@@ -166,6 +171,7 @@ final class Period
      *
      * @param 0|positive-int $hour
      */
+    #[\NoDiscard]
     public static function hour(int $hour): self
     {
         if ($hour < 24) {
@@ -193,6 +199,7 @@ final class Period
      *
      * @param 0|positive-int $minute
      */
+    #[\NoDiscard]
     public static function minute(int $minute): self
     {
         if ($minute < 60) {
@@ -221,6 +228,7 @@ final class Period
      *
      * @param 0|positive-int $second
      */
+    #[\NoDiscard]
     public static function second(int $second): self
     {
         if ($second < 60) {
@@ -249,6 +257,7 @@ final class Period
      *
      * @param 0|positive-int $millisecond
      */
+    #[\NoDiscard]
     public static function millisecond(int $millisecond): self
     {
         if ($millisecond < 1_000) {
@@ -277,6 +286,7 @@ final class Period
      *
      * @param 0|positive-int $microsecond
      */
+    #[\NoDiscard]
     public static function microsecond(int $microsecond): self
     {
         if ($microsecond < 1_000) {
@@ -303,6 +313,7 @@ final class Period
     /**
      * @return int<0, max>
      */
+    #[\NoDiscard]
     public function years(): int
     {
         return $this->year;
@@ -311,6 +322,7 @@ final class Period
     /**
      * @return int<0, 11>
      */
+    #[\NoDiscard]
     public function months(): int
     {
         return $this->month;
@@ -319,6 +331,7 @@ final class Period
     /**
      * @return int<0, max>
      */
+    #[\NoDiscard]
     public function days(): int
     {
         return $this->day;
@@ -327,6 +340,7 @@ final class Period
     /**
      * @return int<0, 23>
      */
+    #[\NoDiscard]
     public function hours(): int
     {
         return $this->hour;
@@ -335,6 +349,7 @@ final class Period
     /**
      * @return int<0, 59>
      */
+    #[\NoDiscard]
     public function minutes(): int
     {
         return $this->minute;
@@ -343,6 +358,7 @@ final class Period
     /**
      * @return int<0, 59>
      */
+    #[\NoDiscard]
     public function seconds(): int
     {
         return $this->second;
@@ -351,6 +367,7 @@ final class Period
     /**
      * @return int<0, 999>
      */
+    #[\NoDiscard]
     public function milliseconds(): int
     {
         return $this->millisecond;
@@ -359,11 +376,13 @@ final class Period
     /**
      * @return int<0, 999>
      */
+    #[\NoDiscard]
     public function microseconds(): int
     {
         return $this->microsecond;
     }
 
+    #[\NoDiscard]
     public function equals(self $period): bool
     {
         return $this->year === $period->years() &&
@@ -376,6 +395,7 @@ final class Period
             $this->microsecond === $period->microseconds();
     }
 
+    #[\NoDiscard]
     public function add(self $period): self
     {
         $microsecond = self::microsecond($this->microsecond + $period->microseconds());
@@ -451,6 +471,7 @@ final class Period
     /**
      * @throws \LogicException When using a period containing months or years
      */
+    #[\NoDiscard]
     public function asElapsedPeriod(): ElapsedPeriod
     {
         if ($this->months() !== 0 || $this->years() !== 0) {

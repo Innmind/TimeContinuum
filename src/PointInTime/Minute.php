@@ -22,6 +22,7 @@ final class Minute
      *
      * @param int<0, 59> $minute
      */
+    #[\NoDiscard]
     public static function of(int $minute): self
     {
         return new self($minute);
@@ -30,6 +31,7 @@ final class Minute
     /**
      * @return 60
      */
+    #[\NoDiscard]
     public function numberOfSeconds(): int
     {
         return 60;
@@ -38,6 +40,7 @@ final class Minute
     /**
      * @return int<0, 59>
      */
+    #[\NoDiscard]
     public function toInt(): int
     {
         return $this->minute;

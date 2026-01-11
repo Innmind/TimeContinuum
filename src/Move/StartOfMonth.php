@@ -8,8 +8,12 @@ use Innmind\TimeContinuum\{
     Period,
 };
 
+/**
+ * @psalm-immutable
+ */
 final class StartOfMonth
 {
+    #[\NoDiscard]
     public function __invoke(PointInTime $point): PointInTime
     {
         return (new StartOfDay)($point)->goBack(

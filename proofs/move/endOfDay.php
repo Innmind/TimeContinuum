@@ -11,9 +11,9 @@ use Innmind\BlackBox\Set;
 return static function() {
     yield proof(
         'End of day',
-        given(Set\Either::any(
+        given(Set::either(
             PointInTime::any(),
-            Set\Call::of(static fn() => Clock::live()->now()),
+            Set::call(static fn() => Clock::live()->now()),
         )),
         static function($assert, $point) {
             $endOfDay = (new EndOfDay)($point);

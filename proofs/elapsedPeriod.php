@@ -13,10 +13,10 @@ return static function() {
     yield proof(
         'High resolution elapsed period',
         given(
-            Set\Integers::above(0),
-            Set\Integers::above(0),
-            Set\Integers::between(0, 999_999_999),
-            Set\Integers::between(0, 999_999_999),
+            Set::integers()->above(0),
+            Set::integers()->above(0),
+            Set::integers()->between(0, 999_999_999),
+            Set::integers()->between(0, 999_999_999),
         )->filter(static fn($start, $end) => $end > $start),
         static function(
             $assert,
@@ -48,8 +48,8 @@ return static function() {
     yield proof(
         'High resolution elapsed period within same second',
         given(
-            Set\Integers::between(0, 999_999_999),
-            Set\Integers::between(0, 999_999_999),
+            Set::integers()->between(0, 999_999_999),
+            Set::integers()->between(0, 999_999_999),
         )->filter(static fn($start, $end) => $end > $start && ($end - $start) > 1_000),
         static function(
             $assert,
@@ -80,7 +80,7 @@ return static function() {
         'Elapsed period',
         given(
             Fixtures\PointInTime::any(),
-            Set\Integers::above(1),
+            Set::integers()->above(1),
         ),
         static function($assert, $start, $microsecond) {
             $assert->true(
@@ -113,7 +113,7 @@ return static function() {
         'Negative elapsed periods throws',
         given(
             Fixtures\PointInTime::any(),
-            Set\Integers::above(1),
+            Set::integers()->above(1),
         ),
         static function($assert, $start, $microsecond) {
             $assert->throws(
@@ -127,10 +127,10 @@ return static function() {
     yield proof(
         'Negative high resolution elapsed periods throws',
         given(
-            Set\Integers::above(0),
-            Set\Integers::above(0),
-            Set\Integers::between(0, 999_999_999),
-            Set\Integers::between(0, 999_999_999),
+            Set::integers()->above(0),
+            Set::integers()->above(0),
+            Set::integers()->between(0, 999_999_999),
+            Set::integers()->between(0, 999_999_999),
         )->filter(static fn($start, $end) => $end > $start),
         static function(
             $assert,

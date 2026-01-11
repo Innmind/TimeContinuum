@@ -25,6 +25,7 @@ enum Month
      * @psalm-pure
      * @internal
      */
+    #[\NoDiscard]
     public static function of(int $index): self
     {
         return match ($index) {
@@ -46,6 +47,7 @@ enum Month
     /**
      * @return int<1, 12>
      */
+    #[\NoDiscard]
     public function toInt(): int
     {
         return match ($this) {

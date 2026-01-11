@@ -4,32 +4,24 @@ declare(strict_types = 1);
 namespace Innmind\TimeContinuum\Clock;
 
 use Innmind\TimeContinuum\{
-    Clock,
     PointInTime,
     Format,
-    Timezones,
-    Timezone,
 };
-use Innmind\Immutable\Maybe;
+use Innmind\Immutable\Attempt;
 use Psr\Log\LoggerInterface;
 
 /**
  * @internal
  */
-final class Logger
+final class Logger implements Implementation
 {
-    private Clock $clock;
-    private LoggerInterface $logger;
-
-    public function __construct(Clock $clock, LoggerInterface $logger)
-    {
-        $this->clock = $clock;
-        $this->logger = $logger;
+    public function __construct(
+        private Implementation $clock,
+        private LoggerInterface $logger,
+    ) {
     }
 
-    /**
-     * @param callable(Timezones): Timezone $changeTimezone
-     */
+    #[\Override]
     public function switch(callable $changeTimezone): self
     {
         return new self(
@@ -38,6 +30,7 @@ final class Logger
         );
     }
 
+    #[\Override]
     public function now(): PointInTime
     {
         $now = $this->clock->now();
@@ -53,9 +46,10 @@ final class Logger
      *
      * @param non-empty-string $date
      *
-     * @return Maybe<PointInTime>
+     * @return Attempt<PointInTime>
      */
-    public function at(string $date, Format $format): Maybe
+    #[\Override]
+    public function at(string $date, Format $format): Attempt
     {
         return $this
             ->clock
@@ -63,6 +57,7 @@ final class Logger
             ->map(fn($point) => $this->log($point, $date, $format));
     }
 
+    #[\NoDiscard]
     private function log(
         PointInTime $point,
         string $date,

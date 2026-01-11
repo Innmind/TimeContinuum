@@ -8,26 +8,16 @@ namespace Innmind\TimeContinuum;
  */
 final class ElapsedPeriod
 {
-    /** @var int<0, max> */
-    private int $seconds;
-    /** @var int<0, 999> */
-    private int $milliseconds;
-    /** @var int<0, 999> */
-    private int $microseconds;
-
     /**
      * @param int<0, max> $seconds
      * @param int<0, 999> $milliseconds
      * @param int<0, 999> $microseconds
      */
     private function __construct(
-        int $seconds,
-        int $milliseconds,
-        int $microseconds,
+        private int $seconds,
+        private int $milliseconds,
+        private int $microseconds,
     ) {
-        $this->seconds = $seconds;
-        $this->milliseconds = $milliseconds;
-        $this->microseconds = $microseconds;
     }
 
     /**
@@ -38,6 +28,7 @@ final class ElapsedPeriod
      * @param int<0, 999> $milliseconds
      * @param int<0, 999> $microseconds
      */
+    #[\NoDiscard]
     public static function of(
         int $seconds,
         int $milliseconds,
@@ -46,6 +37,7 @@ final class ElapsedPeriod
         return new self($seconds, $milliseconds, $microseconds);
     }
 
+    #[\NoDiscard]
     public function longerThan(self $period): bool
     {
         if ($this->seconds > $period->seconds) {
@@ -67,6 +59,7 @@ final class ElapsedPeriod
         return $this->microseconds > $period->microseconds;
     }
 
+    #[\NoDiscard]
     public function equals(self $period): bool
     {
         return $this->seconds === $period->seconds &&
@@ -74,6 +67,7 @@ final class ElapsedPeriod
             $this->microseconds === $period->microseconds;
     }
 
+    #[\NoDiscard]
     public function asPeriod(): Period
     {
         return Period::second($this->seconds)

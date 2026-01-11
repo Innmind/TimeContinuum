@@ -8,8 +8,12 @@ use Innmind\TimeContinuum\{
     Period,
 };
 
+/**
+ * @psalm-immutable
+ */
 final class EndOfYear
 {
+    #[\NoDiscard]
     public function __invoke(PointInTime $point): PointInTime
     {
         $point = (new StartOfMonth)($point)->goForward(

@@ -8,17 +8,18 @@ use Innmind\TimeContinuum\{
     Period,
 };
 
+/**
+ * @psalm-immutable
+ */
 final class Month
 {
-    private string $direction;
-    private Period $months;
-
-    private function __construct(string $direction, Period $months)
-    {
-        $this->direction = $direction;
-        $this->months = $months;
+    private function __construct(
+        private string $direction,
+        private Period $months,
+    ) {
     }
 
+    #[\NoDiscard]
     public function __invoke(PointInTime $point): PointInTime
     {
         /** @var PointInTime $newPoint */
@@ -43,16 +44,22 @@ final class Month
     }
 
     /**
+     * @psalm-pure
+     *
      * @param int<1, max> $months
      */
+    #[\NoDiscard]
     public static function forward(int $months): self
     {
         return new self('goForward', Period::month($months));
     }
 
     /**
+     * @psalm-pure
+     *
      * @param int<1, max> $months
      */
+    #[\NoDiscard]
     public static function backward(int $months): self
     {
         return new self('goBack', Period::month($months));

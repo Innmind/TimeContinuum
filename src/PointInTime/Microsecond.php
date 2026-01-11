@@ -22,6 +22,7 @@ final class Microsecond
      *
      * @param int<0, 999> $microsecond
      */
+    #[\NoDiscard]
     public static function of(int $microsecond): self
     {
         return new self($microsecond);
@@ -30,6 +31,7 @@ final class Microsecond
     /**
      * @return int<0, 999>
      */
+    #[\NoDiscard]
     public function toInt(): int
     {
         return $this->microsecond;

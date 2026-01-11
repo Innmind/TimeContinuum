@@ -10,9 +10,9 @@ return static function() {
         'PointInTime::equals()',
         given(
             Fixtures\PointInTime::any(),
-            Set\Either::any(
-                Set\Integers::above(0)->map(Period::microsecond(...)),
-                Set\Integers::above(0)->map(Period::millisecond(...)),
+            Set::either(
+                Set::integers()->above(0)->map(Period::microsecond(...)),
+                Set::integers()->above(0)->map(Period::millisecond(...)),
             ),
         ),
         static function($assert, $point, $period) {
@@ -45,8 +45,8 @@ return static function() {
         'PointInTime::aheadOf()',
         given(
             Fixtures\PointInTime::any(),
-            Fixtures\Period::any()->filter(
-                static fn($period) => !$period->equals(Period::microsecond(0)),
+            Fixtures\Period::any()->exclude(
+                static fn($period) => $period->equals(Period::microsecond(0)),
             ),
         ),
         static function($assert, $point, $period) {
