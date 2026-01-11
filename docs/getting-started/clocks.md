@@ -28,19 +28,19 @@ use Innmind\TimeContinuum\{
     Format,
     PointInTime,
 };
-use Innmind\Immutable\Maybe;
+use Innmind\Immutable\Attempt;
 
 $time = '2024-11-24T12:34:25+00:00';
 
 $clock = Clock::live();
-$at = $clock->at($time, Format::iso8601()); // instance of Maybe<PointInTime>
+$at = $clock->at($time, Format::iso8601()); // instance of Attempt<PointInTime>
 $point = $at->match(
     static fn(PointInTime $point) => $point,
     static fn() => null,
 );
 ```
 
-The `at` method returns a [`Maybe` monad](https://innmind.org/Immutable/structures/maybe/) that may contain a `PointInTime`. This is in case the `#!php $time` variable contains a value that doesn't correspond to the specified format (here `ISO8601`).
+The `at` method returns an [`Attempt` monad](https://innmind.org/Immutable/structures/attempt/) that may contain a `PointInTime`. This is in case the `#!php $time` variable contains a value that doesn't correspond to the specified format (here `ISO8601`).
 
 This means that the `#!php $point` variable here is an instance of `PointInTime` because the `#!php $time` value is valid. If it's invalid then `#!php $point` is `#!php null`.
 
@@ -80,7 +80,7 @@ $clock = Clock::live()
     ->at('2024-11-24T12:34:25+00:00', Format::iso8601())
     ->match(
         Clock::frozen(...),
-        static fn() => throw new \LogicException('Specify a valid date'),
+        static fn(\Throwable $e) => throw $e
     );
 ```
 

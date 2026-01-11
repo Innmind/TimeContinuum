@@ -22,8 +22,3 @@ This is especially useful when working with network I/O to check for timeouts.
 
 ??? info
     Bear in mind that the monotonic clock only works on `PointInTime`s returned by `$clock->now()`. If `->elapsedSince()` is called on points returned by `$clock->at()` it will compare the number of microseconds since epoch.
-
-??? warning
-    `ElapsedPeriod` uses an `int` internally to represent the number of microseconds. If you compare two points far away between each other you may end up with an overflow.
-
-    Since this feature is mainly intended for network I/O handling the points should be close from one another. So this bug won't be addresed at least for now.
