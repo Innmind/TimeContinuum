@@ -3,37 +3,6 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum\PointInTime;
 
-/**
- * @psalm-immutable
- */
-final class Millisecond
-{
-    /**
-     * @param int<0, 999> $millisecond
-     */
-    private function __construct(
-        private int $millisecond,
-    ) {
-    }
+use Innmind\Time;
 
-    /**
-     * @psalm-pure
-     * @internal
-     *
-     * @param int<0, 999> $millisecond
-     */
-    #[\NoDiscard]
-    public static function of(int $millisecond): self
-    {
-        return new self($millisecond);
-    }
-
-    /**
-     * @return int<0, 999>
-     */
-    #[\NoDiscard]
-    public function toInt(): int
-    {
-        return $this->millisecond;
-    }
-}
+\class_alias(Time\Point\Millisecond::class, Millisecond::class);

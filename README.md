@@ -22,7 +22,7 @@ use Innmind\TimeContinuum\{
     PointInTime,
     Format,
 };
-use Innmind\Immutable\Maybe;
+use Innmind\Immutable\Attempt;
 
 $clock = Clock::live();
 $now = $clock->now(); // return an instance of PointInTime
@@ -31,7 +31,7 @@ echo $now->toString(); // 2016-10-11T12:17:30.123456+02:00
 $epoch = $clock->at(
     '1970-01-01T00:00:00.000000+00:00',
     Format::iso8601(),
-); // Maybe<PointInTime>
+); // Attempt<PointInTime>
 ```
 
 Here we reference 2 points in time, the first is the exact moment we call `now` down to the microsecond and the second one is the epoch time.
