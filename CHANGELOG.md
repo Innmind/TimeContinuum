@@ -1,5 +1,11 @@
 # Changelog
 
+## 5.1.0 - 2026-01-18
+
+### Changed
+
+- All classes have been aliased to the ones of `innmind/time`
+
 ## 5.0.0 - 2026-01-11
 
 ### Added
