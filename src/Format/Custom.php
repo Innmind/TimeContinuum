@@ -3,13 +3,6 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum\Format;
 
-use Innmind\TimeContinuum\Format;
+use Innmind\Time;
 
-/**
- * @psalm-immutable
- */
-interface Custom
-{
-    #[\NoDiscard]
-    public function normalize(): Format;
-}
+\class_alias(Time\Format\Custom::class, Custom::class);

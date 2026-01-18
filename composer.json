@@ -17,7 +17,7 @@
     "require": {
         "php": "~8.4",
         "psr/log": "~3.0",
-        "innmind/immutable": "~6.0"
+        "innmind/time": "~1.0"
     },
     "autoload": {
         "psr-4": {
@@ -32,7 +32,7 @@
     },
     "require-dev": {
         "innmind/static-analysis": "~1.3",
-        "innmind/black-box": "~6.5",
+        "innmind/black-box": "~6.9",
         "innmind/coding-standard": "^2.0.1"
     },
     "conflict": {
