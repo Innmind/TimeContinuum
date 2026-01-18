@@ -3,21 +3,6 @@ declare(strict_types = 1);
 
 namespace Innmind\TimeContinuum\Move;
 
-use Innmind\TimeContinuum\{
-    PointInTime,
-    Period,
-};
+use Innmind\Time;
 
-/**
- * @psalm-immutable
- */
-final class StartOfYear
-{
-    #[\NoDiscard]
-    public function __invoke(PointInTime $point): PointInTime
-    {
-        return (new StartOfMonth)($point)->goBack(
-            Period::month($point->month()->ofYear()->toInt() - 1),
-        );
-    }
-}
+\class_alias(Time\Move\StartOfYear::class, StartOfYear::class);
