@@ -4,6 +4,9 @@
 [![codecov](https://codecov.io/gh/Innmind/TimeContinuum/branch/develop/graph/badge.svg)](https://codecov.io/gh/Innmind/TimeContinuum)
 [![Type Coverage](https://shepherd.dev/github/innmind/timecontinuum/coverage.svg)](https://shepherd.dev/github/innmind/timecontinuum)
 
+> [!IMPORTANT]
+> This project has been replaced by [`innmind/time`](https://github.com/Innmind/time)
+
 This library allows you to handle time down to the millisecond. The point was to also be explicit for every component of dates, this is why every php _magic strings_ have been converted into objects.
 
 **All objects are immutable.**
